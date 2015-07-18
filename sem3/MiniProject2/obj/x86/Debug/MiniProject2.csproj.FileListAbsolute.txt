@@ -1,0 +1,15 @@
+C:\Users\Microsoft\Documents\Visual Studio 2010\Projects\MiniProject2\obj\x86\Debug\MiniProject2.csprojResolveAssemblyReference.cache
+C:\Users\Microsoft\Documents\Visual Studio 2010\Projects\MiniProject2\obj\x86\Debug\MiniProject2.Properties.Resources.resources
+C:\Users\Microsoft\Documents\Visual Studio 2010\Projects\MiniProject2\obj\x86\Debug\MiniProject2.csproj.GenerateResource.Cache
+C:\Users\Microsoft\Documents\Visual Studio 2010\Projects\MiniProject2\bin\Debug\MiniProject2.exe
+C:\Users\Microsoft\Documents\Visual Studio 2010\Projects\MiniProject2\bin\Debug\MiniProject2.pdb
+C:\Users\Microsoft\Documents\Visual Studio 2010\Projects\MiniProject2\obj\x86\Debug\MiniProject2.Form1.resources
+C:\Users\Microsoft\Documents\Visual Studio 2010\Projects\MiniProject2\obj\x86\Debug\MiniProject2.exe
+C:\Users\Microsoft\Documents\Visual Studio 2010\Projects\MiniProject2\obj\x86\Debug\MiniProject2.pdb
+C:\Users\Microsoft\SkyDrive\MiniProject2\obj\x86\Debug\MiniProject2.exe
+C:\Users\Microsoft\SkyDrive\MiniProject2\obj\x86\Debug\MiniProject2.pdb
+C:\Users\Microsoft\SkyDrive\MiniProject2\obj\x86\Debug\MiniProject2.Form1.resources
+C:\Users\Microsoft\SkyDrive\MiniProject2\obj\x86\Debug\MiniProject2.Properties.Resources.resources
+C:\Users\Microsoft\SkyDrive\MiniProject2\obj\x86\Debug\MiniProject2.csproj.GenerateResource.Cache
+C:\Users\Microsoft\SkyDrive\MiniProject2\bin\Debug\MiniProject2.exe
+C:\Users\Microsoft\SkyDrive\MiniProject2\bin\Debug\MiniProject2.pdb

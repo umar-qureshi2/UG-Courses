@@ -1,0 +1,283 @@
+############### Error in Printing Utility Bill ##############
+10/26/2010 4:40:54 PM
+   at System.Drawing.Printing.StandardPrintController.OnStartPrint(PrintDocument document, PrintEventArgs e)
+   at System.Drawing.Printing.PrintController.Print(PrintDocument document)
+   at System.Drawing.Printing.PrintDocument.Print()
+   at Kiosk.Printing.PrintUtilityBill(String transactionId, String consumerID, String consumerNo, String companyShortName, String billAmount, String billMonth, String billDate, String billTime)
+The RPC server is unavailable
+############### END ##############
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at ActiveMKit_Enroll.MKImageClass.get_wsq_image()
+   at Kiosk.Forms.Authentication.FingerCaptureSagem.captureFingerPrint()
+----------------------
+One of the library files needed to run this application cannot be found. (Exception from HRESULT: 0x80070485)
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at System.Convert.FromBase64String(String s)
+   at Kiosk.Global.GetDataFromFile(String filePath)
+   at Kiosk.Forms.SplashScreen.FilePoling()Invalid character in a Base-64 string.
+   at ActiveMKit_Enroll.MKImageClass.get_wsq_image()
+   at Kiosk.Forms.Authentication.FingerCaptureSagem.captureFingerPrint()
+----------------------
+One of the library files needed to run this application cannot be found. (Exception from HRESULT: 0x80070485)

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="cache_mapping-sim.exe" version="1.0.0.0" publicKeyToken="470f1c2917e97def" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="cache_mapping-sim" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="cache_mapping-sim.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="4" minorVersion="10" buildNumber="0" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="cache_mapping-sim.exe" size="1504256">
+      <assemblyIdentity name="cache_mapping-sim" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>d527mfqjaFOLNNWp/cbPYm1Y6nU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+<publisherIdentity name="CN=MICROSOFT-LT\Microsoft" issuerKeyHash="bb8641c1385d1f51b66b84bc7b60b5510972e96a" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>PshG41uSWLBJSV9DqsTQFsMSFK0=</DigestValue></Reference></SignedInfo><SignatureValue>nxlB5vY6/SzzWWNU0CObayWHBv+wNPFX3wiJV8IfypjjoD7RP7Guaw/K5C1/Acmlm7Nuu1KXeFK6n6DHQhsz7JHyWDl22cVLOZ/XOU6kbnhYxNKq4lZ0S7+r4b8yKE3M9FI7uyzj8Y/ok7Py4YfjiF7Pf9xHmqGl+ECYL5teZUM=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>qh9TJE7yd2IQsBK9Cw0SHFKD1pjjl9+ppWlyopeqD+KxfpkpoBpRKwHXJcOs4FFsxQBKK+YeOI3H4pmnQSJkvWoh1mhK9+NsPbhaRXqDAV9gJS++LUtjK69Evi/nsF5E99lqzoaHy58aDiymfKLynwBjqWyIGERj40bFgW6NH7k=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="c07295c133971757459e726a13e346a3f86af2e7a90b9114d9a5a0df4196e5fa" Description="" Url=""><as:assemblyIdentity name="cache_mapping-sim.exe" version="1.0.0.0" publicKeyToken="470f1c2917e97def" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=MICROSOFT-LT\Microsoft</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>l+GOauu3f4V0duQRx0bCChuqXAE=</DigestValue></Reference></SignedInfo><SignatureValue>jhoRqawyZwZ5kiCXogAz1Nci0KWdFHAeFInKI8iro3/ddoY86eVjxIPToxYGoA+IlS9dUe4TU4eBkEX0zCK1p3On0jC2+t2i/K/7Eb1MSvi6tKw6TXMTzz+LPNM4dmM+p8KvNygyQTuMCOoEvgwg52e6hWS5xJyB/L5PlXe31HA=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>iXU8bvIS3udnXQ1C6c7lg8TOsF4kJ5lk8CskGkgMrr3Ru2GeMMZf80RbbjX5Oi6hsaz3JcycvcjWjDpFFONdMlckYxdvbzPoFxsecbUg0wR9m7+Xr3/Y4XT05IdX/Us/631VnW8upjf4J4jSiDkwJHSIFqpN3pRrirevj7DtRIs=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB8TCCAVqgAwIBAgIQFLXxC7/qhaVNy2Ntnv/8PjANBgkqhkiG9w0BAQUFADA3MTUwMwYDVQQDHiwATQBJAEMAUgBPAFMATwBGAFQALQBMAFQAXABNAGkAYwByAG8AcwBvAGYAdDAeFw0xMjA1MzEwNDU0NDJaFw0xMzA1MzExMDU0NDJaMDcxNTAzBgNVBAMeLABNAEkAQwBSAE8AUwBPAEYAVAAtAEwAVABcAE0AaQBjAHIAbwBzAG8AZgB0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqH1MkTvJ3YhCwEr0LDRIcUoPWmOOX36mlaXKil6oP4rF+mSmgGlErAdclw6zgUWzFAEor5h44jcfimadBImS9aiHWaEr342w9uFpFeoMBX2AlL74tS2Mrr0S+L+ewXkT32WrOhofLnxoOLKZ8ovKfAGOpbIgYRGPjRsWBbo0fuQIDAQABMA0GCSqGSIb3DQEBBQUAA4GBABFpT068oFiajYdpybmGdKkolwpyPD74t2MDnrZTGEIYeowvWyLa/sCEsJ8GbeDgybEIfL/+Z/8bDybgzdgO0XzldYCDLyEMwCbrj+zbI+0dHXoIgyyNT+RoWTSDaAY1qYoYCeyiyVI3clHfphgpq/aco9Y7DaX9ZgIf9IghL58u</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

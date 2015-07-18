@@ -1,0 +1,115 @@
+\hypertarget{_uncompressor_8cpp}{\section{\-Uncompressor.\-cpp \-File \-Reference}
+\label{_uncompressor_8cpp}\index{\-Uncompressor.\-cpp@{\-Uncompressor.\-cpp}}
+}
+{\ttfamily \#include $<$iostream$>$}\*
+{\ttfamily \#include $<$string$>$}\*
+{\ttfamily \#include $<$sstream$>$}\*
+{\ttfamily \#include $<$fstream$>$}\*
+{\ttfamily \#include $<$vector$>$}\*
+\-Include dependency graph for \-Uncompressor.\-cpp\-:
+\subsection*{\-Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classstack}{stack}
+\item 
+struct \hyperlink{structtree_node}{tree\-Node}
+\item 
+class \hyperlink{class_p_q}{\-P\-Q}
+\item 
+class \hyperlink{class_huffman}{\-Huffman}
+\end{DoxyCompactItemize}
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_uncompressor_8cpp_ab11c37fc7417da09d5f6a4e0a15f80d3}{my\-\_\-header\-\_\-h}
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structtree_node}{tree\-Node} $\ast$ \hyperlink{_uncompressor_8cpp_acafa0ba54c14da5daea6e8b48c655801}{m\-Tree\-Nodes} (\hyperlink{structtree_node}{tree\-Node} $\ast$l, \hyperlink{structtree_node}{tree\-Node} $\ast$r)
+\item 
+string \hyperlink{_uncompressor_8cpp_a992490d33c23e31fdb8232275f02963e}{get\-Path} (string s)
+\item 
+string \hyperlink{_uncompressor_8cpp_a9c0d512cc4569acebef91b100fe12aca}{get\-Piece} (string s)
+\item 
+int \hyperlink{_uncompressor_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\-::string \hyperlink{_uncompressor_8cpp_a237ed127e9e72705f0b962815348ecd0}{lookup} \mbox{[}256\mbox{]}
+\item 
+class \hyperlink{classstack}{stack} \hyperlink{_uncompressor_8cpp_abd320f61013b8bc2021085242fa0ae56}{abc}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{_uncompressor_8cpp_ab11c37fc7417da09d5f6a4e0a15f80d3}{\index{\-Uncompressor.\-cpp@{\-Uncompressor.\-cpp}!my\-\_\-header\-\_\-h@{my\-\_\-header\-\_\-h}}
+\index{my\-\_\-header\-\_\-h@{my\-\_\-header\-\_\-h}!Uncompressor.cpp@{\-Uncompressor.\-cpp}}
+\subsubsection[{my\-\_\-header\-\_\-h}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf my\-\_\-header\-\_\-h}}}\label{_uncompressor_8cpp_ab11c37fc7417da09d5f6a4e0a15f80d3}
+
+
+\-Definition at line 2 of file \-Uncompressor.\-cpp.
+
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{_uncompressor_8cpp_a992490d33c23e31fdb8232275f02963e}{\index{\-Uncompressor.\-cpp@{\-Uncompressor.\-cpp}!get\-Path@{get\-Path}}
+\index{get\-Path@{get\-Path}!Uncompressor.cpp@{\-Uncompressor.\-cpp}}
+\subsubsection[{get\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf get\-Path} (
+\begin{DoxyParamCaption}
+\item[{string}]{s}
+\end{DoxyParamCaption}
+)}}\label{_uncompressor_8cpp_a992490d33c23e31fdb8232275f02963e}
+requires a string containing the absolute path of a file returns a string containing the path to pointing to the directory of that file 
+
+\-Definition at line 208 of file \-Uncompressor.\-cpp.
+
+\hypertarget{_uncompressor_8cpp_a9c0d512cc4569acebef91b100fe12aca}{\index{\-Uncompressor.\-cpp@{\-Uncompressor.\-cpp}!get\-Piece@{get\-Piece}}
+\index{get\-Piece@{get\-Piece}!Uncompressor.cpp@{\-Uncompressor.\-cpp}}
+\subsubsection[{get\-Piece}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf get\-Piece} (
+\begin{DoxyParamCaption}
+\item[{string}]{s}
+\end{DoxyParamCaption}
+)}}\label{_uncompressor_8cpp_a9c0d512cc4569acebef91b100fe12aca}
+requires a string containing the absolute path of a file \-Returns a string containing the name of that file 
+
+\-Definition at line 218 of file \-Uncompressor.\-cpp.
+
+\hypertarget{_uncompressor_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{\index{\-Uncompressor.\-cpp@{\-Uncompressor.\-cpp}!main@{main}}
+\index{main@{main}!Uncompressor.cpp@{\-Uncompressor.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf main} (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{_uncompressor_8cpp_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+\-Definition at line 374 of file \-Uncompressor.\-cpp.
+
+\hypertarget{_uncompressor_8cpp_acafa0ba54c14da5daea6e8b48c655801}{\index{\-Uncompressor.\-cpp@{\-Uncompressor.\-cpp}!m\-Tree\-Nodes@{m\-Tree\-Nodes}}
+\index{m\-Tree\-Nodes@{m\-Tree\-Nodes}!Uncompressor.cpp@{\-Uncompressor.\-cpp}}
+\subsubsection[{m\-Tree\-Nodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tree\-Node}$\ast$ {\bf m\-Tree\-Nodes} (
+\begin{DoxyParamCaption}
+\item[{{\bf tree\-Node} $\ast$}]{l, }
+\item[{{\bf tree\-Node} $\ast$}]{r}
+\end{DoxyParamCaption}
+)}}\label{_uncompressor_8cpp_acafa0ba54c14da5daea6e8b48c655801}
+requires two non null \hyperlink{structtree_node}{tree\-Node} pointers pointing to valid nodes returns a new \hyperlink{structtree_node}{tree\-Node} pointer containig a tree that has the aboves mentioned nodes as childeren 
+
+\-Definition at line 120 of file \-Uncompressor.\-cpp.
+
+
+
+\subsection{\-Variable \-Documentation}
+\hypertarget{_uncompressor_8cpp_abd320f61013b8bc2021085242fa0ae56}{\index{\-Uncompressor.\-cpp@{\-Uncompressor.\-cpp}!abc@{abc}}
+\index{abc@{abc}!Uncompressor.cpp@{\-Uncompressor.\-cpp}}
+\subsubsection[{abc}]{\setlength{\rightskip}{0pt plus 5cm}class {\bf stack} {\bf abc}}}\label{_uncompressor_8cpp_abd320f61013b8bc2021085242fa0ae56}
+\hypertarget{_uncompressor_8cpp_a237ed127e9e72705f0b962815348ecd0}{\index{\-Uncompressor.\-cpp@{\-Uncompressor.\-cpp}!lookup@{lookup}}
+\index{lookup@{lookup}!Uncompressor.cpp@{\-Uncompressor.\-cpp}}
+\subsubsection[{lookup}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf lookup}\mbox{[}256\mbox{]}}}\label{_uncompressor_8cpp_a237ed127e9e72705f0b962815348ecd0}
+
+
+\-Definition at line 21 of file \-Uncompressor.\-cpp.
+

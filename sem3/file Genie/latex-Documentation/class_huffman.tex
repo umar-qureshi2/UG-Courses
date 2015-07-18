@@ -1,0 +1,151 @@
+\hypertarget{class_huffman}{\section{\-Huffman \-Class \-Reference}
+\label{class_huffman}\index{\-Huffman@{\-Huffman}}
+}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_huffman_ad98b019593e6ec581c7e5dc3e1633eb3}{\-Huffman} (char name\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{class_huffman_af809e2ab2f7c117da226c0b7afc60d05}{write\-Out\-Huff} (char\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{class_huffman_ab10f923751e0c2a0843ac09c3afe3a15}{\-Huff\-Huff} ()
+\item 
+void \hyperlink{class_huffman_a20fe01753531c5dab1a53d8746a7b056}{\-Output1\-Bit} (int bit, ofstream \&out)
+\item 
+void \hyperlink{class_huffman_a10bfdd88f34ee9c94c56e71b46a8eb95}{\-Compress1\-Element} (string code, ofstream \&out)
+\item 
+\hyperlink{class_huffman_a641376a7cb5871a6a2c7b51afb05bfcc}{$\sim$\-Huffman} ()
+\item 
+\hyperlink{class_huffman_ad98b019593e6ec581c7e5dc3e1633eb3}{\-Huffman} (char name\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{class_huffman_a9606b9a05681d8d6d461142508040a9a}{un\-Huff} (char\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{class_huffman_ab10f923751e0c2a0843ac09c3afe3a15}{\-Huff\-Huff} ()
+\item 
+\hyperlink{class_huffman_a641376a7cb5871a6a2c7b51afb05bfcc}{$\sim$\-Huffman} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+
+
+\-Definition at line 234 of file \-Compresser.\-cpp.
+
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{class_huffman_ad98b019593e6ec581c7e5dc3e1633eb3}{\index{\-Huffman@{\-Huffman}!\-Huffman@{\-Huffman}}
+\index{\-Huffman@{\-Huffman}!Huffman@{\-Huffman}}
+\subsubsection[{\-Huffman}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Huffman\-::\-Huffman} (
+\begin{DoxyParamCaption}
+\item[{char}]{name\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{class_huffman_ad98b019593e6ec581c7e5dc3e1633eb3}
+\-Requies a character array acting as a \-C-\/string representing the absolute path of the file to be compressed \-Initaializes all class variables \-Constructs a hash table representing the frequencies of each character creates a new directory of the same name as the file in the same dir as the to be compressed file creates a a file with the same name as the file to be compressed in the above mentioned directory with .header extension writes the above mentioned hash table to file with extension .header creates a new \-Tree \-Node for each \-Active \-Symbol and enqueues it into the priority queue
+
+\-Requies a character array acting as a \-C-\/string representing the absolute path of the file to be \-Decompressed with .huff extension \-Requires a file with the same na,e as the .huff file and .header extension cointaing a hash table of frequencies of symbols creates a new \-Tree \-Node for each \-Active \-Symbol and enqueues it into the priority queue 
+
+\-Definition at line 266 of file \-Compresser.\-cpp.
+
+\hypertarget{class_huffman_a641376a7cb5871a6a2c7b51afb05bfcc}{\index{\-Huffman@{\-Huffman}!$\sim$\-Huffman@{$\sim$\-Huffman}}
+\index{$\sim$\-Huffman@{$\sim$\-Huffman}!Huffman@{\-Huffman}}
+\subsubsection[{$\sim$\-Huffman}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Huffman\-::$\sim$\-Huffman} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_huffman_a641376a7cb5871a6a2c7b51afb05bfcc}
+
+
+\-Definition at line 253 of file \-Compresser.\-cpp.
+
+\hypertarget{class_huffman_ad98b019593e6ec581c7e5dc3e1633eb3}{\index{\-Huffman@{\-Huffman}!\-Huffman@{\-Huffman}}
+\index{\-Huffman@{\-Huffman}!Huffman@{\-Huffman}}
+\subsubsection[{\-Huffman}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Huffman\-::\-Huffman} (
+\begin{DoxyParamCaption}
+\item[{char}]{name\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{class_huffman_ad98b019593e6ec581c7e5dc3e1633eb3}
+\hypertarget{class_huffman_a641376a7cb5871a6a2c7b51afb05bfcc}{\index{\-Huffman@{\-Huffman}!$\sim$\-Huffman@{$\sim$\-Huffman}}
+\index{$\sim$\-Huffman@{$\sim$\-Huffman}!Huffman@{\-Huffman}}
+\subsubsection[{$\sim$\-Huffman}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Huffman\-::$\sim$\-Huffman} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_huffman_a641376a7cb5871a6a2c7b51afb05bfcc}
+
+
+\-Definition at line 247 of file \-Uncompressor.\-cpp.
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{class_huffman_a10bfdd88f34ee9c94c56e71b46a8eb95}{\index{\-Huffman@{\-Huffman}!\-Compress1\-Element@{\-Compress1\-Element}}
+\index{\-Compress1\-Element@{\-Compress1\-Element}!Huffman@{\-Huffman}}
+\subsubsection[{\-Compress1\-Element}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Huffman\-::\-Compress1\-Element} (
+\begin{DoxyParamCaption}
+\item[{string}]{code, }
+\item[{ofstream \&}]{out}
+\end{DoxyParamCaption}
+)}}\label{class_huffman_a10bfdd88f34ee9c94c56e71b46a8eb95}
+\-Requires a string containing a valid character code representing a character \-Requires a ofstream object with an opened file associated with it \-Writes the code consisting of bits to the file thrugh the ofstream object 
+
+\-Definition at line 369 of file \-Compresser.\-cpp.
+
+\hypertarget{class_huffman_ab10f923751e0c2a0843ac09c3afe3a15}{\index{\-Huffman@{\-Huffman}!\-Huff\-Huff@{\-Huff\-Huff}}
+\index{\-Huff\-Huff@{\-Huff\-Huff}!Huffman@{\-Huffman}}
+\subsubsection[{\-Huff\-Huff}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Huffman\-::\-Huff\-Huff} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_huffman_ab10f923751e0c2a0843ac09c3afe3a15}
+\hypertarget{class_huffman_ab10f923751e0c2a0843ac09c3afe3a15}{\index{\-Huffman@{\-Huffman}!\-Huff\-Huff@{\-Huff\-Huff}}
+\index{\-Huff\-Huff@{\-Huff\-Huff}!Huffman@{\-Huffman}}
+\subsubsection[{\-Huff\-Huff}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Huffman\-::\-Huff\-Huff} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_huffman_ab10f923751e0c2a0843ac09c3afe3a15}
+\-Requires that all \-Tree \-Nodes representing \-Active \-Characters have been created \-And \-Enqueued into the \-Priorty \-Queue \-Generates a huffman tree by combining the nodes in th \hyperlink{class_p_q}{\-P\-Q} the root of the tree is at the head of the priorty queue 
+
+\-Definition at line 323 of file \-Compresser.\-cpp.
+
+\hypertarget{class_huffman_a20fe01753531c5dab1a53d8746a7b056}{\index{\-Huffman@{\-Huffman}!\-Output1\-Bit@{\-Output1\-Bit}}
+\index{\-Output1\-Bit@{\-Output1\-Bit}!Huffman@{\-Huffman}}
+\subsubsection[{\-Output1\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Huffman\-::\-Output1\-Bit} (
+\begin{DoxyParamCaption}
+\item[{int}]{bit, }
+\item[{ofstream \&}]{out}
+\end{DoxyParamCaption}
+)}}\label{class_huffman_a20fe01753531c5dab1a53d8746a7b056}
+a function that writes the bits to the output file takes an intger represent the bit value to be writted as argument \-An of stream objects that has an opened file assocated with it is also required by refrence a bit value of -\/1 indicated that the buffer be filled with required padding bits and then written 
+
+\-Definition at line 342 of file \-Compresser.\-cpp.
+
+\hypertarget{class_huffman_a9606b9a05681d8d6d461142508040a9a}{\index{\-Huffman@{\-Huffman}!un\-Huff@{un\-Huff}}
+\index{un\-Huff@{un\-Huff}!Huffman@{\-Huffman}}
+\subsubsection[{un\-Huff}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Huffman\-::un\-Huff} (
+\begin{DoxyParamCaption}
+\item[{char}]{\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{class_huffman_a9606b9a05681d8d6d461142508040a9a}
+requires a generated huffman tree with its root in the \-Priority queue \-Discards first 15 bytes from bitpass adn the reads the next 8 bytes to a variable this variable represents the no. of bits to read \-Creates a .txt file in the directory of the .huff file \-Also opens the .huff file in binary format \-Now it reads a byte into a 1 byte buffer and the treverses the tree according to the bit sequence every time it reaches a leaf it writes that character to the outptu file if the counter representing the no of bits processed reaches zero the next byte is read into the buffer and the counter is reset if eof is reached or required no of bits has been processed the loop terminates the files are closed and function exits. 
+
+\-Definition at line 313 of file \-Uncompressor.\-cpp.
+
+\hypertarget{class_huffman_af809e2ab2f7c117da226c0b7afc60d05}{\index{\-Huffman@{\-Huffman}!write\-Out\-Huff@{write\-Out\-Huff}}
+\index{write\-Out\-Huff@{write\-Out\-Huff}!Huffman@{\-Huffman}}
+\subsubsection[{write\-Out\-Huff}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Huffman\-::write\-Out\-Huff} (
+\begin{DoxyParamCaption}
+\item[{char}]{\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{class_huffman_af809e2ab2f7c117da226c0b7afc60d05}
+creates the .huff binary file opens the file that is tobe compressed reads the input file into a buffer and then closes it runs a loop for the number of bytes in buffered calls the '\-Compress1\-Element' function to compress each byte calls '\-Output1\-Bit' with -\/1 as argument to write the last byte with padding 
+
+\-Definition at line 394 of file \-Compresser.\-cpp.
+
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_compresser_8cpp}{\-Compresser.\-cpp}\item 
+\hyperlink{_uncompressor_8cpp}{\-Uncompressor.\-cpp}\end{DoxyCompactItemize}

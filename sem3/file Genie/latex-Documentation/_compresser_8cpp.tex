@@ -1,0 +1,115 @@
+\hypertarget{_compresser_8cpp}{\section{\-Compresser.\-cpp \-File \-Reference}
+\label{_compresser_8cpp}\index{\-Compresser.\-cpp@{\-Compresser.\-cpp}}
+}
+{\ttfamily \#include $<$iostream$>$}\*
+{\ttfamily \#include $<$string$>$}\*
+{\ttfamily \#include $<$sstream$>$}\*
+{\ttfamily \#include $<$fstream$>$}\*
+{\ttfamily \#include $<$vector$>$}\*
+\-Include dependency graph for \-Compresser.\-cpp\-:
+\subsection*{\-Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classstack}{stack}
+\item 
+struct \hyperlink{structtree_node}{tree\-Node}
+\item 
+class \hyperlink{class_p_q}{\-P\-Q}
+\item 
+class \hyperlink{class_huffman}{\-Huffman}
+\end{DoxyCompactItemize}
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_compresser_8cpp_ab11c37fc7417da09d5f6a4e0a15f80d3}{my\-\_\-header\-\_\-h}
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structtree_node}{tree\-Node} $\ast$ \hyperlink{_compresser_8cpp_acafa0ba54c14da5daea6e8b48c655801}{m\-Tree\-Nodes} (\hyperlink{structtree_node}{tree\-Node} $\ast$l, \hyperlink{structtree_node}{tree\-Node} $\ast$r)
+\item 
+string \hyperlink{_compresser_8cpp_a992490d33c23e31fdb8232275f02963e}{get\-Path} (string s)
+\item 
+string \hyperlink{_compresser_8cpp_a9c0d512cc4569acebef91b100fe12aca}{get\-Piece} (string s)
+\item 
+int \hyperlink{_compresser_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\-::string \hyperlink{_compresser_8cpp_a237ed127e9e72705f0b962815348ecd0}{lookup} \mbox{[}256\mbox{]}
+\item 
+class \hyperlink{classstack}{stack} \hyperlink{_compresser_8cpp_abd320f61013b8bc2021085242fa0ae56}{abc}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{_compresser_8cpp_ab11c37fc7417da09d5f6a4e0a15f80d3}{\index{\-Compresser.\-cpp@{\-Compresser.\-cpp}!my\-\_\-header\-\_\-h@{my\-\_\-header\-\_\-h}}
+\index{my\-\_\-header\-\_\-h@{my\-\_\-header\-\_\-h}!Compresser.cpp@{\-Compresser.\-cpp}}
+\subsubsection[{my\-\_\-header\-\_\-h}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf my\-\_\-header\-\_\-h}}}\label{_compresser_8cpp_ab11c37fc7417da09d5f6a4e0a15f80d3}
+
+
+\-Definition at line 2 of file \-Compresser.\-cpp.
+
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{_compresser_8cpp_a992490d33c23e31fdb8232275f02963e}{\index{\-Compresser.\-cpp@{\-Compresser.\-cpp}!get\-Path@{get\-Path}}
+\index{get\-Path@{get\-Path}!Compresser.cpp@{\-Compresser.\-cpp}}
+\subsubsection[{get\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf get\-Path} (
+\begin{DoxyParamCaption}
+\item[{string}]{s}
+\end{DoxyParamCaption}
+)}}\label{_compresser_8cpp_a992490d33c23e31fdb8232275f02963e}
+
+
+\-Definition at line 209 of file \-Compresser.\-cpp.
+
+\hypertarget{_compresser_8cpp_a9c0d512cc4569acebef91b100fe12aca}{\index{\-Compresser.\-cpp@{\-Compresser.\-cpp}!get\-Piece@{get\-Piece}}
+\index{get\-Piece@{get\-Piece}!Compresser.cpp@{\-Compresser.\-cpp}}
+\subsubsection[{get\-Piece}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf get\-Piece} (
+\begin{DoxyParamCaption}
+\item[{string}]{s}
+\end{DoxyParamCaption}
+)}}\label{_compresser_8cpp_a9c0d512cc4569acebef91b100fe12aca}
+requires a string containing the absolute path of a file \-Returns a string containing the name of that file 
+
+\-Definition at line 219 of file \-Compresser.\-cpp.
+
+\hypertarget{_compresser_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{\index{\-Compresser.\-cpp@{\-Compresser.\-cpp}!main@{main}}
+\index{main@{main}!Compresser.cpp@{\-Compresser.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf main} (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{_compresser_8cpp_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+\-Definition at line 431 of file \-Compresser.\-cpp.
+
+\hypertarget{_compresser_8cpp_acafa0ba54c14da5daea6e8b48c655801}{\index{\-Compresser.\-cpp@{\-Compresser.\-cpp}!m\-Tree\-Nodes@{m\-Tree\-Nodes}}
+\index{m\-Tree\-Nodes@{m\-Tree\-Nodes}!Compresser.cpp@{\-Compresser.\-cpp}}
+\subsubsection[{m\-Tree\-Nodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tree\-Node}$\ast$ {\bf m\-Tree\-Nodes} (
+\begin{DoxyParamCaption}
+\item[{{\bf tree\-Node} $\ast$}]{l, }
+\item[{{\bf tree\-Node} $\ast$}]{r}
+\end{DoxyParamCaption}
+)}}\label{_compresser_8cpp_acafa0ba54c14da5daea6e8b48c655801}
+requires two non null \hyperlink{structtree_node}{tree\-Node} pointers pointing to valid nodes returns a new \hyperlink{structtree_node}{tree\-Node} pointer containig a tree that has the aboves mentioned nodes as childeren 
+
+\-Definition at line 124 of file \-Compresser.\-cpp.
+
+
+
+\subsection{\-Variable \-Documentation}
+\hypertarget{_compresser_8cpp_abd320f61013b8bc2021085242fa0ae56}{\index{\-Compresser.\-cpp@{\-Compresser.\-cpp}!abc@{abc}}
+\index{abc@{abc}!Compresser.cpp@{\-Compresser.\-cpp}}
+\subsubsection[{abc}]{\setlength{\rightskip}{0pt plus 5cm}class {\bf stack} {\bf abc}}}\label{_compresser_8cpp_abd320f61013b8bc2021085242fa0ae56}
+\hypertarget{_compresser_8cpp_a237ed127e9e72705f0b962815348ecd0}{\index{\-Compresser.\-cpp@{\-Compresser.\-cpp}!lookup@{lookup}}
+\index{lookup@{lookup}!Compresser.cpp@{\-Compresser.\-cpp}}
+\subsubsection[{lookup}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf lookup}\mbox{[}256\mbox{]}}}\label{_compresser_8cpp_a237ed127e9e72705f0b962815348ecd0}
+
+
+\-Definition at line 21 of file \-Compresser.\-cpp.
+
