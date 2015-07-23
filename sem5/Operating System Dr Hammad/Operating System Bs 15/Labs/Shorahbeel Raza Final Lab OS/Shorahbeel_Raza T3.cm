@@ -1,0 +1,60 @@
+int total=0;
+int i=0;
+
+monitor AddSub
+{
+	int count=0;
+	condition busy;
+
+void add()
+{
+	if(i==1)
+		waitc(busy);
+	i=1;
+	total++;
+	cout<<"adding, total="<<total<<endl;
+	i=0;
+	signalc(busy);
+}
+
+void sub()
+{
+	if(i==1)
+		waitc(busy);
+	i=1;
+	total--;
+	cout<<"subtracting, total="<<total<<endl;
+	i=0;
+	signalc(busy);
+}
+
+init
+{
+	count=1;
+}
+}
+
+void s1()
+{
+	int i=0;
+	while(i<10)
+	{
+		add();
+		i++;
+	}
+}
+
+void s2()
+{
+	int i=0;
+	while(i<5)
+	{
+		sub();
+		i++;
+	}
+}
+
+void main()
+{
+	cobegin{ s1(); s2(); }
+}

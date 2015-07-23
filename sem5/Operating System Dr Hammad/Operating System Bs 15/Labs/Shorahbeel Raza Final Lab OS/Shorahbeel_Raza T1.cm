@@ -1,0 +1,45 @@
+semaphore pro=1,cut=1;
+int cust=0;
+int serv=1;
+
+void Produce()
+{
+int i=1;	
+	while(i<=20)
+	{
+		wait(pro);
+		cust++;
+		cout<<"Producing Customer "<<cust<<endl;
+		signal(pro);
+		i++;
+	}
+cout<<"20 customer produced, customer finished"<<endl;
+}
+
+void Barber(int id)
+{
+	while(1)
+	{
+		wait(pro);
+		wait(cut);
+		if(serv<=cust)
+		{
+			cout<<"Barber "<<id<<" Serving Customer "<<serv<<endl;
+			serv++;
+		}
+		else
+		{
+			cout<<"Barber "<<id<<" is sleeping"<<endl;
+		}
+		signal(cut);
+		signal(pro);
+	}
+}
+
+void main()
+{
+	cobegin{Produce();Barber(1);Barber(2);Barber(3);}
+
+}
+			
+

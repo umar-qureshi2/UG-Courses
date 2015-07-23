@@ -1,0 +1,47 @@
+monitor AddSub
+{
+	int total;
+
+void add()
+{
+total++;
+cout<<"add total="<<total<<endl;
+}
+
+void sub()
+{
+total--;
+cout<<"subtract total="<<total<<endl;
+}
+
+init
+{
+total=0;
+}
+
+}
+
+void s1()
+{
+int i=0;
+	while(i<10)
+	{
+	add();
+	i++;
+	}
+}
+
+void s2()
+{
+int i=0;
+	while(i<5)
+	{
+	sub();
+	i++;
+	}
+}
+
+void main()
+{
+	cobegin{ s1(); s2(); }
+}

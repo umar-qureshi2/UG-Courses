@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0046)http://learn.mcs.edu.pk/course/view.php?id=330 -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<link rel="stylesheet" type="text/css" href="./Course  CPS-410 Operating System-AB (Fall 2011)_files/styles.php">
+<link rel="stylesheet" type="text/css" href="./Course  CPS-410 Operating System-AB (Fall 2011)_files/styles(1).php">
+<script type="text/javascript" async="" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/ga.js"></script><script type="text/javascript" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/yahoo-min.js"></script><script type="text/javascript" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/event-min.js"></script><script type="text/javascript" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/connection-min.js"></script><script type="text/javascript" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/swfobject.js"></script><script type="text/javascript">
+  var flashversion = swfobject.getFlashPlayerVersion();
+  YAHOO.util.Connect.asyncRequest('GET','http://learn.mcs.edu.pk/login/environment.php?sesskey=paRnCrtvhy&amp;flashversion='+flashversion.major+'.'+flashversion.minor+'.'+flashversion.release);
+</script>
+<!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="http://learn.mcs.edu.pk/theme/standard/styles_ie7.css" />
+<![endif]-->
+<!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="http://learn.mcs.edu.pk/theme/standard/styles_ie6.css" />
+<![endif]-->
+<!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="http://learn.mcs.edu.pk/theme/chameleon/styles_ie7.css" />
+<![endif]-->
+<!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="http://learn.mcs.edu.pk/theme/chameleon/styles_ie6.css" />
+<![endif]-->
+
+
+    <meta name="keywords" content="moodle, Course: CPS-410 Operating System-AB (Fall 2011) ">
+    <title>Course: CPS-410 Operating System-AB (Fall 2011)</title>
+    <link rel="shortcut icon" href="http://learn.mcs.edu.pk/theme/chameleon/favicon.ico">
+
+        <!--<style type="text/css">/*<![CDATA[*/ body{behavior:url(http://learn.mcs.edu.pk/lib/csshover.htc);} /*]]>*/</style>-->
+
+<script type="text/javascript" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/javascript-static.js"></script>
+<script type="text/javascript" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/javascript-mod.php"></script>
+<script type="text/javascript" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/overlib.js"></script>
+<script type="text/javascript" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/overlib_cssstyle.js"></script>
+<script type="text/javascript" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/cookies.js"></script>
+<script type="text/javascript" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/ufo.js"></script>
+<script type="text/javascript" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/dropdown.js"></script>  
+
+<script type="text/javascript" defer="defer">
+//<![CDATA[
+setTimeout('fix_column_widths()', 20);
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+function openpopup(url, name, options, fullscreen) {
+    var fullurl = "http://learn.mcs.edu.pk" + url;
+    var windowobj = window.open(fullurl, name, options);
+    if (!windowobj) {
+        return true;
+    }
+    if (fullscreen) {
+        windowobj.moveTo(0, 0);
+        windowobj.resizeTo(screen.availWidth, screen.availHeight);
+    }
+    windowobj.focus();
+    return false;
+}
+
+function uncheckall() {
+    var inputs = document.getElementsByTagName('input');
+    for(var i = 0; i < inputs.length; i++) {
+        inputs[i].checked = false;
+    }
+}
+
+function checkall() {
+    var inputs = document.getElementsByTagName('input');
+    for(var i = 0; i < inputs.length; i++) {
+        inputs[i].checked = true;
+    }
+}
+
+function inserttext(text) {
+  text = ' ' + text + ' ';
+  if ( opener.document.forms['theform'].message.createTextRange && opener.document.forms['theform'].message.caretPos) {
+    var caretPos = opener.document.forms['theform'].message.caretPos;
+    caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? text + ' ' : text;
+  } else {
+    opener.document.forms['theform'].message.value  += text;
+  }
+  opener.document.forms['theform'].message.focus();
+}
+
+function getElementsByClassName(oElm, strTagName, oClassNames){
+	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);
+	var arrReturnElements = new Array();
+	var arrRegExpClassNames = new Array();
+	if(typeof oClassNames == "object"){
+		for(var i=0; i<oClassNames.length; i++){
+			arrRegExpClassNames.push(new RegExp("(^|\\s)" + oClassNames[i].replace(/\-/g, "\\-") + "(\\s|$)"));
+		}
+	}
+	else{
+		arrRegExpClassNames.push(new RegExp("(^|\\s)" + oClassNames.replace(/\-/g, "\\-") + "(\\s|$)"));
+	}
+	var oElement;
+	var bMatchesAll;
+	for(var j=0; j<arrElements.length; j++){
+		oElement = arrElements[j];
+		bMatchesAll = true;
+		for(var k=0; k<arrRegExpClassNames.length; k++){
+			if(!arrRegExpClassNames[k].test(oElement.className)){
+				bMatchesAll = false;
+				break;
+			}
+		}
+		if(bMatchesAll){
+			arrReturnElements.push(oElement);
+		}
+	}
+	return (arrReturnElements)
+}
+//]]>
+</script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22878531-2']);
+  _gaq.push(['_setDomainName', '.mcs.edu.pk']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head><body class="course course-330 dir-ltr lang-en_utf8" id="course-view">
+
+<div id="page">
+<a class="skip" href="http://learn.mcs.edu.pk/course/view.php?id=330#maincontent">Skip to main content</a>
+
+    <div id="header" class="clearfix">
+      <h1 class="headermain">CPS-410 Operating System-AB (Fall 2011)</h1>
+      <div class="headermenu"><div class="logininfo">You are logged in as <a href="http://learn.mcs.edu.pk/user/view.php?id=1507&course=330">Muhammad Umar Farooq Qureshi</a>  (<a href="http://learn.mcs.edu.pk/login/logout.php?sesskey=paRnCrtvhy">Logout</a>)</div></div>
+    </div>
+    <div class="navbar clearfix">
+            <div class="breadcrumb"><h2 class="accesshide ">You are here</h2> <ul>
+<li class="first"><a onclick="this.target=&#39;_top&#39;" href="http://learn.mcs.edu.pk/">MCS-LMS</a></li><li> <span class="accesshide ">/&nbsp;</span><span class="arrow sep">►</span> CPS410-CSEFL11-AB</li></ul></div>
+        <div class="navbutton">&nbsp;</div>
+        </div>
+    <!-- END OF HEADER -->
+<div id="content">
+<div class="course-content">
+<!--[if IE]>
+  <style type="text/css">
+  .weekscss-format { width: expression(document.body.clientWidth < 800 ? "752px" : "auto"); }
+  </style>
+<![endif]-->
+<div class="weekscss-format"><div id="left-column"><a href="http://learn.mcs.edu.pk/course/view.php?id=330#sb-1" class="skip-block">Skip People</a><div id="inst3926" class="block_participants sideblock"><div class="header"><div class="title"><input type="image" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/switch_minus.gif" id="togglehide_inst3926" onclick="elementToggleHide(this, true, function(el) {return findParentNode(el, &#39;DIV&#39;, &#39;sideblock&#39;); }, &#39;Show People block&#39;, &#39;Hide People block&#39;); return false;" alt="Hide People block" title="Hide People block" class="hide-show-image"><h2>People</h2></div></div><div class="content">
+<ul class="list">
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/users.gif" class="icon" alt=""></div><div class="column c1"><a title="List of all people" href="http://learn.mcs.edu.pk/user/index.php?contextid=10497">Participants</a></div></li>
+</ul>
+</div></div><script type="text/javascript">
+//<![CDATA[
+elementCookieHide("inst3926","Show People block","Hide People block");
+//]]>
+</script><span id="sb-1" class="skip-block-to"></span><a href="http://learn.mcs.edu.pk/course/view.php?id=330#sb-2" class="skip-block">Skip Activities</a><div id="inst3927" class="block_activity_modules sideblock"><div class="header"><div class="title"><input type="image" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/switch_minus.gif" id="togglehide_inst3927" onclick="elementToggleHide(this, true, function(el) {return findParentNode(el, &#39;DIV&#39;, &#39;sideblock&#39;); }, &#39;Show Activities block&#39;, &#39;Hide Activities block&#39;); return false;" alt="Hide Activities block" title="Hide Activities block" class="hide-show-image"><h2>Activities</h2></div></div><div class="content">
+<ul class="list">
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/icon.gif" class="icon" alt=""></div><div class="column c1"><a href="http://learn.mcs.edu.pk/mod/assignment/index.php?id=330">Assignments</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/icon(1).gif" class="icon" alt=""></div><div class="column c1"><a href="http://learn.mcs.edu.pk/mod/forum/index.php?id=330">Forums</a></div></li>
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/icon(2).gif" class="icon" alt=""></div><div class="column c1"><a href="http://learn.mcs.edu.pk/mod/resource/index.php?id=330">Resources</a></div></li>
+</ul>
+</div></div><script type="text/javascript">
+//<![CDATA[
+elementCookieHide("inst3927","Show Activities block","Hide Activities block");
+//]]>
+</script><span id="sb-2" class="skip-block-to"></span><a href="http://learn.mcs.edu.pk/course/view.php?id=330#sb-3" class="skip-block">Skip Search Forums</a><div id="inst3928" class="block_search_forums sideblock"><div class="header"><div class="title"><input type="image" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/switch_minus.gif" id="togglehide_inst3928" onclick="elementToggleHide(this, true, function(el) {return findParentNode(el, &#39;DIV&#39;, &#39;sideblock&#39;); }, &#39;Show Search Forums block&#39;, &#39;Hide Search Forums block&#39;); return false;" alt="Hide Search Forums block" title="Hide Search Forums block" class="hide-show-image"><h2>Search Forums</h2></div></div><div class="content"><div class="searchform"><form action="http://learn.mcs.edu.pk/mod/forum/search.php" style="display:inline"><fieldset class="invisiblefieldset"><input name="id" type="hidden" value="330"><label class="accesshide" for="searchform_search">Search</label><input id="searchform_search" name="search" type="text" size="16"><button id="searchform_button" type="submit" title="Search">Go</button><br><a href="http://learn.mcs.edu.pk/mod/forum/search.php?id=330">Advanced search</a><span class="helplink"><a title="Help with Advanced search (new window)" href="http://learn.mcs.edu.pk/help.php?module=moodle&file=search.html&forcelang=" onclick="this.target=&#39;popup&#39;; return openpopup(&#39;/help.php?module=moodle&amp;file=search.html&amp;forcelang=&#39;, &#39;popup&#39;, &#39;menubar=0,location=0,scrollbars,resizable,width=500,height=400&#39;, 0);"><img class="iconhelp" alt="Help with Advanced search (new window)" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/help.gif"></a></span></fieldset></form></div></div></div><script type="text/javascript">
+//<![CDATA[
+elementCookieHide("inst3928","Show Search Forums block","Hide Search Forums block");
+//]]>
+</script><span id="sb-3" class="skip-block-to"></span><a href="http://learn.mcs.edu.pk/course/view.php?id=330#sb-4" class="skip-block">Skip Administration</a><div id="inst3929" class="block_admin sideblock"><div class="header"><div class="title"><input type="image" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/switch_minus.gif" id="togglehide_inst3929" onclick="elementToggleHide(this, true, function(el) {return findParentNode(el, &#39;DIV&#39;, &#39;sideblock&#39;); }, &#39;Show Administration block&#39;, &#39;Hide Administration block&#39;); return false;" alt="Hide Administration block" title="Hide Administration block" class="hide-show-image"><h2>Administration</h2></div></div><div class="content">
+<ul class="list">
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/grades.gif" class="icon" alt=""></div><div class="column c1"><a href="http://learn.mcs.edu.pk/grade/report/index.php?id=330">Grades</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/user.gif" alt=""></div><div class="column c1"><a href="http://learn.mcs.edu.pk/user/view.php?id=1507&course=330">Profile</a></div></li>
+</ul>
+</div></div><script type="text/javascript">
+//<![CDATA[
+elementCookieHide("inst3929","Show Administration block","Hide Administration block");
+//]]>
+</script><span id="sb-4" class="skip-block-to"></span><a href="http://learn.mcs.edu.pk/course/view.php?id=330#sb-5" class="skip-block">Skip My courses</a><div id="inst3930" class="block_course_list sideblock"><div class="header"><div class="title"><input type="image" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/switch_minus.gif" id="togglehide_inst3930" onclick="elementToggleHide(this, true, function(el) {return findParentNode(el, &#39;DIV&#39;, &#39;sideblock&#39;); }, &#39;Show My courses block&#39;, &#39;Hide My courses block&#39;); return false;" alt="Hide My courses block" title="Hide My courses block" class="hide-show-image"><h2>My courses</h2></div></div><div class="content">
+<ul class="list">
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CS800" href="http://learn.mcs.edu.pk/course/view.php?id=276">Adv Software Requirments Engineering</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CE420-CSESP12-A" href="http://learn.mcs.edu.pk/course/view.php?id=442">CE-420 Computer Org &amp; Architecture CSE Spring 2012 A</a></div></li>
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CE420-CSESP12-B" href="http://learn.mcs.edu.pk/course/view.php?id=443">CE-420 Computer Org &amp; Architecture CSE Spring 2012 B</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CPS320-EESP11ABC" href="http://learn.mcs.edu.pk/course/view.php?id=210">CPS-320 Computer Organisation and Architecture-ABC (Spring 2011)</a></div></li>
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CPS331-CSEFL11-A" href="http://learn.mcs.edu.pk/course/view.php?id=362">CPS-331 Data Structure &amp; Algorithm-A (Fall 2011)</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CPS331-CSEFL11-B" href="http://learn.mcs.edu.pk/course/view.php?id=363">CPS-331 Data Structure &amp; Algorithm-B (Fall 2011)</a></div></li>
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CPS331-EEFL10ABC" href="http://learn.mcs.edu.pk/course/view.php?id=90">CPS-331 Numerical Analysis-ABC (Fall 2010)</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CPS410-CSEFL11-AB" href="./Course  CPS-410 Operating System-AB (Fall 2011)_files/Course  CPS-410 Operating System-AB (Fall 2011).htm">CPS-410 Operating System-AB (Fall 2011)</a></div></li>
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CPS480-CSEFL11-AB" href="http://learn.mcs.edu.pk/course/view.php?id=336">CPS-480 Data Base Systems-AB (Fall 2011)</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CSE474-CSESP12-B" href="http://learn.mcs.edu.pk/course/view.php?id=441">CSE-474 S/W Design &amp; Architecture CSE Sprijng 2012 -B</a></div></li>
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CSE474-CSESP12-A" href="http://learn.mcs.edu.pk/course/view.php?id=440">CSE-474 Software Design &amp; Architecture CSE Spring 2012 -A</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="CSE476-CSESP12-AB" href="http://learn.mcs.edu.pk/course/view.php?id=438">CSE-476 Human Computer Interaction CSE Spring 2012-AB</a></div></li>
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="EE200-EEFL10ACD" href="http://learn.mcs.edu.pk/course/view.php?id=101">EE-200 DC Circuit Analysis-ACD (Fall 2010)</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="EE200-EEFL10B" href="http://learn.mcs.edu.pk/course/view.php?id=145">EE-200 DC Circuit Analysis-B (Fall 2010)</a></div></li>
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="EE201-EESP11AB" href="http://learn.mcs.edu.pk/course/view.php?id=219">EE-201 AC Circuits Analysis-AB (Spring 2011)</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="EE201-EESP11CDE" href="http://learn.mcs.edu.pk/course/view.php?id=220">EE-201 AC Circuits Analysis-CDE (Spring 2011)</a></div></li>
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="EE280-CSESP12-AB" href="http://learn.mcs.edu.pk/course/view.php?id=439">EE-280 BEE CSE Spring 2012-A</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="I&amp;P" href="http://learn.mcs.edu.pk/course/view.php?id=268">Internship and Placement</a></div></li>
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="MTH314-CSEFL11-AB" href="http://learn.mcs.edu.pk/course/view.php?id=333">MTH-314 Linear Algebra-AB (Fall 2011)</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="MTH314-EESP11ABCD" href="http://learn.mcs.edu.pk/course/view.php?id=221">MTH-314 Linear Algebra-ABCD (Spring 2011)</a></div></li>
+<li class="r0"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="MTH314-EESP11E" href="http://learn.mcs.edu.pk/course/view.php?id=222">MTH-314 Linear Algebra-E (Spring 2011)</a></div></li>
+<li class="r1"><div class="icon column c0"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/course.gif" class="icon" alt="Course category"></div><div class="column c1"><a title="MTH331-CSESP12-AB" href="http://learn.mcs.edu.pk/course/view.php?id=437">MTH-331 Numerical Methods CSE Spring 2012-AB</a></div></li>
+</ul>
+<div class="footer"><a href="http://learn.mcs.edu.pk/course/index.php">All courses</a> ...</div></div></div><script type="text/javascript">
+//<![CDATA[
+elementCookieHide("inst3930","Show My courses block","Hide My courses block");
+//]]>
+</script><span id="sb-5" class="skip-block-to"></span></div><div id="right-column"><a href="http://learn.mcs.edu.pk/course/view.php?id=330#sb-6" class="skip-block">Skip Latest News</a><div id="inst3931" class="block_news_items sideblock"><div class="header"><div class="title"><input type="image" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/switch_minus.gif" id="togglehide_inst3931" onclick="elementToggleHide(this, true, function(el) {return findParentNode(el, &#39;DIV&#39;, &#39;sideblock&#39;); }, &#39;Show Latest News block&#39;, &#39;Hide Latest News block&#39;); return false;" alt="Hide Latest News block" title="Hide Latest News block" class="hide-show-image"><h2>Latest News</h2></div></div><div class="content">(No news has been posted yet)</div></div><script type="text/javascript">
+//<![CDATA[
+elementCookieHide("inst3931","Show Latest News block","Hide Latest News block");
+//]]>
+</script><span id="sb-6" class="skip-block-to"></span><a href="http://learn.mcs.edu.pk/course/view.php?id=330#sb-7" class="skip-block">Skip Upcoming Events</a><div id="inst3932" class="block_calendar_upcoming sideblock"><div class="header"><div class="title"><input type="image" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/switch_minus.gif" id="togglehide_inst3932" onclick="elementToggleHide(this, true, function(el) {return findParentNode(el, &#39;DIV&#39;, &#39;sideblock&#39;); }, &#39;Show Upcoming Events block&#39;, &#39;Hide Upcoming Events block&#39;); return false;" alt="Hide Upcoming Events block" title="Hide Upcoming Events block" class="hide-show-image"><h2>Upcoming Events</h2></div></div><div class="content"><div class="post">There are no upcoming events</div><div class="footer"><br><a href="http://learn.mcs.edu.pk/calendar/view.php?view=upcoming&course=330">Go to calendar</a>...<br><a href="http://learn.mcs.edu.pk/calendar/event.php?action=new&course=330">New Event</a>...</div></div></div><script type="text/javascript">
+//<![CDATA[
+elementCookieHide("inst3932","Show Upcoming Events block","Hide Upcoming Events block");
+//]]>
+</script><span id="sb-7" class="skip-block-to"></span><a href="http://learn.mcs.edu.pk/course/view.php?id=330#sb-8" class="skip-block">Skip Recent Activity</a><div id="inst3933" class="block_recent_activity sideblock"><div class="header"><div class="title"><input type="image" src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/switch_minus.gif" id="togglehide_inst3933" onclick="elementToggleHide(this, true, function(el) {return findParentNode(el, &#39;DIV&#39;, &#39;sideblock&#39;); }, &#39;Show Recent Activity block&#39;, &#39;Hide Recent Activity block&#39;); return false;" alt="Hide Recent Activity block" title="Hide Recent Activity block" class="hide-show-image"><h2>Recent Activity</h2></div></div><div class="content"><div class="activitydate">Activity since Thursday, 7 June 2012, 02:05 PM</div><div class="activityhead"><a href="http://learn.mcs.edu.pk/course/recent.php?id=330">Full report of recent activity...</a></div>
+<p class="message">Nothing new since your last login</p></div></div><script type="text/javascript">
+//<![CDATA[
+elementCookieHide("inst3933","Show Recent Activity block","Hide Recent Activity block");
+//]]>
+</script><span id="sb-8" class="skip-block-to"></span></div><div id="middle-column"><span id="maincontent"></span><h2 class="headingblock header outline">Weekly outline</h2><ul class="weekscss">
+<li id="section-0" class="section main"><div class="right side">&nbsp;</div><div class="content"><div class="summary">
+<div style="text-align: left;">
+  <div style="text-align: center;"><a target="_blank" href="https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AteF-UfzuXjUdGNxVGNaSXd4WExILWVGM0l5aktOMFE&single=true&gid=0&output=html"><span style="font-weight: bold;"></span></a><span style="font-weight: bold;"></span><font size="4"><span style="font-weight: bold; color: rgb(255, 153, 0);"></span></font><span style="font-weight: bold;"><font size="4">Operating Systems </font></span><br><span style="font-weight: bold;"></span><br><span style="font-weight: bold;"></span></div><font size="2"><span style="font-weight: bold;">Instructor: Dr. HammaD AfzaL</span><br>CPS-410<br></font><font size="2">Credits: 3+1<br></font>Pre-Requisite: CE-420 Computer Organization and Architecture<br><span style="font-weight: bold;"><br><br></span>
+  <table cellspacing="0" cellpadding="0" border="1" class="MsoNormalTable" style="width: 607px; border-collapse: collapse; border: medium none; height: 266px; text-align: left; margin-left: 0px; margin-right: auto;"><tbody>
+    <tr style="height: 65.2pt;">
+      <td width="607" valign="top" style="width: 455.4pt; border: medium none; padding: 0cm 5.4pt; height: 65.2pt;">
+        <p class="MsoNormal" style="text-align: justify;"><b><span lang="EN-US" style="font-size: 13pt;">Objectives:</span></b><b><span lang="EN-US"> </span></b><span lang="EN-US"><br></span></p>
+        <p class="MsoNormal" style="text-align: justify;"><span lang="EN-US">To help students gain a general understanding of the principles and concepts governing the functions of operating systems and acquaint students with the layered approach that makes design, implementation and operation of the complex OS possible.</span></p>
+        <p class="MsoNormal" style="text-align: justify;"><span lang="EN-US" style="font-size: 6pt;"> </span></p>
+      </td>
+    </tr>
+    <tr style="height: 8.1pt;">
+      <td width="607" valign="top" style="width: 455.4pt; border: medium none; padding: 0cm 5.4pt; height: 8.1pt;">
+        <p class="MsoNormal" style="text-align: justify;"><b><span lang="EN-US" style="font-size: 13pt;">Course Outline:</span></b><b><br><span lang="EN-US"> </span></b></p>
+        <ol>
+          <li style="color: rgb(0, 153, 0);"><span lang="EN-US">Operating System </span></li>
+          <li style="color: rgb(0, 153, 0);"><span lang="EN-US">Process Management<br></span></li>
+          <ol style="color: rgb(0, 153, 0);">
+            <li><span lang="EN-US">Concept</span></li>
+            <li><span lang="EN-US">Multithreaded Programming</span></li>
+            <li><span lang="EN-US">Process Scheduling</span></li>
+          </ol>
+          <li style="color: rgb(0, 153, 0);"><span lang="EN-US">Process Co-ordination<br></span></li>
+          <ol>
+            <li style="color: rgb(0, 153, 0);"><span lang="EN-US">Synchronization</span></li>
+            <li style="color: rgb(0, 153, 0);"><span lang="EN-US">Deadlocks</span></li>
+          </ol>
+        </ol>
+      </td>
+    </tr>
+    <tr style="height: 67.9pt;">
+      <td width="607" valign="top" style="width: 455.4pt; border: medium none; padding: 0cm 5.4pt; height: 67.9pt;"><br>
+        <p class="MsoNormal" style="text-align: justify;">1. Operating Systems Concepts, 8th Edition, Silberschatz A., Galvin P, B<br>2. Operating Systems: Internals and Design Principles By William Stallings<br></p>
+      </td>
+    </tr></tbody>
+  </table><br></div> </div><ul class="section img-text">
+<li class="activity forum" id="module-4908"><a href="http://learn.mcs.edu.pk/mod/forum/view.php?id=4908"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/icon(1).gif" class="activityicon" alt=""> <span>News forum</span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-1" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=1" title="Show only week 1"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 1"></a><br></div><div class="content"><h3 class="weekdates">  12 September -   18 September</h3><div class="summary"> <span style="font-weight: bold;">Week-1<br>Chapter1</span> <br>
+<div style="margin-left: 40px;">Operating System Concepts<br>Computer-System Organization<br>Computer-System Architecture<br>Operating-System Structure<br> </div><br> </div><ul class="section img-text">
+<li class="activity resource" id="module-4960"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=4960"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pdf.gif" class="activityicon" alt=""> <span>Lab 1 - Instruction Cycle<span class="accesshide "> PDF document</span></span></a></li>
+<li class="activity resource" id="module-5046"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5046"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_1a<span class="accesshide "> file</span></span></a></li>
+<li class="activity assignment" id="module-5099"><a href="http://learn.mcs.edu.pk/mod/assignment/view.php?id=5099"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/icon.gif" class="activityicon" alt=""> <span>Lab 1 - Submission<span class="accesshide "> Assignment</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-2" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=2" title="Show only week 2"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 2"></a><br></div><div class="content"><h3 class="weekdates">  19 September -   25 September</h3><div class="summary"><span style="font-weight: bold;">Week-2</span><br><span style="font-weight: bold;">Chapter 1</span><br>
+<div style="margin-left: 40px;">Operating-System Operations<br>Process Management<br>Memory Management<br>Storage Management </div>
+<ul>
+</ul>
+<ol>
+</ol> </div><ul class="section img-text">
+<li class="activity resource" id="module-5047"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5047"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_1a<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-5209"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5209"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_1b<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-5095"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5095"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pdf.gif" class="activityicon" alt=""> <span>Lab 2 - Scheduling<span class="accesshide "> PDF document</span></span></a></li>
+<li class="activity assignment" id="module-5100"><a href="http://learn.mcs.edu.pk/mod/assignment/view.php?id=5100"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/icon.gif" class="activityicon" alt=""> <span>Lab 2 - Submission<span class="accesshide "> Assignment</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-3" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=3" title="Show only week 3"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 3"></a><br></div><div class="content"><h3 class="weekdates">  26 September -  2 October</h3><div class="summary"> <span style="font-weight: bold;">Week-3</span><br><span style="font-weight: bold;">Chapter 2</span><br>
+<div style="margin-left: 40px;">Operating System Services<br>User Operating System Interface<br>System Calls<br>Types of System Calls<br>System <a class="resource autolink" title="Programs" href="http://learn.mcs.edu.pk/mod/resource/view.php?r=4911">Programs</a><br>Design and Implementation of OS<br>Structure of OS<br>System Generation<br>System Boot<br> </div><br> </div><ul class="section img-text">
+<li class="activity resource" id="module-5241"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5241"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_2a<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-5328"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5328"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_2b<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-5329"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5329"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_2c<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-5234"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5234"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pdf.gif" class="activityicon" alt=""> <span>Lab 3 - Process Scheduling<span class="accesshide "> PDF document</span></span></a></li>
+<li class="activity assignment" id="module-5235"><a href="http://learn.mcs.edu.pk/mod/assignment/view.php?id=5235"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/icon.gif" class="activityicon" alt=""> <span>Lab 3 - Submission (15 A)<span class="accesshide "> Assignment</span></span></a></li>
+<li class="activity assignment" id="module-5236"><a href="http://learn.mcs.edu.pk/mod/assignment/view.php?id=5236"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/icon.gif" class="activityicon" alt=""> <span>Lab 3 - Submission (15 B)<span class="accesshide "> Assignment</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-4" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=4" title="Show only week 4"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 4"></a><br></div><div class="content"><h3 class="weekdates"> 3 October -  9 October</h3><div class="summary"> <span style="font-weight: bold;">Week-4</span><br><span style="font-weight: bold;">Chapter 3<br>Process Management</span><br>
+<ul>
+  <li>Process Concept</li>
+  <li>Process Scheduling</li>
+</ul>2 Hrs lecture of BESE-15(A) missed due to a trip<br> </div><ul class="section img-text">
+<li class="activity resource" id="module-5472"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5472"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_3a<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-5380"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5380"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/web.gif" class="activityicon" alt=""> <span>Lab 4 - Working with VMware Workstation<span class="accesshide "> file</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-5" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=5" title="Show only week 5"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 5"></a><br></div><div class="content"><h3 class="weekdates">  10 October -   16 October</h3><div class="summary"> <span style="font-weight: bold;">Week-5</span><br><span style="font-weight: bold;">Chapter 3</span><br><span style="font-weight: bold;">Process Creation &amp; Termination</span><br><span style="font-weight: bold;">Inter-Process Communication</span><br>
+<div style="margin-left: 40px;">Shared Memory<br>Message Passing<br></div> </div><ul class="section img-text">
+<li class="activity resource" id="module-5511"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5511"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_3b<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-5544"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5544"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_3c<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-5479"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5479"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pdf.gif" class="activityicon" alt=""> <span>Lab 5 - Five State Process Model<span class="accesshide "> PDF document</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-6" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=6" title="Show only week 6"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 6"></a><br></div><div class="content"><h3 class="weekdates">  17 October -   23 October</h3><div class="summary"> <span style="font-weight: bold;">Week-6</span><span style="font-weight: bold;"></span><br>Multi-Threading Models </div><ul class="section img-text">
+<li class="activity resource" id="module-5708"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5708"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pdf.gif" class="activityicon" alt=""> <span>Lab 6<span class="accesshide "> PDF document</span></span></a></li>
+<li class="activity resource" id="module-5881"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5881"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_4a<span class="accesshide "> file</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-7" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=7" title="Show only week 7"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 7"></a><br></div><div class="content"><h3 class="weekdates">  24 October -   30 October</h3><div class="summary"> <span style="font-weight: bold;">Week-7</span><br>Mid Term Exams </div><ul class="section img-text">
+<li class="activity resource" id="module-5709"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5709"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/word.gif" class="activityicon" alt=""> <span>Lab 7 - Fork &amp; Exec<span class="accesshide "> Word document</span></span></a></li>
+<li class="activity assignment" id="module-5710"><a href="http://learn.mcs.edu.pk/mod/assignment/view.php?id=5710"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/icon.gif" class="activityicon" alt=""> <span>Assign #1 (Lab 7) - Submissions (Bese15B)<span class="accesshide "> Assignment</span></span></a></li>
+<li class="activity resource" id="module-5849"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5849"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/text.gif" class="activityicon" alt=""> <span>Programs<span class="accesshide "> text file</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-8" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=8" title="Show only week 8"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 8"></a><br></div><div class="content"><h3 class="weekdates">  31 October -  6 November</h3><div class="summary"> <span style="font-weight: bold;">Week 8</span><br><span style="text-decoration: underline;">Mid Terms</span><br><span style="text-decoration: underline;">Mid Terms Question Paper &amp; Solution</span><br> </div><ul class="section img-text">
+<li class="activity resource" id="module-5836"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5836"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pdf.gif" class="activityicon" alt=""> <span>Mid Term Question Paper<span class="accesshide "> PDF document</span></span></a></li>
+<li class="activity resource" id="module-5837"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5837"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pdf.gif" class="activityicon" alt=""> <span>Mid Term Solution<span class="accesshide "> PDF document</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-9" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=9" title="Show only week 9"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 9"></a><br></div><div class="content"><h3 class="weekdates"> 7 November -   13 November</h3><div class="summary"> <span style="font-weight: bold;">Week 9</span><span style="text-decoration: underline;"><br><br>Eid Holidays</span> </div></div></li>
+<li id="section-10" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=10" title="Show only week 10"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 10"></a><br></div><div class="content"><h3 class="weekdates">  14 November -   20 November</h3><div class="summary"> <span style="font-weight: bold;">Week 10<br><br>Chapter 4b<br>User &amp; Kernel Level Threads<br></span>
+<div style="margin-left: 40px;">(All slides except Many-to-Many Model)<span style="font-weight: bold;"></span><br><span style="font-weight: bold;"></span></div> </div><ul class="section img-text">
+<li class="activity resource" id="module-5847"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5847"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/powerpoint.gif" class="activityicon" alt=""> <span>Lab 8 - BACI<span class="accesshide "> Powerpoint presentation</span></span></a></li>
+<li class="activity resource" id="module-5907"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5907"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_4b<span class="accesshide "> file</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-11" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=11" title="Show only week 11"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 11"></a><br></div><div class="content"><h3 class="weekdates">  21 November -   27 November</h3><div class="summary"> <span style="font-weight: bold;">Week 11</span><br><span style="font-weight: bold;"><br>Chapter 5: Process Scheduling</span><br>
+<div style="margin-left: 40px;">Basic Concepts<br>Scheduling Criteria<br><span style="font-weight: bold;">Algorithms</span><br>
+  <div style="margin-left: 40px;">First-in First-out<br>SJF Scheduling<br>Priority Algorithm<br>Round Robin Algorithm<br>Multi-Queue &amp; Multi-Queue with feedback<br></div></div><span style="font-weight: bold;"><br>Following are selected topics</span>, <span style="font-weight: bold;">not fully covered from book</span><br><span style="font-weight: bold;"></span>
+<div style="margin-left: 40px;">Thread Scheduling (Leave it until further instructions)<br>Multi-Processor and Multi-Core<br>
+  <div style="margin-left: 40px;">Affinity<br>Load Balancing<br></div>Evaluation: Only Deterministic Evaluation &amp; Little's Formula<br><br></div><span style="font-weight: bold;">Chapter 6a: Process Synchronization</span><br>
+<div style="margin-left: 40px;">Critical Section Problem<br><br>
+  <div style="text-align: center; color: rgb(255, 204, 0); font-weight: bold;"><font size="3">Results (so far) are uploaded under Last Week. If there are any mistakes in results, please let me know (preferably via email)</font><br> </div></div> </div><ul class="section img-text">
+<li class="activity resource" id="module-5908"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5908"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_5a<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-5960"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5960"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_5b<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-5961"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=5961"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_5c<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-6183"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6183"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_6a<span class="accesshide "> file</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-12" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=12" title="Show only week 12"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 12"></a><br></div><div class="content"><h3 class="weekdates">  28 November -  4 December</h3><div class="summary">
+<div style="text-align: center;"><span style="font-weight: bold; color: rgb(51, 153, 0);">Quiz-2 is cancelled. There is only one quiz with perfect solution, and three quizzes in which solution is implemented though they manipulated the ambiguities in Question. There are many tries with nice logic. <span style="text-decoration: underline;"><br>Person with perfect solution shall get +1.</span></span><br><br><span style="font-weight: bold; color: rgb(255, 153, 0);">From now onward, expect surprise quizzes in any lecture</span><span style="color: rgb(255, 153, 0);">, </span><span style="font-weight: bold; color: rgb(255, 153, 0);">as there are few lectures left and number of quizzes already taken are very few.</span><br><br><span style="font-weight: bold; color: rgb(255, 51, 0);">Also, if you have any commitments inside college during lecture time which are of official nature and cannot be avoided and you deem them more important than lecture, let me know in advance. </span><br> </div> </div></div></li>
+<li id="section-13" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=13" title="Show only week 13"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 13"></a><br></div><div class="content"><h3 class="weekdates"> 5 December -   11 December</h3><div class="summary"></div><ul class="section img-text">
+<li class="activity resource" id="module-6009"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6009"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/word.gif" class="activityicon" alt=""> <span>Lab 9 - Thread &amp; Thread Synchronization<span class="accesshide "> Word document</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-14" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=14" title="Show only week 14"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 14"></a><br></div><div class="content"><h3 class="weekdates">  12 December -   18 December</h3><div class="summary"> <span style="font-weight: bold;"><a class="resource autolink" title="Chapter_6b" href="http://learn.mcs.edu.pk/mod/resource/view.php?r=5235">Chapter_6b</a>: Process Synchronization</span><br>
+<div style="margin-left: 40px;">Test&amp;Set<br>Swap<br>Semaphores<span style="font-weight: bold;"><br><br></span></div><span style="font-weight: bold;"><a class="resource autolink" title="Chapter_6c" href="http://learn.mcs.edu.pk/mod/resource/view.php?r=5263">Chapter_6c</a>: Process Synchronization</span><br>
+<div style="margin-left: 40px;">Classical Problems of Synchronization and their solution using Semaphores<br>Monitors<br><br></div><span style="font-weight: bold;"></span><span style="font-weight: bold;"><a class="resource autolink" title="Quiz-2a" href="http://learn.mcs.edu.pk/mod/resource/view.php?r=5264">Quiz-2a</a></span><br><span style="font-weight: bold;"><a class="resource autolink" title="Quiz-2b" href="http://learn.mcs.edu.pk/mod/resource/view.php?r=5341">Quiz-2b</a></span><br><span style="font-weight: bold;"><a class="resource autolink" title="Quiz-3b" href="http://learn.mcs.edu.pk/mod/resource/view.php?r=5340">Quiz-3b</a></span><br> </div><ul class="section img-text">
+<li class="activity resource" id="module-6184"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6184"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_6b<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-6217"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6217"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_6c<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-6218"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6218"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/docx.gif" class="activityicon" alt=""> <span>Quiz-2a<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-6302"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6302"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/docx.gif" class="activityicon" alt=""> <span>Quiz-2b<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-6301"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6301"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/docx.gif" class="activityicon" alt=""> <span>Quiz-3b<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-6182"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6182"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/word.gif" class="activityicon" alt=""> <span>Lab 10 - Special Machine Instruction<span class="accesshide "> Word document</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-15" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=15" title="Show only week 15"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 15"></a><br></div><div class="content"><h3 class="weekdates">  19 December -   25 December</h3><div class="summary"> <span style="font-weight: bold;">Quiz-3a<br><a class="resource autolink" title="Assignment-1" href="http://learn.mcs.edu.pk/mod/resource/view.php?r=5342">Assignment-1</a> - Read the note (given in assignment) about submission carefully.<br></span><span style="font-weight: bold;"><br><a class="resource autolink" title="Chapter_6d" href="http://learn.mcs.edu.pk/mod/resource/view.php?r=5346">Chapter_6d</a></span><br>
+<div style="margin-left: 40px;"> Transactions<br></div><span style="font-weight: bold;"><a class="resource autolink" title="Chapter_7a" href="http://learn.mcs.edu.pk/mod/resource/view.php?r=5370">Chapter_7a</a><br></span>
+<div style="margin-left: 40px;">Deadlock<span style="font-weight: bold;"></span>: System Model<br>Deadlock<span style="font-weight: bold;"></span>: Deadlock Prevention<br><span style="font-weight: bold;"></span></div>
+<div style="text-align: center;">
+  <h2><font size="2"><span style="font-weight: bold; color: rgb(255, 0, 0);">Results are uploaded under last week</span></font></h2><span style="font-weight: bold;"></span></div> </div><ul class="section img-text">
+<li class="activity resource" id="module-6303"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6303"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/docx.gif" class="activityicon" alt=""> <span>Assignment-1<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-6307"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6307"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_6d<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-6334"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6334"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_7a<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-6281"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6281"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/word.gif" class="activityicon" alt=""> <span>Lab 11 - Semaphore<span class="accesshide "> Word document</span></span></a></li>
+<li class="activity resource" id="module-6282"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6282"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pdf.gif" class="activityicon" alt=""> <span>Lab 11 - Reference<span class="accesshide "> PDF document</span></span></a></li>
+<li class="activity assignment" id="module-6297"><a href="http://learn.mcs.edu.pk/mod/assignment/view.php?id=6297"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/icon.gif" class="activityicon" alt=""> <span>Lab 11 - Submissions [15 B]<span class="accesshide "> Assignment</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-16" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=16" title="Show only week 16"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 16"></a><br></div><div class="content"><h3 class="weekdates">  26 December -  1 January</h3><div class="summary"> <span style="font-weight: bold;"><a class="resource autolink" title="Chapter_7b" href="http://learn.mcs.edu.pk/mod/resource/view.php?r=5465">Chapter_7b</a><br></span>Deadlock<span style="font-weight: bold;"></span>: Deadlock Avoidance<span style="font-weight: bold;"><br><br><a class="resource autolink" title="Chapter_7c" href="http://learn.mcs.edu.pk/mod/resource/view.php?r=5466">Chapter_7c</a><br></span>Deadlock<span style="font-weight: bold;"></span>: Deadlock Detection<span style="font-weight: bold;"><br></span>Recovery from Deadlock<span style="font-weight: bold;"><br> </span><br><span style="font-weight: bold;"></span><br> </div><ul class="section img-text">
+<li class="activity resource" id="module-6433"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6433"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_7b<span class="accesshide "> file</span></span></a></li>
+<li class="activity resource" id="module-6434"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6434"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pptx.gif" class="activityicon" alt=""> <span>Chapter_7c<span class="accesshide "> file</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-17" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=17" title="Show only week 17"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 17"></a><br></div><div class="content"><h3 class="weekdates"> 2 January -  8 January</h3><div class="summary"></div><ul class="section img-text">
+<li class="activity resource" id="module-6489"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6489"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pdf.gif" class="activityicon" alt=""> <span>Final Lab Test 15 A<span class="accesshide "> PDF document</span></span></a></li>
+<li class="activity resource" id="module-6502"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6502"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/word.gif" class="activityicon" alt=""> <span>Final Lab Test 15 B<span class="accesshide "> Word document</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+<li id="section-18" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=18" title="Show only week 18"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 18"></a><br></div><div class="content"><h3 class="weekdates"> 9 January -   15 January</h3><div class="summary"></div></div></li>
+<li id="section-19" class="section main"><div class="right side"><a href="http://learn.mcs.edu.pk/course/view.php?id=330&week=19" title="Show only week 19"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/one.gif" class="icon wkone" alt="Show only week 19"></a><br></div><div class="content"><h3 class="weekdates">  16 January -   22 January</h3><div class="summary">
+<div style="text-align: center;"><a href="https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AteF-UfzuXjUdGNxVGNaSXd4WExILWVGM0l5aktOMFE&single=true&gid=0&output=html" target="_blank"><span style="font-weight: bold;"></span></a><a href="http://www.moodle.org/0.1543067533594692"><span style="font-weight: bold;"></span><font size="4"><span style="font-weight: bold; color: rgb(255, 153, 0);"></span></font></a><a href="https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AteF-UfzuXjUdGNxVGNaSXd4WExILWVGM0l5aktOMFE&single=true&gid=0&output=html" target="_blank">Final Results</a><a href="http://www.moodle.org/0.9251184439182982"> </a>(Theory)<br><br></div><span style="font-weight: bold;"><span style="color: rgb(0, 0, 255);">Syllabus for Final Exams</span><br style="color: rgb(0, 0, 255);"></span><span style="color: rgb(0, 0, 255);">Chapter 3, 4, 5, 6, 7 as per covered in class lectures (Details of topics covered are explained under each week's section on this webpage).</span><span style="font-weight: bold;"><br></span> </div><ul class="section img-text">
+<li class="activity resource" id="module-6674"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6674"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pdf.gif" class="activityicon" alt=""> <span>BESE 15 A Lab Result<span class="accesshide "> PDF document</span></span></a></li>
+<li class="activity resource" id="module-6675"><a href="http://learn.mcs.edu.pk/mod/resource/view.php?id=6675"><img src="./Course  CPS-410 Operating System-AB (Fall 2011)_files/pdf.gif" class="activityicon" alt=""> <span>BESE 15 B Lab Result<span class="accesshide "> PDF document</span></span></a></li>
+</ul><!--class='section'-->
+
+</div></li>
+</ul>
+</div></div><div class="clearer"></div></div>
+
+
+</div> <!-- end div containerContent -->
+<!-- START OF FOOTER -->
+<div id="footer">
+<p class="helplink"></p><div class="logininfo">You are logged in as <a href="http://learn.mcs.edu.pk/user/view.php?id=1507&course=330">Muhammad Umar Farooq Qureshi</a>  (<a href="http://learn.mcs.edu.pk/login/logout.php?sesskey=paRnCrtvhy">Logout</a>)</div><div class="homelink"><a href="http://learn.mcs.edu.pk/">Home</a></div><!-- <p><div class="homelink"><a  href="/course/view.php?id=">  </a></div></p> -->
+<p>
+<!-- <<a href="http://validator.w3.org/check?verbose=1&amp;ss=1&amp;uri=http%3A%2F%2Flearn.mcs.edu.pk%2Fcourse%2Fview.php%3Fid%3D330"><img src="http://learn.mcs.edu.pk/theme/chameleon/xhtml_1_0.gif" alt="XHTML Validator" /></a>
+<a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Flearn.mcs.edu.pk%2Fcourse%2Fview.php%3Fid%3D330&amp;warning=1&amp;profile=css2&amp;usermedium=all"><img src="http://learn.mcs.edu.pk/theme/chameleon/css.gif" alt="CSS Validator" /></a> 
+<a href="http://www.contentquality.com/mynewtester/cynthia.exe?rptmode=-1&amp;url1=http%3A%2F%2Flearn.mcs.edu.pk%2Fcourse%2Fview.php%3Fid%3D330"><img src="http://learn.mcs.edu.pk/theme/chameleon/section_508.gif" alt="Section 508 Validator" /></a> -->
+</p>
+</div>
+</div>
+
+
+</body></html>

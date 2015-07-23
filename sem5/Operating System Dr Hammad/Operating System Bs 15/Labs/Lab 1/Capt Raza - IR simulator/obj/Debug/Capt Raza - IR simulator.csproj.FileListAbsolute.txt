@@ -1,0 +1,8 @@
+C:\Documents and Settings\bs15b-rehman\Desktop\Capt Raza - IR simulator\bin\Debug\Capt Raza - IR simulator.exe
+C:\Documents and Settings\bs15b-rehman\Desktop\Capt Raza - IR simulator\bin\Debug\Capt Raza - IR simulator.pdb
+C:\Documents and Settings\bs15b-rehman\Desktop\Capt Raza - IR simulator\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\bs15b-rehman\Desktop\Capt Raza - IR simulator\obj\Debug\Capt_Raza___IR_simulator.Form1.resources
+C:\Documents and Settings\bs15b-rehman\Desktop\Capt Raza - IR simulator\obj\Debug\Capt_Raza___IR_simulator.Properties.Resources.resources
+C:\Documents and Settings\bs15b-rehman\Desktop\Capt Raza - IR simulator\obj\Debug\Capt Raza - IR simulator.csproj.GenerateResource.Cache
+C:\Documents and Settings\bs15b-rehman\Desktop\Capt Raza - IR simulator\obj\Debug\Capt Raza - IR simulator.exe
+C:\Documents and Settings\bs15b-rehman\Desktop\Capt Raza - IR simulator\obj\Debug\Capt Raza - IR simulator.pdb

@@ -1,0 +1,17 @@
+
+x=-2*pi:0.3:2*pi;
+y=sin(x);
+
+figure(1),subplot(311),plot(x,y,'-k');
+title('Actual Function');
+
+Yn = awgn(y,18);
+
+figure(1),subplot(312),plot(x,Yn);
+title('Noised Function');
+
+a=ones(1,10).*0.1;
+filt=filter(a,0.5,Yn);
+
+figure(1),subplot(313),plot(x,filt,);
+title('Filtered Function');

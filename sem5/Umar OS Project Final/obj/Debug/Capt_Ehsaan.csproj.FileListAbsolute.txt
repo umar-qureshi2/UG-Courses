@@ -1,0 +1,15 @@
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\bin\Debug\WindowsFormsApplication4.exe.manifest
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\bin\Debug\WindowsFormsApplication4.application
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\bin\Debug\WindowsFormsApplication4.exe
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\bin\Debug\WindowsFormsApplication4.pdb
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\obj\Debug\WindowsFormsApplication4.Form1.resources
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\obj\Debug\WindowsFormsApplication4.Properties.Resources.resources
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\obj\Debug\Capt_Ehsaan.csproj.GenerateResource.Cache
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\obj\Debug\WindowsFormsApplication4.exe.manifest
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\obj\Debug\WindowsFormsApplication4.application
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\obj\Debug\WindowsFormsApplication4.exe
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\obj\Debug\WindowsFormsApplication4.pdb
+C:\Users\Microsoft-NT\Documents\Visual Studio 2012\Projects\WindowsFormsApplication4 - sir ehsaan\WindowsFormsApplication4\bin\Debug\WindowsFormsApplication4.exe.config
+H:\___OS\Umar\Umar\bin\Debug\WindowsFormsApplication4.exe.config
+H:\___OS\Umar\Umar\obj\Debug\WindowsFormsApplication4.exe
+H:\___OS\Umar\Umar\obj\Debug\WindowsFormsApplication4.pdb

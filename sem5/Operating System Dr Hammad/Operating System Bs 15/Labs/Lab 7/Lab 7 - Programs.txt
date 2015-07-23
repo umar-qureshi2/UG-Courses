@@ -1,0 +1,170 @@
+//
+//-- Program 1:
+//
+
+int main()
+{
+	int pid;
+	pid = getpid();
+	printf(“Process ID is %d\n”, pid);
+	return 0;
+}
+
+//
+//-- Program 2:
+//
+
+int main()
+{
+	long i;
+	printf(“Process ID is %d\n”, getpid());
+	for(i=0; i<=400;i++)
+	{
+		printf(“i is %d\n”, i);
+	}
+	return 0;
+
+}
+
+//
+//-- Program 3:
+//
+
+int main()
+{
+
+	int ppid;
+	ppid = getppid();
+	printf(“Parent Process ID is %d\n”, ppid);
+	return 0;
+
+}
+
+
+//
+//-- Program 4:
+//
+
+int main()
+{
+	fork();
+	printf(Hello World\n”);
+	return 0;
+}
+
+//
+//-- Program 5:
+//
+
+int main()
+{
+	printf(“This is to demonstrate the fork() \n”);
+	fork();
+	return 0;
+}
+
+
+//
+//-- Program 6:
+//
+
+int main()
+{
+	fork();
+	fork();
+	printf(“Hello World\n”);
+	return 0;
+}
+
+//
+//-- Program 7:
+//
+
+
+int main()
+{
+	fork();
+	printf(“The PID is %d\n”, getpid());
+	return 0;
+}
+
+
+//
+//-- Program 8:
+//
+
+int main()
+{
+	int pid;
+	pid = fork();
+	if(pid > 0)
+		printf(“Parent Process ID is  %d\n”, pid);
+	return 0;
+}
+
+//
+//-- Program 9:
+//
+
+int main()
+{
+	int pid;
+	pid = fork();
+	if(pid == 0)
+		printf(“Child Process\n”);
+	return 0;
+}
+
+
+//
+//-- Program 10:
+//
+
+int main()
+{
+
+	int pid;
+	pid = fork();
+	if(pid==0)
+	{
+		printf(“I am the child, my process ID is   %d\n”, getpid());
+		printf(“The child’s parent  process ID is   %d\n”, getppid());
+	}
+	else
+	{
+		printf(“I am the parent, my process ID is   %d\n”, getpid());
+		printf(“The parent  process ID is   %d\n”, getppid());
+	}
+	return 0;
+
+}
+
+//
+//-- Program 11:
+//
+
+int main()
+{
+
+	printf(“Before exec my id is %d \n”, getpid());
+	printf(“My parent process id is  %d \n”, getppid());
+	printf(“exec strats\n”);
+	exex(“/usr/guest/ex2”, “ex2”, (char*)0);   //set path
+	printf(“This will not print\n”);
+	return 0;
+
+}
+
+
+//
+//-- Program 12:
+
+int main()
+{
+	printf(“After the exec my process id is %d\n”, getpid());
+	pintf(“My parent  process id is %d\n”, getppid());
+	printf(“exec  ends\n”);
+	return 0;
+
+}
+

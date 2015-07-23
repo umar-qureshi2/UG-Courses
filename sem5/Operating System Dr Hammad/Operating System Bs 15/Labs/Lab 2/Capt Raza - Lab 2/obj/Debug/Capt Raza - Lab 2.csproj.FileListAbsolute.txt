@@ -1,0 +1,10 @@
+C:\Users\dontumindit\Desktop\Capt Raza - Lab 2\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\dontumindit\Desktop\Capt Raza - Lab 2\bin\Debug\Capt Raza - Lab 2.exe
+C:\Users\dontumindit\Desktop\Capt Raza - Lab 2\bin\Debug\Capt Raza - Lab 2.pdb
+C:\Users\dontumindit\Desktop\Capt Raza - Lab 2\obj\Debug\Capt Raza - Lab 2.exe
+C:\Users\dontumindit\Desktop\Capt Raza - Lab 2\obj\Debug\Capt Raza - Lab 2.pdb
+I:\BESE-15 Data\5th semester\Operating System\Labs\Lab 2\Capt Raza - Lab 2\obj\Debug\Capt Raza - Lab 2.exe
+I:\BESE-15 Data\5th semester\Operating System\Labs\Lab 2\Capt Raza - Lab 2\obj\Debug\Capt Raza - Lab 2.pdb
+I:\BESE-15 Data\5th semester\Operating System\Labs\Lab 2\Capt Raza - Lab 2\obj\Debug\ResolveAssemblyReference.cache
+I:\BESE-15 Data\5th semester\Operating System\Labs\Lab 2\Capt Raza - Lab 2\bin\Debug\Capt Raza - Lab 2.exe
+I:\BESE-15 Data\5th semester\Operating System\Labs\Lab 2\Capt Raza - Lab 2\bin\Debug\Capt Raza - Lab 2.pdb

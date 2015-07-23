@@ -1,0 +1,5 @@
+C:\Users\dontumindit\Desktop\Capr Raza - Lab 3\bin\Debug\Capr Raza - Lab 3.exe
+C:\Users\dontumindit\Desktop\Capr Raza - Lab 3\bin\Debug\Capr Raza - Lab 3.pdb
+C:\Users\dontumindit\Desktop\Capr Raza - Lab 3\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\dontumindit\Desktop\Capr Raza - Lab 3\obj\Debug\Capr Raza - Lab 3.exe
+C:\Users\dontumindit\Desktop\Capr Raza - Lab 3\obj\Debug\Capr Raza - Lab 3.pdb
