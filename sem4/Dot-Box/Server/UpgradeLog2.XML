@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Server">
+</Property><Property Name="Solution File" Value="C:\Users\Raja\Desktop\Dot-Box\Server\Server.sln">
+</Property><Property Name="User Options File" Value="C:\Users\Raja\Desktop\Dot-Box\Server\Server.suo">
+</Property><Property Name="Date" Value="Tuesday, January 01, 2013">
+</Property><Property Name="Time" Value="10:59 AM">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="Server.sln" Description="File successfully backed up as C:\Users\Raja\Desktop\Dot-Box\Server\Backup\Server.sln">
+</Event><Event ErrorLevel="0" Project="" Source="Server.suo" Description="File successfully backed up as C:\Users\Raja\Desktop\Dot-Box\Server\Backup\Server.suo">
+</Event><Event ErrorLevel="0" Project="Server" Source="Server\Server.csproj" Description="Project file successfully backed up as C:\Users\Raja\Desktop\Dot-Box\Server\Backup\Server\Server.csproj">
+</Event><Event ErrorLevel="0" Project="Server" Source="Server\Program.cs" Description="File successfully backed up as C:\Users\Raja\Desktop\Dot-Box\Server\Backup\Server\Program.cs">
+</Event><Event ErrorLevel="0" Project="Server" Source="Server\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Users\Raja\Desktop\Dot-Box\Server\Backup\Server\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="Server" Source="Server\Server.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Server" Source="Server\Server.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="Server.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Server.sln" Description="Converted">
+</Event></UpgradeLog>

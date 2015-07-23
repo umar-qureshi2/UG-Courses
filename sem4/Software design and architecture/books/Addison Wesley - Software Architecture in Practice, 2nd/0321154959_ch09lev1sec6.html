@@ -1,0 +1,141 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="9.6 Unified Modeling Language"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch09lev1sec5.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch09lev1sec7.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch09lev1sec6"></A><H3 class="docSection1Title" id="161597-977">9.6 Unified Modeling Language</H3>
+<P class="docText">We have concentrated on the kind of information that should be included in architecture documentation. Architecture in some sense expresses what is essential about a software system, and that essence is independent of languages and notations to capture it. Nevertheless, today the Unified Modeling Language (UML) has emerged as the de facto standard notation for documenting a software architecture. However, it must be said that UML makes its main contribution in a view's primary presentation, and its secondary contribution in the behavior of an element or group of elements. It is up to the architect to augment the UML pictures with the necessary supporting documentation (the element catalog, the rationale, and so forth) that a responsible job requires. UML provides no direct support for components, connectors, layers, interface semantics, or many other aspects of a system that are supremely architectural.</P>
+<P class="docText">Still, in most cases we can use the constructs that UML does offer to achieve satisfactory effects, at least in crafting the primary presentations of architectural views. We begin by discussing module views.</P>
+<A NAME="ch09lev2sec6"></A><H4 class="docSection2Title"> MODULE VIEWS</H4>
+<P class="docText">Recall that a module is a code or implementation unit and a module view is an enumeration of modules together with their interfaces and their relations.</P>
+<A NAME="ch09lev3sec8"></A><H5 class="docSection3Title"> Interfaces</H5>
+<P class="docText"><A class="docLink" HREF="0321154959_ch09lev1sec4.html#ch09fig04">Figure 9.4</A> shows how module interfaces can be represented in UML. UML uses a "lollipop" to denote an interface, which can be appended to classes and subsystems, among other things.</P>
+<P class="docText">UML also allows a class symbol (box) to be stereotyped as an interface; the open-headed dashed arrow shows that an element realizes an interface. The bottom of the class symbol can be annotated with the interface's signature information: method names, arguments, argument types, and so forth. The lollipop notation is normally used to show dependencies from elements to the interface, while the box notation allows a more detailed description of the interface's syntax, such as the operations it provides.</P>
+
+<A NAME="ch09lev3sec9"></A><H5 class="docSection3Title"> Modules</H5>
+<P class="docText">UML provides a variety of constructs to represent different kinds of modules. <A class="docLink" HREF="#ch09fig05">Figure 9.5</A> shows some examples. UML has a class construct, which is the object-oriented specialization of a module. Packages can be used in cases where grouping of functionality is important, such as to represent layers and classes. The subsystem construct can be used if a specification of interface and behavior is required.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch09fig05"></A>Figure 9.5. Examples of module notations in UML</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="275" src="FILES/09fig05.gif" ALT="graphics/09fig05.gif"></p>
+</CENTER>
+<P class="docText"><A class="docLink" HREF="#ch09fig06">Figure 9.6</A> shows how the relations native to module views are denoted using UML. Module decomposition relies on the "is-part-of" relation. The module uses view relies on the dependency relation, and the module class view relies on the generalization, or "is-a" relation (also called "inheritance").</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch09fig06"></A>Figure 9.6. Examples of relation notations in UML. Module B is part of module A, module D depends on module C, and module F is a type of module E.</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="262" src="FILES/09fig06.gif" ALT="graphics/09fig06.gif"></p>
+</CENTER>
+
+<A NAME="ch09lev3sec10"></A><H5 class="docSection3Title"> Aggregation</H5>
+<P class="docText">In UML, the subsystem construct can be used to represent modules that contain other modules; the class box is normally used for the leaves of the decomposition. Subsystems are used both as packages and as classifiers. As packages, they can be decomposed and hence are suitable for module aggregation. As classifiers, they encapsulate their contents and can provide an explicit interface. Aggregation is depicted in one of three ways in UML:</P>
+<UL>
+<LI><P class="docList">Modules may be nested (see <A class="docLink" HREF="#ch09fig07">Figure 9.7</A> <span class="docEmphasis">left</span>).</P><CENTER><H5 class="docFigureTitle"><A NAME="ch09fig07"></A>Figure 9.7. Decomposition in UML with nesting. The aggregate module is shown as a package (<span class="docEmphasis">left</span>); decomposition in UML with arcs (<span class="docEmphasis">right</span>).</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="211" src="FILES/09fig07.gif" ALT="graphics/09fig07.gif"></p>
+</CENTER>
+</LI>
+<LI><P class="docList">A succession of two diagrams (possibly linked) can be shown, where the second is a depiction of the contents of a module shown in the first.</P></LI>
+<LI><P class="docList">An arc denoting composition is drawn between the parent and the children (see <A class="docLink" HREF="#ch09fig07">Figure 9.7</A> <span class="docEmphasis">right</span>).</P></LI>
+</UL>
+<P class="docText">In UML, composition is a form of aggregation with implied strong ownership—that is, parts live and die with the whole. If module A is composed of modules B and C, then B or C cannot exist without A, and if A is destroyed at runtime, so are B and C. Thus, UML's composition relation has implications beyond the structuring of the implementation units; the relation also endows the elements with a runtime property. As an architect, you should make sure you are comfortable with this property before using UML's composition relation.</P>
+
+<A NAME="ch09lev3sec11"></A><H5 class="docSection3Title"> Generalization</H5>
+<P class="docText">Expressing generalization is at the heart of UML in which modules are shown as classes (although they may also be shown as subsystems). <A class="docLink" HREF="#ch09fig08">Figure 9.8</A> shows the basic notation available in UML.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch09fig08"></A>Figure 9.8. Documenting generalization in UML with two line styles</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="170" src="FILES/09fig08.gif" ALT="graphics/09fig08.gif"></p>
+</CENTER>
+<P class="docText">The two diagrams in <A class="docLink" HREF="#ch09fig08">Figure 9.8</A> are semantically identical. UML allows an ellipsis (&#8230;) in place of a submodule, indicating that a module can have more children than shown and that additional ones are likely. Module Shape is the parent of modules Polygon, Circle, and Spline, each of which is a subclass, child, or descendant of Shape. Shape is more general, while its children are specialized versions.</P>
+
+<A NAME="ch09lev3sec12"></A><H5 class="docSection3Title"> Dependency</H5>
+<P class="docText">The basic notation for dependency was shown in <A class="docLink" HREF="#ch09fig06">Figure 9.6</A>. The most architecturally significant manifestation of dependency is found in layers. Sadly, UML has no built-in primitive corresponding to a layer. However, it can represent simple layers using <span class="docEmphasis">packages</span>, as shown in <A class="docLink" HREF="#ch09fig09">Figure 9.9</A>. These are general-purpose mechanisms for organizing elements into groups. UML has predefined packages for systems and subsystems. We can introduce an additional package for layers by defining it as a package stereotype. A layer can be shown as a UML package with the constraints that it groups modules together and that the dependency between packages is "allowed to use." We can designate a layer using the package notation with the stereotype name <TT>&lt;&lt;layer&gt;&gt;</TT> preceding the layer name, or introduce a new visual form, such as a shaded rectangle.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch09fig09"></A>Figure 9.9. A simple representation of layers in UML</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="252" src="FILES/09fig09.gif" ALT="graphics/09fig09.gif"></p>
+</CENTER>
+
+
+<A NAME="ch09lev2sec7"></A><H4 class="docSection2Title"> COMPONENT-AND-CONNECTOR VIEWS</H4>
+<P class="docText">There is no single preferred strategy to document component-and-connector (C&amp;C) views in UML, but a number of alternatives. Each alternative has its advantages and disadvantages. One natural candidate for representing component-and-connector types begins with the UML class concept.</P>
+<P class="docText"><A class="docLink" HREF="#ch09fig10">Figure 9.10</A> illustrates the general idea using a simple pipe-and-filter system. Here, the filter architectural type is represented as the UML class <TT>Filter</TT>. Instances of filters, such as <TT>Splitter</TT>, are represented as corresponding objects in an object instance diagram. To provide a namespace boundary, we enclose the descriptions in packages. The representation of <TT>MergeAndSort</TT>, denoted <TT>Details</TT>, would be shown as another package elsewhere.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch09fig10"></A>Figure 9.10. Types as classes, and instances as objects, exemplified with a simple pipe and filter</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="444" src="FILES/09fig10.gif" ALT="graphics/09fig10.gif"></p>
+</CENTER>
+<P class="docText">We now take a closer look at this strategy.</P>
+<A NAME="ch09lev3sec13"></A><H5 class="docSection3Title"> Components</H5>
+<P class="docText">The type/instance relationship in architectural descriptions is a close match to the class/object relationship in a UML model. UML classes, like component types in architectural descriptions, are first-class entities and are rich structures for capturing software abstractions. The full set of UML descriptive mechanisms is available to describe the structure, properties, and behavior of a class, making this a good choice for depicting detail and using UML-based analysis tools. Properties of architectural components can be represented as class attributes or with associations; behavior can be described using UML behavioral models; and generalization can be used to relate a set of component types. The semantics of an instance or type can also be elaborated by attaching one of the standard stereotypes; for example, the &#171;<TT>process</TT>&#187; stereotype can be attached to a component to indicate that it runs as a separate process. Note that the relationship between <TT>MergeAndSort</TT> and its substructure is indicated using a dependency relation.</P>
+
+<A NAME="ch09lev3sec14"></A><H5 class="docSection3Title"> Interfaces</H5>
+<P class="docText">Interfaces to components, sometimes called ports, can be shown in five ways, as shown in <A class="docLink" HREF="#ch09fig11">Figure 9.11</A>, described in increasing order of expressiveness. However, as expressiveness rises so does complexity, so you should pick the first strategy that will serve your purposes.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Option 1: No explicit representation.</span> 
+Leaving out interfaces leads to the simplest diagrams but suffers from the obvious problem that there is no way to characterize the names or the properties of the interfaces in the primary presentation. Still, this choice might be reasonable if the components have only one interface, if the interfaces can be inferred from the system topology, or if the diagram is refined elsewhere.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Option 2: Interfaces as annotations.</span> 
+Representing interfaces as annotations provides a home for information about them, although annotations have no semantic value in UML so cannot be used as a basis for analysis. Again, if the detailed properties of an interface are not of concern, this approach might be reasonable.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Option 3: Interfaces as class/object attributes.</span> 
+Treating interfaces as attributes of a class/object makes them part of the formal structural model, but they can have only a simple representation in a class diagram—essentially, a name and a type. This restriction limits the expressiveness of this option.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Option 4: Interfaces as <span class="docEmphasis">UML</span> interfaces.</span> 
+The UML lollipop notation provides a compact description of an interface in a class diagram depicting a component type. In an instance diagram, a UML association role, corresponding to an interface instance and qualified by the interface type name, provides a compact way to show that a component instance is interacting through a particular interface instance. This approach provides visually distinct depictions of components and interfaces, in which interfaces can clearly be seen as subservient.</p>
+<P class="docList">However, this strategy provides no means to depict the services required from a component's environment, often a key part of an interface. Furthermore, it is meaningful for a component type to have several instances of the same interface type, but it is not meaningful to say that a class realizes several versions of one UML interface. For example, there is no easy way to define a <TT>Splitter</TT> filter type that has two output ports of the same "type" using this technique. Finally, unlike classes, UML interfaces do not have attributes or substructure.</P></LI>
+<LI><p class="docText"><span class="docEmphasis">Option 5: Interfaces as classes.</span> 
+Describing interfaces as classes contained by a component type overcomes the lack of expressiveness of the previous alternatives: We can now represent interface substructure and indicate that a component type has several interfaces of the same type. A component instance is modeled as an object containing a set of interface objects. However, by representing interfaces as classes, we not only clutter the diagram but also lose clear visual discrimination between interfaces and components. We could use a notational variation in which the interfaces are contained classes, as shown in the lower part of option 5 in <A class="docLink" HREF="#ch09fig11">Figure 9.11</A>. Indicating points of interaction is counterintuitive, however, as containment usually indicates that a class owns other classes whose instances may or may not be accessible through instances of the parent class.</p>
+</LI>
+</UL>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch09fig11"></A>Figure 9.11. Five ways to represent interfaces to components (ports)</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="287" src="FILES/09fig11.gif" ALT="graphics/09fig11.gif"></p>
+</CENTER>
+
+<A NAME="ch09lev3sec15"></A><H5 class="docSection3Title"> Connectors</H5>
+<P class="docText">There are three reasonable options for representing connectors. Again, the choice is between expressiveness and semantic match on the one hand and complexity on the other.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Option 1: Connector types as associations and connector instances as links.</span> 
+In an architectural box-and-line diagram of a system, the lines between components are connectors. One tempting way to represent connectors in UML is as associations between classes or links between objects. This approach is visually simple, provides a clear distinction between components and connectors, and uses the most familiar relationship in UML class diagrams: association. Moreover, associations can be labeled, and a direction associated with the connector can be indicated with an arrow. Unfortunately, connectors and associations have different meanings. A system in an architectural description is built up by choosing components with behavior exposed through their interfaces and connecting them with connectors that coordinate their behaviors. A system's behavior is defined as the collective behavior of a set of components whose interaction is defined and limited by the connections between them.</p>
+<P class="docList">In contrast, although an association, or link, in UML represents a potential for interaction between the elements it relates, the association mechanism is primarily a way of describing a conceptual relationship between two elements. In addition, an association is a relationship between UML elements, so it cannot stand on its own in a UML model. Consequently, a connector type cannot be represented in isolation. Instead, you must resort to naming conventions or to stereotypes whose meanings are captured by description in UML's object constraint language. Further, the approach does not allow you to specify a connector's interfaces.</P></LI>
+<LI><p class="docText"><span class="docEmphasis">Option 2: Connector types as association classes.</span> 
+One solution to the lack of expressiveness is to qualify the association with a class that represents the connector type. In this way, the connector type or connector attributes can be captured as attributes of a class or object. Unfortunately, this technique still does not provide any way of explicitly representing connector interfaces.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Option 3: Connector types as classes and connector instances as objects.</span> 
+One way to give connectors first-class status in UML is to represent connector types as classes and connector instances as objects. Using classes and objects, we have the same four options for representing roles as we had for interfaces: not at all, as annotations, as interfaces realized by a class, or as child classes contained by a connector class. Given a scheme for representing interfaces, an attachment between a component's interface and a connector's interface may be represented as an association or a dependency.</p>
+</LI>
+</UL>
+
+<A NAME="ch09lev3sec16"></A><H5 class="docSection3Title"> Systems</H5>
+<P class="docText">In addition to representing individual components and connectors and their types, we also need to encapsulate graphs of components and connectors: systems. Three options are available.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Option 1: Systems as <span class="docEmphasis">UML</span> subsystems.</span> 
+The primary UML mechanism for grouping related elements is the package. In fact, UML defines a standard package stereotype, called &#171;<TT>subsystem</TT>&#187;, to group UML models that represent a logical part of a system. The choice of subsystems is appropriate for any mapping of components and connectors, and it works particularly well for grouping classes. One of the problems with using subsystems, as defined in UML 1.4, is that, although they are both a classifier and a package, the meaning is not entirely clear. Some have argued that we should be able to treat a subsystem as an atomic class-like entity at certain stages in the development process and later be able to refine it in terms of a more detailed substructure. Having the ability to do this would make the subsystem construct more appropriate for modeling architectural components.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Option 2: Systems as contained objects.</span> 
+Object containment can be used to represent systems. Components are represented as instances of contained classes, and connectors are modeled using one of the options outlined earlier. Objects provide a strong encapsulation boundary and carry with them the notion that each instance of the class has the associated "substructure." However, this approach has problems, the most serious being that associations, used to model connectors, between contained classes are not scoped by the class. That is, it is not possible to say that a pair of classes interacts via a particular connector, modeled as an association, only in the context of a particular system. So, for example, indicating that two contained classes interact via an association is valid for instances of classes used anywhere else in the model.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Option 3: Systems as collaborations.</span> 
+A set of communicating objects connected by links is described in UML using a collaboration. If we represent components as objects, we can use collaborations to represent systems. A collaboration defines a set of participants and relationships that are meaningful for a given purpose, which in this case is to describe the runtime structure of the system. The participants define classifier roles that objects play, or conform to, when interacting. Similarly, the relationships define association roles that links must conform to.</p>
+<P class="docList">Collaboration diagrams can be used to present collaborations at either the specification or the instance level. A specification-level collaboration diagram shows the roles, defined within the collaboration, arranged in a pattern to describe the system substructure. An instance-level collaboration diagram shows the objects and links conforming to the roles at the specification level and interacting to achieve the purpose. Therefore, a collaboration presented at the instance level is best used to represent the runtime structure of the system.</P><P class="docList"><A class="docLink" HREF="#ch09fig12">Figure 9.12</A> illustrates this approach. The <TT>Filter</TT> architectural type is represented as previously. Instances of filters and pipes are represented as corresponding classifier roles—for example, <TT>/Splitter</TT> indicates the <TT>Splitter</TT> role—and association roles. The objects and links conforming to those roles are shown in the collaboration diagram at the instance level, indicated by underscored names.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch09fig12"></A>Figure 9.12. Systems as collaborations</H5>
+<p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="439" src="FILES/09fig12.gif" ALT="graphics/09fig12.gif"></p>
+</CENTER>
+<P class="docList">Although this is a natural way to describe runtime structures, it leaves no way to explicitly represent system-level properties. There is also a semantic mismatch; a collaboration describes a representative interaction between objects and provides a partial description, whereas an architectural configuration is meant to capture a complete description.</P>
+</LI>
+</UL>
+
+
+<A NAME="ch09lev2sec8"></A><H4 class="docSection2Title"> ALLOCATION VIEWS</H4>
+<P class="docText">In UML, a deployment diagram is a graph of nodes connected by communication associations. <A class="docLink" HREF="#ch09fig13">Figure 9.13</A> provides an example. Nodes may contain component instances, which indicates that the component lives or runs on the node. Components may contain objects, which indicates that the object is part of the component. Components are connected to other components by dashed-arrow dependencies (possibly through interfaces). This indicates that one component uses the services of another; a stereotype may be used to indicate the precise dependency if needed. The deployment type diagram may also be used to show which components may run on which nodes, by using dashed arrows with the stereotype &#171;<TT>supports</TT>&#187;.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch09fig13"></A>Figure 9.13. A deployment view in UML</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="363" src="FILES/09fig13.gif" ALT="graphics/09fig13.gif"></p>
+</CENTER>
+<P class="docText">A node is a runtime physical object that represents a processing resource, generally having at least a memory and often processing capability as well. Nodes include computing devices but also human or mechanical processing resources. Nodes may represent types of instances. Runtime computational instances, both objects and components, may reside on node instances.</P>
+<P class="docText">Nodes may be connected by associations to other nodes. An association indicates a communication path between them. The association may have a stereotype to indicate the nature of the communication path (for example, the kind of channel or network).</P>
+<P class="docText">The nesting of symbols within the node symbol signifies a composition association between a node class and constituent classes or a composition link between a node object and constituent objects.</P>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch09lev1sec5.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch09lev1sec7.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

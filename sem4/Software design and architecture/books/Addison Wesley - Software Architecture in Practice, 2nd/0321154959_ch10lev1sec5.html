@@ -1,0 +1,131 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="10.5 Reconstruction"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch10lev1sec4.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch10lev1sec6.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch10lev1sec5"></A><H3 class="docSection1Title">10.5 Reconstruction</H3>
+<P class="docText">At this point, the view information has been extracted, stored, and refined or augmented to improve its quality. The reconstruction operates on views to reveal broad, coarse-grained insights into the architecture. Reconstruction consists of two primary activities: <span class="docEmphasis">visualization and interaction</span> and <span class="docEmphasis">pattern definition and recognition</span>. Each is discussed next.</P>
+<P class="docText"><span class="docEmphasis">Visualization and interaction</span> provides a mechanism by which the user may interactively visualize, explore, and manipulate views. In Dali, views are presented to the user as a hierarchically decomposed graph of elements and relations, using the Rigi tool. An example of an architectural view is shown in <A class="docLink" HREF="#ch10fig06">Figure 10.6</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig06"></A>Figure 10.6. An architectural view represented in Dali</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="489" src="FILES/10fig06.jpg" ALT="graphics/10fig06.jpg"></p>
+</CENTER>
+<P class="docText"><span class="docEmphasis">Pattern definition and recognition</span> provides facilities for architectural reconstruction: the definition and recognition of the code manifestation of architectural patterns. Dali's reconstruction facilities, for example, allow a user to construct more abstract views of a software system from more detailed views by identifying aggregations of elements. Patterns are defined in Dali, using a combination of SQL and perl, which we call <span class="docEmphasis">code segments</span>. An SQL query is used to identify elements from the Dali repository that will contribute to a new aggregation, and perl expressions are used to transform names and perform other manipulations of the query results. Code segments are retained, and users can selectively apply and re-use them.</P>
+<P class="docText">Based on the architectural patterns that the architect expects to find in the system, the reconstructor can build various queries. These queries result in new aggregations that show various abstractions or clusterings of the lower-level elements (which may be source artifacts or abstractions). By interpreting these views and actively analyzing them, it is possible to refine the queries and aggregations to produce several hypothesized architectural views that can be interpreted, further refined, or rejected. There are no universal completion criteria for this process; it is complete when the architectural representation is sufficient to support analysis and documentation.</P>
+<P class="docText">Suppose that our database contains the subset of elements and relations shown in <A class="docLink" HREF="#ch10fig07">Figure 10.7</A>. In this example variables <TT>a</TT> and <TT>b</TT> are defined in function <TT>f</TT>; that is, they are local to <TT>f</TT>. We can graphically represent this information as shown in <A class="docLink" HREF="#ch10fig08">Figure 10.8</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig07"></A>Figure 10.7. Subset of elements and relationships</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="121" src="FILES/10fig07.gif" ALT="graphics/10fig07.gif"></p>
+</CENTER>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig08"></A>Figure 10.8. Graphical representation of elements and relationships</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="216" src="FILES/10fig08.gif" ALT="graphics/10fig08.gif"></p>
+</CENTER>
+<P class="docText">An architectural reconstruction is not interested in the local variables because they lend very little insight into the architecture of the system. Therefore, we can aggregate instances of local variables into the functions in which they occur. An example of the SQL and perl code to accomplish this is shown in <A class="docLink" HREF="#ch10list02">Figure 10.9</A>.</P>
+<P class="docText">The first code portion updates the visual representation by adding a "<TT>+</TT>" after each function name. The function is now aggregated together with the local variables defined inside it. The SQL query selects functions from the elements table, and the perl expression is executed for each line of the query result. The <TT>$fields</TT> array is automatically populated with the fields resulting from the query; in this case, only one field is selected (<TT>tName</TT>) from the table, so <TT>$fields[0]</TT> will store its value for each tuple selected. The expression generates lines of the form:</P>
+
+<H5 class="docExampleTitle"><A NAME="ch10list02"></A>Figure 10.9 SQL and perl to aggregate local variables to the function in which they are defined</H5>
+<PRE>
+#Local Variable aggregation
+
+SELECT tName
+     FROM Elements
+     WHERE tType='Function';
+print ''$fields[0]+ $fields[0] Function\n'';
+
+SELECT d1.func, d1.local_variable
+     FROM defines_var d1;
+print ''$fields[0] $fields[1] Function\n'';
+</PRE>
+<pre>
+&lt;function&gt;+  &lt;function&gt;  Function 
+</pre>
+<P class="docText">this specifies that the element <TT>&lt;function&gt;</TT> should be aggregated into <TT>&lt;function&gt;+</TT>, which will have the type <TT>Function</TT>.</P>
+<P class="docText">The second code portion hides the local variables from the visualization. The SQL query identifies the local variables for each function defined by selecting each tuple in the <TT>defines_var</TT> table. Thus in the perl expression, <TT>$fields[0]</TT> corresponds to the <TT>func</TT> field and <TT>$fields[1]</TT> corresponds to the <TT>local_ variable</TT> field. So the output is of the form:</P>
+<pre>
+&lt;function&gt;+  &lt;variable&gt;  Function 
+</pre>
+<P class="docText">That is, each local variable for a function is to be added to that function's <TT>&lt;function&gt;+</TT> aggregate. The order of execution of these two code segments is not important, as the final results of applying both of these queries is sorted.</P>
+<P class="docText">The result of applying the code segments is represented graphically in <A class="docLink" HREF="#ch10fig10">Figure 10.10</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig10"></A>Figure 10.10. Result of applying the code segment in <A class="docLink" HREF="#ch10list02">Figure 10.9</A></H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="242" src="FILES/10fig10.gif" ALT="graphics/10fig10.gif"></p>
+</CENTER>
+<P class="docText">The primary mechanism for manipulating the extracted information is inverse mappings. Examples include the following:</P>
+<UL>
+<LI><P class="docList">Identify types</P></LI>
+<LI><P class="docList">Aggregate local variables into functions</P></LI>
+<LI><P class="docList">Aggregate members into classes</P></LI>
+<LI><P class="docList">Compose architecture-level elements</P></LI>
+</UL>
+<P class="docText">An example of a query that identifies an architectural element is shown in <A class="docLink" HREF="#ch10list03">Figure 10.11</A>. This query identifies the <TT>Logical_Interaction</TT> architectural element, and says that if the class name is <TT>Presentation</TT>, <TT>Bspline</TT>, or <TT>Color</TT>, or if the class is a subclass of <TT>Presentation</TT>, it belongs in the <TT>Logical_Interaction</TT> element.</P>
+<P class="docText">Code segments are written in this way for abstracting from the lower-level information to generate architecture-level views. The reconstructor builds these segments to test hypotheses about the system. If a particular segment does not yield useful results, it can be discarded. The reconstructor iterates through this process until useful architectural views have been obtained.</P>
+
+<H5 class="docExampleTitle"><A NAME="ch10list03"></A>Figure 10.11 Query to identify the <TT>Logical_Interaction</TT> element</H5>
+<PRE>
+SELECT tSubclass
+    FROM has_subclass
+    WHERE tSuperclass='Presentation';
+print ''Logical_Interaction $fields[0]'';
+
+SELECT tName
+    FROM element
+    WHERE tName='Presentation'
+    OR tName='BSpline'
+    OR tName='Color';
+print ''Logical_Interaction $fields[0]'';
+</PRE>
+<A NAME="ch10lev2sec8"></A><H4 class="docSection2Title"> GUIDELINES</H4>
+<P class="docText">The following are some practical considerations in applying this step of the method.</P>
+<UL>
+<LI><P class="docList">Be prepared to work with the architect closely and to iterate several times on the architectural abstractions that you create. This is particularly so in cases where the system has no explicit, documented architecture. (See the sidebar Playing "<A class="docLink" HREF="#ch10sb01">Spot the Architecture</A>.") In such cases, you can create architectural abstractions as hypotheses and test these hypotheses by creating the views and showing them to the architect and other stakeholders. Based on the false negatives and false positives found, the reconstructor may decide to create new abstractions, resulting in new Dali code segments to apply (or perhaps even new extractions that need to be done).</P>
+<H5 class="docExampleTitle"><A NAME="ch10list04"></A>Figure 10.12 Example of a bad code segment that relies on the explicit listing of elements of interest</H5>
+<PRE>
+SELECT tName
+    FROM element
+    WHERE tName='vanish-xforms.cc'
+    OR tName='PrimativeOp'
+    OR tName='Mapping'
+    OR tName='MappingEditor'
+
+    OR tName='InputValue'
+    OR tName='Point'
+    OR tName='VEC'
+    OR tName='MAT'
+    OR ((tName ~ 'Dbg$' OR tName ~ 'Event$')
+       AND tType='Class');
+print ''Dialogue $fields[0]'';
+</PRE></LI>
+<LI><P class="docList">When developing code segments, try to build ones that are succinct and that do not list every source element. The code segment shown in <A class="docLink" HREF="#ch10list03">Figure 10.11</A> is an example of a good segment; an example of a bad one in this regard, is shown in <A class="docLink" HREF="#ch10list04">Figure 10.12</A>. In the latter, the source elements comprising the architectural element of interest are simply listed; this makes the segment difficult to use, understand, and re-use.</P></LI>
+<LI><P class="docList">Code segments can be based on naming conventions, if the naming conventions are used consistently throughout the system. An example is one where all functions, data, and files that belong to the <span class="docEmphasis">Interface</span> element begin with <TT>i_</TT>.</P></LI>
+<LI><P class="docList">Code segments can be based on the directory structure where files and functions are located. Element aggregations can be based on these directories.</P></LI>
+<LI><P class="docList">Architecture reconstruction is the effort of redetermining architectural decisions, given only the result of these decisions in the actual artifacts (i.e., the code that implements them). As reconstruction proceeds, information must be added to re-introduce the architectural decisions which introduces bias from the reconstructor and thus reinforces the need for a person knowledgeable in the architecture to be involved.</P></LI>
+</UL>
+<P><A NAME="ch10sb01"></A><TABLE CELLSPACING="0" WIDTH="90%" BORDER="1"><TR><TD>
+<H2 class="docSidebarTitle">Playing "Spot the Architecture"</H2>
+<P class="docText">Beginning the process of recovering a "lost" architecture can be daunting. The architecture recovery team begins with a blank slate, from which they need to reconstruct an architecture that is, hopefully, both representative of what is actually there and useful for reasoning about the system, maintaining it, evolving it, and so forth.</P>
+<P class="docText">But you would not embark on an architectural reconstruction project unless the architectural documentation was either lost completely or at least muddied by time and many revisions by many hands. So, how to begin?</P>
+<P class="docText">In our first few architectural reconstruction efforts this was not our starting point. We had created Dali and needed some examples to test it on, so we chose a couple of systems that we had architected and built ourselves. We had created these systems with explicit architectures in mind, and so recovering them was not too difficult. Still, the process was not without surprises. We discovered architectural violations even in the relatively small systems we had designed and coded. This encouraged us, for if even our own small and conscientiously architected systems had problems, how bad would large, long-lived commercial systems be? We were emboldened by our successes and eager to tackle such a system.</P>
+<P class="docText">Our chance came in the form of a large, complex physics simulation. This system had been in development for about six years. It was written in two languages, had no formal architectural documentation, and had not been created with a formal architecture design effort. However, the chief architect felt that there was in fact an architecture in there and that we could recover it with a bit of digging. The system had about 300,000 lines of code, but was probably the most complex system that I had ever seen, and that remains true to this day.</P>
+<P class="docText">In advance of the architect working with us we were able to get a copy of the code base, from which we extracted many useful low-level relations (such as <TT>function_calls_function</TT> and <TT>function_defines_global_ variable</TT>). We loaded the database with these tables.</P>
+<P class="docText">We then sat down with the architect. He sketched out his view of what the architecture was, and we turned that view into a set of SQL queries, ran these over the database, and visualized the result. It was a mess, with thousands of unclassified elements and thousands of relations going everywhere. Viewing this, the architect thought some more and then proposed a different organization. We again turned this into a set of SQL queries, reorganized the database along these lines and visualized the result. The result was once again a mess.</P>
+<P class="docText">We continued this for the rest of the day and did more the next day. At the end of that time we finally arrived at an architecture that the architect was reasonably happy with, but it always remained somewhat messy.</P>
+<P class="docText">What is the moral of this story? First, your initial guesses as to the structure of the architecture may be wrong. You may be required to iterate a number of times before you get something that approaches a rational looking structure. Second, if a product was not created with an architecture in mind, chances are that no amount of post-facto organization will create one for you. You can play "<A class="docLink" HREF="#ch10sb01">spot the architecture</A>" all you like, but there may in fact be no coherent architecture to spot.</P>
+<P class="docText"><span class="docEmphasis">— RK</span></P>
+</TD></TR></TABLE></P>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch10lev1sec4.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch10lev1sec6.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

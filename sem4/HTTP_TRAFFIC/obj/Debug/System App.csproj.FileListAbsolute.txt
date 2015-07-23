@@ -1,0 +1,11 @@
+C:\Users\Microsoft-NT\Desktop\HTTP_TRAFFIC\bin\Debug\System App.exe.config
+C:\Users\Microsoft-NT\Desktop\HTTP_TRAFFIC\bin\Debug\System App.exe
+C:\Users\Microsoft-NT\Desktop\HTTP_TRAFFIC\bin\Debug\System App.pdb
+C:\Users\Microsoft-NT\Desktop\HTTP_TRAFFIC\bin\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Users\Microsoft-NT\Desktop\HTTP_TRAFFIC\obj\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Users\Microsoft-NT\Desktop\HTTP_TRAFFIC\obj\Debug\System App.csproj.ResolveComReference.cache
+C:\Users\Microsoft-NT\Desktop\HTTP_TRAFFIC\obj\Debug\System_App.Form1.resources
+C:\Users\Microsoft-NT\Desktop\HTTP_TRAFFIC\obj\Debug\System_App.Properties.Resources.resources
+C:\Users\Microsoft-NT\Desktop\HTTP_TRAFFIC\obj\Debug\System App.csproj.GenerateResource.Cache
+C:\Users\Microsoft-NT\Desktop\HTTP_TRAFFIC\obj\Debug\System App.exe
+C:\Users\Microsoft-NT\Desktop\HTTP_TRAFFIC\obj\Debug\System App.pdb

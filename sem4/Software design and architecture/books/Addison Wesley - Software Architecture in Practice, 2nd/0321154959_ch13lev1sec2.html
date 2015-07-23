@@ -1,0 +1,272 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="13.2 Requirements and Qualities"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch13lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch13lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch13lev1sec2"></A><H3 class="docSection1Title">13.2 Requirements and Qualities</H3>
+<P class="docText">The World Wide Web, as conceived and initially implemented at CERN, had several desirable qualities. It was portable, able to interoperate with other types of computers running the same software, and was scalable and extensible. The business goals of promoting interaction and allowing heterogeneous computing led to the quality goals of remote access, interoperability, extensibility, and scalability, which in turn led to libWWW, the original software library that supported Web-based development and a distributed client-server architecture. The realization of these properties in the original software architecture created an infrastructure that effectively supported the  Web's tremendous growth (see <A class="docLink" HREF="#ch13table01">Table 13.1</A>). libWWW embodies strict separation of concerns and therefore works on virtually any hardware and readily accepts new protocols, new data formats, and new applications. Because it has no centralized control, the Web appears to be able to grow without bounds.</P>
+<A NAME="ch13table01"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 13.1. Web Growth Statistics</h5></CAPTION><COLGROUP align="left" span="4">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Date</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Number of Web Sites</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Percentage of</span> <span class="docEmphBoldItalic">.com</span> <span class="docEmphStrong">Sites</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Hosts per Web Server</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6/93</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">130</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1.5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">13,000</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">12/93</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">623</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4.6</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3,475</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6/94</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">2,738</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">13.5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1,095</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">12/94</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10,022</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">18.3</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">451</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6/95</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">23,500</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">31.3</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">270</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1/96</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100,000</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">50.0</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">94</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6/96</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">252,000</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">68.0</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">41</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1/97</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">646,162</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">62.6</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">40</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1/98</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1,834,710</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">16.2</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1/99</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4,062,280</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10.6</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1/00</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9,950,491</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7.3</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1/01</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">27,585,719</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">54.68</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4.0</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableFooter" valign="top" colspan="4">
+<P class="docText"><span class="docEmphasis">Source:</span> Used with permission of Matthew Gray of the Massachusetts Institute of Technology.</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">We will deal with these core requirements, and others, in more detail now, returning to the structure of libWWW later in <A class="docLink" HREF="0321154959_ch13lev1sec3.html#ch13lev1sec3">Section 13.3</A>. There is no explicit requirement for ease of use in the original requirements, and it was not until the development of point-and-click browsers that the Web began its tremendous growth. On the other hand, the requirement for portability and the heterogeneous computing environment led to the introduction of the browser as a separate element, thereby fostering the development of more sophisticated browsers.</P>
+<A NAME="ch13lev2sec1"></A><H4 class="docSection2Title"> THE ORIGINAL REQUIREMENTS</H4>
+<P class="docText">The initial set of requirements for the Web, as established in the original project proposals, were as follows:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Remote access across networks.</span> 
+Any information had to be accessible from any machine on a CERN network.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Heterogeneity.</span> 
+The system could not be limited to run on any specific hardware or software platform.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Noncentralization.</span> 
+In the spirit of a human web and of the Internet, there could not be any single source of data or services. This requirement was in anticipation that the Web would grow. The operation of linking to a document, in particular, had to be decentralized.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Access to existing data.</span> 
+Existing databases had to be accessible.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Ability for users to add data.</span> 
+Users should be able to "publish" their own data on the Web, using the same interface used to read others' data.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Private links.</span> 
+Links and nodes had to be capable of being privately annotated.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Bells and whistles.</span> 
+The only form of data display originally planned was display on a 24 x 80 character ASCII terminal. Graphics were considered optional.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Data analysis.</span> 
+Users should be able to search across the various databases and look for anomalies, regularities, irregularities, and so on. Berners-Lee gave, as examples, the ability to look for undocumented software and organizations with no people.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Live links.</span> 
+Given that information changes all the time, there should be some way of updating a user's view of it. This could be by simply retrieving the information every time the link is accessed or (in a more sophisticated fashion) by notifying a user of a link whenever the information has changed.</p>
+</LI>
+</UL>
+<P class="docText">In addition to these requirements, there were a number of nonrequirements identified. For example, copyright enforcement and data security were explicitly mentioned as requirements that the original project would <span class="docEmphasis">not</span> deal with. The Web, as initially conceived, was to be a public medium. Also, the original proposal explicitly noted that users should not have to use any particular markup format.</P>
+<P class="docText">Other criteria and features that were common in proposals for hypertext systems at the time but that were missing from the Web proposal are as follows:</P>
+<UL>
+<LI><P class="docList">Controlling topology</P></LI>
+<LI><P class="docList">Defining navigational techniques and user interface requirements, including keeping a visual history</P></LI>
+<LI><P class="docList">Having different types of links to express differing relationships among nodes</P></LI>
+</UL>
+<P class="docText">Although many of the original requirements formed the essence of what the Web is today, several were not realized, were only partially realized, or their impact was dramatically underestimated. For example, data analysis, live links, and private link capabilities are still relatively crude to this day. These requirements have gone largely unfulfilled.</P>
+<P class="docText">Adaptation and selective postponement of requirements are characteristic of unprecedented systems. Requirements are often lists of desirable characteristics, and in unprecedented systems the tradeoffs required to realize these requirements are often unknown until a design exists. In the process of making the tradeoffs, some requirements become more important and others less so.</P>
+<P class="docText">The effect of one of the requirements turned out to have been greatly <span class="docEmphasis">underestimated</span>. Namely, the "bells and whistles" of graphics dominate much of today's Web traffic. Graphics today carry the bulk of the interest and consume the bulk of the Internet traffic generated by the Web. And yet Berners-Lee and CERN management did not concern themselves with graphics in the initial proposal, and the initial Web browser was line oriented. Similarly, the original proposal eschewed any interest in multimedia research for supporting sound and video.</P>
+<P class="docText">Some nonrequirements, as the ABC has been traversed, have also become requirements. Security, for one, has proven to be a substantial issue, particularly as the Web has become increasingly dominated by commercial traffic. The security issue is large and complex, given the distributed, decentralized form of the Internet. Security is difficult to ensure when protected access to private data cannot be guaranteed—the Web opens a window onto your computer, and some uninvited guests are sure to crawl through.</P>
+<P class="docText">This has become even more relevant in recent years as e-commerce has begun to drive the structure and direction of the Web and a large number of ad hoc mechanisms have been created to facilitate it. The most obvious is simple encryption of sensitive data, typically via SSL (Secure Sockets Layer), seen in Web browsers as HTTPS (HyperText Transfer Protocol Secure). But this protocol only decreases the likelihood of others snooping on your private data while it is being transmitted over a public network. Other solutions—such as Microsoft's Passport—have you prove that you are who you say you are. (<A class="docLink" HREF="0321154959_ch04.html#ch04">Chapter 4</A> discussed the various aspects of security, and <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A> presented a set of tactics to achieve it.)</P>
+
+<A NAME="ch13lev2sec2"></A><H4 class="docSection2Title"> REQUIREMENTS COME AND GO</H4>
+<P class="docText">No one could have foreseen the tremendous growth of the Web, or of the Internet, over the past few years. According to recent statistics, the Web has been doubling in size every three to six months, from about 130 sites in mid-1993 to more than 230,000 sites in mid-1996 to 27 million in early 2001 (see <A class="docLink" HREF="#ch13table01">Table 13.1</A>). <A class="docLink" HREF="#ch13fig02">Figure 13.2</A> shows how the base communication paths for the Internet blanket the United States. Similarly, the number of Internet hosts—at least as counted by registered Internet Protocol (IP) addresses—grew from 1.3 million in 1993 to 9.5 million in early 1996.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch13fig02"></A>Figure 13.2. Internet backbones in the United States.</H5><h5><P class="docText">Copyright 1996 by Donna Cox and Robert Patterson; produced at the National Center for Supercomputing Applications, University of Illinois at Urbana-Champaign. Used with permission.</P>
+</h5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="372" src="FILES/13fig02.gif" ALT="graphics/13fig02.gif"></p>
+</CENTER>
+<P class="docText">Both the Web and the Internet have grown, but the Web has grown much faster as a whole. This can be seen in the final column of <A class="docLink" HREF="#ch13table01">Table 13.1</A>, where we see that the ratio of Internet hosts to Web servers keeps decreasing. This means that an ever-greater proportion of Internet hosts are becoming Web servers.</P>
+<P class="docText">In addition to its enormous growth, the nature of the Web has changed, as indicated by the third column of <A class="docLink" HREF="#ch13table01">Table 13.1</A>. Although its beginnings were in the research community, it is increasingly dominated by commercial traffic (as indicated by Internet hosts whose names end in ".com"). The percentage of .com sites has leveled out at around 55%, but this is due mainly to the rise of other domains, such as .net and .biz, rather than to any decline in commercial activity.</P>
+<P class="docText">The advent of easy, widespread access to the Web has had an interesting side effect. Easy access to graphics in a distributed, largely uncontrolled fashion has spawned the "cyberporn" industry, which has led to a new requirement: that content be labeled and access to content be controllable. The result is the platform for Internet content selection (PICS) specification, an industry-wide set of principles, and vendor implementations of them, that allows the labeling of content and flexible selection criteria. In this way, content producers are not limited in what they provide, but content consumers can tailor what they view or what they permit others to view according to their own tastes and criteria. For example, a parent can prevent a child from viewing movies other than those suitably rated, and an employer can prevent an employee from accessing non-business-related sites during business hours.</P>
+<P class="docText">To see how far and how fast the Web has diverged from its original concept, imagine that Berners-Lee had proposed a requirement for restriction of content to prevent children from accessing pornography. The management of CERN would have tossed out his proposal without discussion. We return to this point about changing stakeholder concerns when we revisit the ABC for the WWW in <A class="docLink" HREF="0321154959_ch13lev1sec5.html#ch13lev1sec5">Section 13.5</A>.</P>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch13lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch13lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

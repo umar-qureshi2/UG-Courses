@@ -1,0 +1,39 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="4.7 Architecture Qualities"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch04lev1sec6.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch04lev1sec8.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch04lev1sec7"></A><H3 class="docSection1Title">4.7 Architecture Qualities</H3>
+<P class="docText">In addition to qualities of the system and qualities related to the business environment in which the system is being developed, there are also qualities directly related to the architecture itself that are important to achieve. We discuss three, again leaving the generation of specific scenarios to our discussion questions.</P>
+<P class="docText"><span class="docEmphasis">Conceptual integrity</span> is the underlying theme or vision that unifies the design of the system at all levels. The architecture should do similar things in similar ways. Fred Brooks writes emphatically that a system's conceptual integrity is of overriding importance, and that systems without it fail:</P>
+<blockquote>
+<p class="docText">I will contend that conceptual integrity is <span class="docEmphasis">the</span> most important consideration in system design. It is better to have a system omit certain anomalous features and improvements, but to reflect one set of design ideas, than to have one that contains many good but independent and uncoordinated ideas. [<A class="docLink" HREF="0321154959_biblio01.html#biblio01entry28">Brooks 75</A>]</p>
+</blockquote>
+<P class="docText">Brooks was writing primarily about the way systems appear to their users, but the point is equally valid for the architectural layout. What Brooks's idea of conceptual integrity does for the user, architectural integrity does for the other stakeholders, particularly developers and maintainers.</P>
+<P class="docText">In <A class="docLink" HREF="0321154959_part03.html#part03">Part Three</A>, you will see a recommendation for architecture evaluation that requires the project being reviewed to make the architect available. If no one is identified with that role, it is a sign that conceptual integrity may be lacking.</P>
+<P class="docText"><span class="docEmphasis">Correctness</span> and <span class="docEmphasis">completeness</span> are essential for the architecture to allow for all of the system's requirements and runtime resource constraints to be met. A formal evaluation, as prescribed in <A class="docLink" HREF="0321154959_part03.html#part03">Part Three</A>, is once again the architect's best hope for a correct and complete architecture.</P>
+<P class="docText"><span class="docEmphasis">Buildability</span> allows the system to be completed by the available team in a timely manner and to be open to certain changes as development progresses. It refers to the ease of constructing a desired system and is achieved architecturally by paying careful attention to the decomposition into modules, judiciously assigning of those modules to development teams, and limiting the dependencies between the modules (and hence the teams). The goal is to maximize the parallelism that can occur in development.</P>
+<P class="docText">Because buildability is usually measured in terms of cost and time, there is a relationship between it and various cost models. However, buildability is more complex than what is usually covered in cost models. A system is created from certain materials, and these materials are created using a variety of tools. For example, a user interface may be constructed from items in a user interface toolbox (called widgets or controls), and these widgets may be manipulated by a user interface builder. The widgets are the materials and the builder is the tool, so one element of buildability is the match between the materials that are to be used in the system and the tools that are available to manipulate them. Another aspect of buildability is knowledge about the problem to be solved. The rationale behind this aspect is to speed time to market and not force potential suppliers to invest in the understanding and engineering of a new concept. A design that casts a solution in terms of well-understood concepts is thus more buildable than one that introduces new concepts.</P>
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch04lev1sec6.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch04lev1sec8.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

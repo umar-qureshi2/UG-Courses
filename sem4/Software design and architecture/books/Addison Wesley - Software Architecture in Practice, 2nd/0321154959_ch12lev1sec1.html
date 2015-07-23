@@ -1,0 +1,46 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="12.1 Decision-Making Context"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch12.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch12lev1sec2.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch12lev1sec1"></A><H3 class="docSection1Title" id="161597-894">12.1 Decision-Making Context</H3>
+<P class="docText">The software architect or decision maker wishes to maximize the difference between the benefit derived from the system and the cost of implementing the design. The CBAM begins where the ATAM concludes and, in fact, depends upon the artifacts that the ATAM produces as output. <A class="docLink" HREF="#ch12fig01">Figure 12.1</A> depicts the context for the CBAM.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch12fig01"></A>Figure 12.1. Context for the CBAM</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="183" src="FILES/12fig01.gif" ALT="graphics/12fig01.gif"></p>
+</CENTER>
+<P class="docText">Because architectural strategies have technical and economic implications, the business goals of a software system should influence the strategies used by software architects or designers. The direct economic implication is the cost of implementing the system. The technical implications are the characteristics of the system—namely, the quality attributes. In turn the quality attributes have economic implications because of the benefits that can be derived.</P>
+<P class="docText">Recall that when an ATAM has been applied to a software system, we have as a result a set of artifacts documented on completion. They are:</P>
+<UL>
+<LI><P class="docList">A description of the business goals that are crucial to the success of the system</P></LI>
+<LI><P class="docList">A set of architectural views that document the existing or proposed architecture</P></LI>
+<LI><P class="docList">A utility tree that represents a decomposition of the stakeholders' goals for the architecture, starting with high-level statements of quality attributes and ending with specific scenarios</P></LI>
+<LI><P class="docList">A set of risks that have been identified</P></LI>
+<LI><P class="docList">A set of sensitivity points (architectural decisions that affect some quality attribute measure of concern)</P></LI>
+<LI><P class="docList">A set of tradeoff points (architectural decisions that affect more than one quality attribute measure, some positively and some negatively)</P></LI>
+</UL>
+<P class="docText">The ATAM identifies the set of key architectural decisions relevant to the quality attribute scenarios elicited from the stakeholders. These decisions result in some specific quality attribute responses—namely, particular levels of availability, performance, security, usability, modifiability, and so forth. But each architectural decision also has associated costs. For example, using redundant hardware to achieve a desired level of availability has a cost; checkpointing to a disk file has a different cost. Furthermore, both of these architectural decisions will result in (presumably different) measurable levels of availability that will have some value to the organization developing the system. Perhaps the organization believes that its stakeholders will pay more for a highly available system (a telephone switch or medical monitoring software, for example) or that it will be sued if the system fails (for example, the software that controls anti-lock brakes in an automobile).</P>
+<P class="docText">The ATAM uncovers the architectural decisions made in the system and links them to business goals and quality attribute response measures. The CBAM builds on this base by eliciting the costs and benefits associated with these decisions. Given this information, the stakeholders can then decide whether to use redundant hardware, checkpointing, or some other tactic to achieve the system's desired availability. Or they can choose to invest their finite resources in some other quality attribute—perhaps believing that higher performance will have a better benefit-to-cost ratio. A system always has a limited budget for creation or upgrade, so every architectural choice is, in some sense, competing with every other one for inclusion.</P>
+<P class="docText">The CBAM does not make decisions for the stakeholders, just as a financial advisor does not tell you how to invest your money. It simply aids in the elicitation and documentation of the costs, benefits, and uncertainty of a "portfolio" of architectural investments and gives the stakeholders a framework within which they can apply a rational decision-making process that suits their needs and their risk aversion.</P>
+<P class="docText">To briefly summarize, the idea behind the CBAM is that architectural strategies (a collection of architectural tactics) affect the quality attributes of the system and these in turn provide system stakeholders with some benefit. We refer to this benefit as <span class="docEmphasis">utility</span>. Each architectural strategy provides a specific level of utility to the stakeholders. Each also has cost and takes time to implement. Given this information, the CBAM can aid the stakeholders in choosing architectural strategies based on their <span class="docEmphasis">return on investment</span> (ROI)—the ratio of benefit to cost.</P>
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch12.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch12lev1sec2.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

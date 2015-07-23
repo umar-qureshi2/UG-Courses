@@ -1,0 +1,48 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="4.2 Architecture and Quality Attributes"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch04lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch04lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch04lev1sec2"></A><H3 class="docSection1Title">4.2 Architecture and Quality Attributes</H3>
+<P class="docText">Achieving quality attributes must be considered throughout design, implementation, and deployment. No quality attribute is entirely dependent on design, nor is it entirely dependent on implementation or deployment. Satisfactory results are a matter of getting the big picture (architecture) as well as the details (implementation) correct. For example:</P>
+<UL>
+<LI><P class="docList">Usability involves both architectural and nonarchitectural aspects. The nonarchitectural aspects include making the user interface clear and easy to use. Should you provide a radio button or a check box? What screen layout is most intuitive? What typeface is most clear? Although these details matter tremendously to the end user and influence usability, they are not architectural because they belong to the details of design. Whether a system provides the user with the ability to cancel operations, to undo operations, or to re-use data previously entered is architectural, however. These requirements involve the cooperation of multiple elements.</P></LI>
+<LI><P class="docList">Modifiability is determined by how functionality is divided (architectural) and by coding techniques within a module (nonarchitectural). Thus, a system is modifiable if changes involve the fewest possible number of distinct elements. This was the basis of the A-7E module decomposition structure in <A class="docLink" HREF="0321154959_ch03.html#ch03">Chapter 3</A>. In spite of having the ideal architecture, however, it is always possible to make a system difficult to modify by writing obscure code.</P></LI>
+<LI><P class="docList">Performance involves both architectural and nonarchitectural dependencies. It depends partially on how much communication is necessary among components (architectural), partially on what functionality has been allocated to each component (architectural), partially on how shared resources are allocated (architectural), partially on the choice of algorithms to implement selected functionality (nonarchitectural), and partially on how these algorithms are coded (nonarchitectural).</P></LI>
+</UL>
+<P class="docText">The message of this section is twofold:</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><P class="docList">Architecture is critical to the realization of many qualities of interest in a system, and these qualities should be designed in and can be evaluated at the architectural level.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Architecture, by itself, is unable to achieve qualities. It provides the foundation for achieving quality, but this foundation will be to no avail if attention is not paid to the details.</P></span></LI>
+</OL></span>
+<P class="docText">Within complex systems, quality attributes can <span class="docEmphasis">never</span> be achieved in isolation. The achievement of any one will have an effect, sometimes positive and sometimes negative, on the achievement of others. For example, security and reliability often exist in a state of mutual tension: The most secure system has the fewest points of failure—typically a security kernel. The most reliable system has the most points of failure—typically a set of redundant processes or processors where the failure of any one will not cause the system to fail. Another example of the tension between quality attributes is that almost every quality attribute negatively affects performance. Take portability. The main technique for achieving portable software is to isolate system dependencies, which introduces overhead into the system's execution, typically as process or procedure boundaries, and this hurts performance.</P>
+<P class="docText">Let's begin our tour of quality attributes. We will examine the following three classes:</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphRoman">Qualities of the system.</span> 
+We will focus on availability, modifiability, performance, security, testability, and usability.</p></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Business qualities (such as time to market) that are affected by the architecture.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Qualities, such as conceptual integrity, that are about the architecture itself although they indirectly affect other qualities, such as modifiability.</P></span></LI>
+</OL></span>
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch04lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch04lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

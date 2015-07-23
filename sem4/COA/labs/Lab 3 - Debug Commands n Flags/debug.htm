@@ -1,0 +1,664 @@
+<!-- Created and Copyright(C)2000,2001,2002,2003,2004,2009,2010 by Daniel B. Sedory -->
+<html><head><title>MS-DOS DEBUG Program</title>
+<meta http-equiv="keywords" content="DEBUG, x86, Assembly, Disassembler">
+<meta http-equiv="description" content="A DEBUG Tutorial">
+<meta http-equiv="author" content="Daniel B. Sedory">
+<meta http-equiv="copyright" content="Copyright(C)2004,2009 by Daniel B. Sedory">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="20">
+<CENTER><DIV>Sponsoring website: <a href="http://prime-expert.com/ebcd/">Emergency Boot CD</a></DIV></CENTER><HR>
+
+<BR><BR>
+<HR>
+<p align="center"><b><font size="7">A Guide to DEBUG</font></b><br>
+  <font face="Times New Roman" size="5"><b>( The Microsoft&reg; DEBUG.EXE Program 
+  )</b></font> <br>
+  <font face="Verdana" size="4"><b>Copyright&copy;2004,2007,2009 by Daniel B. 
+  Sedory</b></font> <BR>
+  <BR>
+  <font face="Arial" size="4" color="#CC0000"><b><font color="#0000FF">This page 
+  may be freely copied for PERSONAL use ONLY !</font><br>
+  ( It may NOT be used for ANY other purpose unless you have<br>
+  first <a href="../../Feedback.html" target="FB">contacted</a> and received permission 
+  from the author ! )</b></font></p>
+<HR>
+<UL>
+  <li><a href="#INTRO"><font size="4">A <b>History</b> of DEBUG</font></a></li>
+  <ul>
+    <li><b><a href="#INTRO">Beginnings</a></b></li>
+    <li><b><a href="#DOS2">Changes in DEBUG</a></b></li>
+    <li><b><a href="#9x">Under Windows&#153; 9x/Me</a></b></li>
+    <li><b><a href="#NT">Under Windows&#153; NT/2000/XP and later</a></b></li>
+    <li><b><a href="#Sum">Summary</a><br>
+      <br>
+      </b></li>
+  </ul>
+  <li><a href="#LIMS"><font size="4">The <b>Limitations</b> of DEBUG</font></a><br>
+  </li>
+  <ul>
+    <li><b><a href="#INIT">Important Initialization Values for DEBUG</a><br>
+      </b></li>
+  </ul>
+  <ul>
+    <li><b><a href="#EXE">Using DEBUG with <font size="4">.EXE</font> Files</a></b><br><br></li>
+  </ul>
+  <li><a href="#SPECM"><font size="4">Special Memory Locations in MS-DEBUG</font></a><br><br></li>
+  <li><a href="#DDSA"><font size="4">DEBUG's own <b><i>Dynamic </i>Stack Area</b></font></a><br><br></li>
+  <li><a href="#BBUG"><font size="4">Have you found  a '<b>bug</b>' in DEBUG<b>?</b></font></a><br>
+  <br></li>
+  <li><a href="#NOTES"><font size="4">Important Notes for using DEBUG</font></a><br><br></li>
+  <li><a href="#ALPHA"><FONT size="4">All the Commands -- Listed Alphabetically</FONT></a></li>
+  <ul>
+    <li> <a href="#TOC"><FONT size="4"><b><i>Quick Links</i></b> to Command Help</FONT></a><br><br></li>
+  </ul><b>PAGE TWO:</b>
+  <li><a href="debug2.htm#CMDS"><FONT size="4"><b><i>How to Use</i></b> the COMMANDS</FONT></a></li>
+  <ul>
+    <li><a href="debug2.htm#PARMS"><FONT size="4">Meaning of Command Parameters</FONT></a><br><br></li>
+    <li><a href="debug2.htm#DETS" target=deb><FONT size="4"><b><i>Detailed Help</i></b> 
+      on each Command (begins here)</FONT></a></li>
+    <ul>
+      <li><a href="debug2.htm#PLAY" target=deb><FONT size="4">An Example Program 
+        for you to Enter, Run and Edit under DEBUG.</FONT></a></li>
+      <li><a href="debug2.htm#IHC" target=deb><FONT size="4">A <b><i>Note</i></b> 
+        about Win 9x's '<b>IHC</b>' string in Diskette Boot Sectors</FONT></a><br>
+        <br>
+      </li>
+    </ul>
+  </ul>
+  <li><a href="8086REGs.htm" target=REGS><FONT size="4">Appendix</FONT></a></li>
+  <ul>
+    <li> <a href="8086REGs.htm#REGS" target=REGS><FONT size="4">The <b>8086</b> 
+      CPU <b><i>Registers</i></b></FONT></a></li>
+    <li><a href="8086REGs.htm#FLAGS" target=REGS><FONT size="4">The <b><i>FLAGS 
+      Register</i></b></FONT></a></li>
+    <li><a href="Segments.html" target="SO"><font size="4">The <b>Segment:Offset 
+      Addressing</b> method used by DEBUG</font></a></li>
+  </ul>
+  <p>&nbsp;</p>
+</UL>
+<A NAME=INTRO></A><HR>
+<BR>
+<H1 align="center"><font face="Times New Roman, Times, serif">A History of MS-DEBUG</font></H1>
+<BR>
+<h2><font face="Arial, Helvetica, sans-serif">Beginnings</font></h2>
+<p><font face="Arial, Helvetica, sans-serif" size="4">&nbsp; &nbsp;<font face="Verdana, Arial, Helvetica, sans-serif" size="5">I</font>n 
+  1980, Tim Paterson began working on a 16-bit OS for the 8086 S-100 Bus card 
+  he had designed for SCP (<b>S</b>eattle <b>C</b>omputer <b>P</b>roducts) the 
+  previous year. To help in getting <font face="Verdana, Arial, Helvetica, sans-serif">QDOS</font> 
+  (later called 86-DOS) to work correctly, Tim created a debugger in a ROM chip; 
+  the code for that ROM version was released into the Public Domain. Later, Tim 
+  adapted the code to run as a .COM program under QDOS, and also added the ability 
+  to disassemble 8086 machine code. In the meantime, <b>Microsoft&reg;</b> had 
+  been busy purchasing the rights to sell Tim's QDOS to <b><font face="Verdana, Arial, Helvetica, sans-serif">IBM&reg;</font></b> 
+  for their 'secret' <b><i>PC</i></b> project. Tim was then hired by Microsoft 
+  as the primary author of their first OS. When he completed his work on <font face="Verdana, Arial, Helvetica, sans-serif">I</font>BM's 
+  <i>Personal Computer</i><b>&#153;</b> DOS 1.00 in 1981, his DEBUG.COM utility 
+  was included with it. All the functionality that Tim put into DEBUG is still 
+  there and little has been added to it (the major exception being the <b>A</b>ssemble 
+  command; added under DOS 2.0).<br>
+  [<font size="3"> Thanks go to <b>Tim Paterson</b> <i>himself</i> for reviewing 
+  this perspective on DEBUG's <i>beginnings</i>.</font><a name="DOS2"></a> ]</font> 
+<h2><font face="Arial, Helvetica, sans-serif">Changes in MS-DEBUG</font> </h2>
+<p><font face="Arial, Helvetica, sans-serif" size="4">With the release of DOS 
+  <b><font face="Verdana, Arial, Helvetica, sans-serif">2.0</font></b>, DEBUG 
+  gained the ability to assemble instructions directly into machine code (the 
+  <b>A</b> command). This is one of the most important commands for many of its 
+  users. Though lacking much of the <i>functionality</i> of a stand-alone Assembler, 
+  e.g., all Jumps must be to hexadecimal addresses (no labels can be used), many 
+  useful .COM programs have been assembled with this command. Under DOS <b><font face="Verdana, Arial, Helvetica, sans-serif">3.0</font></b>, 
+  the <b>P</b> (Proceed) command was added, so DEBUG could quickly <i>execute</i> 
+  <b>subroutines</b>; at the same time, it became possible to attempt <i>stepping</i> 
+  through <b>Interrupts</b> with the <b>T</b> (Trace) command. When DOS made EMS 
+  (Expanded Memory) functions available under DOS <b><font face="Verdana, Arial, Helvetica, sans-serif">4.0</font></b>, 
+  the four commands <font face="Courier New, Courier, mono"><b>xa</b></font>, 
+  <font face="Courier New, Courier, mono"><b>xd</b></font>, <font face="Courier New, Courier, mono"><b>xm</b></font> 
+  and <font face="Courier New, Courier, mono"><b>xs</b></font> were also added 
+  to DEBUG. It appears they were rarely, if ever used though, even by programmers. 
+  For most of us, the only <i>noticeable</i> change in DEBUG was the addition 
+  of the<b> help</b> command (type a '<b><font color="#0000FF">?</font></b><i>' 
+  while inside</i> DEBUG)<i> </i>under DOS <b><font face="Verdana, Arial, Helvetica, sans-serif">5.0</font></b>; 
+  when all DOS commands <i>finally</i> got the <font face="Verdana, Arial, Helvetica, sans-serif"><b>/?</b></font> 
+  command-line switch.</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4">DEBUG's <b>code</b> went 
+  through a number of changes (<i>and</i> 'bug fixes'<i> too</i>) over the years! 
+  Some of these <i>internal</i> changes were related to DOS system calls and screen 
+  output, then there was the change in file type from a .COM to an .EXE program 
+  under DOS <b><font face="Verdana, Arial, Helvetica, sans-serif">5.0</font></b>.</font><font face="Arial, Helvetica, sans-serif" size="4"> 
+  But in spite of all those changes and others which followed, DEBUG has never 
+  had an <i>official revision</i> since <b>2.40</b> <b>(</b>those digits have 
+  been embedded inside <b>all</b> versions of DEBUG since DOS <b><font face="Verdana, Arial, Helvetica, sans-serif">3.0</font>)</b>. 
+  We can only<i> guess</i> about the real reasons that Microsoft&reg; never updated 
+  DEBUG to handle instructions beyond those of the Intel&reg; 8086/8087/8088 processors. 
+  Microsoft&reg; <i>did</i> create their own Assembler (MASM), 'C' compiler <i><b>and</b></i><b> 
+  Debugger</b> (<i>CodeView </i>); which you could use too, <i>if</i> you were 
+  willing to <i>pay extra, so</i> that could have been one of their reasons. Rather 
+  than using MASM and <i>CodeView</i>, many opted for the less expensive Borland&reg; 
+  assembler (TASM) <i>and </i>Turbo&#153; Debugger when they appeared, or some 
+  other commercial product. However, users and students alike can still learn 
+  a great deal about Assembly language by using DEBUG.<a name="9x"></a></font></p>
+<h2><font face="Arial, Helvetica, sans-serif">DEBUG under <i>Windows</i>&reg; 
+  9x/Me</font></h2>
+<p><font face="Arial, Helvetica, sans-serif" size="4">The <i>internal structure</i> 
+  of these Windows&reg; versions of DEBUG appear much different than any previous 
+  DOS forms; at least at first glance. Though it seems a great deal has changed, 
+  you'll still find the phrase &quot;Vers 2.40&quot; but in a different location. 
+  Windows&reg; itself went through a lot of changes during this period, such as 
+  being able to handle a new file system, FAT32, and larger drives. But without 
+  access to its source code, we can't be sure if there were any major differences 
+  in DEBUG. The changes might be due to something as simple as just reorganizing 
+  the error messages in the source code and/or using a new Assembler/Linker.</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4">DEBUG had always been an 
+  effective tool in the hands of any Batch programmer, <i>but</i> some time after 
+  the introduction of Windows<b>&#153;</b> 95 <i>and especially</i> with Windows<b>&#153;</b> 
+  98, that effectiveness was diminished when its <font face="Verdana, Arial, Helvetica, sans-serif">I</font>/O 
+  commands became unreliable! Whether due to a 'bug' in DEBUG itself <i>or</i> 
+  in Windows&reg;, the fact is that <font face="Verdana, Arial, Helvetica, sans-serif">I</font>/O 
+  commands under Windows<b>&#153;</b> 9x/Me cannot be relied upon for direct access 
+  to a hard drive! If you run our <a href="ATAscript.htm" target="ata">ATA drive 
+  ID script</a> under Win9x/Me, the data you get back <i>is as interesting as 
+  it is disturbing:</i> It appears that <i>every other byte</i> is <i>still correct!</i> 
+  So, one has to wonder what the cause of this problem might be.<a name="NT"></a></font></p>
+<h2><font face="Arial, Helvetica, sans-serif">DEBUG under <i>Windows</i>&reg; 
+  NT/2000/XP/2003</font></h2>
+<p><font face="Arial, Helvetica, sans-serif" size="4">The DEBUG program included 
+  with <i>Windows</i><b>&reg;</b> NT/2000/XP/2003<b> </b> appears to operate the 
+  same as it did under DOS <b>5.0</b>, <b><i>but</i></b> with two <i>major <b>exceptions</b></i>:<br>
+  <b><br>
+  <font face="Verdana, Arial, Helvetica, sans-serif">1)</font></b><font face="Verdana, Arial, Helvetica, sans-serif"> 
+  </font>DEBUG is <b>no longer </b> allowed to <b>load</b> from or <b>write</b> 
+  to any <i>logical</i> HDD <b>sectors</b>; only named <b>files</b> can still 
+  be read from or written to under an NT-type OS. It can, however, still access 
+  diskette <b> <i>sectors</i></b> in the <b>A:</b>\ <i>or</i> <b>B:</b>\ drives 
+  with the <b>L</b> and <b>W</b> commands, <i>but</i> only if those diskettes 
+  contain a file system the host OS (2000, XP, 2003) can recognize!<br>(See the <b>L</b>
+  command in the <a href="debug2.htm#L" target="deb">Tutorial section</a> for more
+  information.)</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4"><b><font size="5"><font size="4">[ 
+  </font></font></b><font size="3">Note: DEBUG has <i><b>never</b></i> been able 
+  to <i>directly </i>access areas of an HDD outside of its drive volumes; such 
+  as an Extended partition table or even the MBR sector! However, DEBUG can be 
+  used to access such data by programming it to run <b>INT13</b> commands or using 
+  a <i>script file </i></font><font face="Arial, Helvetica, sans-serif" size="4"><font size="3"> 
+  under DOS</font></font><font size="3"> (e.g., our old <a href="../mbr/BootToolsRefs.htm#COP" target="BTR">CopyMBR</a> 
+  script). Note again, that no Windows version after Win98/ME will allow INT13 access!</font> <b>]</b></font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4"><b><font face="Verdana, Arial, Helvetica, sans-serif">2) 
+  </font></b>The <font face="Verdana, Arial, Helvetica, sans-serif"><b>I</b> and 
+  </font><b>O</b> commands are essentially useless, since the program's interface 
+  with the rest of the system is only being <b><i>emulated</i></b> under these 
+  versions of Windows&reg; rather than having any direct access to the hardware. 
+  This was already true to varying degrees under previous versions of Windows&reg;.</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4">This may surprise you: We 
+  purposely mentioned the DOS <b>5.0</b> version of DEBUG here, since the <font face="Courier New, Courier, mono">DEBUG.EXE</font> 
+  file included with Windows&reg; <b>XP</b> (and <b><i>every</i></b> other version 
+  of the <b>NT</b> OS series) is <b><i>exactly</i></b> the same program file created 
+  for MS-DOS <b>5.0</b> (<font size="3">md5sum = c17afa0aad78c621f818dd6729572c48</font>). 
+  DEBUG was only one of a small handful of DOS <b>5.0</b> programs that didn't 
+  require any changes to run under an <b>NT</b> operating system. It's almost 
+  ironic that another of those few programs is EDLIN, a line editor disliked by 
+  most DOS users. Though EDLIN was also created by Tim Paterson, he did so in 
+  just two weeks and was <i>shocked</i> when he heard IBM had actually included 
+  it in their PC-DOS 1.00 release! No doubt he wished it had been replaced by 
+  something better way back in 1981. It wasn't until the release of DOS <b><font face="Verdana, Arial, Helvetica, sans-serif">5.0</font></b>, 
+  that EDLIN was <i>effectively </i>replaced by <i>Microsoft's</i> <font face="Courier New, Courier, mono">EDIT.COM</font> 
+  program (<b><font face="Times New Roman, Times, serif">v 1.0</font></b>, 1991. Note: This
+  first version of EDIT required QBASIC to also be present); EDLIN was, however, still
+  retained, to be 'backwards compatible' with various 3rd-party Batch files. Though NOTEPAD 
+  or more advanced editors are available under Windows&#153;, you can still use 
+  the 1995 standalone version of EDIT (<font face="Times New Roman, Times, serif">v 
+  2.0.026</font>) at Command Line prompts in Windows&#153; XP; its menus will 
+  even respond to mouse clicks. <a name="Sum"></a><br>
+  </font></p>
+<h2><font face="Verdana, Arial, Helvetica, sans-serif">Summary</font></h2>
+<p><font face="Arial, Helvetica, sans-serif" size="4"> Though created at the <i>beginning</i> 
+  of the 16-bit processor era (<i>before</i> the 80286 existed), more recent versions 
+  of DEBUG (such as those found inside a Windows&#153; Me or 98SE Emergency Boot 
+  Diskette's EBD.CAB file) are still useful to PC techs for direct access to certain 
+  memory locations on present-day systems (an Intel<b>&reg;</b> Pentium<b>&#153;</b> 
+  <b><font face="Times New Roman, Times, serif">IV</font></b>, for example). DEBUG 
+  can also be quite useful for educational purposes. And <i>even</i> for debugging 
+  the Assembly code that is required during the boot process: The software that 
+  checks the Partition Table on hard disks and loads OS Boot Sectors into Memory. 
+  Unfortunately, many Boot Managers and recent MBR sectors now use instructions 
+  requiring a 386 (or even 486) <i>class</i> CPU to function, making it difficult 
+  to use DEBUG for such a purpose. Because of the <i>backward compatibility</i> 
+  of most Intel<b>&reg;</b> processors, and the fact that it was included with 
+  Microsoft&reg; Windows&#153; XP and 2003, DEBUG has had a much longer life span 
+  than ever expected. Though the <font face="Times New Roman, Times, serif">ITANIUM</font><b>&#153;</b> 
+  CPU was not <i>x86-compatible</i>, the AMD64 was. In 2005, Intel<b>&reg;</b> 
+  made the so-called &quot;x64-based&quot; CPUs that were once again <i>x86-compatible.</i> 
+  So, DEBUG still continues to find some use on 64-bit computers, even my new 
+  <font face="Verdana, Arial, Helvetica, sans-serif">I</font>ntel&reg;<font face="Times New Roman, Times, serif"> 
+  Core&#153; 2 Quad</font> (4 processors in one)<font face="Arial, Helvetica, sans-serif"> 
+  machine</font><a name="LIMS">.</a></font></p>
+<p>&nbsp;</p>
+<h1 align="center"><font face="Times New Roman, Times, serif">The Limitations 
+  of MS-DEBUG</font></h1>
+<p><font face="Arial, Helvetica, sans-serif" size="4">DEBUG was originally designed 
+  to work with .COM programs having a maximum<b> size</b> of only <b>65,280 bytes 
+  [ (</b>64 x 1024) - 256 <b>]</b> <b>or less</b>; <i>how much less, depended 
+  upon</i> the maximum number of bytes the program had to place on the <i><b>Stack</b> 
+  </i>at the same time. The subtraction of 256 bytes is necessary since DEBUG 
+  often uses the area from offset <b>00</b> <i>through</i> <b>FF</b> <b>hex</b> 
+  for some internal data such as the <b>name</b> of the file that was loaded. 
+  Remember, true .COM programs <i>by definition</i> are supposed to fit inside 
+  a single Segment of memory (only 64 KiB).</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4">Even when running MS-DEBUG 
+  under the latest Windows&reg; OS, since it's still an old 16-bit DOS application, 
+  you can only open files whose names have been saved in the <b>8.3</b> DOS convention; 
+  i.e., up to <b>11</b> characters total, using no more than <b>8</b> DOS characters 
+  for the name and <b>3</b> for the extension.</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4">As early as DOS <b>1.10</b>, 
+  DEBUG was able to load files larger than 64 KiB. Basically, how large a file 
+  that DEBUG can safely use without error depends on the amount of available memory 
+  and the way the OS handles memory management. We'll say more about this below<A NAME=INIT>.</A></font></p>
+<table border="1" width="97%" bgcolor="#CCFFFF" align="center">
+  <tr> 
+    <td> 
+      <table border="0">
+        <tr> 
+          <td width="10">&nbsp;</td>
+          <td> 
+            <p><font face="Arial" size="5"><b>A.</b> When DEBUG <b><i>starts</i></b> 
+              with <b><i>no</i></b> command-line <b><i>parameters,</i></b> it:</font><br>
+              <br>
+              <b><font face="Arial" size="4">1)</font></b><font face="Arial" size="4"> 
+              Allocates <i>all</i> <font face="Courier New, Courier, mono" size="5"><b>64 
+              KiB</b></font> of the first <b>free</b> Memory <b>Segment.</b><br>
+              <br>
+              <b>2)</b> The Segment registers, CS, DS, ES and SS are all set to 
+              the value of that <b>64 KiB</b> Segment's location<b> (</b>CS=DS=ES=SS=<i>Segment 
+              Location </i><b>).</b><br>
+              <br>
+              <b>3)</b> The Instruction Pointer (<font face="Verdana">I</font>P) 
+              is set to <b>cs:0100</b> <i>and</i> the Stack Pointer (SP) is set 
+              to <b><font face="Courier New, Courier, mono" size="5">ss:FF<font color="#CC0000">E</font>E</font></b> 
+              (under DOS <b>3.0</b> or above).<br>
+              <br>
+              <b>4)</b> The registers, AX, BX, CX, DX, BP, S<font face="Verdana, Arial, Helvetica, sans-serif">I</font> 
+              and D<font face="Verdana, Arial, Helvetica, sans-serif">I</font> 
+              are <i>cleared</i> to <b>zero</b> along with the <b>flag bits</b> 
+              in the Flag Register; with <i>one exception</i>: The <b><font face="Verdana, Arial, Helvetica, sans-serif">I</font>nterrupts</b> 
+              Flag is <b><i>set</i></b> to <b>E</b>nable <b><font face="Verdana, Arial, Helvetica, sans-serif">I</font></b>nterrupts. 
+              (See the Appendix, <a href="8086REGs.htm#REGS" target=REGS>The 8086 
+              CPU Registers</a> for more information.)</font></p>
+            <hr size="3">
+            <p><font face="Arial" size="5"><b>B.</b> When DEBUG <b><i>starts with 
+              a filename </i>(</b><font size="4"><b>other than an .EXE</b></font><b>)<i>,</i></b> 
+              it:</font><br>
+              <br>
+              <b><font face="Arial" size="4">1)</font></b><font face="Arial" size="4"> 
+              Allocates <i>at least</i> <font face="Courier New, Courier, mono" size="5"><b>64 
+              KiB</b></font> of the first <b>free</b> Memory Segment for debugging 
+              programs or examining files specified on the command line. <font face="Verdana, Arial, Helvetica, sans-serif" size="5">[</font>Note: 
+              Ever since DOS version <b>1.10</b>, DEBUG has had the ability to 
+              <b><i>load</i></b> (<i>and</i> <b>save</b>) files <b><i>larger than</i></b> 
+              64 KiB. Just how large a file it can handle, depends upon both the 
+              OS and available memory. But before you ever consider using DEBUG 
+              to save some large file you want to edit, you should know </font><font face="Arial" size="4">the 
+              amount of memory it can use is <b>limited</b> to what's available 
+              in <b><font face="Courier New, Courier, mono">CONVENTIONAL MEMORY</font></b> 
+              only! And remember that j</font><font face="Arial" size="4">ust 
+              because <i>your</i> system can debug a certain file, doesn't mean 
+              someone else's will be able to.<font face="Verdana, Arial, Helvetica, sans-serif" size="5">]<br>
+              <br>
+              </font><b>2)</b> The Segment registers, CS, DS, ES and SS are all 
+              set to the value of the <b>first</b> 64 KiB Segment's location (CS=DS=ES=SS=<i>Segment 
+              Location</i>); for a file that's larger than 64KiB, you'll have 
+              to set different segment values to access all the bytes loaded into 
+              memory beyond the first 64 KiB.<br>
+              <br>
+              <b>3)</b> The Instruction Pointer (<font face="Verdana">I</font>P) 
+              is set to <b>cs:0100</b> <i>and</i> the Stack Pointer (SP) is set 
+              to <b><font face="Courier New, Courier, mono" size="5">ss:FF<font color="#CC0000">F</font>E</font></b> 
+              (version 3.0+). [ Note: This is <b><i>not</i></b> the same as the 
+              ss:FF<font color="#CC0000">E</font>E in <b>A.</b> 3) above; there's 
+              a 16 byte difference. ]<br>
+              <br>
+              <b>4)</b> Most of the registers follow the same pattern as above, 
+              <i> <b>except for</b> the </i><b>CX</b><i> and sometimes </i><b>BX</b><i><b> 
+              registers:</b></i> The <b>size</b> of the file will be placed into 
+              the <b><i>linear</i></b> combination of the <b> BX</b> and <b>CX</b> 
+              registers; for files <i><b>less than</b></i><b> 64</b> KiB - 256 
+              bytes, <i><b>only</b></i> <b>CX</b> is used. <b>Example:</b> <i>If</i> 
+              you can load a file of <b><font face="Courier New, Courier, mono">360,247</font></b> 
+              bytes, <i>then</i> <b>BX</b>=0005 and <b>CX</b>=7F37 <b>(</b> <b><font face="Arial, Helvetica, sans-serif" color="#FF0000">5</font><font face="Courier New, Courier, mono">7F37</font></b> 
+              <b>hex</b> = <b><font face="Courier New, Courier, mono">360,247</font> 
+              )</b>. If you load a file of exactly 65,536 bytes from a prompt, 
+              these registers will be: <b>BX</b>=000<b>1</b>, <b>CX</b>=0000. 
+              But due to the automatic <b>100h</b> load offset, the file's last 
+              256 bytes will have been loaded at the beginning of the next 64 
+              KiB segment.</font></p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p><font face="Arial" size="4"><b>Remember: </b>The Segment assigned to DEBUG, 
+  depends on the amount of memory in use, not the total memory available. So, 
+  the same DOS machine, whether it has 16 or even 4096 MiB of memory, will generally 
+  load DEBUG into the same Segment; unless a &quot;terminate and stay resident&quot; 
+  program is using that memory, or memory was not properly deallocated prior to 
+  running DEBUG<a name="EXE">.</a></font></p>
+<br>
+<h1 align="center"><font face="Times New Roman, Times, serif">Using DEBUG with 
+  .EXE Files</font></h1>
+<p><font face="Arial, Helvetica, sans-serif" size="4">Any version of DEBUG from 
+  DOS <b><font face="Verdana, Arial, Helvetica, sans-serif">2.0</font></b> or 
+  higher, makes use of the operating system's EXEC function which means that it's 
+  possible for you to perform a limited amount of <i>debugging</i> on an .EXE 
+  program. <i>However</i>, DEBUG can never be used to save either an .EXE or a 
+  .HEX file to disk, since both of these file types contain extra data that DEBUG 
+  was never programmed to create after EXEC removed such data! It is quite possible
+  though, to change the extension of an .EXE file, for example to .BIN, so DEBUG 
+  can be used to edit such a file, then change it back to an .EXE extension 
+  afterwards. Normally we'd recommend using a Hex editor instead, but would like to
+  point out that DEBUG could be used with Batch files and scripts to carry out such
+  edits automatically; taking the place of a <i>Patch </i>program.</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4">One of the simplest .EXE 
+  programs you can run under DEBUG is the so-called DOS &quot;Stub&quot; found 
+  inside many Windows&reg; executables. You can follow along as we examine one 
+  of these <a href="DOSstub.htm" target="DS"><b>here</b></a>!</font></p>
+<a name="SPECM"></a>
+<p>&nbsp;</p>
+<h1 align="center"><font face="Times New Roman, Times, serif">Special Memory Locations in MS-DEBUG</font></h1>
+<p><font face="Arial, Helvetica, sans-serif" size="4">There will always be some
+  <b>code</b> and <b>data</b> placed within the first 256 
+  bytes of the Segment for DEBUG's own use. And although DEBUG often functions 
+  as expected if you zero-out this area, there may be some cases where you wouldn't 
+  want to alter its contents. The code bytes are simple and always found in the 
+  same locations: </font><font face="Arial, Helvetica, sans-serif">The <b>first 
+  two bytes</b> of this area (&quot;CD 20&quot;) are machine code for the DOS 
+  interrupt:<font face="Courier New, Courier, mono" size="4"> <b>INT 20</b></font>. 
+  &nbsp;The bytes at offsets <b>50</b>h and <b>51</b>h (&quot;CD 21&quot;) form 
+  an<font face="Courier New, Courier, mono" size="4"> <b>INT 21</b></font>, and 
+  the byte "CB" at offset <b>52</b>h is a<b><font face="Courier New, Courier,
+ mono" size="4"> </font></b><font face="Courier New, Courier,
+ mono" size="4"><b>RETF</b></font> instruction.</font></p>
+<table border="1" width="97%" bgcolor="#CCFFFF" align="center">
+  <tr> 
+    <td> 
+      <table border="0">
+        <tr> 
+          <td width="10">&nbsp;</td>
+          <td> 
+            <p><font face="Arial" size="4"><font size="3">When booting from an 
+              MS-DOS 6.22 upgrade install disk, this area will appear as follows 
+              (o</font><font size="3" face="Arial, Helvetica, sans-serif">ffsets 
+              90h - FFh were all zero bytes)</font><font size="3">:</font></font></p>
+<table align="center" cellpadding="7"><tr><td bgcolor="#000000"> 
+<pre><font color="#CCCCCC" face="Courier New, Courier, mono" size="2"><b>A:\>debug
+-d 0 8f
+<font color="#FFFF00">1787</font>:0000  <font color="#00FF00">CD 20</font> C0 9F 00 9A EE FE-1D F0 4F 03 EB 11 8A 03   . ........O.....
+1787:0010  EB 11 17 03 EB 11 38 0E-01 01 01 00 02 FF FF FF   ......8.........
+1787:0020  FF FF FF FF FF FF FF FF-FF FF FF FF 5F 0F 4E 01   ............_.N.
+1787:0030  AB 16 14 00 18 00 <font color="#FFFF00">87 17</font>-FF FF FF FF 00 00 00 00   ................
+1787:0040  06 16 00 00 00 00 00 00-00 00 00 00 00 00 00 00   ................
+1787:0050  <font color="#00FF00">CD 21 CB</font> 00 00 00 00 00-00 00 00 00 00 20 20 20   .!...........
+1787:0060  20 20 20 20 20 20 20 20-00 00 00 00 00 20 20 20           .....
+1787:0070  20 20 20 20 20 20 20 20-00 00 00 00 00 00 00 00           ........
+1787:0080  00 0D 75 73 0D 0D 00 00-00 00 00 00 00 00 00 00   ..us............</b></font></pre>
+</td></tr></table>
+<p><font size="3" face="Arial, Helvetica, sans-serif">When running 
+              DEBUG without a filename, whatever appeared on the previous command 
+              line, except for the command itself, will be displayed in the bytes 
+              at offsets <b>82</b>h and following. These are often referred to 
+              as DOS <i><b>switches</b></i> or <b><i>parameters</i></b>. Thus, 
+              the &quot;<b><font face="Courier New, Courier, mono">us</font></b>&quot; 
+              in the display above was from the command &quot;<font face="Courier New, Courier, mono">keyb 
+              us</font>&quot; in the DOS 6.22 install disk's <font face="Courier
+ New, Courier, mono">AUTOEXEC.BAT</font> file. And if we had run the command &quot;<font face="Courier New, Courier, mono">dir 
+              /w</font>&quot; before executing DEBUG, a &quot;<font face="Courier New, Courier, mono">/w</font>&quot; 
+              would have appeared here instead. </font><font size="3" face="Arial, Helvetica, sans-serif"><b>Note: 
+              </b>Successive uses of DOS parameters are never cleared from memory, 
+              only overwritten. So, many characters of a very long parameter string 
+              will often remain intact, and as a consequence, will be copied to 
+              the bytes at offsets <b>82</b>h through <b>FF</b>h each time DEBUG 
+              is run.</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4">One of these 
+              <b>data</b> locations (the <b>Word</b> at offsets <b>36</b>h - <b>37</b>h) 
+              clearly saves the Segment assigned to DEBUG for our use. </font><font size="3" face="Arial, Helvetica, sans-serif">However, 
+              if we go on to <b>load</b> the file <font
+ face="Courier New, Courier, mono">edit.com</font> and dump the beginning of the 
+              Segment again, we'll find the Segment value itself has changed from 
+              <b>1787</b>h to <b>1798</b>h (a difference of 11h or 17 <i>paragraphs,</i> 
+              amounting to 256 + 16 = 272 bytes):</font></p>
+<table align="center" cellpadding="7"><tr><td bgcolor="#000000">
+<pre><font color="#CCCCCC" face="Courier New, Courier, mono" size="2"><b>-n edit.com
+-l
+-d 0 8f
+<font color="#FFFF00">1798</font>:0000  <font color="#00FF00">CD 20</font> C0 9F 00 9A <font color="#FF0000">F0</font> FE-1D F0 4F 03 EB 11 8A 03   . ........O.....
+1798:0010  EB 11 17 03 EB 11 <font color="#FF0000">DA 11</font>-01 01 01 00 02 FF FF FF   ................
+1798:0020  FF FF FF FF FF FF FF FF-FF FF FF FF 75 0F E8 49   ............u..I
+1798:0030  <font color="#FF0000">EB 11</font> 14 00 18 00 <font color="#FFFF00">98 17</font>-FF FF FF FF 00 00 00 00   ................
+1798:0040  06 16 00 00 00 00 00 00-00 00 00 00 00 00 00 00   ................
+1798:0050  <font color="#00FF00">CD 21 CB</font> 00 00 00 00 00-00 00 00 00 00 45 44 49   .!...........EDI
+1798:0060  54 20 20 20 20 43 4F 4D-00 00 00 00 00 20 20 20   T    COM.....
+1798:0070  20 20 20 20 20 20 20 20-00 00 00 00 00 00 00 00           ........
+1798:0080  09 20 45 44 49 54 2E 43-4F 4D 0D 00 00 00 00 00   . EDIT.COM......</b></font></pre>
+</td></tr></table>
+<p><font size="3" face="Arial, Helvetica, sans-serif">At first, we 
+              were unsure why DEBUG was doing this, but knew it had nothing to 
+              do with the size of this program, which is only 413 bytes. Instead 
+              it's simply because this is a &quot;program&quot; (<font face="Courier New, Courier, mono">EDIT.COM</font>) 
+              rather than some other type of file. DEBUG did not do this when 
+              loading much larger files of other types, but did so again when 
+              loading any of the disk's <font face="Courier New, Courier, mono"></font> 
+              <font face="Courier New, Courier, mono">*.EXE</font> programs. We 
+              then confirmed a similar change when loading <font face="Courier New, Courier, mono">*.COM</font> 
+              or <font face="Courier New, Courier, mono">*.EXE</font> programs 
+              into DEBUG on an XP machine, but the change there was larger; it 
+              added up to 91 <i>paragraphs!</i> After more experiments, using 
+              the SET and PATH commands, we discovered DEBUG had some need to 
+              load a copy of the DOS &quot;environment variables&quot; between 
+              its initial &quot;data area&quot; and a new 256-byte data area it 
+              creates when <i>debugging </i>only DOS &quot;program&quot; files. 
+              Even when no PATH or environmental variables exist, DEBUG still 
+              needs to create a new &quot;data area&quot; for <font face="Courier New, Courier, mono">*.COM</font> 
+              or <font face="Courier New, Courier, mono">*.EXE</font> files.</font></p>
+      </td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+</table>
+<BR>
+<p><font face="Arial, Helvetica, sans-serif" size="4">When running DEBUG in a 
+  Windows&reg; <i>DOS-box</i> (under CMD.exe), dumping its first 256 bytes will 
+  almost always show the same <i>fragmented string</i> (shown below in
+  <span style="background-color:#000000; color:#FFFFFF">white</span> text). The characters are the remains 
+  of the <b>Ntvdm</b> program (which starts as soon as any 16-bit command is run) 
+  quickly reading one line at a time from the file <font face="Courier New, Courier, mono">AUTOEXEC.NT</font>
+  (located in the <font face="Courier New, Courier, mono" size="3"><b>C:\WINDOWS\system32</b></font> folder), 
+  into the same area of memory where command line parameters are stored. The longest 
+  line in that file, including its trailing 0Dh (<i>carriage return</i>) byte, 
+  is successively overwritten by shorter lines in the file until the process results 
+  in what's copied to offsets <b>82</b>h through <b>CE</b>h of DEBUG's Segment:</font></p>
+<table border="1" width="97%" bgcolor="#CCFFFF" align="center">
+  <tr> 
+    <td> 
+      <table border="0">
+        <tr> 
+          <td width="10">&nbsp;</td>
+          <td> 
+            <table align="center" cellpadding="7">
+              <tr><td bgcolor="#000000">
+<pre><font color="#CCCCCC" face="Courier New, Courier, mono" size="2"><b>C:\>debug
+-d 0 cf
+<font color="#FFFF00">0B20</font>:0000  <font color="#00FF00">CD 20</font> FF 9F 00 9A EE FE-1D F0 4F 03 84 05 8A 03   . ........O.....
+0B20:0010  84 05 17 03 84 05 25 04-01 01 01 00 02 FF FF FF   ......%.........
+0B20:0020  FF FF FF FF FF FF FF FF-FF FF FF FF 28 05 4E 01   ............(.N.
+0B20:0030  44 0A 14 00 18 00 <font color="#FFFF00">20 0B</font>-FF FF FF FF 00 00 00 00   D..... .........
+0B20:0040  05 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00   ................
+0B20:0050  <font color="#00FF00">CD 21 CB</font> 00 00 00 00 00-00 00 00 00 00 20 20 20   .!...........
+0B20:0060  20 20 20 20 20 20 20 20-00 00 00 00 00 20 20 20           .....
+0B20:0070  20 20 20 20 20 20 20 20-00 00 00 00 00 00 00 00           ........
+0B20:0080  00 <font color="#00FFFF">0D</font> 20 20 20 53 45 54-20 42 4C 41 53 54 45 52   ..<font color="#FFFFFF">   SET BLASTER</font>
+0B20:0090  3D 41 30 <font color="#FF0000">0D</font> 64 64 72 65-73 73 2E 20 20 46 6F 72   <font color="#FFFFFF">=A0</font>.<font color="#FFFFFF">ddress.  For</font>
+0B20:00A0  20 65 78 61 6D 70 6C 65-3A <font color="#FF0000">0D</font> 20 6F 6E 20 4E 54    <font color="#FFFFFF">example:.</font> <font color="#FFFFFF">on NT</font>
+0B20:00B0  56 44 4D 2C 20 73 70 65-63 69 66 79 20 61 6E 20   <font color="#FFFFFF">VDM, specify an</font>
+0B20:00C0  69 6E 76 61 6C 69 64 <font color="#FF0000">0D</font>-20 6F 6E 6C 79 2E <font color="#FF0000">0D</font> 00   <font color="#FFFFFF">invalid</font>.<font color="#FFFFFF"> only.</font>..</b></font></pre>
+</td></tr></table>
+            <p><font size="3" face="Arial, Helvetica, sans-serif">None of the 
+              <b> <i>line feeds </i></b>(0Ah) at the end of each line in <b><font face="Courier New, Courier, mono">AUTOEXEC.NT</font></b> 
+              will ever appear here, because the <i><b>carriage returns</b> </i>(0Dh) 
+              just preceding them send the cursor to the start of the line each 
+              time they're encountered, and whatever comes before the first space 
+              character (20h) in every line does not get copied; which is why 
+              the &quot;REM&quot; of the last three lines doesn't appear here 
+              either.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif" size="3">The byte at 
+              offset <b>81</b>h is always <b>0D</b>h; even if the file <b><font face="Courier New, Courier, mono">AUTOEXEC.NT</font></b> 
+              contains a single byte of any value.</font></p>
+      </td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+</table>
+<p><font face="Arial, Helvetica, sans-serif" size="4"><b>Note: </b>If you rename 
+  or delete <font face="Courier New, Courier, mono">AUTOEXEC.NT</font>, you will 
+  not be allowed to run DEBUG (nor any  other 16-bit program;  all   
+  of which must run under <b>Ntvdm</b>). <font size="3">You can, however, save a copy of 
+  <font face="Courier New, Courier, mono">AUTOEXEC.NT</font>, then edit it  
+  to see how  your changes affect what's copied into DEBUG. You may  reduce 
+  its size to just a single byte. But in order to see anything 
+  other than zero bytes in offsets <b>82</b>h and following, at least one space 
+  byte (20h) must be placed between a non-space byte at the beginning of a line 
+  and whatever you'd like to have displayed. If the file contains only the 3 bytes: 
+  &quot;<font face="Courier New, Courier, mono">T</font>&quot;, space and &quot;<font face="Courier New, Courier, mono">S</font>&quot;, 
+  then offsets 82h and 83h would be an &quot;<font face="Courier New, Courier, mono">S</font>&quot; 
+  followed by 0Dh</font><A NAME=DDSA>.</A></font></p>
+<p>&nbsp;</p>
+<h1 align="center"><font face="Times New Roman, Times, serif">DEBUG's <i>&quot;Dynamic Stack&quot; </i>Area</font></h1>
+<p><font color="#FF0000" face="Arial, Helvetica, sans-serif" size="5">This section 
+  is presently a &quot;<b>Work in Progress</b>&quot;, but if you happen to see 
+  this before it's finished, can you guess what it's about<a name="BBUG"></a>?</font></p>
+<p>&nbsp;</p>
+<h1 align="center"><font face="Times New Roman, Times, serif">Have you found  a <i>&quot;Bug&quot; </i> in DEBUG?</font></h1>
+<p><font face="Arial, Helvetica, sans-serif" size="4">Although almost all the code used by programmers performs exactly as
+ expected; once they've eliminated their own errors in logic that is,  occasionally it will produce surprising results because
+ they didn't dig deep enough into the fine print of the user manuals for a PC's processor. Professional programmers will always
+ test their code in as many ways as reasonably possible, but studying the processor's  programming notes; especially 
+ sections  pertinent to any of their tasks, should be high on their  list! &nbsp;<b>NOTE:</b> If you want to be a much better
+  hacker, the example  presented here might cause you to delve into <font face="Verdana">Intel's</font> detailed
+ notes on how their CPUs handle various instructions.</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4">Have you ever encountered <b>two</b> distinct lines of Assembly
+ instructions that DEBUG always steps through without ever stopping at the second line? The following is just one of MANY
+ repeatable examples we could list here. Open any instance of DEBUG (DOS or Windows; any version), and <i>copy and paste </i>the
+ following <a href="debug2.htm#E" target="P2">E (Enter) command</a> at its (-) prompt:</font></p>
+<p><font face="Courier New, Courier, monospace" size="4"><b>e 100 8C C8 8E D0 B0 74 90 90</b></font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4">After entering &quot;<font size="4" face="Courier New, Courier, monospace"><b>u
+ 100 107</b></font>&quot; it should disassemble to:</font></p>
+<pre><font size="3"> xxxx:0100 8CC8    MOV   AX,CS  <font size="2">&lt;- Keep Stack in CS Segment.</font>
+ xxxx:0102 8ED0    <b>MOV   SS,AX</b>  <font size="2"><b>&lt;- The key instruction!</b></font>
+ xxxx:0104 B074    MOV   AL,73  <font size="2">&lt;- Could be almost anything.</font>
+ xxxx:0106 90      NOP
+ xxxx:0107 90      NOP</font></pre>
+<p><font face="Arial, Helvetica, sans-serif" size="4">Now enter an &quot;<b><font face="Verdana, Arial, Helvetica,monospace">r</font></b>&quot; at the prompt and try to single step (<b><font face="Courier New, Courier, monospace">t</font></b>) through the code.
+ As soon as you enter the <b>t </b>command at offset 0<b>102</b>h, you'll wind up at offset 0<b>106</b>h; every time! Is this some &quot;bug&quot; that was never dealt with? The instruction at offsets 0<b>104</b>h ff. could be  almost anything; any   1-, 2-, 3- or even 4-byte machine code will do; we purposely picked one that would alter a register's contents (AL in this case) so you could see this instruction had indeed been executed by the CPU; without the user ever having a choice to do so.</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4">This effect will always be observed no matter what version of DEBUG you run it under;
+ MS-DOS 7.1, 5.0 or all the way back to the first version of DEBUG under <font face="Courier New, Courier, monospace"><b>IBM PC DOS 1.0</b></font> (no
+ guarantee it would act the same if you ran it on an original PC though; we only have an 80<b>486</b> <i>and later </i>for testing).
+ However, if you expand your research to include other debugging tools, you'll soon realize the chances of every version of two or more tools having the
+ same &quot;bug&quot; are... well,<i> way too coincidental.</i> So, why does this code affect a debugger's <i>interrupt </i>abilities?</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4"><font face="Verdana">If</font> you haven't already reached for your Intel&reg; Instruction Set Reference... What's that? You don't have one! Well, you'd better search for the keywords: <font face="Verdana">Intel, IA32, Software, Instruction</font> and <i>at least </i>download a PDF digital copy of the <font face="Verdana">Instruction Set Reference!</font>
+ (<font size="3">Usually found as two separate files titled: <b><i>Volume 2A: Instruction Set Reference, A-M</i></b> and <b><i>Volume 2B: Instruction Set Reference, N-Z</i></b></font>). &nbsp;In my January 2006  copy under  &quot;<font size="3">MOV&mdash;Move</font>&quot;, I found:</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="4">&quot;<font face="Verdana, Arial, Helvetica, sans-serif" size="3"><span style="background:#FFFFCC"> <b>Loading the SS register with a MOV instruction inhibits all interrupts until after the execution of 
+  the next instruction.</b> </span>This operation allows a stack pointer to be loaded into the ESP register with the next instruction (MOV ESP, stack-pointer value) before an interrupt occurs<sup>1</sup>.</font>&quot; (<font size="3"><i>IA-32 Intel&reg; Architecture 
+  Software Developer&rsquo;s Manual, Volume 2A: Instruction Set Reference, A-M</i>, 253666-018, Jan 2006, &quot;MOV&mdash;Move,&quot; <i>page </i>3-584</font>).</font> &nbsp;<font face="Arial, Helvetica, sans-serif" size="4">And footnote 1. clearly states: &quot;<b><span style="background-color:#FFFFCC"><font face="Verdana" size="3">If a code instruction breakpoint (for debug) is placed on an instruction located immediately after a</font> MOV 
+SS <font face="Verdana" size="3">instruction, the breakpoint may not be triggered.</font></span></b>&quot; (<i>page </i>3-585). For those who are new to how a <i>debugger </i>works, the &quot;instruction breakpoint&quot; which this refers to is <b>not</b> a breakpoint set by users, but rather the, let's call it, <i>automatic</i> breakpoint a debugger sets by itself on every single instruction users <b><i>step into</i></b>. So, according to these notes, what you may have thought was a &quot;bug&quot;  in  DEBUG, is in fact  a  processor doing what it was designed to do!</font></p>
+<p><font size="4" face="Arial, Helvetica, sans-serif">Does this mean we believe MS-DEBUG is completely &quot;bug free&quot;? <b>No.</b> In the future we'll post some examples here of real 'bugs' in DEBUG.</font></p>
+<p>&nbsp;</p>
+<hr size="3">
+<p><font face="Arial, Helvetica, sans-serif" size="4"><a name="NOTES"></a>Before using any of the 
+  debugging (<b>T</b>race, <b>P</b>rocedure) or <b>R</b>egister commands, you 
+  should familiarize yourself with the abbreviations for the CPU <b>Registers</b> 
+  that are referenced in DEBUG (See the <b>Appendix</b>, <a href="8086REGs.htm#REGS" target=REGS>The 
+  8086 CPU Registers</a> for all the details.)<BR>
+  </font></p>
+<p><font face="Arial" size="4">You should also know about <A HREF="Segments.html" target="SO">the 
+  SEGMENT:OFFSET Addressing method</A> used by DEBUG (and other programming utilities).</font></p>
+<table width="100%" border="1" cellpadding="5">
+  <tr>
+    <td bgcolor="#FFFFCC"> 
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="3">A <b>note</b> 
+        about where and how DEBUG is used in a computer's <b>Memory:</b></font></p>
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="3">Using DEBUG 
+        in a Windows&reg;<b> </b><i>DOS-box</i> (or CMD prompt) for the first 
+        time could easily <i><b><font color="#FF0000">confuse</font></b></i> you! 
+        If you open <b>two</b> instances of DEBUG (one per DOS-window) and examine 
+        all the memory they can access, you might notice completely different 
+        data in many of the same memory locations! The <b><i>reason</i></b> is 
+        that each application <i>under</i> a <b>Windows&#153;</b> OS is (theoretically) 
+        given its own <b>4-Gigabyte</b> &quot;Virtual computer&quot; <i>sandbox</i> 
+        to play in, and a <b> <i>copy</i></b> of the critical data within the 
+        machine's <b>first Megabyte of Memory</b> is made for each running instance 
+        of DEBUG. <b><i>Only</i> under 16-bit DOS</b>, does DEBUG <i>actually</i> 
+        have access to the <b>real Memory locations</b> in which the operating 
+        system itself is running; making it much easier to <i>crash</i> the whole 
+        system if an error is made. Under <i>Windows&reg;</i>, the theory is that 
+        such errors should <i>crash</i> only the open CMD window or application 
+        that caused a problem, but not the whole computer! At least that's how 
+        Windows&reg; is supposed to operate. From experience, it seems that Windows<b>&#153;</b> 
+        2000/XP do a much better job at keeping control of their systems under 
+        the same circumstances that often ended in <b><font color="#000099">Blue 
+        Screens</font></b> on the displays of earlier versions!</font></p>
+    </td>
+  </tr>
+</table>
+<p><br>
+</p>
+<HR><A NAME=ALPHA></A>
+<h2><font face="Verdana, Arial, Helvetica, sans-serif">Quick Links to all the 
+  Commands<br>
+  (Alphabetically Listed)</font></h2>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="4">We recommend reading 
+  through the entire Tutorial on DEBUG before using these quick command links.</font></p>
+<p><font face="Comic Sans MS" size="4">For a reminder of all the commands available 
+  while inside of DEBUG, simply enter a question mark (<b><font color="#0000FF">?</font></b>) 
+  at the DEBUG prompt; when using <b>DOS 5.0</b> or later.</font></p>
+<p><font face="Comic Sans MS" size="4"><font color="#008000"><b>Click on a command 
+  here for all its details:</b></font></font></p>
+<PRE><b><font size="4"><A NAME=TOC>-</A><font color="#008000">?</font></font><font size="4">
+<A HREF="debug2.htm#A" target=deb><font color="blue">assemble    A [address]</font></A>
+<A HREF="debug2.htm#C" target=deb><font color="blue">compare     C range address</font></A>
+<A HREF="debug2.htm#D" target=deb><font color="blue">dump        D [range]</font></A>
+<A HREF="debug2.htm#E" target=deb><font color="blue">enter       E address [list]</font></A>
+<A HREF="debug2.htm#F" target=deb><font color="blue">fill        F range list</font></A>
+<A HREF="debug2.htm#G" target=deb><font color="blue">go          G [=address] [addresses]</font></A>
+<A HREF="debug2.htm#H" target=deb><font color="blue">hex         H value1 value2</font></A>
+<A HREF="debug2.htm#I" target=deb><font color="blue">input       I port</font></A>
+<A HREF="debug2.htm#L" target=deb><font color="blue">load        L [address] [drive] [firstsector] [number]</font></A>
+<A HREF="debug2.htm#M" target=deb><font color="blue">move        M range address</font></A>
+<A HREF="debug2.htm#N" target=deb><font color="blue">name        N [pathname] [arglist]</font></A>
+<A HREF="debug2.htm#O" target=deb><font color="blue">output      O port byte</font></A>
+<A HREF="debug2.htm#P" target=deb><font color="blue">proceed     P [=address] [number]</font></A>
+<A HREF="debug2.htm#Q" target=deb><font color="blue">quit        Q</font></A>
+<A HREF="debug2.htm#R" target=deb><font color="blue">register    R [register]</font></A>
+<A HREF="debug2.htm#S" target=deb><font color="blue">search      S range list</font></A>
+<A HREF="debug2.htm#T" target=deb><font color="blue">trace       T [=address] [number]</font></A>
+<A HREF="debug2.htm#U" target=deb><font color="blue">unassemble  U [range]</font> </A>
+<A HREF="debug2.htm#W" target=deb><font color="red">write</font><font color="blue">       W [address] [drive] [firstsector] [number]</font></A>
+</font></b></PRE>
+<div align="center">
+  <p><br>
+    <BR>
+    <BR>
+    <BR>
+    <b><font face="Verdana, Arial, Helvetica, sans-serif" size="5"><a href="debug2.htm"><font size="6">Page 
+    Two</font></a></font></b><BR>
+    <BR>
+  </p>
+</div>
+<br>
+<hr>
+<font face="Verdana" size="5"><small>Updated: <b>December 9, 2007</b>. (09.12.2007)<br>
+<i>Updated:</i> <b>February 12, 2009</b>. (12.02.2009)</small><br>
+<i>Updated:</i> <b>August 24, 2009</b>. (24.08.2009)<br>
+</font> 
+<hr>
+<center><BR><img src="../../img/left.gif" width=33 height=14> 
+<a href="../index.html"><b><font size="6">The Starman's Realm Assembly 
+Page</font></b></a></center><BR><BR><BR><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+</body></html>

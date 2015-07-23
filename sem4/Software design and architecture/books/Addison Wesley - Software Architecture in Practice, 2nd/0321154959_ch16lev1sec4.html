@@ -1,0 +1,96 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="16.4 System Deployment Decisions"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch16lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch16lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch16lev1sec4"></A><H3 class="docSection1Title">16.4 System Deployment Decisions</H3>
+<P class="docText">What we have described thus far is J2EE/EJB as it was created by Sun. However, when deploying a J2EE/EJB system, there are a number of implementation issues that the architect needs to consider. The EJB component model is a powerful way to construct server-side applications. And although the interactions between the different parts of the code are a little daunting at first, with some exposure and experience with the model, it becomes relatively straightforward to construct EJB applications. Still, while code construction is not difficult, a number of complexities remain, including the following.</P>
+<UL>
+<LI><P class="docList">The EJB model makes it possible to combine components in an application in many different architectural patterns. Which are the best, and what does "best" mean in a given application?</P></LI>
+<LI><P class="docList">The way beans interact with the container is complex and has a significant effect on the performance of an application. In the same vein, all EJB server containers are not equal—product selection and product-specific configuration are important aspects of the application development life cycle.</P></LI>
+</UL>
+<P class="docText">In this final section, we present some of the key design issues involved in architecting and constructing highly scalable EJB applications.</P>
+<A NAME="ch16lev2sec5"></A><H4 class="docSection2Title"> STATE MANAGEMENT—AN OLD DESIGN ISSUE IN A NEW CONTEXT</H4>
+<P class="docText">There are two service models that can be adopted in developing the EJB server tier—stateless and stateful models, implemented by stateless and stateful session beans.</P>
+<P class="docText">We will take an online bookshop as an example. In the stateful version, an EJB can be used to remember customer details and to manage the items the customer is placing in an online shopping cart. Hence, the EJB stores the state associated with the customer's visit to the site. By maintaining this conversational state in the bean, the client is relieved from the responsibility of keeping track of it. The EJB monitors potential purchases and processes them in a batch when a confirmation method is invoked.</P>
+<P class="docText">To make better use of limited system memory, stateful session beans are passivated when not used by the client, meaning that a bean's conversational state is written to secondary storage (typically disk) and its instance is removed from memory. The client's reference to the bean is not affected by passivation, but remains alive and usable. When the client invokes a method on a bean that is passivated, the container activates the bean by instantiating a new instance and populating its state with the information written to secondary storage.</P>
+<P class="docText">This passivation strategy has great implications for scalability. If there is a requirement for large numbers of stateful session bean instances to service individual clients, passivation and activation may prove to be too high an overhead in terms of application performance.</P>
+<P class="docText">Alternatively, a stateless session bean does not maintain conversational state on behalf of the client. The client must inform the server of session information, such as customer details and shopping cart contents, with each service request, because, for each request, the container may assign a different stateless session bean instance. This is only possible because of the pure stateless service model. <A class="docLink" HREF="#ch16fig14">Figure 16.14</A> shows usage of both stateful and stateless session beans.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch16fig14"></A>Figure 16.14. Clients' static bindings to stateful session bean instances and dynamic bindings to stateless session bean instances.</H5><p class="docText"><IMG BORDER="0" WIDTH="356" HEIGHT="543" src="FILES/16fig14.gif" ALT="graphics/16fig14.gif"></p>
+</CENTER>
+<P class="docText">To summarize, the advantages of stateless session beans include the following:</P>
+<UL>
+<LI><P class="docList">There is no performance overhead in passivating and activating session beans that involve expensive disk reads and writes.</P></LI>
+<LI><P class="docList">Dynamic request routing means that requests can be routed to the least loaded server.</P></LI>
+<LI><P class="docList">If one session instance goes down, the request can be easily rerouted to another one.</P></LI>
+</UL>
+<P class="docText">The only disadvantage to the stateless approach is that more information needs to be passed between the client and the EJB on each request. Assuming that the amount of data is not prohibitively large, the stateless session bean will most likely better support high system scalability.</P>
+<A NAME="ch16lev3sec1"></A><H5 class="docSection3Title"> Entity Beans—To Use or Not to Use?</H5>
+<P class="docText">A common EJB design pattern is to provide a wrapper session bean that exposes services to the client and, at the same time, accesses the business data encapsulated in the entity bean to fulfill a client request. This represents a clean object-oriented programming model. Business data, usually represented in a relational format in a database, is now encapsulated in an object-oriented format (entity beans). The various <TT>get</TT> and <TT>set</TT> methods defined for entity beans make it easy for session beans to access this data. Additionally, if container-managed persistence is used for entity beans, the developer need not explicitly develop the database access code.</P>
+<P class="docText">The risk here is a considerable performance penalty. Testing results show that, for a typical e-commerce system with an 85% read-only and 15% update transaction mix, the application architecture using entity beans achieves roughly half the system throughput compared to an architecture utilizing session beans only. The performance degradations have the following causes:</P>
+<UL>
+<LI><P class="docList">The entity beans introduce an additional indirection layer rather than session beans directly accessing the business object in the database. Depending on which container implementation is used, the container may not automatically optimize calls to entity beans (from session beans) to a local call. In this case, the additional RMI call is expensive.</P></LI>
+<LI><P class="docList">The life-cycle management of entity beans in this additional layer can be expensive. Activation is equivalent to at least a single database/disk-read operation, and passivation is a database/disk-write operation.</P></LI>
+<LI><P class="docList">Additional beans participate in the transaction.</P></LI>
+</UL>
+<P class="docText">Of course, it is up to the application architect to decide if the benefits of entity beans outweigh the likely loss in system throughput.</P>
+
+
+<A NAME="ch16lev2sec6"></A><H4 class="docSection2Title"> DISTRIBUTION AND SCALING ISSUES</H4>
+<P class="docText">With the popularity of Web-enabled enterprise systems, businesses are finding their back-end systems unable to cope with the volume of incoming Internet traffic. There are two ways of increasing the processing power in the server tier:</P>
+<UL>
+<LI><P class="docList">Scaling up, or "vertical" scaling, refers to the addition of computational and system resources—for example, adding memory to a single machine. This form of scaling relies on the application server having no inherent bottlenecks in its internal architecture. If this is the case, given more system resources and processor power, the application server software should be able to fully utilize the additional resources and increase system throughput as a result.</P></LI>
+<LI><P class="docList">Scaling out, or "horizontal" scaling, means that, instead of replacing an existing machine with a more powerful model, the server application is distributed across more than one machine. This should increase overall system resources and processing power by making additional machines available to the application.</P></LI>
+</UL>
+<P class="docText">Scaling out is usually regarded as more difficult to implement than scaling up, because it requires more complex configuration and system management. The application server must also provide load-balancing mechanisms to make sure that the additional resources on different machines are fully utilized by clients.</P>
+<P class="docText">Nevertheless, a system that runs on multiple machines does provide some benefits over one running a single large machine:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Increased redundancy.</span> 
+If one machine fails, there are others that can take over the work. Machines might fail because of power or network outages, operating system crashes, application server failures, or even bugs in the application code itself.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Cost efficiency.</span> 
+A network of smaller machines may have a better price/ performance ratio than a single large machine has.</p>
+</LI>
+</UL>
+<P class="docText">Many application products provide clustering services to enable the scaling out of applications. Again, though, clustering products vary considerably, and architects need to explore these differences carefully.</P>
+<A NAME="ch16lev3sec2"></A><H5 class="docSection3Title"> Distributed Transactions</H5>
+<P class="docText">Many EJB servers can coordinate transactions that involve multiple objects residing in various processes in a distributed system. Distributed transaction processing using the two-phase commit protocol is often essential in building enterprise-wide systems.</P>
+<P class="docText">An architect designing an EJB system needs to consider carefully whether distributed transactions are necessary. This is because of the overhead involved in managing them, which increases as the number of transaction participants increases. If there is no need to coordinate the transaction across multiple resource managers (or databases), there is no need for the two-phase commit protocol.</P>
+<P class="docText">Further, the transaction coordination and commit processes may involve several remote calls that pass over the network. These may be between the EJB server or container and an external transaction management process. If the distributed transaction implementation provided by the EJB server incurs additional remote calls in coordinating transactions, using distributed transactions can slow down an EJB system considerably, inhibiting overall system scalability.</P>
+<P class="docText">Experience with various object technology management and J2EE implementations indicates large variations in distributed transaction management performance. This makes it important for application architects to fully understand the configuration and deployment options available with a given transaction service.</P>
+
+
+<A NAME="ch16lev2sec7"></A><H4 class="docSection2Title"> RESOURCE POOLING</H4>
+<P class="docText">Application resources, such as database connections and sockets, must be carefully managed in a distributed system. Resource pooling exploits the fact that not all clients need exclusive access to a resource at all times. With EJBs, not every bean needs a database connection for its exclusive use. It is much more efficient to configure a system so that database connections can be pooled and re-used for different client transactions.</P>
+<P class="docText">When a database connection pool is used, the resulting connections required will be far less than the number of EJB components in a deployed system. Because database connections are expensive to create and manage, this architecture increases the overall application scalability. Furthermore, connections to the databases do not need to be reestablished continuously, thus improving application performance.</P>
+<P class="docText">Resource pooling can be applied to other resources as well, such as socket connections and threads. Pooling of components simply means that a dedicated resource for each client is not necessary. Typical configurable parameters include container threads, session beans instances, entity bean cache size, and database connection pool size. All of these need to be configured appropriately to exhibit fast response times and high overall system throughput.</P>
+
+<A NAME="ch16lev2sec8"></A><H4 class="docSection2Title"> DEPENDENCE ON JAVA VIRTUAL MACHINE PERFORMANCE</H4>
+<P class="docText">In any Java application, the JVM is an important factor in performance tuning. Hence, to develop and deploy high-performing EJB server-side applications, several JVM configuration and performance tuning activities need to be considered.</P>
+<P class="docText">JVM heap size is one important setting. The heap is a repository for Java objects and free memory. When the JVM runs out of memory in the heap, all execution in it ceases while a garbage collection algorithm goes through memory and frees space that is no longer required. This is an obvious performance hit because application code blocks during garbage collection. Thus, in an EJB application no server-side work can be done.</P>
+<P class="docText">If heap size is huge, garbage collection will be infrequent; when it does kick in, however, it will take a much longer time, possibly long enough to disrupt normal system operations. Garbage collection can slow down (and sometime completely stop) server processing, giving the impression that the server is slow and unresponsive.</P>
+<P class="docText">To appropriately set the JVM heap size, it is necessary to monitor the paging activities on the server machine. Paging is an expensive performance overhead and therefore should be avoided on application servers by increasing the JVM heap size to match the application's needs. Another way is to watch the garbage collector by using the <TT>-gcverbose</TT> compiler option. If incremental garbage collection is an option, it is almost always best to turn it on.</P>
+
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch16lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch16lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

@@ -1,0 +1,946 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD>
+<BODY>
+   <OBJECT type="text/site properties">
+     <param name="Window Styles" value="0x800225">
+     <param name="comment" value="title:Online Help">
+     <param name="comment" value="base:index.htm">
+   </OBJECT>
+   <UL>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="Main Page">
+            <param name="Local" value="0321154959_main.html">
+            <param name="ImageNumber" value="12">
+          </OBJECT>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="Table of content">
+            <param name="Local" value="0321154959_toc.html">
+            <param name="ImageNumber" value="22">
+          </OBJECT>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="Copyright">
+            <param name="Local" value="0321154959_copyrightpg.html">
+            <param name="ImageNumber" value="17">
+          </OBJECT>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="Preface">
+            <param name="Local" value="0321154959_pref01.html">
+          </OBJECT>
+      <UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="What's New in the Second Edition">
+               <param name="Local" value="0321154959_fmlev1sec1.html">
+               <param name="ImageNumber" value="11">
+             </OBJECT>
+      </UL>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="Acknowledgments">
+            <param name="Local" value="0321154959_pref02.html">
+            <param name="ImageNumber" value="27">
+          </OBJECT>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="Reader's Guide">
+            <param name="Local" value="0321154959_pref03.html">
+          </OBJECT>
+      <UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Audience">
+               <param name="Local" value="0321154959_fmlev1sec2.html">
+               <param name="ImageNumber" value="11">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Parts and Chapters">
+               <param name="Local" value="0321154959_fmlev1sec3.html">
+               <param name="ImageNumber" value="11">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Part One : Envisioning an Architecture">
+               <param name="Local" value="0321154959_fmlev1sec4.html">
+               <param name="ImageNumber" value="11">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Part Two : Creating an Architecture">
+               <param name="Local" value="0321154959_fmlev1sec5.html">
+               <param name="ImageNumber" value="11">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Part Three : Analyzing an Architecture">
+               <param name="Local" value="0321154959_fmlev1sec6.html">
+               <param name="ImageNumber" value="11">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Part Four : Moving from One System to Many">
+               <param name="Local" value="0321154959_fmlev1sec7.html">
+               <param name="ImageNumber" value="11">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Case Study Organization">
+               <param name="Local" value="0321154959_fmlev1sec8.html">
+               <param name="ImageNumber" value="11">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Threads Through the Book">
+               <param name="Local" value="0321154959_fmlev1sec9.html">
+               <param name="ImageNumber" value="11">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Sidebars">
+               <param name="Local" value="0321154959_fmlev1sec10.html">
+               <param name="ImageNumber" value="11">
+             </OBJECT>
+      </UL>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="Part One: Envisioning Architecture">
+            <param name="Local" value="0321154959_part01.html">
+          </OBJECT>
+      <UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 1. The Architecture Business Cycle">
+               <param name="Local" value="0321154959_ch01.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="1.1 Where Do Architectures Come From?">
+                  <param name="Local" value="0321154959_ch01lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="1.2 Software Processes and the Architecture Business Cycle">
+                  <param name="Local" value="0321154959_ch01lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="1.3 What Makes a 'Good' Architecture?">
+                  <param name="Local" value="0321154959_ch01lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="1.4 Summary">
+                  <param name="Local" value="0321154959_ch01lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="1.5 Discussion Questions">
+                  <param name="Local" value="0321154959_ch01lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 2. What Is Software Architecture?">
+               <param name="Local" value="0321154959_ch02.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="2.1 What Software Architecture Is and What It Isn't">
+                  <param name="Local" value="0321154959_ch02lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="2.2 Other Points of View">
+                  <param name="Local" value="0321154959_ch02lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="2.3 Architectural Patterns, Reference Models, and Reference Architectures">
+                  <param name="Local" value="0321154959_ch02lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="2.4 Why Is Software Architecture Important?">
+                  <param name="Local" value="0321154959_ch02lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="2.5 Architectural Structures and Views">
+                  <param name="Local" value="0321154959_ch02lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="2.6 Summary">
+                  <param name="Local" value="0321154959_ch02lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="2.7 For Further Reading">
+                  <param name="Local" value="0321154959_ch02lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="2.8 Discussion Questions">
+                  <param name="Local" value="0321154959_ch02lev1sec8.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 3. A-7E Avionics System: A Case Study in Utilizing Architectural Structures">
+               <param name="Local" value="0321154959_ch03.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="3.1 Relationship to the Architecture Business Cycle">
+                  <param name="Local" value="0321154959_ch03lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="3.2 Requirements and Qualities">
+                  <param name="Local" value="0321154959_ch03lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="3.3 Architecture for the A-7E Avionics System">
+                  <param name="Local" value="0321154959_ch03lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="3.4 Summary">
+                  <param name="Local" value="0321154959_ch03lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="3.5 For Further Reading">
+                  <param name="Local" value="0321154959_ch03lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="3.6 Discussion Questions">
+                  <param name="Local" value="0321154959_ch03lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+      </UL>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="Part Two: Creating an Architecture">
+            <param name="Local" value="0321154959_part02.html">
+          </OBJECT>
+      <UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 4. Understanding Quality Attributes">
+               <param name="Local" value="0321154959_ch04.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="4.1 Functionality and Architecture">
+                  <param name="Local" value="0321154959_ch04lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="4.2 Architecture and Quality Attributes">
+                  <param name="Local" value="0321154959_ch04lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="4.3 System Quality Attributes">
+                  <param name="Local" value="0321154959_ch04lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="4.4 Quality Attribute Scenarios in Practice">
+                  <param name="Local" value="0321154959_ch04lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="4.5 Other System Quality Attributes">
+                  <param name="Local" value="0321154959_ch04lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="4.6 Business Qualities">
+                  <param name="Local" value="0321154959_ch04lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="4.7 Architecture Qualities">
+                  <param name="Local" value="0321154959_ch04lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="4.8 Summary">
+                  <param name="Local" value="0321154959_ch04lev1sec8.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="4.9 For Further Reading">
+                  <param name="Local" value="0321154959_ch04lev1sec9.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="4.10 Discussion Questions">
+                  <param name="Local" value="0321154959_ch04lev1sec10.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 5. Achieving Qualities">
+               <param name="Local" value="0321154959_ch05.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.1 Introducing Tactics">
+                  <param name="Local" value="0321154959_ch05lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.2 Availability Tactics">
+                  <param name="Local" value="0321154959_ch05lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.3 Modifiability Tactics">
+                  <param name="Local" value="0321154959_ch05lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.4 Performance Tactics">
+                  <param name="Local" value="0321154959_ch05lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.5 Security Tactics">
+                  <param name="Local" value="0321154959_ch05lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.6 Testability Tactics">
+                  <param name="Local" value="0321154959_ch05lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.7 Usability Tactics">
+                  <param name="Local" value="0321154959_ch05lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.8 Relationship of Tactics to Architectural Patterns">
+                  <param name="Local" value="0321154959_ch05lev1sec8.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.9 Architectural Patterns and Styles">
+                  <param name="Local" value="0321154959_ch05lev1sec9.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.10 Summary">
+                  <param name="Local" value="0321154959_ch05lev1sec10.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.11 Discussion Questions">
+                  <param name="Local" value="0321154959_ch05lev1sec11.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="5.12 For Further Reading">
+                  <param name="Local" value="0321154959_ch05lev1sec12.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 6. Air Traffic Control: A Case Study in Designing for High Availability">
+               <param name="Local" value="0321154959_ch06.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="6.1 Relationship to the Architecture Business Cycle">
+                  <param name="Local" value="0321154959_ch06lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="6.2 Requirements and Qualities">
+                  <param name="Local" value="0321154959_ch06lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="6.3 Architectural Solution">
+                  <param name="Local" value="0321154959_ch06lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="6.4 Summary">
+                  <param name="Local" value="0321154959_ch06lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="6.5 For Further Reading">
+                  <param name="Local" value="0321154959_ch06lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="6.6 Discussion Questions">
+                  <param name="Local" value="0321154959_ch06lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 7. Designing the Architecture">
+               <param name="Local" value="0321154959_ch07.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="7.1 Architecture in the Life Cycle">
+                  <param name="Local" value="0321154959_ch07lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="7.2 Designing the Architecture">
+                  <param name="Local" value="0321154959_ch07lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="7.3 Forming the Team Structure">
+                  <param name="Local" value="0321154959_ch07lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="7.4 Creating a Skeletal System">
+                  <param name="Local" value="0321154959_ch07lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="7.5 Summary">
+                  <param name="Local" value="0321154959_ch07lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="7.6 For Further Reading">
+                  <param name="Local" value="0321154959_ch07lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="7.7 Discussion Questions">
+                  <param name="Local" value="0321154959_ch07lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 8. Flight Simulation: A Case Study in an Architecture for Integrability">
+               <param name="Local" value="0321154959_ch08.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="8.1 Relationship to the Architecture Business Cycle">
+                  <param name="Local" value="0321154959_ch08lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="8.2 Requirements and Qualities">
+                  <param name="Local" value="0321154959_ch08lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="8.3 Architectural Solution">
+                  <param name="Local" value="0321154959_ch08lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="8.4 Summary">
+                  <param name="Local" value="0321154959_ch08lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="8.5 For Further Reading">
+                  <param name="Local" value="0321154959_ch08lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="8.6 Discussion Questions">
+                  <param name="Local" value="0321154959_ch08lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 9. Documenting Software Architectures">
+               <param name="Local" value="0321154959_ch09.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="9.1 Uses of Architectural Documentation">
+                  <param name="Local" value="0321154959_ch09lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="9.2 Views">
+                  <param name="Local" value="0321154959_ch09lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="9.3 Choosing the Relevant Views">
+                  <param name="Local" value="0321154959_ch09lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="9.4 Documenting a View">
+                  <param name="Local" value="0321154959_ch09lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="9.5 Documentation across Views">
+                  <param name="Local" value="0321154959_ch09lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="9.6 Unified Modeling Language">
+                  <param name="Local" value="0321154959_ch09lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="9.7 Summary">
+                  <param name="Local" value="0321154959_ch09lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="9.8 For Further Reading">
+                  <param name="Local" value="0321154959_ch09lev1sec8.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="9.9 Discussion Questions">
+                  <param name="Local" value="0321154959_ch09lev1sec9.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 10. Reconstructing Software Architectures">
+               <param name="Local" value="0321154959_ch10.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="10.1 Introduction">
+                  <param name="Local" value="0321154959_ch10lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="10.2 Information Extraction">
+                  <param name="Local" value="0321154959_ch10lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="10.3 Database Construction">
+                  <param name="Local" value="0321154959_ch10lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="10.4 View Fusion">
+                  <param name="Local" value="0321154959_ch10lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="10.5 Reconstruction">
+                  <param name="Local" value="0321154959_ch10lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="10.6 Example">
+                  <param name="Local" value="0321154959_ch10lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="10.7 Summary">
+                  <param name="Local" value="0321154959_ch10lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="10.8 For Further Reading">
+                  <param name="Local" value="0321154959_ch10lev1sec8.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="10.9 Discussion Questions">
+                  <param name="Local" value="0321154959_ch10lev1sec9.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+      </UL>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="Part Three: Analyzing Architectures">
+            <param name="Local" value="0321154959_part03.html">
+          </OBJECT>
+      <UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 11. The ATAM: A Comprehensive Method for Architecture Evaluation">
+               <param name="Local" value="0321154959_ch11.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="11.1 Participants in the ATAM">
+                  <param name="Local" value="0321154959_ch11lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="11.2 Outputs of the ATAM">
+                  <param name="Local" value="0321154959_ch11lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="11.3 Phases of the ATAM">
+                  <param name="Local" value="0321154959_ch11lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="11.4 The Nightingale System: A Case Study in Applying the ATAM">
+                  <param name="Local" value="0321154959_ch11lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="11.5 Summary">
+                  <param name="Local" value="0321154959_ch11lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="11.6 For Further Reading">
+                  <param name="Local" value="0321154959_ch11lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="11.7 Discussion Questions">
+                  <param name="Local" value="0321154959_ch11lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 12. The CBAM: A Quantitative Approach to Architecture Design Decision Making">
+               <param name="Local" value="0321154959_ch12.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="12.1 Decision-Making Context">
+                  <param name="Local" value="0321154959_ch12lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="12.2 The Basis for the CBAM">
+                  <param name="Local" value="0321154959_ch12lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="12.3 Implementing the CBAM">
+                  <param name="Local" value="0321154959_ch12lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="12.4 Case Study: The NASA ECS Project">
+                  <param name="Local" value="0321154959_ch12lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="12.5 Results of the CBAM Exercise">
+                  <param name="Local" value="0321154959_ch12lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="12.6 Summary">
+                  <param name="Local" value="0321154959_ch12lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="12.7 For Further Reading">
+                  <param name="Local" value="0321154959_ch12lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="12.8 Discussion Questions">
+                  <param name="Local" value="0321154959_ch12lev1sec8.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 13. The World Wide Web'A Case Study in Interoperability">
+               <param name="Local" value="0321154959_ch13.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="13.1 Relationship to the Architecture Business Cycle">
+                  <param name="Local" value="0321154959_ch13lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="13.2 Requirements and Qualities">
+                  <param name="Local" value="0321154959_ch13lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="13.3 Architectural Solution">
+                  <param name="Local" value="0321154959_ch13lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="13.4 Another Cycle through the ABC: The Evolution of Web-Based E-Commerce Architectures">
+                  <param name="Local" value="0321154959_ch13lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="13.5 Achieving Quality Goals">
+                  <param name="Local" value="0321154959_ch13lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="13.6 The Architecture Business Cycle Today">
+                  <param name="Local" value="0321154959_ch13lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="13.7 Summary">
+                  <param name="Local" value="0321154959_ch13lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="13.8 For Further Reading">
+                  <param name="Local" value="0321154959_ch13lev1sec8.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="13.9 Discussion Questions">
+                  <param name="Local" value="0321154959_ch13lev1sec9.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+      </UL>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="Part Four: Moving From One System to Many">
+            <param name="Local" value="0321154959_part04.html">
+          </OBJECT>
+      <UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 14. Software Product Lines: Re-using Architectural Assets">
+               <param name="Local" value="0321154959_ch14.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="14.1 Overview">
+                  <param name="Local" value="0321154959_ch14lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="14.2 What Makes Software Product Lines Work?">
+                  <param name="Local" value="0321154959_ch14lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="14.3 Scoping">
+                  <param name="Local" value="0321154959_ch14lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="14.4 Architectures for Product Lines">
+                  <param name="Local" value="0321154959_ch14lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="14.5 What Makes Software Product Lines Difficult?">
+                  <param name="Local" value="0321154959_ch14lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="14.6 Summary">
+                  <param name="Local" value="0321154959_ch14lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="14.7 For Further Reading">
+                  <param name="Local" value="0321154959_ch14lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="14.8 Discussion Question">
+                  <param name="Local" value="0321154959_ch14lev1sec8.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 15. CelsiusTech: A Case Study in Product Line Development">
+               <param name="Local" value="0321154959_ch15.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="15.1 Relationship to the Architecture Business Cycle">
+                  <param name="Local" value="0321154959_ch15lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="15.2 Requirements and Qualities">
+                  <param name="Local" value="0321154959_ch15lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="15.3 Architectural Solution">
+                  <param name="Local" value="0321154959_ch15lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="15.4 Summary">
+                  <param name="Local" value="0321154959_ch15lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="15.5 For Further Reading">
+                  <param name="Local" value="0321154959_ch15lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="15.6 Discussion Questions">
+                  <param name="Local" value="0321154959_ch15lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 16. J2EE/EJB: A Case Study of an Industry-Standard Computing Infrastructure">
+               <param name="Local" value="0321154959_ch16.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="16.1 Relationship to the Architecture Business Cycle">
+                  <param name="Local" value="0321154959_ch16lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="16.2 Requirements and Qualities">
+                  <param name="Local" value="0321154959_ch16lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="16.3 Architectural Solution">
+                  <param name="Local" value="0321154959_ch16lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="16.4 System Deployment Decisions">
+                  <param name="Local" value="0321154959_ch16lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="16.5 Summary">
+                  <param name="Local" value="0321154959_ch16lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="16.6 For Further Reading">
+                  <param name="Local" value="0321154959_ch16lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="16.7 Discussion Questions">
+                  <param name="Local" value="0321154959_ch16lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 17. The Luther Architecture: A Case Study in Mobile Applications Using J2EE">
+               <param name="Local" value="0321154959_ch17.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="17.1 Relationship to the Architecture Business Cycle">
+                  <param name="Local" value="0321154959_ch17lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="17.3 Architectural Solution">
+                  <param name="Local" value="0321154959_ch17lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="17.4 How Luther Achieved Its Quality Goals">
+                  <param name="Local" value="0321154959_ch17lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="17.5 Summary">
+                  <param name="Local" value="0321154959_ch17lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="17.6 For Further Reading">
+                  <param name="Local" value="0321154959_ch17lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="17.7 Discussion Questions">
+                  <param name="Local" value="0321154959_ch17lev1sec7.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 18. Building Systems from Off-the-Shelf Components">
+               <param name="Local" value="0321154959_ch18.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="18.1 Impact of Components on Architecture">
+                  <param name="Local" value="0321154959_ch18lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="18.2 Architectural Mismatch">
+                  <param name="Local" value="0321154959_ch18lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="18.3 Component-Based Design as Search">
+                  <param name="Local" value="0321154959_ch18lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="18.4 ASEILM Example">
+                  <param name="Local" value="0321154959_ch18lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="18.5 Summary">
+                  <param name="Local" value="0321154959_ch18lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="18.6 Further Reading">
+                  <param name="Local" value="0321154959_ch18lev1sec6.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="Chapter 19. Software Architecture in the Future">
+               <param name="Local" value="0321154959_ch19.html">
+             </OBJECT>
+         <UL>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="19.1 The Architecture Business Cycle Revisited">
+                  <param name="Local" value="0321154959_ch19lev1sec1.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="19.2 Creating an Architecture">
+                  <param name="Local" value="0321154959_ch19lev1sec2.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="19.3 Architecture within the Life Cycle">
+                  <param name="Local" value="0321154959_ch19lev1sec3.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="19.4 The Impact of Commercial Components">
+                  <param name="Local" value="0321154959_ch19lev1sec4.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+            <LI><OBJECT type="text/sitemap">
+                  <param name="Name" value="19.5 Summary">
+                  <param name="Local" value="0321154959_ch19lev1sec5.html">
+                  <param name="ImageNumber" value="11">
+                </OBJECT>
+         </UL>
+      </UL>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="Acronyms">
+            <param name="Local" value="0321154959_art01.html">
+            <param name="ImageNumber" value="2">
+          </OBJECT>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="References">
+            <param name="Local" value="0321154959_biblio01.html">
+            <param name="ImageNumber" value="2">
+          </OBJECT>
+   </UL>
+</BODY>
+</HTML>

@@ -1,0 +1,147 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="9.1 Uses of Architectural Documentation"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch09.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch09lev1sec2.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch09lev1sec1"></A><H3 class="docSection1Title">9.1 Uses of Architectural Documentation</H3>
+<P class="docText">The architecture for a system depends on the requirements levied on it, so too does the documentation for an architecture depend on the requirements levied on it—that is, how we expect it will be used. Documentation is decidedly <span class="docEmphasis">not</span> a case of "one size fits all." It should be sufficiently abstract to be quickly understood by new employees but sufficiently detailed to serve as a blueprint for analysis. The architectural documentation for, say, security analysis may well be different from the architectural documentation we would hand to an implementor. And both of these will be different from what we put in a new hire's familiarization reading list.</P>
+<P class="docText">Architecture documentation is both prescriptive and descriptive. That is, for some audiences it prescribes what should be true by placing constraints on decisions to be made. For other audiences it describes what is true by recounting decisions already made about a system's design.</P>
+<P class="docText">All of this tells us that different stakeholders for the documentation have different needs—different kinds of information, different levels of information, and different treatments of information. We should not expect to produce one architectural document and have every consumer read it in the same way. Rather, we should produce documentation that helps a stakeholder quickly find the information that stakeholder is interested in, with a minimum of information that is irrelevant (to that stakeholder) standing in the way.</P>
+<P class="docText">This might mean producing different documents for different stakeholders. More likely, it means producing a single documentation suite with a roadmap that will help different stakeholders navigate through it.</P>
+<P class="docText">One of the most fundamental rules for technical documentation in general, and software architecture documentation in particular, is to write from the point of view of the reader. Documentation that was easy to write but is not easy to read will not be used, and "easy to read" is in the eye of the beholder—or in this case, the stakeholder.</P>
+<P class="docText">Understanding who the stakeholders are and how they will want to use the documentation will help us organize it and make it accessible to and usable for them. Back in <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A>, we said that a primary purpose of architecture was to serve as a communication vehicle among stakeholders. Documentation facilitates that communication. Some examples of architectural stakeholders and the information they might expect to find in the documentation are given in <A class="docLink" HREF="#ch09table01">Table 9.1</A>.</P>
+<P class="docText">In addition, each stakeholders come in two varieties: seasoned and new. A new stakeholder will want information similar in content to what his seasoned counterpart wants, but in smaller and more introductory doses. Architecture documentation is a key means for educating people who need an overview: new developers, funding sponsors, visitors to the project, and so forth.</P>
+<P class="docText">Perhaps one of the most avid consumers of architectural documentation is none other than the architect at some time in the project's future—either the same person or a replacement but in either case someone guaranteed to have an enor mous stake in it. New architects are interested in learning how their predecessors tackled the difficult issues of the system and why particular decisions were made.</P>
+<P><A NAME="ch09sb01"></A><TABLE CELLSPACING="0" WIDTH="90%" BORDER="1"><TR><TD>
+<H2 class="docSidebarTitle">Documentation as an Introduction to Software Architecture</H2>
+<P class="docText">I had just finished my presentation on the Attribute Driven Design (ADD) method (see <A class="docLink" HREF="0321154959_ch07.html#ch07">Chapter 7</A>). The customer, a group within a business unit of a large manufacturing company, had seen most of our wares: ATAM (<A class="docLink" HREF="0321154959_ch11.html#ch11">Chapter 11</A>), reconstruction (<A class="docLink" HREF="0321154959_ch10.html#ch10">Chapter 10</A>), and our overall product line pitch (<A class="docLink" HREF="0321154959_ch14.html#ch14">Chapter 14</A>). I sat back, satisfied, and waited expectantly.</P>
+<P class="docText">The customer had a problem however. They wanted to do architecture-based development, but they had a small development group and it would take several years to internalize all that we had shown them. In the meantime, they had products to make and contracts to meet. They just did not have the resources to do all of what they had seen. We needed something to let them get started on the architecture path without having to understand everything involved.</P>
+<P class="docText">The discussion turned to documentation and the book we were writing on documenting software architecture. The customer was interested in documentation as a means of maintaining corporate knowledge about their products. We ended this meeting agreeing to do an exercise in architectural reconstruction and to document the results according to the principles described in this chapter.</P>
+<P class="docText">I had always thought of documentation as the tail end of the design and development process. It is necessary for all of the reasons that architecture is necessary (communication, analysis, and education), but it is a derivative, not a driver.</P>
+<P class="docText">The customer had a different perspective. They viewed documenting the software architecture as an ideal training vehicle for their developers. They had to do documentation in any case, so giving them a template for what to document was squarely in the corporate culture. In the process of filling in the templates, they would have to document different views (part of the engagement was for us to define the views useful to them), they would need to argue about how the artifact they were designing satisfied different quality goals, and, in general, they could learn about architectural concepts in the process of documentation.</P>
+<P class="docText">This use of documentation as a training vehicle was a new one to me, but it has a great deal of power. For someone enmeshed in the details of the bits, thinking about architecture and architectural issues is a big jump. Understanding the mindset involved in software architecture through documentation seems to be a very good educational tool without a great deal of overhead for the consumer.</P>
+<P class="docText"><span class="docEmphasis">— LJB</span></P>
+</TD></TR></TABLE></P>
+<P class="docText">Even if the future architect is the same person, that architect will use the documentation as a repository of thought, as a storehouse of detailed design decisions too numerous and intertwined to be reproducible from memory alone.</P>
+<A NAME="ch09table01"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 9.1. Stakeholders and the Communication Needs Served by Architecture</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Stakeholder</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Use</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Architect and requirements engineers who represent customer(s)</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">To negotiate and make tradeoffs among competing requirements</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Architect and designers of constituent parts</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">To resolve resource contention and establish performance and other kinds of runtime resource consumption budgets</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Implementors</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">To provide inviolable constraints (plus exploitable freedoms) on downstream development activities</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Testers and integrators</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">To specify the correct black-box behavior of the pieces that must fit together</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Maintainers</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">To reveal areas a prospective change will affect</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Designers of other systems with which this one must interoperate</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">To define the set of operations provided and required, and the protocols for their operation</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Quality attribute specialists </P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">To provide the model that drives analytical tools such as rate-monotonic real-time schedulability analysis, simulations and simulation generators, theorem provers, verifiers, etc. These tools require information about resource consumption, scheduling policies, dependencies, and so forth. Architecture documentation must contain the information necessary to evaluate a variety of quality attributes such as security, performance, usability, availability, and modifiability. Analyses for each attributes have their own information needs.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Managers</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">To create development teams corresponding to work assignments identified, to plan and allocate project resources, and to track progress by the various teams</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Product line managers</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">To determine whether a potential new member of a product family is in or out of scope, and if out by how much</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Quality assurance team</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">To provide a basis for conformance checking, for assurance that implementations have been faithful to the architectural prescriptions</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableFooter" valign="top" colspan="2">
+<P class="docText"><span class="docEmphasis">Source:</span> Adapted from [<A class="docLink" HREF="0321154959_biblio01.html#biblio01entry41">Clements 03</A>]</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch09.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch09lev1sec2.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

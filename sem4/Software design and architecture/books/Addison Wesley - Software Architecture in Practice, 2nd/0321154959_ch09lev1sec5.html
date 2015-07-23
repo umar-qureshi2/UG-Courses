@@ -1,0 +1,87 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="9.5 Documentation across Views"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch09lev1sec4.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch09lev1sec6.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch09lev1sec5"></A><H3 class="docSection1Title" id="161597-848">9.5 Documentation across Views</H3>
+<P class="docText">We now turn to the complement of view documentation, which is capturing the information that applies to more than one view or to the documentation package as a whole. Cross-view documentation consists of just three major aspects, which we can summarize as how-what-why:</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><P class="docList"><span class="docEmphasis">How</span> the documentation is laid out and organized so that a stakeholder of the architecture can find the information he or she needs efficiently and reliably. This part consists of a view catalog and a view template.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList"><span class="docEmphasis">What</span> the architecture is. Here, the information that remains to be captured beyond the views themselves is a short system overview to ground any reader as to the purpose of the system; the way the views are related to each other; a list of elements and where they appear; and a glossary that applies to the entire architecture.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList"><span class="docEmphasis">Why</span> the architecture is the way it is: the context for the system, external constraints that have been imposed to shape the architecture in certain ways, and the rationale for coarse-grained large-scale decisions.</P></span></LI>
+</OL></span>
+<P class="docText"><A class="docLink" HREF="#ch09fig03">Figure 9.3</A> summarizes these points.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch09fig03"></A>Figure 9.3. Summary of cross-view documentation</H5><p class="docText"><IMG BORDER="0" WIDTH="480" HEIGHT="287" src="FILES/09fig03.gif" ALT="graphics/09fig03.gif"></p>
+</CENTER>
+<A NAME="ch09lev2sec3"></A><H4 class="docSection2Title"> HOW THE DOCUMENTATION IS ORGANIZED TO SERVE A STAKEHOLDER</H4>
+<P class="docText">Every suite of architectural documentation needs an introductory piece to explain its organization to a novice stakeholder and to help that stakeholder access the information he or she she is most interested in. There are two kinds of "how" information:</P>
+<UL>
+<LI><P class="docList">A view catalog</P></LI>
+<LI><P class="docList">A view template</P></LI>
+</UL>
+<A NAME="ch09lev3sec2"></A><H5 class="docSection3Title"> View Catalog</H5>
+<P class="docText">A view catalog is the reader's introduction to the views that the architect has chosen to include in the suite of documentation.</P>
+<P class="docText">When using the documentation suite as a basis for communication, it is necessary for a new reader to determine where particular information can be found. A catalog contains this information. When using the documentation suite as a basis for analysis, it is necessary to know which views contain the information necessary for a particular analysis. In a performance analysis, for example, resource consumption is an important piece of information, A catalog enables the analyst to determine which views contain properties relevant to resource consumption.</P>
+<P class="docText">There is one entry in the view catalog for each view given in the documentation suite. Each entry should give the following:</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><P class="docList">The name of the view and what style it instantiates</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">A description of the view's element types, relation types, and properties</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">A description of what the view is for</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Management information about the view document, such as the latest version, the location of the view document, and the owner of the view document</P></span></LI>
+</OL></span>
+<P class="docText">The view catalog is intended to describe the documentation suite, not the system being documented. Specifics of the system belong in the individual views, not in the view catalog. For instance, the actual elements contained in a view are listed in the view's element catalog.</P>
+
+<A NAME="ch09lev3sec3"></A><H5 class="docSection3Title"> View Template</H5>
+<P class="docText">A view template is the standard organization for a view. <A class="docLink" HREF="0321154959_ch09lev1sec4.html#ch09fig01">Figure 9.1</A> and the material surrounding it provide a basis for a view template by defining the standard parts of a view document and the contents and rules for each. The purpose of a view template is that of any standard organization: It helps a reader navigate quickly to a section of interest, and it helps a writer organize the information and establish criteria for knowing how much work is left to do.</P>
+
+
+<A NAME="ch09lev2sec4"></A><H4 class="docSection2Title"> WHAT THE ARCHITECTURE IS</H4>
+<P class="docText">This section provides information about the system whose architecure is being documented, the relation of the views to each other, and an index of architectural elements.</P>
+<A NAME="ch09lev3sec4"></A><H5 class="docSection3Title"> System Overview</H5>
+<P class="docText">This is a short prose description of what the system's function is, who its users are, and any important background or constraints. The intent is to provide readers with a consistent mental model of the system and its purpose. Sometimes the project at large will have a system overview, in which case this section of the architectural documentation simply points to that.</P>
+
+<A NAME="ch09lev3sec5"></A><H5 class="docSection3Title"> Mapping between Views</H5>
+<P class="docText">Since all of the views of an architecture describe the same system, it stands to reason that any two views will have much in common. Helping a reader of the documentation understand the relationships among views will give him a powerful insight into how the architecture works as a unified conceptual whole. Being clear about the relationship by providing mappings between views is the key to increased understanding and decreased confusion.</P>
+<P class="docText">For instance, each module may map to multiple runtime elements, such as when classes map to objects. Complications arise when the mappings are not one to one, or when runtime elements of the system do not exist as code elements at all, such as when they are imported at runtime or incorporated at build or load time. These are relatively simple one- (or none-) to-many mappings. In general, though, <span class="docEmphasis">parts</span> of elements in one view can map to <span class="docEmphasis">parts</span> of elements in another view.</P>
+<P class="docText">It is not necessary to provide mappings between every pair of views. Choose the ones that provide the most insight.</P>
+
+<A NAME="ch09lev3sec6"></A><H5 class="docSection3Title"> Element List</H5>
+<P class="docText">The element list is simply an index of all of the elements that appear in any of the views, along with a pointer to where each one is defined. This will help stakeholders look up items of interest quickly.</P>
+
+<A NAME="ch09lev3sec7"></A><H5 class="docSection3Title"> Project Glossary</H5>
+<P class="docText">The glossary lists and defines terms unique to the system that have special meaning. A list of acronyms, and the meaning of each, will also be appreciated by stakeholders. If an appropriate glossary already exists, a pointer to it will suffice here.</P>
+
+
+<A NAME="ch09lev2sec5"></A><H4 class="docSection2Title"> WHY THE ARCHITECTURE IS THE WAY IT IS: RATIONALE</H4>
+<P class="docText">Similar in purpose to the rationale for a view or the rationale for an interface design, cross-view rationale explains how the overall architecture is in fact a solution to its requirements. One might use the rationale to explain</P>
+<UL>
+<LI><P class="docList">the implications of system-wide design choices on meeting the requirements or satisfying constraints.</P></LI>
+<LI><P class="docList">the effect on the architecture when adding a foreseen new requirement or changing an existing one.</P></LI>
+<LI><P class="docList">the constraints on the developer in implementing a solution.</P></LI>
+<LI><P class="docList">decision alternatives that were rejected.</P></LI>
+</UL>
+<P class="docText">In general, the rationale explains why a decision was made and what the implications are in changing it.</P>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch09lev1sec4.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch09lev1sec6.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

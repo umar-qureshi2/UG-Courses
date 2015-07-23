@@ -1,0 +1,73 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="10.3 Database Construction"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch10lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch10lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch10lev1sec3"></A><H3 class="docSection1Title">10.3 Database Construction</H3>
+<P class="docText">The extracted information is converted into a standard format for storage in a database during database construction. It is necessary to choose a database model. When doing so, consider the following:</P>
+<UL>
+<LI><P class="docList">It should be a well-known model, to make replacing one database implementation with another relatively simple.</P></LI>
+<LI><P class="docList">It should allow for efficient queries, which is important given that source models can be quite large.</P></LI>
+<LI><P class="docList">It should support remote access of the database from one or more geographically distributed user interfaces.</P></LI>
+<LI><P class="docList">It supports view fusion by combining information from various tables.</P></LI>
+<LI><P class="docList">It supports query languages that can express architectural patterns.</P></LI>
+<LI><P class="docList">Checkpointing should be supported by implementations, which means that intermediate results can be saved. This is important in an interactive process in that it gives the user the freedom to explore with the comfort that changes can always be undone.</P></LI>
+</UL>
+<P class="docText">The Dali workbench, for example, uses a relational database model. It converts the extracted views (which may be in many different formats depending on the tools used to extract them) into the Rigi Standard Form. This format is then read in by a perl script and output in a format that includes the necessary SQL code to build the relational tables and populate them with the extracted information. <A class="docLink" HREF="#ch10fig02">Figure 10.2</A> gives an outline of this process.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig02"></A>Figure 10.2. Conversion of the extracted information to SQL format</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="85" src="FILES/10fig02.gif" ALT="graphics/10fig02.gif"></p>
+</CENTER>
+<P class="docText">An example of the generated SQL code to build and populate the relational tables is shown in <A class="docLink" HREF="#ch10list01">Figure 10.3</A>.</P>
+<P class="docText">When the data is entered into the database, two additional tables are generated: <span class="docEmphasis">elements</span> and <span class="docEmphasis">relationships</span>. These list the extracted elements and relationships, respectively.</P>
+<P class="docText">Here, the workbench approach makes it possible to adopt new tools and techniques, other than those currently available, to carry out the conversion from whatever format(s) an extraction tool uses. For example, if a tool is required to handle a new language, it can be built and its output can be converted into the workbench format.</P>
+<P class="docText">In the current version of the Dali workbench, the POSTGRES relational database provides functionality through the use of SQL and perl for generating and manipulating the architectural views (examples are shown in <A class="docLink" HREF="0321154959_ch10lev1sec5.html#ch10lev1sec5">Section 10.5</A>). Changes can easily be made to the SQL scripts to make them compatible with other SQL implementations.</P>
+
+<H5 class="docExampleTitle"><A NAME="ch10list01"></A>Figure 10.3 Example of SQL code generated in Dali</H5>
+<PRE>
+create table calls( caller text, callee text );
+
+create table access( func text, variable text );
+
+create table defines_var( file text, variable text );
+
+...
+
+insert into calls values( 'main', 'control' );
+
+insert into calls values( 'main', 'clock' );
+
+...
+
+insert into accesses values( 'main', 'stat 1' );
+
+</PRE>
+<A NAME="ch10lev2sec4"></A><H4 class="docSection2Title"> GUIDELINES</H4>
+<P class="docText">When constructiong the database, consider the following.</P>
+<UL>
+<LI><P class="docList">Build database tables from the extracted relations to make processing of the data views easier during view fusion. For example, build a table that stores the results of a particular query so that the query need not be run again. If the results are required, you can access them easily through the table.</P></LI>
+<LI><P class="docList">As with any database construction, carefully consider the database design before you get started. What will the primary (and possibly secondary) key be? Will any database joins be particularly expensive, spanning multiple tables? In reconstruction the tables are usually quite simple—on the order of <TT>dir_contains_dir</TT> or <TT>function_calls_function</TT>—and the primary key is a function of the entire row.</P></LI>
+<LI><P class="docList">Use simple lexical tools like perl and awk to change the format of data that was extracted using any tools into a format that can be used by the workbench.</P></LI>
+</UL>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch10lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch10lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

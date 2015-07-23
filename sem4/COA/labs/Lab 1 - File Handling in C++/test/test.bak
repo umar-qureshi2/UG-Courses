@@ -1,0 +1,13 @@
+#include <iostream>
+#include <fstream>
+
+int main () {
+  ofstream myfile;
+  myfile.open ("example.txt");
+	if (myfile) {
+  		myfile << "Writing this to a file.\n";
+  	}
+  myfile.close();
+  getch();
+  return 0;
+}

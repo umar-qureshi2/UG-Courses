@@ -1,0 +1,55 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docChapterTitle"--><!--SafTocEntry="Chapter 18. Building Systems from Off-the-Shelf Components"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch17lev1sec7.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch18lev1sec1.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch18"></A><H2 class="docChapterTitle">Chapter 18. Building Systems from Off-the-Shelf Components</H2>
+
+<P class="docText"><span class="docEmphasis">with Robert C. Seacord and Matthew Bass</span></P>
+<P class="docText"><span class="docEmphasis">Note:</span> Robert C. Seacord is a senior member of the technical staff at the Software Engineering Institute; Matthew Bass is a member of the technical staff at the Software Engineering Institute.</P>
+<blockquote>
+
+<p class="docText"><span class="docEmphasis">It</span>'<span class="docEmphasis">s so beautifully arranged on the plate—you just know someone</span>'<span class="docEmphasis">s fingers have been all over it.</span></p>
+<p class="docText">—— Julia Child, on nouvelle cuisine</p></blockquote>
+<P class="docText">Throughout this book we have emphasized the connection between desired quality attributes and architecture. Our underlying assumption has been that control over system design means control over the qualities achieved. Increasingly this is not true. Systems are being constructed with more and more off-the-shelf components, for economic reasons and because the expertise needed in many technical areas is so specialized. Components change the design process; they can also constrain the architecture. Although typically chosen to achieve some set of functionality, components also embody architectural (and hence quality) assumptions. The architect must ensure that these assumptions are the right ones and that they are compatible.</P>
+<P class="docText">Operating systems impose certain solutions and have since the 1960s. Database management systems have been around since the early 1970s. Because of the ubiquity of computers the possibility of using externally developed components to achieve some system goals has been increasing dramatically. Even the availability of components may not cause you to use or keep them (see the sidebar <A class="docLink" HREF="#ch18sb01">Quack.com</A>), but you certainly need to understand how to incorporate them into your system.</P>
+
+<P class="docText">For systems built from off-the-shelf (OTS) components, component selection involves a discovery process, which seeks to identify <span class="docEmphasis">assemblies</span> of compatible components, understanding how they can achieve the desired quality attributes, and deciding whether they can be integrated into the system being built.</P>
+<P><A NAME="ch18sb01"></A><TABLE CELLSPACING="0" WIDTH="90%" BORDER="1"><TR><TD>
+<H2 class="docSidebarTitle"><A class="docLink" target="_blank" HREF="http://quack.com/default.htm">Quack.com</A></H2>
+<P class="docText"><span class="docEmphasis">The beginning:</span></P>
+<blockquote>
+<p class="docText">The <A class="docLink" target="_blank" HREF="http://quack.com/default.htm">Quack.com</A> company was founded in late 1998 by two former SEI colleagues (Jeromy Carri&eacute;re and Steve Woods), as well as University of Hawaii professor Alex Quilici. Their goal was to make only commerce and content available over the telephone. They built a demo, and by late summer 1999 had convinced a few "angels" and venture capitalists to give them funding. They understood the importance of a sound architecture and built their "real" system as a voice portal on top of a speech-application publishing platform and toolkit. This allowed them to quickly build and maintain a wide variety of applications and potentially be the underlying platform for a whole new industry. Nine months after acquiring their first funding, they released a preliminary Web-based consumer voice portal. It allowed people to access information about weather, movies, stocks, and so forth using a telephone. On August 31, 2000, America Online acquired Quack. A short time later, October 25, 2000, AOL released AOLbyPhone, which had been built by Quack's team; it used their platform and toolkit.</p>
+</blockquote>
+<P class="docText">The story of <A class="docLink" target="_blank" HREF="http://quack.com/default.htm">Quack.com</A> is instructive in terms of the roles and limitations of off-the-shelf components. As can be inferred, Quack was under severe time-to-market pressure to demonstrate a voice portal. Other startups were also active in this space, some of them better funded. Quack searched for as many available components as they could locate, and constructed their architecture to accommodate them. This played a significant part in their ability to get to market nine months after they first acquired external funding.</P>
+<P class="docText">Quack's first portal was important to their success and useful in its own right, but they never had a broad user base for it. Once they were acquired by AOL, however, their business focus changed. With its 34,000,000 subscribers, AOL quickly elevated availability and performance as primary business drivers. <A class="docLink" target="_blank" HREF="http://quack.com/default.htm">Quack.com</A> was now subject to much more intense use and more stringent availability requirements.</P>
+<P class="docText">Their response was to rewrite the components. Their architecture was flexible enough to allow scaling up to the expected number of users and to support the required availability, but they did not know how the components would respond. By rewriting them (in the order of their criticality), they gained control of the performance and availability of the whole system.</P>
+<P class="docText">This experience is echoed in other systems we have seen. We recently visited a small startup company launching a software product line. The people there knew that there is no second chance to make a first impression, and so reliability and scalability led their list of architectural concerns. As their architect told us, "If the function is unimportant, COTS will do. If there's an actual or de facto standard for some aspect of the system, then COTS will do, as there is likely to be a choice of more than one vendor that meets the standard. But when in doubt, with no practical workarounds available, we will not hesitate to build the components in-house." Before coming to this small start- up, this architect helped build a major Web search engine and content provider. In four years, he watched usage go from 45,000 to 45,000,000 page views per day. With millions of people using the system, he learned very quickly to do what it takes to avoid being awakened in the middle of the night with a business-threatening problem.</P>
+<P class="docText">Off-the-shelf components fill an important role in providing large amounts of functionality in quickly available packaging. However, they also can prevent the architect from having total control over the quality attributes that the system displays. Like so much in software engineering, components are extremely useful but they are not the silver bullet that they are sometimes portrayed to be.</P>
+<P class="docText"><span class="docEmphasis">— LJB and PCC</span></P>
+</TD></TR></TABLE></P>
+<P class="docText">This chapter describes a lightweight, common-sense process that can guide component selection. The process begins by hypothesizing what it means for the components you have chosen to "work," building some simple prototypes to test those hypotheses, evolving what works, and keeping a backup plan in case your guess is wrong. The key insight here is that choosing and selecting single components is not enough. You need to choose and test assemblies of components that will work in concert.</P>
+<P class="docText">The chapter includes a demonstration of the process that was applied to a recently fielded system.</P>
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch17lev1sec7.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch18lev1sec1.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

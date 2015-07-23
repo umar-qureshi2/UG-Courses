@@ -1,0 +1,915 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title>CPU Flags and Data Manipulation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Expires" content="Wed, 31 Jan 2007 23:59:59 GMT" />
+    </head>
+    <body>
+    <p>
+        CIS-77 Home
+        <a href="http://www.c-jump.com/CIS77/CIS77syllabus.htm"><tt>http://www.c-jump.com/CIS77/CIS77syllabus.htm</tt></a>
+    </p>
+    <h3>
+        CPU Flags and Data Manipulation
+    </h3>
+    <hr />
+        <ol>
+            <li><a href="#F77_0010_add_sub">Adding and Subtracting Integers</a></li>
+            <li><a href="#F77_0020_processor_flags">The Processor Flags (Condition Codes)</a></li>
+            <li><a href="#F77_0030_carry_flag">Carry Flag</a></li>
+            <li><a href="#F77_0040_overflow">Overflow Condition</a></li>
+            <li><a href="#F77_0050_overflow_cont">Overflow Condition, Cont</a></li>
+            <li><a href="#F77_0060_overflow_cont">Overflow Condition, Cont</a></li>
+            <li><a href="#F77_0070_inc_dec">INC and DEC Instructions</a></li>
+            <li><a href="#F77_0080_inc_dec_cont">INC and DEC Instructions, Cont.</a></li>
+            <li><a href="#F77_0090_inc_and_example">INC and DEC Example</a></li>
+            <li><a href="#F77_0100_clc_stc_cmc">CLC, STC, CMC - Direct Carry Flag Manipulation</a></li>
+            <li><a href="#F77_0110_overflow_flag">Overflow Flag Examples</a></li>
+            <li><a href="#F77_0120_lahf_sahf">The LAHF and SAHF Instructions</a></li>
+            <li><a href="#F77_0130_neg_instruction">The NEG Instruction</a></li>
+            <li><a href="#F77_0140_shl_sal_instructions">The SHL Instruction, Shift Logical Bit Left</a></li>
+            <li><a href="#F77_0150_shr_instruction">The SHR Instruction, Shift Logical Bit Right</a></li>
+            <li><a href="#F77_0160_sar_instruction">The SAR Instruction, Shift Arithmetic Right</a></li>
+        </ol>
+<a id="F77_0010_add_sub"></a>
+
+
+    <h3>
+        1. Adding and Subtracting Integers
+    </h3>
+ <hr />
+ <ul>
+  <li>
+   <p>
+    The <span style="color: blue">ADD</span>, <span style="color: blue">INC</span> (Increment), <span style="color: blue">SUB</span>, and <span style="color: blue">DEC</span> (Decrement) instructions have two requirements:
+   </p>
+   <ul>
+    <li>
+     <p>
+      If there are two operands, only one operand can be a memory operand.
+     </p>
+    </li>
+    <li>
+     <p>
+      If there are two operands, both must be the same size.
+      For example,
+     </p>
+    </li>
+   </ul>
+<pre>    add ebx, eax      ; Add two registers, result stored in EBX
+    add eax, [ebx]    ; Add register and a doubleword in memory
+    add [value], 10h  ; Add immediate value to a doubleword
+</pre>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0020_processor_flags"></a>
+
+
+    <h3>
+        2. The Processor Flags (Condition Codes)
+    </h3>
+ <hr />
+ <ul>
+  <li>
+   <p>
+    Processor status is described as <em>condition codes</em>, or <em>status flags</em>.
+   </p>
+  </li>
+  <li>
+   <p>
+    Condition codes refer to the information about <em>most recently executed instruction</em>.
+   </p>
+  </li>
+  <li>
+   <p>
+    For example, if decrementing a register produces zero value, the <strong>zero flag</strong> <span style="color: blue">ZF</span> is set by the processor.
+   </p>
+   <ul style="list-style-type:none;">
+    <li>
+     <p>
+       (A programmer might say: <em>zero condition has occurred</em>.)
+     </p>
+    </li>
+   </ul>
+  </li>
+  <li>
+   <p>
+    Each flag is a single bit in the <em>flag register</em>, <span style="color: blue">EFLAGS</span>.
+   </p>
+  </li>
+  <li>
+   <p>
+    If last addition or subtraction produced a negative result, the <strong>sign flag</strong> <span style="color: blue">SF</span> is set.
+   </p>
+  </li>
+  <li>
+   <p>
+    Sign flag <span style="color: blue">SF</span> is equal to the <strong>high-order bit</strong> of the result of an operation:
+   </p>
+   <ul>
+    <li>
+     <p>
+      <strong>0</strong> is positive,
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>1</strong> is negative.
+     </p>
+    </li>
+   </ul>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0030_carry_flag"></a>
+
+
+    <h3>
+        3. Carry Flag
+    </h3>
+ <hr />
+ <ul>
+  <li>
+   <p>
+    When numbers are added and subtracted, <strong>carry flag</strong> <span style="color: blue">CF</span> represents
+   </p>
+   <ul>
+    <li>
+     <p>
+      <strong>9th bit</strong>, if 8-bit numbers added
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>17th bit</strong>, if 16-bit numbers added
+     </p>
+    </li>
+    <li>
+     <p>
+      <strong>33rd bit</strong>, if 32-bit numbers added
+     </p>
+    </li>
+    <li>
+     <p>
+      and so on.
+     </p>
+    </li>
+   </ul>
+  </li>
+  <li>
+   <p>
+    With addition, the <strong>carry flag</strong> <span style="color: blue">CF</span> records a <em>carry out of the high order bit</em>. For example,
+   </p>
+<pre>        mov al, -1
+        add al, 1    ; AL = 0, <span style="color: blue">ZF</span> and <span style="color: blue">CF</span> flags are set to 1
+</pre>
+  </li>
+  <li>
+   <p>
+    When a larger number is subtracted from the smaller one, the <strong>carry flag</strong> <span style="color: blue">CF</span> indicates a <strong>borrow</strong>. For example,
+   </p>
+<pre>        mov al, 6
+        sub al, 9    ; AL = -3, <span style="color: blue">SF</span> and <span style="color: blue">CF</span> flags are set to 1
+</pre>
+   <p>
+    The result is -3, represented internally as <strong>0FDh</strong> &nbsp;(binary <tt>11111101</tt>).
+   </p>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0040_overflow"></a>
+
+
+    <h3>
+        4. Overflow Condition
+    </h3>
+ <hr />
+ <ul>
+  <li>
+   <p>
+    Arithmetic operations have a potential to run into a condition known as <em>overflow</em>.
+   </p>
+  </li>
+  <li>
+   <p>
+    Overflow occurs with respect to the <strong>size of the data type</strong> that must accommodate the result.
+   </p>
+  </li>
+  <li>
+   <p>
+    Overflow indicates that the result was
+   </p>
+   <ul>
+    <li>
+     <p>
+      <em>too large</em>, if positive, or
+     </p>
+    </li>
+    <li>
+     <p>
+      <em>too small</em>, if negative,
+     </p>
+    </li>
+   </ul>
+   <p>
+    to fit in the original data type.
+   </p>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0050_overflow_cont"></a>
+
+
+    <h3>
+        5. Overflow Condition, Cont
+    </h3>
+ <hr />
+ <ul>
+  <li>
+   <p>
+    When two <span style="color: blue">signed</span> 2's complement numbers are added, the <strong>overflow flag</strong> <span style="color: blue">OF</span> indicates one of the following:
+   </p>
+   <ol>
+    <li>
+     <p>
+       both operands are positive and the result is negative, or
+     </p>
+    </li>
+    <li>
+     <p>
+      both operands are negative and the result is positive.
+     </p>
+    </li>
+   </ol>
+  </li>
+  <li>
+   <p>
+    When two <span style="color: blue">unsigned</span> numbers are added, the <strong>carry flag</strong> <span style="color: blue">CF</span> indicates an overflow, that is,
+   </p>
+   <ul style="list-style-type:none;">
+    <li>
+     <p>
+       there is a <strong>carry out</strong> of the leftmost (<em>most significant</em>) bit.
+     </p>
+    </li>
+   </ul>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0060_overflow_cont"></a>
+
+
+    <h3>
+        6. Overflow Condition, Cont
+    </h3>
+ <hr />
+ <ul>
+  <li>
+   <p>
+    Computers don't know the difference between <span style="color: blue">signed</span> and <span style="color: blue">unsigned</span> binary numbers.
+   </p>
+  </li>
+  <li>
+   <p>
+    This is a <em>good thing</em>, because it makes logic circuits <em>fast</em>.
+   </p>
+  </li>
+  <li>
+   <p>
+    This is also a <em>bad thing</em>, because distinguishing between <span style="color: blue">signed</span> and <span style="color: blue">unsigned</span> becomes programmer's responsibility.
+   </p>
+  </li>
+  <li>
+   <p>
+    Distinction between <span style="color: blue">signed</span> and <span style="color: blue">unsigned</span> data types is very important when detecting an <strong>overflow</strong> after addition or subtraction.
+   </p>
+  </li>
+  <li>
+   <p>
+    Correct approach to <strong>detect the overflow</strong> is to consider two separate cases:
+   </p>
+   <ol>
+    <li>
+     <p>
+       Overflow when adding <span style="color: blue">signed</span> numbers is indicated by the <strong>overflow flag</strong>, <span style="color: blue">OF</span>.
+     </p>
+    </li>
+    <li>
+     <p>
+      Overflow when adding <span style="color: blue">unsigned</span> numbers is indicated by the <strong>carry flag</strong>, <span style="color: blue">CF</span>.
+     </p>
+    </li>
+   </ol>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0070_inc_dec"></a>
+
+
+    <h3>
+        7. INC and DEC Instructions
+    </h3>
+ <hr />
+ <ul>
+  <li>
+   <p>
+    The <span style="color: blue">INC</span> instruction adds one to the destination operand,
+    <br />
+    while preserving the state of the carry flag <span style="color: blue">CF</span>:
+   </p>
+   <ul>
+    <li>
+     <p>
+      The destination operand can be a <span style="color: blue">register</span> or a <span style="color: blue">memory</span> location.
+     </p>
+    </li>
+    <li>
+     <p>
+      This instruction allows a <em>loop counter</em> to be updated without disturbing the <span style="color: blue">CF</span> flag.
+     </p>
+     <ul style="list-style-type:none;">
+      <li>
+       <p>
+         (Use <span style="color: blue">ADD</span> instruction with an <strong>immediate operand</strong> of <strong>1</strong> to perform an increment operation that does update the <span style="color: blue">CF</span> flag.)
+       </p>
+      </li>
+     </ul>
+    </li>
+   </ul>
+  </li>
+  <li>
+   <p>
+    The <span style="color: blue">DEC</span> instruction subtracts one from the destination operand,
+    <br />
+    while preserving the state of the <span style="color: blue">CF</span> flag.
+   </p>
+   <ul style="list-style-type:none;">
+    <li>
+     <p>
+       (To perform a decrement operation that does update the <span style="color: blue">CF</span> flag, use a <span style="color: blue">SUB</span> instruction with an <strong>immediate operand</strong> of <strong>1</strong>.)
+     </p>
+    </li>
+   </ul>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0080_inc_dec_cont"></a>
+
+
+    <h3>
+        8. INC and DEC Instructions, Cont.
+    </h3>
+ <hr />
+ <ul>
+  <li>
+   <p>
+    Especially useful for incrementing and decrementing counters.
+   </p>
+  </li>
+  <li>
+   <p>
+    A register is the best place to keep a counter.
+   </p>
+  </li>
+  <li>
+   <p>
+    The <span style="color: blue">INC</span> and <span style="color: blue">DEC</span> instructions
+   </p>
+   <ul>
+    <li>
+     <p>
+      always treat integers as <span style="color: blue">unsigned</span> values
+     </p>
+    </li>
+    <li>
+     <p>
+      never update the <strong>carry flag</strong> <span style="color: blue">CF</span>, which would otherwise (i.e. <span style="color: blue">ADD</span> and <span style="color: blue">SUB</span>) be updated for carries and borrows.
+     </p>
+    </li>
+   </ul>
+  </li>
+  <li>
+   <p>
+    The instructions affect the <span style="color: blue">OF</span>, <span style="color: blue">SF</span>, <span style="color: blue">ZF</span>, <span style="color: blue">AF</span>, and <span style="color: blue">PF</span> flags just like addition and subtraction of one.
+   </p>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0090_inc_and_example"></a>
+
+
+    <h3>
+        9. INC and DEC Example
+    </h3>
+ <hr />
+ <ul style="list-style-type:none;">
+  <li>
+<pre>    xor al, al   ; Sets AL = 0. XOR instruction always clears <span style="color: blue">OF</span> and <span style="color: blue">CF</span> flags.
+    mov bl, 0FEh
+    inc bl       ; 0FFh <span style="color: blue">SF</span> = 1, <span style="color: blue">CF</span> flag not affected.
+    inc bl       ; 000h <span style="color: blue">SF</span> = 0, <span style="color: blue">ZF</span> = 1, <span style="color: blue">CF</span> flag not affected.
+</pre>
+  </li>
+ </ul>
+ <hr />
+ <ul style="list-style-type:none;">
+  <img src="http://www.c-jump.com/CIS77/asm_images/carry_flag_operation.png" alt="operation of the carry flag" />
+  <li>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0100_clc_stc_cmc"></a>
+
+
+    <h3>
+        10. CLC, STC, CMC - Direct Carry Flag Manipulation
+    </h3>
+ <hr />
+ <ul style="list-style-type:none;">
+  <li>
+   <p>
+     The following instructions allow direct <strong>carry flag</strong> manipulation:
+   </p>
+   <ul style="list-style-type:none;">
+    <li>
+     <p>
+       <span style="color: blue">CLC</span> clears Carry Flag, <span style="color: blue">CF</span> = 0
+     </p>
+    </li>
+    <li>
+     <p>
+      <span style="color: blue">STC</span> sets Carry Flag, <span style="color: blue">CF</span> = 1
+     </p>
+    </li>
+    <li>
+     <p>
+      <span style="color: blue">CMC</span> complements Carry Flag, <span style="color: blue">CF</span> = NOT( <span style="color: blue">CF</span> ).
+     </p>
+    </li>
+   </ul>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0110_overflow_flag"></a>
+
+
+    <h3>
+        11. Overflow Flag Examples
+    </h3>
+ <hr />
+ <ul style="list-style-type:none;">
+  <li>
+   <p>
+     Examples of 8-bit <span style="color: blue">signed</span> and <span style="color: blue">unsigned</span> addition and subtraction:
+   </p>
+<pre>            .DATA
+    mem8    BYTE    39       ;                                           0010 0111   27
+                             ;
+            .CODE
+    ; <span style="color: blue">Addition</span> + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+                             ;                    <span style="color: blue">signed</span>    <span style="color: blue">unsigned</span>     <span style="color: blue">binary</span>      <span style="color: blue">hex</span>
+            mov   al, 26     ; Start with register   26       26         0001 1010   1A
+            inc   al         ; Increment             +1       +1
+                             ;                     ----     ----
+                             ;                       27       27         0001 1011   1B
+            add   al, 76     ; Add immediate        +76      +76         0100 1100   4C
+                             ;                     ----     ----
+                             ;                      103      103         0110 0111   67
+            add   al, [mem8] ; Add memory           +39      +39         0010 0111   27
+                             ;                     ----     ----
+            mov   ah, al     ; Copy to AH          -114      142         1000 1110   8E <span style="background-color: yellow">(OF)</span> <span style="background-color: yellow">(SF)</span>
+            add   al, ah     ; Add register      + -114     +142         1000 1110   8E
+                             ;                     ----     ----
+                             ;                       28       28         0001 1100   1C <span style="background-color: yellow">(OF)</span> <span style="background-color: yellow">(CF)</span>
+    ; <span style="color: blue">Subtraction</span>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+                             ;                    <span style="color: blue">signed</span>    <span style="color: blue">unsigned</span>     <span style="color: blue">binary</span>      <span style="color: blue">hex</span>
+            mov   al, 95     ; Load register         95       95         0101 1111   5F
+            dec   al         ; Decrement           -  1     -  1
+                             ;                     ----     ----
+                             ;                       94       94         0101 1110   5E
+            sub   al, 23     ; Subtract immediate  - 23     - 23         1110 1001   E9
+                             ;                     ----     ----
+                             ;                       71       71         0100 0111   47
+            mov   [mem8],122 ; Load memory
+            sub   al, [mem8] ; Subtract memory    - 122    - 122         0111 1010   7A
+                             ;                     ----     ----
+                             ;                      -51      205         1100 1101   CD <span style="background-color: yellow">(SF)</span> <span style="background-color: yellow">(CF)</span>:borrow
+            mov   ah, 119    ; Load register        
+            sub   al, ah     ; and subtract       - 119    - 119         0111 0111   77
+                             ;                     ----     ----
+                             ;                       86       86         0101 0110   56 <span style="background-color: yellow">(OF)</span>
+</pre>
+  </li>
+ </ul>
+ <ul style="list-style-type:none;">
+  <li>
+   <p>
+     <span style="background-color: yellow">(OF)</span> <strong>overflow flag</strong> indicates that result is too large to fit in the 8-bit destination operand:
+   </p>
+   <ul>
+    <li>
+     <p>
+      the sum of two positive <span style="color: blue">signed</span> operands exceeds <strong>127</strong>.
+     </p>
+    </li>
+    <li>
+     <p>
+      the difference of two <span style="color: blue">negative</span> operands is less than <strong>-128</strong>.
+     </p>
+    </li>
+   </ul>
+  </li>
+  <li>
+   <p>
+    <span style="background-color: yellow">(CF)</span> <strong>carry flag</strong> indicates that the sum of two <span style="color: blue">unsigned</span> operands exceeded <strong>255</strong>.
+   </p>
+  </li>
+  <li>
+   <p>
+    <span style="background-color: yellow">(SF)</span> <strong>sign flag</strong> indicates that result goes below <strong>0</strong>.
+   </p>
+  </li>
+  <li>
+   <p>
+    To verify the above conditions, try
+    <a href="http://www.c-jump.com/CIS77/ASM/Flags/ADD_SUB_EFLAGS.exe" target="_blank"><tt>ADD_SUB_EFLAGS.exe</tt></a>
+    demo program
+    <a href="http://www.c-jump.com/CIS77/samples/ADD_SUB_EFLAGS.htm" target="_blank"><tt>ADD_SUB_EFLAGS.ASM</tt></a>
+    ( download
+    <a href="http://www.c-jump.com/CIS77/samples/ADD_SUB_EFLAGS.ASM" target="_blank">source</a>
+    here.)
+   </p>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0120_lahf_sahf"></a>
+
+
+    <h3>
+        12. The LAHF and SAHF Instructions
+    </h3>
+ <hr />
+ <ul>
+  <li>
+   <p>
+    <span style="color: blue">LAHF</span> instruction loads lower byte of the <span style="color: blue">EFLAGS</span> register into <span style="color: blue">AH</span> register.
+   </p>
+  </li>
+  <li>
+   <p>
+    The lowest 8 bits of the flags are transferred:
+   </p>
+   <ul>
+    <li>
+     <p>
+      Sign
+     </p>
+    </li>
+    <li>
+     <p>
+      Zero
+     </p>
+    </li>
+    <li>
+     <p>
+      Auxiliary Carry
+     </p>
+    </li>
+    <li>
+     <p>
+      Parity
+     </p>
+    </li>
+    <li>
+     <p>
+      Carry
+     </p>
+    </li>
+   </ul>
+  </li>
+  <li>
+   <p>
+    Instruction format:
+   </p>
+<pre>    lahf
+</pre>
+  </li>
+  <li>
+   <p>
+    <span style="color: blue">SAHF</span> restores the value of lower byte flags. Format:
+   </p>
+<pre>    sahf
+</pre>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0130_neg_instruction"></a>
+
+
+    <h3>
+        13. The NEG Instruction
+    </h3>
+ <hr />
+ <ul>
+  <li>
+   <p>
+    The <span style="color: blue">NEG</span> instruction negates a value by finding 2's complement of its single operand.
+   </p>
+  </li>
+  <li>
+   <p>
+    This simply means <em>multiply operand by</em> <strong>-1</strong>.
+   </p>
+  </li>
+  <li>
+   <p>
+    When a positive value is negated the result is negative.
+   </p>
+  </li>
+  <li>
+   <p>
+    A negative value will become positive.
+   </p>
+  </li>
+  <li>
+   <p>
+    Zero remains zero.
+   </p>
+  </li>
+  <li>
+   <p>
+    For example,
+   </p>
+<pre>        mov   al, -1   ; Load register
+        neg   al       ; AL now has 1
+</pre>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0140_shl_sal_instructions"></a>
+
+
+    <h3>
+        14. The SHL Instruction, Shift Logical Bit Left
+    </h3>
+ <hr />
+     <table border="0" cellspacing="0" cellpadding="2">
+         <tr>
+             <td valign="top">
+ <ul>
+  <li>
+   <p>
+    <span style="color: blue">SHL</span> is one of the <em>Bit Manipulation Instructions</em>:
+   </p>
+<pre>        mov al, 75h
+        mov cl, 3
+        shl al, cl
+</pre>
+  </li>
+  <li>
+   <p>
+    The instruction format is
+   </p>
+   <ul style="list-style-type:none;">
+    <li>
+     <p>
+       <span style="color: blue">SHL</span> <em>destination</em>, <em>count</em>
+     </p>
+    </li>
+   </ul>
+   <p>
+    where &nbsp;<tt>1 &lt;= <em>count</em> &lt;= 31</tt>.
+   </p>
+  </li>
+  <li>
+   <p>
+    All bits in the <em>destination</em> operand are shifted left <em>count</em> times.
+   </p>
+  </li>
+  <li>
+   <p>
+    The less-significant bit (LSB) is filled with <strong>0</strong> each time.
+   </p>
+  </li>
+  <li>
+   <p>
+    The most-significant bit (MSB) is placed into carry flag <span style="color: blue">CF</span>.
+   </p>
+  </li>
+  <li>
+   <p>
+    Other flags are modified according to the final result.
+   </p>
+  </li>
+ </ul>
+             </td>
+             <td valign="top">
+ <ul style="list-style-type:none;">
+  <li>
+   <p>
+     Execution of &nbsp;<strong><tt><span style="color: blue">SHL</span> AL, CL</tt></strong>&nbsp;:
+   </p>
+   <p>
+    &nbsp;
+    <img src="http://www.c-jump.com/CIS77/asm_images/shl_al_cl.png" alt="Execution of SHL AL, CL" />
+   </p>
+  </li>
+ </ul>
+             </td>
+         </tr>
+     </table>
+ <ul style="list-style-type:none;">
+  <li>
+   <p>
+     <span style="color: blue">SHL</span> is very useful for computing powers of <strong>2</strong> and multiplication by <strong>2</strong>, since each time binary number is shifted left, its numeric value doubles.
+   </p>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0150_shr_instruction"></a>
+
+
+    <h3>
+        15. The SHR Instruction, Shift Logical Bit Right
+    </h3>
+ <hr />
+ <ul>
+  <li>
+   <p>
+    <span style="color: blue">SHR</span> does the opposite of <span style="color: blue">SHL</span>.
+   </p>
+  </li>
+  <li>
+   <p>
+    Zeroes are shifted in from the left, right bits moved to <span style="color: blue">CF</span>.
+   </p>
+   <p>
+    &nbsp;
+   </p>
+   <ul style="list-style-type:none;">
+    <li>
+     <p>
+       Operation of <span style="color: blue">SHR</span>:
+     </p>
+     <p>
+      &nbsp;
+     </p>
+     <p>
+      &nbsp;
+      <img src="http://www.c-jump.com/CIS77/asm_images/operation_shr.png" alt="Operation of SHR" />
+     </p>
+    </li>
+   </ul>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+<a id="F77_0160_sar_instruction"></a>
+
+
+    <h3>
+        16. The SAR Instruction, Shift Arithmetic Right
+    </h3>
+ <hr />
+     <table border="0" cellspacing="0" cellpadding="2">
+         <tr>
+             <td valign="top">
+ <ul>
+  <li>
+   <p>
+    Same as <span style="color: blue">SHR</span>, except that most-significant bit (MSB) is shifted back to itself.
+   </p>
+  </li>
+  <li>
+   <p>
+    This preserves the original sign of the destination operand, because MSB is the <strong>sign bit</strong>.
+   </p>
+  </li>
+  <li>
+   <p>
+    Each shift divides the destination operand by <strong>2</strong>, while preserving the sign.
+   </p>
+  </li>
+  <li>
+   <p>
+    For example,
+   </p>
+<pre>    mov cl, -74 ; 2's complement of -74 is 0B6h
+    sar cl, 1   ; CL is now -37, or 0DBh
+</pre>
+  </li>
+  <li>
+   <p>
+    Note that LSB is shifted into the <strong>carry flag</strong> <span style="color: blue">CF</span>.
+   </p>
+  </li>
+ </ul>
+             </td>
+             <td valign="top">
+ <ul style="list-style-type:none;">
+  <li>
+   <p>
+     Operation of &nbsp;<strong><tt><span style="color: blue">SAR</span> CL, 1</tt></strong>&nbsp;:
+   </p>
+   <p>
+    &nbsp;
+    <img src="http://www.c-jump.com/CIS77/asm_images/sar_cl_1.png" alt="Operation of SAR CL, 1" />
+   </p>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+             </td>
+         </tr>
+     </table>
+ <ul style="list-style-type:none;">
+  <li>
+   <p>
+    &nbsp;
+   </p>
+  </li>
+ </ul>
+ <hr />
+
+
+    </body>
+</html>
+

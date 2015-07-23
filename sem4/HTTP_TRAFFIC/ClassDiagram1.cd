@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="System_App.Form1" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UCAEAAFQCTAgAZKQAAKGCQFSYGA4hGEAMPUIIIFYAAI=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System_App.IPHeader">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAJAADBQCIEEAEAwBAQggAAQAAADAAAAAgAMAAAAQ=</HashCode>
+      <FileName>IPHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System_App.TCPHeader">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAADAoAAAAAAAAMEAjEAggAAUCEABAAEAAEIAAAAAA=</HashCode>
+      <FileName>TCPHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GlobalKeyboardHook">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="GlobalKeyboardHook.LLKeyboardHook" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GlobalKeyboardHook.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Struct Name="GlobalKeyboardHook.keyBoardHookStruct" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GlobalKeyboardHook.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAgAAAACgBDAAAAQEAAAABCCAAQgAgACQ=</HashCode>
+      <FileName>GlobalKeyboardHook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

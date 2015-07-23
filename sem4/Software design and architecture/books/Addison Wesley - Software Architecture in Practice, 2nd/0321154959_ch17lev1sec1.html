@@ -1,0 +1,129 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="17.1 Relationship to the Architecture Business Cycle"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch17.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch17lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch17lev1sec1"></A><H3 class="docSection1Title">17.1 Relationship to the Architecture Business Cycle</H3>
+<P class="docText"><A class="docLink" HREF="#ch17fig01">Figure 17.1</A> shows the Architecture Business Cycle (ABC) as it pertains to Inmedius and the Luther architecture. The quality goals of re-usability, performance, modifiability, flexibility of the end user device, and interoperability with standard commercial infrastructures are driven, as always, by the business goals of the customer and the end user.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch17fig01"></A>Figure 17.1. The ABC as it pertains to Inmedius and Luther</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="340" src="FILES/17fig01.gif" ALT="graphics/17fig01.gif"></p>
+</CENTER>
+<A NAME="ch17lev2sec1"></A><H4 class="docSection2Title"> INFLUENCES ON THE ARCHITECTURE</H4>
+<P class="docText">The next sections elaborate on the things that influence the Luther architecture.</P>
+<A NAME="ch17lev3sec1"></A><H5 class="docSection3Title"> End Users</H5>
+<P class="docText">Inmedius's business is providing computer support for front-line workers. <A class="docLink" HREF="#ch17fig02">Figure 17.2</A> shows such a worker utilizing one of the hardware configurations supported by Luther applications. The worker is performing an industrial process, the steps of which are displayed on the head-mounted display apparatus that he is wearing. The computer is worn on the user's chest and uses a dial as its primary input device. The process is described in a manual stored on the back-office computers, and the manual pages are served to the worker as various steps of the process are completed, which can number more than 500. The worker reports the results of portions of the process to the back office via the system. A part may be replaced, for example, and the part number is reported so that the inventory can be adjusted and any quality-control ramifications analyzed.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch17fig02"></A>Figure 17.2. A field service worker using the Inmedius solution. Courtesy of Inmedius Corporation.</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="319" src="FILES/17fig02.gif" ALT="graphics/17fig02.gif"></p>
+</CENTER>
+<P class="docText">The workers may need to use one or both hands to perform the process, so those hands are not available for computer input. Further, workers may need to be mobile to carry out the tasks.</P>
+<P class="docText">Different processes and customers may require different hardware configurations because requirements, such as mobility and the number of hands available for computer input, can vary.</P>
+
+<A NAME="ch17lev3sec2"></A><H5 class="docSection3Title"> Developing Organization</H5>
+<P class="docText">If the Luther architecture can facilitate the development of complex enterprise solutions in a fraction of the time they take to develop as standalone, "stovepipe" systems, Inmedius gains a significant competitive advantage. To achieve this, the company must meet increasingly shorter time-to-market for enterprise solutions. The development cycles for these solutions have to be in the low single-digit months for Inmedius to remain competitive in its target markets.</P>
+<P class="docText">Solution development must be performed quickly and frugally by a few tens of engineers. The quality of the delivered solution must be high to ensure customer satisfaction. Also, the delivered software artifacts must be easily modifiable so that corrections and enhancements require little effort by Inmedius and do not compromise the integrity of the original solution's architecture.</P>
+
+<A NAME="ch17lev3sec3"></A><H5 class="docSection3Title"> Technology Environment</H5>
+<P class="docText">Luther has been influenced by developments in both software and hardware. As we discussed in <A class="docLink" HREF="0321154959_ch16.html#ch16">Chapter 16</A>, J2EE provides enterprise solutions for commercial organizations. It was a good fit with the Luther requirement to interoperate with back-office processes. J2EE also facilitates the packaging of domain-specific application capabilities into re-usable components that can be combined in different ways.</P>
+<P class="docText">In addition to software influences, emerging hardware technology has influenced Luther—specifically, in the need to support small wireless computers with voice input capabilities and high-resolution, head-mounted displays. On the other hand, differing environments may require different types of devices, each with its own set of capabilities. This imposes a requirement that Luther be flexible with respect to the types of user interfaces supported.</P>
+
+
+<A NAME="ch17lev2sec2"></A><H4 class="docSection2Title"> INFLUENCES ON THE ORGANIZATION</H4>
+<P class="docText">The influences of Luther on the organization are in the areas of organizational structure, software developers' experience, and business approach.</P>
+<A NAME="ch17lev3sec4"></A><H5 class="docSection3Title"> Organizational Structure</H5>
+<P class="docText">Prior to Luther, Inmedius was a solution factory, with each solution developed as a stovepipe application for a specific customer. Organizationally, the Solution Group was the largest engineering group in the company. Luther's development created the need for a Products Group (containing a Component Development Group) to engineer and maintain the domain-specific component capabilities the Solution Group uses to create its solutions for customers. The Product Group is concerned with generalized capabilities for markets, whereas the Solution Group is concerned with specific applications for individual customers. This is an instance of a two-part organizational structure for software product lines, as described in <A class="docLink" HREF="0321154959_ch14.html#ch14">Chapter 14</A> and illustrated by CelsiusTech case study in <A class="docLink" HREF="0321154959_ch15.html#ch15">Chapter 15</A>.</P>
+
+<A NAME="ch17lev3sec5"></A><H5 class="docSection3Title"> Software Developers' Experience</H5>
+<P class="docText">Prior to Luther, Inmedius was staffed with experienced and sophisticated software developers, who nonetheless had a number of new criteria to satisfy in Luther's development:</P>
+<UL>
+<LI><P class="docList">Learning the Java programming language</P></LI>
+<LI><P class="docList">Becoming Sun Java Programmer Certified</P></LI>
+<LI><P class="docList">Learning the J2EE application architecture</P></LI>
+<LI><P class="docList">Learning how to package capabilities as J2EE/EJBs</P></LI>
+<LI><P class="docList">Learning how to create Java servlets and JavaServer Pages</P></LI>
+<LI><P class="docList">Learning how to use the various J2EE services provided by J2EE implementations</P></LI>
+</UL>
+
+<A NAME="ch17lev3sec6"></A><H5 class="docSection3Title"> Business Approach</H5>
+<P class="docText">The Luther architecture has had a dramatic effect on the way Inmedius does business. As we said in <A class="docLink" HREF="0321154959_ch14.html#ch14">Chapter 14</A>, single-system solutions require a large amount of resources, and this resource drain and the stovepipe ,mentality associated with single system development inhibits global thinking. The move to a product line based on Luther enabled Inmedius to begin thinking about product lines instead of focusing on individual systems. Furthermore, as we saw with CelsiusTech, new markets became available to Inmedius that could be seen as generalizations of existing markets, not only in a business sense but also in a technical sense.</P>
+
+
+<A NAME="ch17lev1sec2"></A><H4 class="docSection2Title">17.2 Requirements and Qualities</H4>
+<P class="docText">The Luther architecture was designed to meet two sets of complementary requirements. The first set governs the applications to be built—namely, enterprise applications for field service workers. These requirements are directly visible to customers, since failure to meet them results in applications that do not perform according to expectations—for instance, an application that may work correctly but perform poorly over a wireless network. The second set of requirements involves introducing a common architecture across products. This reduces integration time, brings products to market faster, increases product quality, eases introduction of new technologies, and brings consistency across products.</P>
+<P class="docText">Overall, the requirements can be separated into six categories:</P>
+<UL>
+<LI><P class="docList">Wireless access</P></LI>
+<LI><P class="docList">User interface</P></LI>
+<LI><P class="docList">Device type</P></LI>
+<LI><P class="docList">Existing procedures, business processes, and systems</P></LI>
+<LI><P class="docList">Building applications</P></LI>
+<LI><P class="docList">Distributed computing</P></LI>
+</UL>
+<A NAME="ch17lev3sec7"></A><H5 class="docSection3Title"> Wireless Access</H5>
+<P class="docText">Field service workers must move about while performing their tasks. Furthermore, they must move about in an environment rich in machines, hazards, and other people. In order to interact with back-office systems, the devices used by workers must access remote servers and data sources without being tethered by a landline to a local area network. Because of the variety of Inmedius customers, these wireless networks may need to be of varying capacity and availability.</P>
+
+<A NAME="ch17lev3sec8"></A><H5 class="docSection3Title"> User Interface</H5>
+<P class="docText">Part of the Inmedius competitive advantage is its high-fidelity user interfaces, which allow a worker to focus on the task at hand without being hindered by the interface or the access device. Different devices have different screen footprints, and the Luther architecture must facilitate the display of meaningful information on each of them. This does not mean constructing a single user interface and adapting it to all device types. Instead, Luther must support the rapid construction of interfaces that filter, synthesize, and fuse information in ways that are displayable on a particular device and useful to its user.</P>
+
+<A NAME="ch17lev3sec9"></A><H5 class="docSection3Title"> Variety of Devices</H5>
+<P class="docText">Field service workers use a variety of computing devices in the field. No one device will suffice for all field applications, and each has limitations that must be addressed by the Luther architecture. Inmedius must engineer performance-enhancing solutions to run on all of these devices, which include:</P>
+<UL>
+<LI><P class="docList">Personal data assistant (PDA) devices such as Palm Pilot, Handspring Visor, vTech Helio, IBM WorkPad, and Apple's Newton and MessagePad 2000</P></LI>
+<LI><P class="docList">Pocket PC devices such as Compaq iPAQ, Casio EM500, HP Jornada, and Phillips Nino</P></LI>
+<LI><P class="docList">Handheld, pen-based tablets running Windows CE such as Fujitsu Stylistic and PenCentra and Siemens SIMpad SL4</P></LI>
+<LI><P class="docList">Handheld Windows CE PC devices with pen and keyboard such as Vadem Clio, HP Jornada 700 series, NEC MobilePro, Intermec 6651 Pen Tablet Computer, and Melard Sidearm</P></LI>
+<LI><P class="docList">Wearable computing devices such as Xybernaut MA-IV, Via family of products, and Pittsburgh Digital Greenhouse's Spot</P></LI>
+</UL>
+<P class="docText">Different classes of device have different memory footprints, processor speeds, and user input devices that can radically affect a user's interaction style from one class to another. For example, a wearable computer can bring the power of the desktop computer into the field, making client applications as sophisticated there as they are in the office. Users in this case also have a plethora of input devices to choose from, including keyboard, voice, pen, and custom devices.</P>
+<P class="docText">On the other hand, the processor speeds, memory footprints, and available input devices for the PDA class are severely limited, which means that user interactions that can be engineered for these devices are also constrained. Still, PDAs are extremely important in the various contexts in which field service workers perform their tasks. The Luther architecture must address the variability of the users' interaction styles, which are limited by differences in hardware capability among the device classes.</P>
+
+<A NAME="ch17lev3sec10"></A><H5 class="docSection3Title"> Existing Procedures, Business Processes, and Systems</H5>
+<P class="docText">Field service workers are only one part of most enterprises. Information gathered by them must be stored in the back office; instructions for them come, partially, from outside the field; and many applications already support existing business processes.</P>
+<P class="docText">To respond to these needs, the Luther architecture must intergrate its functions with a worker's existing procedures and processes, enable applications to be hosted on servers and databases from many vendors, and simplify the integration of applications with legacy systems</P>
+
+<A NAME="ch17lev3sec11"></A><H5 class="docSection3Title"> Building Applications</H5>
+<P class="docText">Enabling faster construction of applications is one of the main motivations for Luther. There are a number of aspects to this goal, including:</P>
+<UL>
+<LI><P class="docList">Encouraging software re-use and making it easier for applications to work together. This avoids wasting valuable resources to "re-invent the wheel."</P></LI>
+<LI><P class="docList">Enabling a build-first, buy-later strategy for enterprise functions (e.g., work flow).</P></LI>
+<LI><P class="docList">Providing a stable platform for adoption of new features and emerging technologies that span applications, such as location sensing, automatic detection and identification of nearby physical objects and services, and advanced user interface features like synthetic interviewing.</P></LI>
+</UL>
+
+<A NAME="ch17lev3sec12"></A><H5 class="docSection3Title"> Distributed Computing</H5>
+<P class="docText">The Luther architecture must provide enterprise application developers with a framework and infrastructure that even out the differences in client device capabilities and provide application servers with the following distributed application features.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Scalability.</span> 
+The Luther server framework must facilitate scalability with no impact on performance. That is, the addition of any number of domain-specific components over time must have no impact on the performance of the application software, nor must it cause the re-engineering of client applications. In addition, client applications must be easily reconfigurable to make use of added capability. The framework must also support the ability of applications to discover new capability and to dynamically reconfigure themselves to make use of it.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Load balancing.</span> 
+The Luther architecture must support load balancing in a distributed environment. Most of the computation in its applications will be performed on the server side, with the results sent to the client. As more and more clients access the capability from a given server, the application server infrastructure will have to detect heavy loads on a given server and offload processing to application server components located on different server nodes within the enterprise. Similarly, the enterprise environment application must be able to detect a node failure and shift to another application server in the enterprise to continue execution. In both cases, load balancing must be transparent to the user, and in the first case it must also be transparent to the client application.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Location independence.</span> 
+To support load balancing, domain-specific application capability must be distributed, and the Luther architecture must support this. To be able to change locations dynamically, applications must be location independent.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Portability.</span> 
+Enterprise application environments invariably comprise a set of heterogeneous server hardware platforms. The Luther architecture framework will have to allow the software to run on myriad platforms in order for enterprise applications to work.</p>
+</LI>
+</UL>
+
+
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch17.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch17lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

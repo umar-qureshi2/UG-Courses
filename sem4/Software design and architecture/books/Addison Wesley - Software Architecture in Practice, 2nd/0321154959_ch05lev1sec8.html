@@ -1,0 +1,51 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="5.8 Relationship of Tactics to Architectural Patterns"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="0321154959_toc.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch05lev1sec7.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch05lev1sec9.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch05lev1sec8"></A><H3 class="docSection1Title">5.8 Relationship of Tactics to Architectural Patterns</H3>
+<P class="docText">We have presented a collection of tactics that the architect can use to achieve particular attributes. In fact, an architect usually chooses a pattern or a collection of patterns designed to realize one or more tactics. However, each pattern implements multiple tactics, whether desired or not. We illustrate this by discussing the Active Object design pattern, as described by [<A class="docLink" HREF="0321154959_biblio01.html#biblio01entry94">Schmidt 00</A>]:</P>
+<blockquote>
+<p class="docText">The <span class="docEmphasis">Active Object</span> design pattern decouples method execution from method invocation to enhance concurrency and simplify synchronized access to objects that reside in their own thread of control.</p>
+</blockquote>
+<P class="docText">The pattern consists of six elements: a <span class="docEmphasis">proxy</span>, which provides an interface that allows clients to invoke publicly accessible methods on an active object; a <span class="docEmphasis">method request</span>, which defines an interface for executing the methods of an active object; an <span class="docEmphasis">activation list</span>, which maintains a buffer of pending method requests; a <span class="docEmphasis">scheduler</span>, which decides what method requests to execute next; a <span class="docEmphasis">servant</span>, which defines the behavior and state modeled as an active object; and a <span class="docEmphasis">future</span>, which allows the client to obtain the result of the method invocation.</P>
+<P class="docText">The motivation for this pattern is to enhance concurrency—a performance goal. Thus, its main purpose is to implement the "introduce concurrency" performance tactic. Notice the other tactics this pattern involves, however.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Information hiding (modifiability).</span> 
+Each element chooses the responsibilities it will achieve and hides their achievement behind an interface.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Intermediary (modifiability).</span> 
+The proxy acts as an intermediary that will buffer changes to the method invocation.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Binding time (modifiability).</span> 
+The active object pattern assumes that requests for the object arrive at the object at runtime. The binding of the client to the proxy, however, is left open in terms of binding time.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Scheduling policy (performance).</span> 
+The scheduler implements some scheduling policy.</p>
+</LI>
+</UL>
+<P class="docText">Any pattern implements several tactics, often concerned with different quality attributes, and any implementation of the pattern also makes choices about tactics. For example, an implementation could maintain a log of requests to the active object for supporting recovery, maintaining an audit trail, or supporting testability.</P>
+<P class="docText">The analysis process for the architect involves understanding all of the tactics embedded in an implementation, and the design process involves making a judicious choice of what combination of tactics will achieve the system's desired goals.</P>
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch05lev1sec7.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch05lev1sec9.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

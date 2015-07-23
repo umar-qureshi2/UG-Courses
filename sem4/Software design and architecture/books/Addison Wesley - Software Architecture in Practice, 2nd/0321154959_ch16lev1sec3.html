@@ -1,0 +1,609 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="16.3 Architectural Solution"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch16lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch16lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch16lev1sec3"></A><H3 class="docSection1Title" id="161597-953">16.3 Architectural Solution</H3>
+<P class="docText">Sun Microsystem's approach to satisfying the quality attributes discussed in the previous section is through the specification of two major architectures: J2EE and the EJB. J2EE describes the overall multi-tier architecture for designing, developing, and deploying component-based, enterprise-wide applications. EJB is a key part of J2EE technology, reflecting the deeper technical requirements of buildability, extensibility, and interoperability. Both J2EE and EJB reflect balanced specificity—that is, the ability for competitors to develop differentiation on the offerings while building them on a common base.</P>
+<P class="docText">The major features of the J2EE platform are</P>
+<UL>
+<LI><P class="docList">A multi-tiered distributed application model</P></LI>
+<LI><P class="docList">A server-side component model</P></LI>
+<LI><P class="docList">Built-in transaction control</P></LI>
+</UL>
+<P class="docText">A simple deployment view of the J2EE multi-tier model is given in <A class="docLink" HREF="#ch16fig02">Figure 16.2</A>. The elements of this architecture are further described in <A class="docLink" HREF="#ch16table03">Table 16.3</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch16fig02"></A>Figure 16.2. Deployment view of the J2EE multi-tier architecture</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="399" src="FILES/16fig02.jpg" ALT="graphics/16fig02.jpg"></p>
+</CENTER>
+<A NAME="ch16table03"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 16.3. Summary of J2EE Technology Components and Services</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Component/Service</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Description</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Enterprise JavaBeans (EJB) Architecture</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Specification defines an API that allows developers to create, deploy, and manage enterprise-strength server-side component-based applications</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">JavaServer Pages (JSP)</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Provides a method for creating dynamic Web content</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Java Servlet</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Provides Web application developers with a mechanism for extending the functionality of a Web server</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Java Messaging Service (JMS)</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Provides J2EE applications with support for asynchronous messaging using either point-to-point (one-to-one) or publish-subscribe (many to many) styles of interaction; messages can be configured to have various qualities of service associated with them, ranging from best effort to transactional</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Java Naming and Directory Interface (JNDI)</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">J2EE's directory service allows Java client and Web-tier servlets to retrieve references to user-defined objects such as EJBs and environment entries (e.g., location of a JDBC driver)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Java Transaction Service (JTS)</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Makes it possible for EJBs and their clients to participate in transactions; updates can be made to a number of beans in an application, and JTS makes sure all changes commit or abort at the end of the transaction; relies on JDBC-2 drivers for support of the XA protocol and hence the ability to perform distributed transactions with one or more resource managers</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">J2EE Connector Architecture (JCA)</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Defines a standard architecture for connecting the J2EE platform to heterogeneous Enterprise Information Systems, including packaged applications such as Enterprise Resource Planning (ERP) and Customer Relationship Management (CRM) systems</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Client Access Services COM Bridge</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Allows integration between COM and J2EE applications across a network; allows access to J2EE server-side components by COM-enabled client applications</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">RMI over IIOP</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Provides developers with an implementation of Java RMI API over the OMG's industry-standard Internet Inter-ORB Protocol (IIOP); developers can write remote interfaces between clients and servers and implement them using Java technology and the Java RMI APIs</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Java Database Connectivity (JDBC)</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Provides programmers with a uniform interface to a wide range of relational databases and provides a common base on which higher-level tools and interfaces can be built</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">The role of each tier is as follows.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Client tier.</span> 
+In a Web application, the client tier comprises an Internet browser that submits HTTP requests and downloads HTML pages from a Web server. In an application not deployed using a browser, standalone Java clients or applets can be used; these communicate directly with the business component tier. (See <A class="docLink" HREF="0321154959_ch17.html#ch17">Chapter 17</A> for an example of using J2EE without a browser.)</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Web tier.</span> 
+The Web tier runs a Web server to handle client requests and responds to these requests by invoking J2EE servlets or JavaServer Pages (JSPs). Servlets are invoked by the server depending on the type of user request. They query the business logic tier for the required information to satisfy the request and then format the information for return to the user via the server. JSPs are static HTML pages that contain snippets of servlet code. The code is invoked by the JSP mechanism and takes responsibility for formatting the dynamic portion of the page.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Business component tier.</span> 
+The business components comprise the core business logic for the application. They are realized by EJBs (the software component model supported by J2EE). EJBs receive requests from servlets in the Web tier, satisfy them usually by accessing some data sources, and return the results to the servlet. EJB components are hosted by a J2EE environment known as the EJB container, which supplies a number of services to the EJBs it hosts including transaction and life-cycle management, state management, security, multi-threading, and resource pooling. EJBs simply specify the type of behavior they require from the container at runtime and then rely on the container to provide the services. This frees the application programmer from cluttering the business logic with code to handle system and environmental issues.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Enterprise information systems tier.</span> 
+This typically consists of one or more databases and back-end applications like mainframes and other legacy systems, which EJBs must query to process requests. JDBC drivers are typically used for databases, which are most often Relational Database Management Systems (RDBMS).</p>
+</LI>
+</UL>
+<A NAME="ch16lev2sec2"></A><H4 class="docSection2Title"> THE EJB ARCHITECTURAL APPROACH</H4>
+<P class="docText">The remainder of this chapter focuses on the Enterprise JavaBeans architecture, which defines a standard programming model for constructing distributed object-oriented server-side Java applications. Because this programming model is standard, many beans that prepackage useful functionality can be (and have been) written. The EJB programmer's job is to bundle these packages with any application-specific functionality to create a complete application.</P>
+<P class="docText">Not unlike J2EE, EJBs aim at realizing one of Java's major design principles—the oft-quoted "Write Once, Run Anywhere" mantra. The JVM allows a Java application to run on any operating system. However, server components require additional services that are not supplied directly by the JVM, such as transaction and security services. In J2EE and EJB, these services are supplied through a set of standard vendor-independent interfaces that provide access to the additional supporting infrastructure, which together form the services available in an application server.</P>
+<P class="docText">A J2EE-compliant application server provides an EJB <span class="docEmphasis">container</span> to manage the execution of application components. In practical terms, a container provides an operating system process that hosts one or (usually) more EJB components. <A class="docLink" HREF="#ch16fig03">Figure 16.3</A> shows the relationship between an application server, a container, and the services provided. In brief, when a client invokes a server component the container automatically allocates a thread and invokes an instance of the component. The container manages all resources on the component's behalf and manages all interactions between the component and the external systems.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch16fig03"></A>Figure 16.3. Example deployment view of the EJB architecture</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="335" src="FILES/16fig03.gif" ALT="graphics/16fig03.gif"></p>
+</CENTER>
+<P class="docText">The EJB component model defines the basic architecture of an EJB component, specifying the structure of its interfaces and the mechanisms by which it interacts with its container and other components. The model also provides guidelines for developing components that can work together to form a larger application.</P>
+<P class="docText">The EJB version 1.1 specification defines two main types of components: <span class="docEmphasis">session beans</span> and <span class="docEmphasis">entity beans</span>.</P>
+<UL>
+<LI><P class="docList"><span class="docEmphasis">Session beans</span> typically contain business logic and provide services for clients. The two types of session bean are known as <span class="docEmphasis">stateless</span> and <span class="docEmphasis">stateful</span>.</P><DL>
+<DD><P class="docList">- A <span class="docEmphasis">stateless session bean</span> is defined as not being <span class="docEmphasis">conversational</span> with respect to its calling process. This means that it does not keep any state information on behalf of any client. A client will get a reference to a state less session bean in a container and can use it to make many calls on an instance of the bean. However, between each successive service invocation, a client is not guaranteed to bind to any particular stateless session bean instance. The EJB container delegates client calls to stateless session beans <span class="docEmphasis">as needed</span>, so the client can never be certain which bean instance it will actually talk to. This makes it meaningless to store client-related state in a stateless session bean.</P></DD><DD><P class="docList">- A <span class="docEmphasis">stateful session bean</span> is said to be conversational with respect to its calling process and therefore can maintain state information about the conversation. Once a client gets a reference to a stateful session bean, all subsequent calls to the bean using this reference are guaranteed to go to the same bean instance. The container creates a new, dedicated stateful session bean for each client that creates a bean instance. Thus, clients can store any state information they wish in the bean and can be assured that it will still be there the next time they access that bean. EJB containers assume responsibility for managing the life cycle of stateful session beans. The container writes out a bean's state to disk if it has not been used for a while and automatically restores the state when the client makes a subsequent call on the bean. This mechanism is known as <span class="docEmphasis">passivation and activation</span> of the stateful bean. We will discuss passivation in more detail later.</P></DD></DL></LI>
+<LI><P class="docList"><span class="docEmphasis">Entity beans</span> are typically used for representing business data objects. The data members in an entity bean map directly to some data items stored in an associated database. Entity beans are usually accessed by a session bean that provides business-level client services. There are two types of entity bean, <span class="docEmphasis">container-managed persistence</span> and <span class="docEmphasis">bean-managed persistence</span>. Persistence in this context refers to the way in which a bean's data (usually a row in a relational database table) is read and written.</P><DL>
+<DD><P class="docList">- With <span class="docEmphasis">container-managed persistence entity beans</span>, the data the bean represents is mapped automatically to the associated persistent data store (e.g., a database) by the container. The container is responsible for loading the data to the bean instance and writing changes back to the persistent data storage at appropriate times, such as the start and end of a transaction. Container-managed persistence relies on container-provided services and requires no application code—the container in fact generates the data access code so it is easy to implement.</P></DD><DD><P class="docList">- With <span class="docEmphasis">bean-managed persistence entity beans</span>, the bean code itself is responsible for accessing the persistent data it represents, typically using handcrafted JDBC calls. Bean-managed persistence gives the bean developer the flexibility to perform persistence operations that are too complicated for the container or to use a data source not supported by the container—for example, a custom or legacy database. While bean-managed persistence requires more programmer effort to implement, it can some times provide opportunities to optimize data access and, in such cases, may provide better performance than container-managed persistence.</P></DD></DL></LI>
+</UL>
+<P class="docText"><A class="docLink" HREF="#ch16table04">Table 16.4</A> summarizes how the EJB architecture supports Sun's key quality attribute requirements for the overall J2EE architecture. An example deployment view of the J2EE/EJB architecture is illustrated in <A class="docLink" HREF="#ch16fig04">Figure 16.4</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch16fig04"></A>Figure 16.4. An example J2EE/EJB-compliant implementation</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="336" src="FILES/16fig04.gif" ALT="graphics/16fig04.gif"></p>
+</CENTER>
+<A NAME="ch16table04"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 16.4. How EJB Supports Sun's J2EE Quality Attribute Requirements</h5></CAPTION><COLGROUP align="left" span="3">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Goal</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">How Achieved</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Tactics Used</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Availability/Reliability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">J2EE-compliant systems provide ready-to-use transaction services that enhance availability and reliability of the application by providing built-in failure recovery mechanisms</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Heartbeat</P>
+<P class="docText">Transactions</P>
+<P class="docText">Passive redundancy</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Balanced Specificity</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">EJB services specified in terms of Java APIs, effectively defer implementation decisions to EJB application server implementers; detailed enough to provide a meaningful standard for component developers, vendors and integrators, but general enough to allow vendor-specific features and optimizations</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Anticipate expected changes</P>
+<P class="docText">Abstract common services</P>
+<P class="docText">Hide information</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Buildability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">EJB application servers provide many ready-to-use services for building server-side Java applications, including transactions, persistence, threading, and resource management; developer is thus freed from low-level distribution details; Sun Microsystems provides a reference J2EE implementation; application server vendors also participate in the J2EE specification process</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Abstract common services</P>
+<P class="docText">Maintain interfaces</P>
+<P class="docText">Hide information</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Evolvability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Specification partitioned into separately evolvable subcategories; the Java Community Process coordinates Java specification requests and responses</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Semantic coherence</P>
+<P class="docText">Hide information</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Extensibility</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Component-based approach to the EJB specification allows for future extensions; message-driven beans are a feature introduced in later versions of the EJB specification and workable with existing EJB systems; J2EE describes stable core technologies, such as EJB, JMS, JNDI, JTS, etc., needed by most component developers; over time, extensions, such as JCA, are gradually incorporated</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Anticipate expected changes</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Implementation Transparency</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>Home</TT> and <TT>Remote</TT> interface specifications encourage decoupling of interface specification and implementation. Implementation decisions can thus be deferred, and are transparent to the client; provide complete transparency of implementation details so that client programs can be independent of object implementation details (server-side component location, operating system, vendor, etc.)</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Maintain existing interfaces</P>
+<P class="docText">Semantic coherence</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Interoperability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Supports interoperation of server-side components implemented on different vendor implementations; also allow bridges for interoperability of the J2EE platform to other technologies such as CORBA and Microsoft component technology</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Adherence to defined protocols</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Performance</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Distributed-component approach to J2EE/EJB allows performance tuning across multiple systems</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Configuration files</P>
+<P class="docText">Load balancing</P>
+<P class="docText">Maintain multiple copies</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Portability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Contracts between EJBs and containers ensure application components are portable across different EJB containers; J2EE describes roles for application component providers, assemblers, deployers, EJB server providers, EJB container providers, and system administrators, as well as precise contracts between various J2EE components and application components; application component (in theory) is thus portable across different J2EE containers; J2EE is based on a language that contains its own virtual machine and is available on most major platforms</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Maintain existing interfaces</P>
+<P class="docText">Generalize modules</P>
+<P class="docText">Abstract common services</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Scalability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">J2EE multi-tiered architecture and component-based EJB architecture has built-in mechanisms for expanding the number of servers available in a configuration and to load balance among servers</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Load balancing</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Security</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">J2EE-compliant systems provide declarative, role-based security mechanisms and programmatic security mechanisms that are ready to use</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Authentication</P>
+<P class="docText">Authorization</P>
+<P class="docText">Data confidentiality</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Usability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">J2EE-compliant systems provide Java technologies, such as JSP and servlets, that enable the rendering of content to suit different users</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Separate user interface</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<A NAME="ch16lev2sec3"></A><H4 class="docSection2Title"> EJB PROGRAMMING</H4>
+<P class="docText">An EJB depends on its container for all external information. If an EJB needs to access a JDBC connection or another bean, it uses container services. Accessing the identity of its caller, obtaining a reference to itself, and accessing properties are all accomplished through container services. This is an example of an "intermediary" tactic. The bean interacts with its container through one of three mechanisms: callback methods, the <TT>EJBContext</TT> interface, and the Java Naming and Directory Interface (JNDI).</P>
+<P class="docText">To create an EJB server-side component, the developer must provide two interfaces that define a bean's business methods, plus the actual bean implementation class. The two interfaces, <TT>remote</TT> and <TT>home</TT>, are shown in <A class="docLink" HREF="#ch16fig05">Figure 16.5</A>. Clients use them to access a bean inside an EJB container. They expose the capabilities of the bean and provide all the methods needed to create the bean and update, interact with, or delete it.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch16fig05"></A>Figure 16.5. EJB package diagram</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="256" src="FILES/16fig05.gif" ALT="graphics/16fig05.gif"></p>
+</CENTER>
+<P class="docText">The two interfaces have different purposes. <TT>Home</TT> contains the life-cycle methods of the EJB, which provide clients with services to create, destroy and find bean instances. In contrast, <TT>remote</TT> contains the business methods offered by the bean. These methods are application specific. To use them in the bean's <TT>remote</TT> interface, clients must use the bean's <TT>home</TT> interface to obtain a reference to the <TT>remote</TT> interface.</P>
+<P class="docText">A simple <TT>home</TT> interface is shown in <A class="docLink" HREF="#ch16list01">Figure 16.6</A>. It must inherit from <TT>EJBHome</TT> and, in this example, contains a method to create an EJB of type <TT>Broker</TT>. <A class="docLink" HREF="#ch16list02">Figure 16.7</A> shows the <TT>remote</TT> interface for the <TT>Broker</TT> EJB.</P>
+<P class="docText"><TT>Remote</TT> interfaces must extend the <TT>EJBObject</TT> interface, which contains a number of methods that the container uses to manage an EJB's creation and life cycle. A programmer may wish to provide bean-specific behavior for the EJB, or may simply accept the default, inherited behavior. The client then uses <TT>public</TT> interfaces to create, manipulate, and remove beans from the EJB server. The implementation class, normally known as the bean class, is instantiated at runtime and becomes an accessible distributed object. Some sample client code, simplified, is shown in <A class="docLink" HREF="#ch16list03">Figure 16.8</A>.</P>
+
+<H5 class="docExampleTitle"><A NAME="ch16list01"></A>Figure 16.6 A simple <TT>home</TT> interface</H5>
+<PRE>
+public interface BrokerHome extends EJBHome
+   {
+    /*
+     * This method creates the EJB Object.
+     *
+     * @return The newly created EJB Object.
+     */
+    Broker create() throws RemoteException, CreateException;
+   }
+</PRE>
+
+<H5 class="docExampleTitle"><A NAME="ch16list02"></A>Figure 16.7 The Broker <TT>remote</TT> interface</H5>
+<PRE>
+public interface Broker extends EJBObject
+{
+ // Return the newly created account number
+ public int newAccount(String sub_name, String sub_address, int
+     sub_credit) throws RemoteException, SQLException;
+ public QueryResult queryStockValueByID(int stock_id)
+     throws RemoteException, SQLException;
+ public void buyStock(int sub_accno, int stock_id, int amount)
+     throws RemoteException, SQLException, TransDenyException;
+ public void sellStock(int sub_accno, int stock_id, int amount)
+     throws RemoteException, SQLException, TransDenyException;
+ public void updateAccount(int sub_accno, int sub_credit)
+     throws RemoteException, SQLException;
+ public Vector getHoldingStatement(int sub_accno,int start_
+     stock_id) throws RemoteException, SQLException;
+}
+</PRE>
+<P class="docText">EJB clients may be standalone applications, servlets, applets, or even other EJBs, as we will see shortly. All clients use the server bean's <TT>home</TT> interface to obtain a reference to an instance of the server bean. This reference is associated with the class type of the server bean's <TT>remote</TT> interface; so the client interacts with the server bean entirely through the methods defined in its <TT>remote</TT> interface.</P>
+<P class="docText">In this next example, the <TT>Broker</TT> bean is acting as a stateless session bean that handles all client requests. Internally, it uses the services of a number of entity beans to perform the business logic. A sample of one of the <TT>Broker</TT> methods, <TT>updateAccount</TT>, is shown in <A class="docLink" HREF="#ch16list04">Figure 16.9</A>.</P>
+<P class="docText">The <TT>updateAccount</TT> method uses an entity bean called <TT>Account</TT>, which encapsulates all of the detailed manipulation of the application's data—in this case, exactly how an account record is updated. The code in <TT>updateAccount</TT> uses an entity bean <TT>finder</TT> method called <TT>findByPrimaryKey</TT>, which is provided by the <TT>Account</TT> bean in its <TT>home</TT> interface. This method takes the primary key for the account and accesses the underlying database. If an account record is found in the database with this primary key, the EJB container creates an <TT>Account</TT> entity bean. The entity bean methods—in this example <TT>update</TT>-can then be used to access the data in the account record. The <TT>home</TT> and <TT>remote</TT> interfaces for <TT>Account</TT> are shown in <A class="docLink" HREF="#ch16list05">Figure 16.10</A>.</P>
+
+<H5 class="docExampleTitle"><A NAME="ch16list03"></A>Figure 16.8 Simplified example EJB client code</H5>
+<PRE>
+Broker broker =null;
+
+// find the home interface
+Object _h = ctx.lookup("EntityStock.BrokerHome");
+BrokerHome home = (BrokerHome)
+    javax.rmi.PortableRemoteObject.narrow(_h, BrokerHome.class);
+// Use the home interface to create the Broker EJB Object
+broker = <span class="docEmphUl">home.create();</span>
+// execute requests at the broker EJB
+broker.updateAccount(accountNo, 200000);
+broker.buyStock(accountNo, stockID, 5000);
+
+//we're finished ...
+broker.remove();
+</PRE>
+
+<H5 class="docExampleTitle"><A NAME="ch16list04"></A>Figure 16.9 The <TT>Broker</TT> bean's <TT>updateAccount</TT> method</H5>
+<PRE>
+public void updateAccount(int sub_accno, int sub_credit)
+ throws RemoteException
+{
+ try {
+    Account account = accountHome.findByPrimaryKey
+       (new AccountPK(sub_accno));
+    account.update(sub_credit);
+ }
+ catch (Exception e) {
+     throw new RemoteException(e.toString());
+ }
+}
+</PRE>
+<P class="docText">The bean class for the entity bean implements the remote methods. The code for the <TT>update</TT> method is shown in <A class="docLink" HREF="#ch16list06">Figure 16.11</A>. It is very simple—in fact, a single line of executable Java code. This simplicity is due to the entity bean's use of <span class="docEmphasis">container-managed persistence</span>. The EJB container "knows" (we will see how soon) that there is a correspondence between the data members in the <TT>Account</TT> bean and the fields in an account table in the database the application is using.</P>
+<P class="docText">Using this information, the container tools can generate the SQL queries needed to implement the <TT>finder</TT> method, and the queries needed to automatically read/write the data from/to the entity bean at the beginning/end of a transaction. In this example, at the end of the <TT>Broker</TT> session bean's <TT>updateAccount</TT> method, the data items in the <TT>Account</TT> entity bean are written back to the database, making the changes to the <TT>sub_credit</TT> field persistent. All of this is done without explicit control from the programmer, which contributes to the buildability of EJB-based systems.</P>
+
+<H5 class="docExampleTitle"><A NAME="ch16list05"></A>Figure 16.10 The <TT>Account</TT> bean's <TT>home</TT> and <TT>remote</TT> interfaces</H5>
+<PRE>
+public interface AccountHome extends EJBHome
+{
+ /*
+  * This method creates the EJB Object.
+  *
+  * @param sub_name The name of the subscriber
+  * @param sub_address The address of the subscriber
+  * @param sub_credit The initial credit of the subscriber
+  *
+  * @return The newly created EJB Object.
+  */
+ public Account create(String sub_name, String sub_address,
+     int sub_credit)  throws CreateException, RemoteException;
+ /*
+  * Finds an Account by its primary Key (Account ID)
+  */
+ public Account findByPrimaryKey(AccountPK key)
+     throws FinderException,RemoteException;
+}
+
+public interface Account extends EJBObject
+{
+ public void update(int amount) throws RemoteException;
+ public void deposit(int amount) throws RemoteException;
+ public int withdraw(int amount) throws AccountException,
+     RemoteException;
+ // Getter/setter methods on Entity Bean fields
+ public int getCredit() throws RemoteException;
+ public String getSubName() throws RemoteException;
+ public void setSubName(String name) throws RemoteException;
+}
+</PRE>
+
+<H5 class="docExampleTitle"><A NAME="ch16list06"></A>Figure 16.11 The <TT>Account</TT> bean's <TT>update</TT> method</H5>
+<PRE>
+public class AccountBean implements EntityBean
+{
+ // Container-managed state fields
+ public int    sub_accno;
+ public String sub_name;
+ public String sub_address;
+ public int    sub_credit;
+
+ // lots missing ...
+ public void update(int amount)
+ {
+     sub_credit = amount;
+ }
+}
+</PRE>
+
+<A NAME="ch16lev2sec4"></A><H4 class="docSection2Title"> DEPLOYMENT DESCRIPTORS</H4>
+<P class="docText">One of the major attractions of the EJB model is the way it achieves a separation of concerns between the business logic and the infrastructure code, an example of the "semantic coherence" tactic. This separation refers to the fact that EJBs are primarily concerned with pure business logic while the EJB container handles environmental and infrastructure issues such as transactions, bean life-cycle management, and security. This makes the bean components simpler—they are not littered with code to handle these additional complexities.</P>
+<P class="docText">A bean tells the container which of the provided services it requires through a deployment descriptor. This is an XML document associated with an EJB. When a bean is deployed in a container, the container reads the deployment descriptor to find out how transactions, persistence (for entity beans), and access control should be handled. In this way the descriptor provides a declarative mechanism for how these issues are handled—an example of the "defer binding time" tactic.</P>
+<P class="docText">The beauty of this mechanism is that the same EJB component can be deployed with different descriptors suited to different application environments. If security is an issue, the component can specify its access control needs. If security is not an issue, no access control is specified. In both cases the code in the EJB is identical.</P>
+<P class="docText">A deployment descriptor has a predefined format that all EJB-compliant beans must use and that all EJB-compliant servers must know how to read. This format is specified in an XML Document Type Definition, or DTD. The deployment descriptor describes the type of bean (session or entity) and the classes used for <TT>remote</TT>, <TT>home</TT>, and the bean class. It also specifies the transactional attributes of every method in the bean, which security roles can access each method (access control), and whether persistence in the entity beans is handled automatically by the container or performed explicitly by the bean code.</P>
+<P class="docText">The deployment descriptor for the <TT>Broker</TT> bean shown before is given in <A class="docLink" HREF="#ch16list07">Figure 16.12</A>. In addition to the attributes described, the deployment descriptor specifies that this is a stateless session bean and that a container-managed transaction is required to execute each of its methods (in the figure these attributes are in boldface for ease of reading). For example, if we simply change the <TT>&lt;session-type&gt;</TT> field in the XML to read <TT>stateful</TT>, the container will manage the bean very differently. <A class="docLink" HREF="#ch16list08">Figure 16.13</A> shows the deployment descriptor for the <TT>Account</TT> entity bean. As well as the deployment attributes we have already seen, it tells the container the following:</P>
+<UL>
+<LI><P class="docList">That it must manage persistence for beans of this type</P></LI>
+<LI><P class="docList">Where to find the JDBC data source for the database</P></LI>
+<LI><P class="docList">What primary key and data items must be mapped between the database and the entity bean</P></LI>
+</UL>
+
+<H5 class="docExampleTitle"><A NAME="ch16list07"></A>Figure 16.12 Deployment description for the <TT>Broker</TT> bean</H5>
+<PRE>
+&lt;ejb-jar&gt;
+ &lt;enterprise-beans&gt;
+     &lt;session&gt;
+       &lt;ejb-name&gt;EntityStock.BrokerHome&lt;/ejb-name&gt;
+       &lt;home&gt;j2ee.entitystock.BrokerHome&lt;/home&gt;
+       &lt;remote&gt;j2ee.entitystock.Broker&lt;/remote&gt;
+       &lt;ejb-class&gt;j2ee.entitystock.BrokerBean&lt;/ejb-class&gt;
+       <span class="docEmphStrong">&lt;session-type&gt;Stateless&lt;/session-type&gt;</span>
+       <span class="docEmphStrong">&lt;transaction-type&gt;Container&lt;/transaction-type&gt;</span>
+     &lt;/session&gt;
+ &lt;/enterprise-beans&gt;
+ &lt;assembly-descriptor&gt;
+     <span class="docEmphStrong">&lt;container-transaction&gt;</span>
+       <span class="docEmphStrong">&lt;method&gt;</span>
+          <span class="docEmphStrong">&lt;ejb-name&gt;EntityStock.BrokerHome&lt;/ejb-name&gt;</span>
+          <span class="docEmphStrong">&lt;method-intf&gt;Remote&lt;/method-intf&gt;</span>
+          <span class="docEmphStrong">&lt;method-name&gt;*&lt;/method-name&gt;</span>
+       <span class="docEmphStrong">&lt;/method&gt;</span>
+       <span class="docEmphStrong">&lt;trans-attribute&gt;Required&lt;/trans-attribute&gt;</span>
+     <span class="docEmphStrong">&lt;/container-transaction&gt;</span>
+ &lt;/assembly-descriptor&gt;
+&lt;/ejb-jar&gt;
+</PRE>
+
+<H5 class="docExampleTitle"><A NAME="ch16list08"></A>Figure 16.13 Deployment description for the <TT>Account</TT> entity bean</H5>
+<PRE>
+&lt;ejb-jar&gt;
+ &lt;enterprise-beans&gt;
+     <span class="docEmphStrong">&lt;entity&gt;</span>
+      &lt;ejb-name&gt;EntityStock.AccountHome&lt;/ejb-name&gt;
+       &lt;home&gt;j2ee.entitystock.AccountHome&lt;/home&gt;
+       &lt;remote&gt;j2ee.entitystock.Account&lt;/remote&gt;
+       &lt;ejb-class&gt;j2ee.entitystock.AccountBean&lt;/ejb-class&gt;
+       &lt;persistence-type&gt;Container&lt;/persistence-type&gt;
+       <span class="docEmphStrong">&lt;prim-key-class&gt;j2ee.entitystock.AccountPK&lt;/prim-key-class</span> &gt;
+       &lt;reentrant&gt;False&lt;/reentrant&gt;
+       &lt;cmp-field&gt;
+          &lt;field-name&gt;sub_accno&lt;/field-name&gt;
+       &lt;/cmp-field&gt;
+       &lt;cmp-field&gt;
+          &lt;field-name&gt;sub_name&lt;/field-name&gt;
+       &lt;/cmp-field&gt;
+       &lt;cmp-field&gt;
+          &lt;field-name&gt;sub_address&lt;/field-name&gt;
+       &lt;/cmp-field&gt;
+       &lt;cmp-field&gt;
+          &lt;field-name&gt;sub_credit&lt;/field-name&gt;
+       &lt;/cmp-field&gt;
+       &lt;resource-ref&gt;
+          &lt;res-ref-name&gt;jdbc/sqlStock_nkPool&lt;/res-ref-name&gt;
+          &lt;res-type&gt;javax.sql.DataSource&lt;/res-type&gt;
+          &lt;res-auth&gt;Container&lt;/res-auth&gt;
+       &lt;/resource-ref&gt;
+     &lt;/entity&gt;
+ &lt;/enterprise-beans&gt;
+ &lt;assembly-descriptor&gt;
+     &lt;container-transaction&gt;
+       &lt;method&gt;
+          &lt;ejb-name&gt;EntityStock.AccountHome&lt;/ejb-name&gt;
+          &lt;method-intf&gt;Remote&lt;/method-intf&gt;
+          &lt;method-name&gt;*&lt;/method-name&gt;
+       &lt;/method&gt;
+       &lt;trans-attribute&gt;Required&lt;/trans-attribute&gt;
+     &lt;/container-transaction&gt;
+ &lt;/assembly-descriptor&gt;
+&lt;/ejb-jar&gt;
+</PRE>
+<P class="docText">In <A class="docLink" HREF="0321154959_ch16lev1sec2.html#ch16table02">Table 16.2</A>, we presented Sun's quality attribute requirements for J2EE. In <A class="docLink" HREF="#ch16table05">Table 16.5</A>, we describe how some of these requirements are achieved by deployment descriptors.</P>
+
+<A NAME="ch16table05"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 16.5. How Deployment Descriptors Support Sun's J2EE Quality Attribute Requirements</h5></CAPTION><COLGROUP align="left" span="3">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Goal</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">How Achieved</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Tactics Used</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Portability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Common code base can be developed for multiple target platforms; multiple versions of deployment descriptor can be configured at deployment time to suit different target platforms, making the developed application component portable across multiple target environments</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Semantic coherence, generalize modules, configuration files</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Buildability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Deployment descriptors enable separation of concerns: development of code and deployment configuration options</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Semantic coherence, configuration files, generalize module</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Balanced Specificity</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Deployment descriptors in XML format, providing a meaningful standard format for encoding configuration options, but general enough for vendors to extend deploy-ment descriptors with vendor-specific features</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Configuration files, generalize module</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Implementation Transparency</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Details of deployment descriptor used by server-side components are transparent to the clients of the components</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Use an intermediary</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch16lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch16lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

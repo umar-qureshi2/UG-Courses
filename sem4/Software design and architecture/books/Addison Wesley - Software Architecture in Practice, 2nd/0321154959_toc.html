@@ -1,0 +1,1880 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docToc"--><!--SafTocEntry="Table of content"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_main.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+<a href="0321154959_copyrightpg.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+	
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td colspan="2" class="v1"><img src="FILES/0321154959_xs.jpg"></td>
+</tr>
+<tr>
+<td width="13%" class="v1">&nbsp;</td>
+<td width="87%" class="v1" height="17">&nbsp;</td>
+</tr>
+<tr>
+<td width="13%" class="v1">&#8226;&nbsp;</td>
+<td width="87%" class="v1" height="17"><a href="0321154959_toc.html" class="v1">Table of Contents</a></td>
+</tr>
+</table>
+</td>
+<td width="488" class="v2">
+<table width="469" border="0" cellspacing="0" cellpadding="0">
+<tr valign="top">
+<td colspan="3" class="v2" height="20"><b>Software Architecture in Practice, Second Edition</b></td>
+</tr>
+<tr>
+<td colspan="3" class="v2" height="18">By 
+                    <a target="_new" href="http://www.informit.com/safari/author_bio.asp@ISBN=0321154959" class="v1">Len&nbsp;Bass</a>, <a target="_new" href="http://www.informit.com/safari/author_bio.asp@ISBN=0321154959" class="v1">Paul&nbsp;Clements</a>, <a target="_new" href="http://www.informit.com/safari/author_bio.asp@ISBN=0321154959" class="v1">Rick&nbsp;Kazman</a></td>
+</tr>
+<tr>
+<td width="68" class="v2" height="18">&nbsp;</td>
+<td colspan="2" class="v2" align="right"><a class="v1" href="0321154959_pref01.html" title="Start reading this book" accesskey="1"><img border="0" align="absmiddle" width="80" height="15" src="FILES/btn_start.gif" alt=""></a></td>
+</tr>
+<tr>
+<td width="68" class="v2" align="right" height="18">Publisher</td>
+<td colspan="2" class="v2">: Addison Wesley</td>
+</tr>
+<tr>
+<td width="68" class="v2" align="right" height="18">Pub Date</td>
+<td colspan="2" class="v2">: April 11, 2003</td>
+</tr>
+<tr>
+<td width="68" class="v2" align="right" height="18">ISBN</td>
+<td colspan="2" class="v2">: 0-321-15495-9</td>
+</tr>
+<tr>
+<td width="68" class="v2" align="right" height="18">Pages</td>
+<td colspan="2" class="v2">: 560</td>
+</tr>
+<tr>
+ 
+
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><table width="600" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="16"><a class="v2" href="0321154959_copyrightpg.html">Copyright</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="16"><a class="v2" href="0321154959_pref01.html">Preface</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_fmlev1sec1.html">What's New in the Second Edition</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="16"><a class="v2" href="0321154959_pref02.html">Acknowledgments</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="16"><a class="v2" href="0321154959_pref03.html">Reader's Guide</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_fmlev1sec2.html">Audience</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_fmlev1sec3.html">Parts and Chapters</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_fmlev1sec4.html">Part One: Envisioning an Architecture</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_fmlev1sec5.html">Part Two: Creating an Architecture</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_fmlev1sec6.html">Part Three: Analyzing an Architecture</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_fmlev1sec7.html">Part Four: Moving from One System to Many</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_fmlev1sec8.html">Case Study Organization</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_fmlev1sec9.html">Threads Through the Book</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_fmlev1sec10.html">Sidebars</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="16"><a class="v2" href="0321154959_part01.html">Part&nbsp;One.&nbsp;
+        Envisioning Architecture</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch01.html">
+             Chapter 1.&nbsp;
+           The Architecture Business Cycle</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch01lev1sec1.html">
+             Section 1.1.&nbsp;
+           Where Do Architectures Come From?</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch01lev1sec2.html">
+             Section 1.2.&nbsp;
+           Software Processes and the Architecture Business Cycle</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch01lev1sec3.html">
+             Section 1.3.&nbsp;
+           What Makes a "Good" Architecture?</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch01lev1sec4.html">
+             Section 1.4.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch01lev1sec5.html">
+             Section 1.5.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch02.html">
+             Chapter 2.&nbsp;
+           What Is Software Architecture?</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch02lev1sec1.html">
+             Section 2.1.&nbsp;
+           What Software Architecture Is and What It Isn't</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch02lev1sec2.html">
+             Section 2.2.&nbsp;
+           Other Points of View</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch02lev1sec3.html">
+             Section 2.3.&nbsp;
+           Architectural Patterns, Reference Models, and Reference Architectures</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch02lev1sec4.html">
+             Section 2.4.&nbsp;
+           Why Is Software Architecture Important?</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch02lev1sec5.html">
+             Section 2.5.&nbsp;
+           Architectural Structures and Views</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch02lev1sec6.html">
+             Section 2.6.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch02lev1sec7.html">
+             Section 2.7.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch02lev1sec8.html">
+             Section 2.8.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch03.html">
+             Chapter 3.&nbsp;
+           A-7E Avionics System: A Case Study in Utilizing Architectural Structures</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch03lev1sec1.html">
+             Section 3.1.&nbsp;
+           Relationship to the Architecture Business Cycle</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch03lev1sec2.html">
+             Section 3.2.&nbsp;
+           Requirements and Qualities</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch03lev1sec3.html">
+             Section 3.3.&nbsp;
+           Architecture for the A-7E Avionics System</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch03lev1sec4.html">
+             Section 3.4.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch03lev1sec5.html">
+             Section 3.5.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch03lev1sec6.html">
+             Section 3.6.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="16"><a class="v2" href="0321154959_part02.html">Part&nbsp;Two.&nbsp;
+        Creating an Architecture</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch04.html">
+             Chapter 4.&nbsp;
+           Understanding Quality Attributes</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch04lev1sec1.html">
+             Section 4.1.&nbsp;
+           Functionality and Architecture</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch04lev1sec2.html">
+             Section 4.2.&nbsp;
+           Architecture and Quality Attributes</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch04lev1sec3.html">
+             Section 4.3.&nbsp;
+           System Quality Attributes</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch04lev1sec4.html">
+             Section 4.4.&nbsp;
+           Quality Attribute Scenarios in Practice</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch04lev1sec5.html">
+             Section 4.5.&nbsp;
+           Other System Quality Attributes</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch04lev1sec6.html">
+             Section 4.6.&nbsp;
+           Business Qualities</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch04lev1sec7.html">
+             Section 4.7.&nbsp;
+           Architecture Qualities</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch04lev1sec8.html">
+             Section 4.8.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch04lev1sec9.html">
+             Section 4.9.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch04lev1sec10.html">
+             Section 4.10.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch05.html">
+             Chapter 5.&nbsp;
+           Achieving Qualities</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec1.html">
+             Section 5.1.&nbsp;
+           Introducing Tactics</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec2.html">
+             Section 5.2.&nbsp;
+           Availability Tactics</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec3.html">
+             Section 5.3.&nbsp;
+           Modifiability Tactics</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec4.html">
+             Section 5.4.&nbsp;
+           Performance Tactics</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec5.html">
+             Section 5.5.&nbsp;
+           Security Tactics</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec6.html">
+             Section 5.6.&nbsp;
+           Testability Tactics</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec7.html">
+             Section 5.7.&nbsp;
+           Usability Tactics</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec8.html">
+             Section 5.8.&nbsp;
+           Relationship of Tactics to Architectural Patterns</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec9.html">
+             Section 5.9.&nbsp;
+           Architectural Patterns and Styles</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec10.html">
+             Section 5.10.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec11.html">
+             Section 5.11.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch05lev1sec12.html">
+             Section 5.12.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch06.html">
+             Chapter 6.&nbsp;
+           Air Traffic Control: A Case Study in Designing for High Availability</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch06lev1sec1.html">
+             Section 6.1.&nbsp;
+           Relationship to the Architecture Business Cycle</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch06lev1sec2.html">
+             Section 6.2.&nbsp;
+           Requirements and Qualities</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch06lev1sec3.html">
+             Section 6.3.&nbsp;
+           Architectural Solution</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch06lev1sec4.html">
+             Section 6.4.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch06lev1sec5.html">
+             Section 6.5.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch06lev1sec6.html">
+             Section 6.6.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch07.html">
+             Chapter 7.&nbsp;
+           Designing the Architecture</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch07lev1sec1.html">
+             Section 7.1.&nbsp;
+           Architecture in the Life Cycle</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch07lev1sec2.html">
+             Section 7.2.&nbsp;
+           Designing the Architecture</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch07lev1sec3.html">
+             Section 7.3.&nbsp;
+           Forming the Team Structure</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch07lev1sec4.html">
+             Section 7.4.&nbsp;
+           Creating a Skeletal System</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch07lev1sec5.html">
+             Section 7.5.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch07lev1sec6.html">
+             Section 7.6.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch07lev1sec7.html">
+             Section 7.7.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch08.html">
+             Chapter 8.&nbsp;
+           Flight Simulation: A Case Study in an Architecture for Integrability</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch08lev1sec1.html">
+             Section 8.1.&nbsp;
+           Relationship to the Architecture Business Cycle</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch08lev1sec2.html">
+             Section 8.2.&nbsp;
+           Requirements and Qualities</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch08lev1sec3.html">
+             Section 8.3.&nbsp;
+           Architectural Solution</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch08lev1sec4.html">
+             Section 8.4.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch08lev1sec5.html">
+             Section 8.5.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch08lev1sec6.html">
+             Section 8.6.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch09.html">
+             Chapter 9.&nbsp;
+           Documenting Software Architectures</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch09lev1sec1.html">
+             Section 9.1.&nbsp;
+           Uses of Architectural Documentation</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch09lev1sec2.html">
+             Section 9.2.&nbsp;
+           Views</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch09lev1sec3.html">
+             Section 9.3.&nbsp;
+           Choosing the Relevant Views</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch09lev1sec4.html">
+             Section 9.4.&nbsp;
+           Documenting a View</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch09lev1sec5.html">
+             Section 9.5.&nbsp;
+           Documentation across Views</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch09lev1sec6.html">
+             Section 9.6.&nbsp;
+           Unified Modeling Language</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch09lev1sec7.html">
+             Section 9.7.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch09lev1sec8.html">
+             Section 9.8.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch09lev1sec9.html">
+             Section 9.9.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch10.html">
+             Chapter 10.&nbsp;
+           Reconstructing Software Architectures</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch10lev1sec1.html">
+             Section 10.1.&nbsp;
+           Introduction</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch10lev1sec2.html">
+             Section 10.2.&nbsp;
+           Information Extraction</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch10lev1sec3.html">
+             Section 10.3.&nbsp;
+           Database Construction</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch10lev1sec4.html">
+             Section 10.4.&nbsp;
+           View Fusion</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch10lev1sec5.html">
+             Section 10.5.&nbsp;
+           Reconstruction</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch10lev1sec6.html">
+             Section 10.6.&nbsp;
+           Example</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch10lev1sec7.html">
+             Section 10.7.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch10lev1sec8.html">
+             Section 10.8.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch10lev1sec9.html">
+             Section 10.9.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="16"><a class="v2" href="0321154959_part03.html">Part&nbsp;Three.&nbsp;
+        Analyzing Architectures</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch11.html">
+             Chapter 11.&nbsp;
+           The ATAM: A Comprehensive Method for Architecture Evaluation</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch11lev1sec1.html">
+             Section 11.1.&nbsp;
+           Participants in the ATAM</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch11lev1sec2.html">
+             Section 11.2.&nbsp;
+           Outputs of the ATAM</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch11lev1sec3.html">
+             Section 11.3.&nbsp;
+           Phases of the ATAM</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch11lev1sec4.html">
+             Section 11.4.&nbsp;
+           The Nightingale System: A Case Study in Applying the ATAM</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch11lev1sec5.html">
+             Section 11.5.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch11lev1sec6.html">
+             Section 11.6.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch11lev1sec7.html">
+             Section 11.7.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch12.html">
+             Chapter 12.&nbsp;
+           The CBAM: A Quantitative Approach to Architecture Design Decision Making</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch12lev1sec1.html">
+             Section 12.1.&nbsp;
+           Decision-Making Context</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch12lev1sec2.html">
+             Section 12.2.&nbsp;
+           The Basis for the CBAM</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch12lev1sec3.html">
+             Section 12.3.&nbsp;
+           Implementing the CBAM</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch12lev1sec4.html">
+             Section 12.4.&nbsp;
+           Case Study: The NASA ECS Project</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch12lev1sec5.html">
+             Section 12.5.&nbsp;
+           Results of the CBAM Exercise</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch12lev1sec6.html">
+             Section 12.6.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch12lev1sec7.html">
+             Section 12.7.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch12lev1sec8.html">
+             Section 12.8.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch13.html">
+             Chapter 13.&nbsp;
+           The World Wide Web<br>A Case Study in Interoperability</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch13lev1sec1.html">
+             Section 13.1.&nbsp;
+           Relationship to the Architecture Business Cycle</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch13lev1sec2.html">
+             Section 13.2.&nbsp;
+           Requirements and Qualities</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch13lev1sec3.html">
+             Section 13.3.&nbsp;
+           Architectural Solution</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch13lev1sec4.html">
+             Section 13.4.&nbsp;
+           Another Cycle through the ABC: The Evolution of Web-Based E-Commerce Architectures</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch13lev1sec5.html">
+             Section 13.5.&nbsp;
+           Achieving Quality Goals</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch13lev1sec6.html">
+             Section 13.6.&nbsp;
+           The Architecture Business Cycle Today</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch13lev1sec7.html">
+             Section 13.7.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch13lev1sec8.html">
+             Section 13.8.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch13lev1sec9.html">
+             Section 13.9.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="16"><a class="v2" href="0321154959_part04.html">Part&nbsp;Four.&nbsp;
+        Moving From One System to Many</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch14.html">
+             Chapter 14.&nbsp;
+           Software Product Lines: Re-using Architectural Assets</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch14lev1sec1.html">
+             Section 14.1.&nbsp;
+           Overview</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch14lev1sec2.html">
+             Section 14.2.&nbsp;
+           What Makes Software Product Lines Work?</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch14lev1sec3.html">
+             Section 14.3.&nbsp;
+           Scoping</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch14lev1sec4.html">
+             Section 14.4.&nbsp;
+           Architectures for Product Lines</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch14lev1sec5.html">
+             Section 14.5.&nbsp;
+           What Makes Software Product Lines Difficult?</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch14lev1sec6.html">
+             Section 14.6.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch14lev1sec7.html">
+             Section 14.7.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch14lev1sec8.html">
+             Section 14.8.&nbsp;
+           Discussion Question</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch15.html">
+             Chapter 15.&nbsp;
+           CelsiusTech: A Case Study in Product Line Development</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch15lev1sec1.html">
+             Section 15.1.&nbsp;
+           Relationship to the Architecture Business Cycle</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch15lev1sec2.html">
+             Section 15.2.&nbsp;
+           Requirements and Qualities</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch15lev1sec3.html">
+             Section 15.3.&nbsp;
+           Architectural Solution</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch15lev1sec4.html">
+             Section 15.4.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch15lev1sec5.html">
+             Section 15.5.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch15lev1sec6.html">
+             Section 15.6.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch16.html">
+             Chapter 16.&nbsp;
+           J2EE/EJB: A Case Study of an Industry-Standard Computing Infrastructure</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch16lev1sec1.html">
+             Section 16.1.&nbsp;
+           Relationship to the Architecture Business Cycle</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch16lev1sec2.html">
+             Section 16.2.&nbsp;
+           Requirements and Qualities</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch16lev1sec3.html">
+             Section 16.3.&nbsp;
+           Architectural Solution</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch16lev1sec4.html">
+             Section 16.4.&nbsp;
+           System Deployment Decisions</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch16lev1sec5.html">
+             Section 16.5.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch16lev1sec6.html">
+             Section 16.6.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch16lev1sec7.html">
+             Section 16.7.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch17.html">
+             Chapter 17.&nbsp;
+           The Luther Architecture: A Case Study in Mobile Applications Using J2EE</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch17lev1sec1.html">
+             Section 17.1.&nbsp;
+           Relationship to the Architecture Business Cycle</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch17lev1sec3.html">
+             Section 17.3.&nbsp;
+           Architectural Solution</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch17lev1sec4.html">
+             Section 17.4.&nbsp;
+           How Luther Achieved Its Quality Goals</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch17lev1sec5.html">
+             Section 17.5.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch17lev1sec6.html">
+             Section 17.6.&nbsp;
+           For Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch17lev1sec7.html">
+             Section 17.7.&nbsp;
+           Discussion Questions</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch18.html">
+             Chapter 18.&nbsp;
+           Building Systems from Off-the-Shelf Components</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch18lev1sec1.html">
+             Section 18.1.&nbsp;
+           Impact of Components on Architecture</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch18lev1sec2.html">
+             Section 18.2.&nbsp;
+           Architectural Mismatch</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch18lev1sec3.html">
+             Section 18.3.&nbsp;
+           Component-Based Design as Search</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch18lev1sec4.html">
+             Section 18.4.&nbsp;
+           ASEILM Example</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch18lev1sec5.html">
+             Section 18.5.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch18lev1sec6.html">
+             Section 18.6.&nbsp;
+           Further Reading</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_ch19.html">
+             Chapter 19.&nbsp;
+           Software Architecture in the Future</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch19lev1sec1.html">
+             Section 19.1.&nbsp;
+           The Architecture Business Cycle Revisited</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch19lev1sec2.html">
+             Section 19.2.&nbsp;
+           Creating an Architecture</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch19lev1sec3.html">
+             Section 19.3.&nbsp;
+           Architecture within the Life Cycle</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch19lev1sec4.html">
+             Section 19.4.&nbsp;
+           The Impact of Commercial Components</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="2">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="14"><a class="v2" href="0321154959_ch19lev1sec5.html">
+             Section 19.5.&nbsp;
+           Summary</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_art01.html">Acronyms</a></td>
+</tr>
+<tr>
+<td class="v2" width="21">&nbsp;&nbsp;&nbsp;</td>
+<td class="v1" valign="top" colspan="1">
+            &nbsp;
+          </td>
+<td height="18" class="v2" width="14"><img src="FILES/pixel.gif" width="14" height="1" border="0" vspace="4"></td>
+<td class="v2" valign="top" colspan="15"><a class="v2" href="0321154959_biblio01.html">References</a></td>
+</tr>
+<tr>
+<td class="v2" colspan="18"><a href="0321154959_toc.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a></td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_main.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+<a href="0321154959_copyrightpg.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+          
+</td></table>
+</body></html>

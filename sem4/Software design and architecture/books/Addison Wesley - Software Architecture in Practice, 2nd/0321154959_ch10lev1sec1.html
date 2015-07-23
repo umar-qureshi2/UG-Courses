@@ -1,0 +1,65 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="10.1 Introduction"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch10.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch10lev1sec2.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch10lev1sec1"></A><H3 class="docSection1Title">10.1 Introduction</H3>
+<P class="docText">Throughout this book we have treated architecture as something largely under your control and shown how to make architectural decisions (and, as we will see in <A class="docLink" HREF="0321154959_part03.html#part03">Part Three</A>, how to analyze those decisions) to achieve the goals and requirements in place for a system under development. But there is another side to the picture. Suppose we have a system that already exists, but we do not know its architecture. Perhaps the architecture was never recorded by the original developers. Perhaps it was recorded but the documentation has been lost. Or perhaps it was recorded but the documentation is no longer synchronized with the system after a series of changes. How do we maintain such a system? How do we manage its evolution to maintain the quality attributes that its architecture (whatever it may be) has provided for us?</P>
+<P class="docText">This chapter is about a way to answer these questions using <span class="docEmphasis">architecture reconstruction</span>, in which the "as-built" architecture of an implemented system is obtained from an existing system. This is done through a detailed analysis of the system using tool support. The tools extract information about the system and aid in building and aggregating successive levels of abstraction. If the tools are successful, the end result is an architectural representation that aids in reasoning about the system. In some cases, it may not be possible to generate a useful representation. This is sometimes the case with legacy systems that have no coherent architectural design to recover (although that in itself is useful to know).</P>
+
+<P class="docText">Architecture reconstruction is an interpretive, interactive, and iterative process involving many activities; it is not automatic. It requires the skills and attention of both the reverse engineering expert and the architect (or someone who has substantial knowledge of the architecture), largely because architectural constructs are not represented explicitly in the source code. There is no programming language construct for "layer" or "connector" or other architectural elements that we can easily pick out of a source code file. Architectural patterns, if used, are seldom labeled. Instead, architectural constructs are realized by many diverse mechanisms in an implementation, usually a collection of functions, classes, files, objects, and so forth. When a system is initially developed, its high-level design/architectural elements are mapped to implementation elements. Therefore, when we reconstruct those elements, we need to apply the inverses of the mappings. Coming up with those requires architectural insight. Familiarity with compiler construction techniques and utilities such as grep, sed, awk, perl, python, and lex/yacc is also important.</P>
+<P class="docText">The results of architectural reconstruction can be used in several ways. If no documentation exists or if it is out of date, the recovered architectural representation can be used as a basis for redocumenting the architecture, as discussed in <A class="docLink" HREF="0321154959_ch09.html#ch09">Chapter 9</A>. This approach can also be used to recover the as-built architecture, to check conformance against an "as-designed" architecture. This assures us that our maintainers (or our developers, for that matter) have followed the architectural edicts set forth for them and are not eroding the architecture, breaking down abstractions, bridging layers, compromising information hiding, and so forth. The reconstruction can also be used as the basis for analyzing the architecture (see <A class="docLink" HREF="0321154959_ch11.html#ch11">Chapters 11</A> and <A class="docLink" HREF="0321154959_ch12.html#ch12">12</A>) or as a starting point for re-engineering the system to a new desired architecture. Finally, the representation can be used to identify elements for re-use or to establish an architecture-based software product line (see <A class="docLink" HREF="0321154959_ch14.html#ch14">Chapter 14</A>).</P>
+<P class="docText">Architecture reconstruction has been used in a variety of projects ranging from MRI scanners to public telephone switches and from helicopter guidance systems to classified NASA systems. It has been used</P>
+<UL>
+<LI><P class="docList">to redocument architectures for physics simulation systems.</P></LI>
+<LI><P class="docList">to understand architectural dependencies in embedded control software for mining machinery.</P></LI>
+<LI><P class="docList">to evaluate the conformance of a satellite ground system's implementation to its reference architecture .</P></LI>
+<LI><P class="docList">to understand different systems in the automotive industry.</P></LI>
+</UL>
+<A NAME="ch10lev2sec1"></A><H4 class="docSection2Title"> THE WORKBENCH APPROACH</H4>
+<P class="docText">Architecture reconstruction requires tool support, but no single tool or tool set is always adequate to carry it out. For one thing, tools tend to be language-specific and we may encounter any number of languages in the artifacts we examine. A mature MRI scanner, for example, can contain software written in 15 languages. For another thing, data extraction tools are imperfect; they often return incomplete results or false positives, and so we use a selection of tools to augment and check on each other. Finally, the goals of reconstruction vary, as discussed above. What you wish to do with the recovered documentation will determine what information you need to extract, which in turn will suggest different tools.</P>
+<P class="docText">Taken together, these have led to a particular design philosophy for a tool set to support architecture reconstruction known as the <span class="docEmphasis">workbench</span>. A <span class="docEmphasis">workbench</span> should be open (easy to integrate new tools as required) and provide a lightweight integration framework whereby tools added to the tool set do not affect the existing tools or data unnecessarily.</P>
+<P class="docText">An example of a workbench, which we will use to illustrate several of the points in this chapter, is Dali, developed at the SEI. For Further Reading at the end of the chapter describes others.</P>
+
+<A NAME="ch10lev2sec2"></A><H4 class="docSection2Title"> RECONSTRUCTION ACTIVITIES</H4>
+<P class="docText">Software architecture reconstruction comprises the following activities, carried out iteratively:</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Information extraction.</span> 
+The purpose of this activity is to extract information from various sources.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Database construction.</span> 
+Database construction involves converting this information into a standard form such as the Rigi Standard Form (a tuple-based data format in the form of <TT>relationship &lt;entity1&gt; &lt;entity2&gt;</TT>) and an SQL-based database format from which the database is created.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">View fusion.</span> 
+View fusion combines information in the database to produce a coherent view of the architecture.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Reconstruction.</span> 
+The reconstruction activity is where the main work of building abstractions and various representations of the data to generate an architecture representation takes place.</p></span></LI>
+</OL></span>
+<P class="docText">As you might expect, the activities are highly iterative. <A class="docLink" HREF="#ch10fig01">Figure 10.1</A> depicts the architecture reconstruction activities and how information flows among them.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig01"></A>Figure 10.1. Architecture reconstruction activities. (The arrows show how information flows among the activities.)</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="261" src="FILES/10fig01.gif" ALT="graphics/10fig01.gif"></p>
+</CENTER>
+<P class="docText">The reconstruction process needs to have several people involved. These include the person doing the reconstruction (reconstructor) and one or more individuals who are familiar with the system being reconstructed (architects and software engineers).</P>
+<P class="docText">The reconstructor extracts the information from the system and either manually or with the use of tools abstracts the architecture from it. The architecture is obtained by the reconstructor through a set of hypotheses about the system. These hypotheses reflect the inverse mappings from the source artifacts to the design (ideally the opposite of the design mappings). They are tested by generating the inverse mappings and applying them to the extracted information and validating the result. To most effectively generate these hypotheses and validate them, people familiar with the system must be involved, including the system architect or engineers who have worked on it (who initially developed it or who currently maintain it).</P>
+<P class="docText">In the following sections, the various activities of architecture reconstruction are outlined in more detail along with some guidelines for each. Most of these guidelines are not specific to the use of a particular workbench and would be applicable even if the architecture reconstruction was carried out manually.</P>
+
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch10.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch10lev1sec2.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

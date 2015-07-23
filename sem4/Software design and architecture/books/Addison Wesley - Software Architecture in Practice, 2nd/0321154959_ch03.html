@@ -1,0 +1,97 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docChapterTitle"--><!--SafTocEntry="Chapter 3. A-7E Avionics System: A Case Study in Utilizing Architectural Structures"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch02lev1sec8.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch03lev1sec1.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch03"></A><H2 class="docChapterTitle">Chapter 3. A-7E  Avionics System: A Case Study in Utilizing Architectural Structures</H2>
+<blockquote>
+
+<p class="docText"><span class="docEmphasis">An object-oriented program's runtime structure often bears little resemblance to its code structure. The code structure is frozen at compile-time; it consists of classes in fixed inheritance relationships. A program's runtime structure consists of rapidly changing networks of communicating objects. In fact, the two structures are largely independent. Trying to [understand] one from the other is like trying to understand the dynamism of living ecosystems from the static taxonomy of plants and animals, and vice versa.</span></p>
+<p class="docText">—E. Gamma, R. Helms, R. Johnson, and J. Vlissides [Gamma 95]</p></blockquote>
+<P class="docText">In <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A>, we stated that software architecture describes elements of a system and the relations among them. We also emphasized that every system has many kinds of elements and that different architectural structures are useful, even necessary, to present a complete picture of the architecture of a system. Each structure concentrates on one aspect of the architecture.</P>
+<P class="docText">This chapter will present a case study of an architecture designed by engineering and specifying three specific architectural structures: <span class="docEmphasis">module decomposition, uses</span>, and <span class="docEmphasis">process</span>. We will see how these structures complement each other to provide a complete picture of how the system works, and we will see how certain qualities of the system are affected by each one. <A class="docLink" HREF="#ch03table01">Table 3.1</A> summarizes the three structures we will discuss.</P>
+<A NAME="ch03table01"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 3.1. The A-7E's Architecural Structures</h5></CAPTION><COLGROUP align="left" span="4">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Structure</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Elements</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Relation among Elements</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Has Influence Over</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Module Decomposition</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Modules (implementation units)</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Is a submodule of; shares a secret with</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Ease of change</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Uses</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Procedures</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Requires the correct presence of</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Ability to field subsets and develop incrementally</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Process</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Processes; thread of procedures</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Synchronizes with; shares CPU with; excludes</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Schedulability; achieving performance goals through parallelism</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch02lev1sec8.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch03lev1sec1.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

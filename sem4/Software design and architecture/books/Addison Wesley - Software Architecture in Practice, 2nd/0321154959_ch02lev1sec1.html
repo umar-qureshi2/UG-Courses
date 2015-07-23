@@ -1,0 +1,67 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="2.1 What Software Architecture Is and What It Isn't"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch02.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch02lev1sec2.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch02lev1sec1"></A><H3 class="docSection1Title">2.1 What Software Architecture Is and What It Isn't</H3>
+<P class="docText"><A class="docLink" HREF="#ch02fig01">Figure 2.1</A>, taken from a system description for an underwater acoustic simulation, purports to describe that system's "top-level architecture" and is precisely the kind of diagram most often displayed to help explain an architecture. Exactly what can we tell from it?</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch02fig01"></A>Figure 2.1. Typical, but uninformative, presentation of a software architecture</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="262" src="FILES/02fig01.gif" ALT="graphics/02fig01.gif"></p>
+</CENTER>
+
+<UL>
+<LI><P class="docList">The system consists of four elements.</P></LI>
+<LI><P class="docList">Three of the elements— Prop Loss Model (MODP), Reverb Model (MODR), and Noise Model (MODN)—might have more in common with each other than with the fourth—Control Process (CP)—because they are positioned next to each other.</P></LI>
+<LI><P class="docList">All of the elements apparently have some sort of relationship with each other, since the diagram is fully connected.</P></LI>
+</UL>
+<P class="docText">Is this an architecture? Assuming (as many definitions do) that architecture is a set of components (of which we have four) and connections among them (also present), this diagram seems to fill the bill. However, even if we accept the most primitive definition, what can we <span class="docEmphasis">not</span> tell from the diagram?</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">What is the nature of the elements?</span> 
+What is the significance of their separation? Do they run on separate processors? Do they run at separate times? Do the elements consist of processes, programs, or both? Do they represent ways in which the project labor will be divided, or do they convey a sense of runtime separation? Are they objects, tasks, functions, processes, distributed programs, or something else?</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">What are the responsibilities of the elements?</span> 
+What is it they do? What is their function in the system?</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">What is the significance of the connections?</span> 
+Do the connections mean that the elements communicate with each other, control each other, send data to each other, use each other, invoke each other, synchronize with each other, share some information-hiding secret with each other, or some combination of these or other relations? What are the mechanisms for the communication? What information flows across the mechanisms, whatever they may be?</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">What is the significance of the layout?</span> 
+Why is CP on a separate level? Does it call the other three elements, and are the others not allowed to call it? Does it contain the other three in an implementation unit sense? Or is there simply no room to put all four elements on the same row in the diagram?</p>
+</LI>
+</UL>
+<P class="docText">We <span class="docEmphasis">must</span> raise these questions because unless we know precisely what the elements are and how they cooperate to accomplish the purpose of the system, diagrams such as these are not much help and should be regarded skeptically.</P>
+<P class="docText">This diagram does not show a software architecture, at least not in any useful way. The most charitable thing we can say about such diagrams is that they represent a start. We now define what <span class="docEmphasis">does</span> constitute a software architecture:</P>
+<blockquote>
+<p class="docText">The software architecture of a program or computing system is the structure or structures of the system, which comprise software elements, the externally visible properties of those elements, and the relationships among them.<sup class="docFootnote"><A class="docLink" HREF="#ch02fn01">[1]</A></sup></p>
+<blockquote><p class="docFootnote"><sup><A NAME="ch02fn01">[1]</A></sup> This is a slight change from the first edition. There the primary building blocks were called "components," a term that has since become closely associated with the component-based software engineering movement, taking on a decidedly runtime flavor. "Element" was chosen here to convey something more general.</p></blockquote>
+</blockquote>
+<P class="docText">"Externally visible" properties are those assumptions other elements can make of an element, such as its provided services, performance characteristics, fault handling, shared resource usage, and so on. Let's look at some of the implications of this definition in more detail.</P>
+<P class="docText">First, <span class="docEmphasis">architecture defines software elements</span>. The architecture embodies information about how the elements relate to each other. This means that it specifically <span class="docEmphasis">omits</span> certain information about elements that does not pertain to their interaction. Thus, an architecture is foremost an <span class="docEmphasis">abstraction</span> of a system that suppresses details of elements that do not affect how they use, are used by, relate to, or interact with other elements. In nearly all modern systems, elements interact with each other by means of interfaces that partition details about an element into public and private parts. Architecture is concerned with the public side of this division; private details—those having to do solely with internal implementation—are not architectural.</P>
+<P class="docText">Second, the definition makes clear that <span class="docEmphasis">systems can and do comprise more than one structure</span> and that no one structure can irrefutably claim to be <span class="docEmphasis">the</span> architecture. For example, all nontrivial projects are partitioned into implementation units; these units are given specific responsibilities and are frequently the basis of work assignments for programming teams. This type of element comprises programs and data that software in other implementation units can call or access, and programs and data that are private. In large projects, these elements are almost certainly subdivided for assignment to subteams. This is one kind of structure often used to describe a system. It is very static in that it focuses on the way the system's functionality is divided up and assigned to implementation teams.</P>
+<P class="docText">Other structures are much more focused on the way the elements interact with each other at runtime to carry out the system's function. Suppose the system is to be built as a set of parallel processes. The processes that will exist at runtime, the programs in the various implementation units described previously that are strung together sequentially to form each process, and the synchronization relations among the processes form another kind of structure often used to describe a system.</P>
+<P class="docText">Are any of these structures alone <span class="docEmphasis">the</span> architecture? No, although they all convey architectural information. The architecture consists of these structures as well as many others. This example shows that since architecture can comprise more than one kind of structure, there is more than one kind of element (e.g., implementation unit and processes), more than one kind of interaction among elements (e.g., subdivision and synchronization), and even more than one context (e.g., development time versus runtime). By intention, the definition does not specify what the architectural elements and relationships are. Is a software element an object? A process? A library? A database? A commercial product? It can be any of these things and more.</P>
+<P class="docText">Third, the definition implies that <span class="docEmphasis">every computing system with software has a software architecture</span> because every system can be shown to comprise elements and the relations among them. In the most trivial case, a system is itself a single element—uninteresting and probably nonuseful but an architecture nevertheless. Even though every system has an architecture, it does not necessarily follow that the architecture is known to anyone. Perhaps all of the people who designed the system are long gone, the documentation has vanished (or was never produced), the source code has been lost (or was never delivered), and all we have is the executing binary code. This reveals the difference between the architecture of a system and the representation of that architecture. Unfortunately, an architecture can exist independently of its description or specification, which raises the importance of <span class="docEmphasis">architecture documentation</span> (described in <A class="docLink" HREF="0321154959_ch09.html#ch09">Chapter 9</A>) and <span class="docEmphasis">architecture reconstruction</span> (discussed in <A class="docLink" HREF="0321154959_ch10.html#ch10">Chapter 10</A>).</P>
+<P class="docText">Fourth, <span class="docEmphasis">the behavior of each element is part of the architecture</span> insofar as that behavior can be observed or discerned from the point of view of another element. Such behavior is what allows elements to interact with each other, which is clearly part of the architecture. This is another reason that the box-and-line drawings that are passed off as architectures are not architectures at all. They are simply box-and-line drawings—or, to be more charitable, they serve as cues to provide more information that explains what the elements shown actually do. When looking at the names of the boxes (database, graphical user interface, executive, etc.), a reader may well imagine the functionality and behavior of the corresponding elements. This mental image approaches an architecture, but it springs from the observer's mind and relies on information that is not present. We do not mean that the exact behavior and performance of every element must be documented in all circumstances; however, to the extent that an element's behavior influences how another element must be written to interact with it or influences the acceptability of the system as a whole, this behavior is part of the software architecture.</P>
+<P class="docText">Finally, the definition is indifferent as to whether <span class="docEmphasis">the architecture for a system is a good one or a bad one</span>, meaning that it will allow or prevent the system from meeting its behavioral, performance, and life-cycle requirements. We do not accept trial and error as the best way to choose an architecture for a system—that is, picking an architecture at random, building the system from it, and hoping for the best—so this raises the importance of <span class="docEmphasis">architecture evaluation</span> (<A class="docLink" HREF="0321154959_ch11.html#ch11">Chapters 11</A> and <A class="docLink" HREF="0321154959_ch12.html#ch12">12</A>) and <span class="docEmphasis">architecture design</span> (<A class="docLink" HREF="0321154959_ch07.html#ch07">Chapter 7</A>).</P>
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch02.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch02lev1sec2.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

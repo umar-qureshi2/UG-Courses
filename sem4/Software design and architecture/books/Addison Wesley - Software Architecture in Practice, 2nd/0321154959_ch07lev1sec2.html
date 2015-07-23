@@ -1,0 +1,233 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="7.2 Designing the Architecture"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch07lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch07lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch07lev1sec2"></A><H3 class="docSection1Title" id="161597-912">7.2 Designing the Architecture</H3>
+<P class="docText">In this section we describe a method for designing an architecture to satisfy both quality requirements and functional requirements. We call this method Attribute-Driven Design (ADD). ADD takes as input a set of quality attribute scenarios and employs knowledge about the relation between quality attribute achievement and architecture in order to design the architecture. The ADD method can be viewed as an extension to most other development methods, such as the Rational Unified Process. The Rational Unified Process has several steps that result in the high-level design of an architecture but then proceeds to detailed design and implementation. Incorporating ADD into it involves modifying the steps dealing with the high-level design of the architecture and then following the process as described by Rational.</P>
+<A NAME="ch07lev2sec2"></A><H4 class="docSection2Title"> ATTRIBUTE-DRIVEN DESIGN</H4>
+<P class="docText">ADD is an approach to defining a software architecture that bases the decomposition process on the quality attributes the software has to fulfill. It is a recursive decomposition process where, at each stage, tactics and architectural patterns are chosen to satisfy a set of quality scenarios and then functionality is allocated to instantiate the module types provided by the pattern. ADD is positioned in the life cycle after requirements analysis and, as we have said, can begin when the architectural drivers are known with some confidence.</P>
+<P class="docText">The output of ADD is the first several levels of a module decomposition view of an architecture and other views as appropriate. Not all details of the views result from an application of ADD; the system is described as a set of containers for functionality and the interactions among them. This is the first articulation of architecture during the design process and is therefore necessarily coarse grained. Nevertheless, it is critical for achieving the desired qualities, and it provides a framework for achieving the functionality. The difference between an architecture resulting from ADD and one ready for implementation rests in the more detailed design decisions that need to be made. These could be, for example, the decision to use specific object-oriented design patterns or a specific piece of middleware that brings with it many architectural constraints. The architecture designed by ADD may have intentionally deferred this decision to be more flexible.</P>
+<P class="docText">There are a number of different design processes that could be created using the general scenarios of <A class="docLink" HREF="0321154959_ch04.html#ch04">Chapter 4</A> and the tactics and patterns of <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A>. Each process assumes different things about how to "chunk" the design work and about the essence of the design process. We discuss ADD in some detail to illustrate how we are applying the general scenarios and tactics, and hence how we are "chunking" the work, and what we believe is the essence of the design process.</P>
+<P class="docText">We demonstrate the ADD method by using it to design a product line architecture for a garage door opener within a home information system. The opener is responsible for raising and lowering the door via a switch, remote control, or the home information system. It is also possible to diagnose problems with the opener from within the home information system.</P>
+<A NAME="ch07lev3sec1"></A><H5 class="docSection3Title"> Sample Input</H5>
+<P class="docText">The input to ADD is a set of requirements. ADD assumes functional requirements (typically expressed as use cases) and constraints as input, as do other design methods. However, in ADD, we differ from those methods in our treatment of <span class="docEmphasis">quality requirements</span>. ADD mandates that quality requirements be expressed as a set of system-specific quality scenarios. The general scenarios discussed in <A class="docLink" HREF="0321154959_ch04.html#ch04">Chapter 4</A> act as input to the requirements process and provide a checklist to be used in developing the system-specific scenarios. System-specific scenarios should be defined to the detail necessary for the application. In our examples, we omit several portions of a fully fleshed scenario since these portions do not contribute to the design process.</P>
+<P class="docText">For our garage door example, the quality scenarios include the following:</P>
+<UL>
+<LI><P class="docList">The device and controls for opening and closing the door are different for the various products in the product line, as already mentioned. They may include controls from within a home information system. The product architecture for a specific set of controls should be directly derivable from the product line architecture.</P></LI>
+<LI><P class="docList">The processor used in different products will differ. The product architecture for each specific processor should be directly derivable from the product line architecture.</P></LI>
+<LI><P class="docList">If an obstacle (person or object) is detected by the garage door during descent, it must halt (alternately re-open) within 0.1 second.</P></LI>
+<LI><P class="docList">The garage door opener should be accessible for diagnosis and administration from within the home information system using a product-specific diagnosis protocol. It should be possible to directly produce an architecture that reflects this protocol.</P></LI>
+</UL>
+
+<A NAME="ch07lev3sec2"></A><H5 class="docSection3Title"> Beginning ADD</H5>
+<P class="docText">We have already introduced architectural drivers. ADD depends on the identification of the drivers and can start as soon as all of them are known. Of course, during the design the determination of which architectural drivers are key may change either as a result of better understanding of the requirements or as a result of changing requirements. Still, the process can begin when the driver requirements are known with some assurance.</P>
+<P class="docText">In the following section we discuss ADD itself.</P>
+
+<A NAME="ch07lev3sec3"></A><H5 class="docSection3Title"> ADD Steps</H5>
+<P class="docText">We begin by briefly presenting the steps performed when designing an architecture using the ADD method. We will then discuss the steps in more detail.</P>
+<A NAME="ch07pr01"></A>
+
+
+<span style="font-weight:bold"><OL class="docList" START="1">
+<LI><span style="font-weight:normal" value="1">
+<p class="docText"><span class="docEmphasis">Choose the module to decompose.</span> The module to start with is usually the whole system. All required inputs for this module should be available (constraints, functional requirements, quality requirements).</p>
+</span></LI><LI><span style="font-weight:normal" value="2">
+<P class="docText"><span class="docEmphasis">Refine the module according to these steps:</span></P>
+<OL type="a">
+<LI>
+<P class="docText">Choose the architectural drivers from the set of concrete quality scenarios and functional requirements. This step determines what is important for this decomposition.</P>
+</LI><LI>
+<P class="docText">Choose an architectural pattern that satisfies the architectural drivers. Create (or select) the pattern based on the tactics that can be used to achieve the drivers. Identify child modules required to implement the tactics.</P>
+</LI><LI>
+<P class="docText">Instantiate modules and allocate functionality from the use cases and represent using multiple views.</P>
+</LI><LI>
+<P class="docText">Define interfaces of the child modules. The decomposition provides modules and constraints on the types of module interactions. Document this information in the interface document for each module.</P>
+</LI><LI>
+<P class="docText">Verify and refine use cases and quality scenarios and make them constraints for the child modules. This step verifies that nothing important was forgotten and prepares the child modules for further decomposition or implementation.</P>
+</LI></OL>
+</span></LI><LI><span style="font-weight:normal" value="3">
+<P class="docText"><span class="docEmphasis">Repeat the steps above for every module that needs further decomposition</span>.</P>
+</span></LI></OL></span>
+<A NAME="ch07lev4sec1"></A><H5 class="docSection4Title">1 Choose the Module to Decompose</H5>
+<P class="docText">The following are all modules: system, subsystem, and submodule. The decomposition typically starts with the system, which is then decomposed into subsystems, which are further decomposed into submodules.</P>
+<P class="docText">In our example, the garage door opener is the system. One constraint at this level is that the opener must interoperate with the home information system.</P>
+
+<A NAME="ch07lev4sec2"></A><H5 class="docSection4Title">2.a Choose the Architectural Drivers</H5>
+<P class="docText">As we said, architectural drivers are the combination of functional and quality requirements that "shape" the architecture or the particular module under consideration. The drivers will be found among the top-priority requirements for the module.</P>
+<P class="docText">In our example, the four scenarios we have shown are architectural drivers. In the systems on which this example is based, there were dozens of quality scenarios. In examining them, we see a requirement for real-time performance,<sup class="docFootnote"><A class="docLink" HREF="#ch07fn01">[1]</A></sup> and modifiability to support product lines. We also see a requirement that online diagnosis be supported. All of these requirements must be addressed in the initial decomposition of the system.</P>
+<blockquote><p class="docFootnote"><sup><A NAME="ch07fn01">[1]</A></sup> A 0.1-second response when an obstacle is detected may not seem like a tight deadline, but we are discussing a mass market where using a processor with limited power translates into substantial cost savings. Also, a garage door has a great deal of inertia and is difficult to stop.</p></blockquote>
+<P class="docText">The determination of architectural drivers is not always a top-down process. Sometimes detailed investigation is required to understand the ramifications of particular requirements. For example, to determine if performance is an issue for a particular system configuration, a prototypical implementation of a piece of the system may be required. In our example, determining that the performance requirement is an architectural driver requires examining the mechanics of a garage door and the speed of the potential processors.</P>
+<P class="docText">We will base our decomposition of a module on the architectural drivers. Other requirements apply to that module, but, by choosing the drivers, we are reducing the problem to satisfying the most important ones. We do not treat all of the requirements as equal; the less important requirements are satisfied within the constraints of the most important. This is a significant difference between ADD and other architecture design methods.</P>
+
+<A NAME="ch07lev4sec3"></A><H5 class="docSection4Title">2.b Choose an Architectural Pattern</H5>
+<P class="docText">As discussed in <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A>, for each quality there are identifiable tactics (and patterns that implement these tactics) that can be used in an architecture design to achieve a specific quality. Each tactic is designed to realize one or more quality attributes, but the patterns in which they are embedded have an impact on other quality attributes. In an architecture design, a composition of many such tactics is used to achieve a balance between the required multiple qualities. Achievement of the quality and functional requirements is analyzed during the refinement step.</P>
+<P class="docText">The goal of step 2<span class="docEmphasis">b</span> is to establish an overall architectural pattern consisting of module types. The pattern satisfies the architectural drivers and is constructed by composing selected tactics. Two main factors guide tactic selection. The first is the drivers themselves. The second is the side effects that a pattern implementing a tactic has on other qualities.</P>
+<P class="docText">For example, a classic tactic to achieve modifiability is the use of an interpreter. Adding an interpreted specification language to a system simplifies the creation of new functions or the modification of existing ones. Macro recording and execution is an example of an interpreter. HTML is an interpreted language that specifies the look-and-feel of Web pages. An interpreter is an excellent technique for achieving modifiability at runtime, but it has a strong negative influence on performance. The decision to use one depends on the relative importance of modifiability versus performance. A decision may be made to use an interpreter for a portion of the overall pattern and to use other tactics for other portions.</P>
+<P class="docText">If we examine the available tactics from <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A> in light of our architectural drivers, we see performance and modifiability as the critical quality attributes. The modifiability tactics are "localize changes," "prevent the ripple effect," and "defer binding time." Moreover, since our modifiability scenarios are concerned primarily with changes that will occur during system design, the primary tactic is "localize changes." We choose semantic coherence and information hiding as our tactics and combine them to define virtual machines for the affected areas. The performance tactics are "resource demand" and "resource arbitration." We choose one example of each: "increase computational efficiency" and "choose scheduling policy." This yields the following tactics:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Semantic coherence</span> <span class="docEmphRoman">and</span> <span class="docEmphasis">information hiding.</span> 
+Separate responsibilities dealing with the user interface, communication, and sensors into their own modules. We call these modules <span class="docEmphasis">virtual machines</span> and we expect all three to vary because of the differing products that will be derived from the architecture. Separate the responsibilities associated with diagnosis as well.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Increase computational efficiency.</span> 
+The performance-critical computations should be made as efficient as possible.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Schedule wisely.</span> 
+The performance-critical computations should be scheduled to ensure the achievement of the timing deadline.</p>
+</LI>
+</UL>
+<P class="docText"><A class="docLink" HREF="#ch07fig02">Figure 7.2</A> shows an architectural pattern derived from the combination of these tactics. This is not the only pattern that can be derived, but it is a plausible one.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch07fig02"></A>Figure 7.2. Architectural pattern that utilizes tactics to achieve garage door drivers</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="259" src="FILES/07fig02.gif" ALT="graphics/07fig02.gif"></p>
+</CENTER>
+
+<A NAME="ch07lev4sec4"></A><H5 class="docSection4Title">2.c Instantiate Modules and Allocate Functionality Using Multiple Views</H5>
+<P class="docText">In the preceding section, we discussed how the quality architectural drivers determine the decomposition structure of a module via the use of tactics. As a matter of fact, in that step we defined the module types of the decomposition step. We now show how those module types will be instantiated.</P>
+<A NAME="ch07lev5sec1"></A><H5 class="docSection5Title"> Instantiate modules</H5>
+<P class="docText">In <A class="docLink" HREF="#ch07fig02">Figure 7.2</A>, we identified a non-performance-critical computation running on top of a virtual machine that manages communication and sensor interactions. The software running on top of the virtual machine is typically an application. In a concrete system we will normally have more than one module. There will be one for each "group" of functionality; these will be instances of the types shown in the pattern. Our criterion for allocating functionality is similar to that used in functionality-based design methods, such as most object-oriented design methods.</P>
+<P class="docText">For our example, we allocate the responsibility for managing obstacle detection and halting the garage door to the performance-critical section since this functionality has a deadline. The management of the normal raising and lowering of the door has no timing deadline, and so we treat it as non-performance-critical section. The diagnosis capabilities are also non-performance critical. Thus, the non-performance-critical module of <A class="docLink" HREF="#ch07fig02">Figure 7.2</A> becomes instantiated as diagnosis and raising/lowering door modules in <A class="docLink" HREF="#ch07fig03">Figure 7.3</A>. We also identify several responsibilities of the virtual machine: communication and sensor reading and actuator control. This yields two instances of the virtual machine that are also shown in <A class="docLink" HREF="#ch07fig03">Figure 7.3</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch07fig03"></A>Figure 7.3. First-level decomposition of garage door opener</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="266" src="FILES/07fig03.gif" ALT="graphics/07fig03.gif"></p>
+</CENTER>
+<P class="docText">The result of this step is a plausible decomposition of a module. The next steps verify how well the decomposition achieves the required functionality.</P>
+
+<A NAME="ch07lev5sec2"></A><H5 class="docSection5Title"> Allocate functionality</H5>
+<P class="docText">Applying use cases that pertain to the parent module helps the architect gain a more detailed understanding of the distribution of functionality. This also may lead to adding or removing child modules to fulfill all the functionality required. At the end, every use case of the parent module must be representable by a sequence of responsibilities within the child modules.</P>
+<P class="docText">Assigning responsibilities to the children in a decomposition also leads to the discovery of necessary information exchange. This creates a producer/consumer relationship between those modules, which needs to be recorded. At this point in the design, it is not important to define how the information is exchanged. Is the information pushed or pulled? Is it passed as a message or a call parameter? These are all questions that need to be answered later in the design process. At this point only the information itself and the producer and consumer roles are of interest. This is an example of the type of information left unresolved by ADD and resolved during detailed design.</P>
+<P class="docText">Some tactics introduce specific patterns of interaction between module types. A tactic using an intermediary of type publish-subscribe, for example, will introduce a pattern, "Publish" for one of the modules and a pattern "Subscribe" for the other. These patterns of interaction should be recorded since they translate into responsibilities for the affected modules.</P>
+<P class="docText">These steps should be sufficient to gain confidence that the system can deliver the desired functionality. To check if the required qualities can be met, we need more than just the responsibilities so far allocated. Dynamic and runtime deployment information is also required to analyze the achievement of qualities such as performance, security, and reliability. Therefore, we examine additional views along with the module decomposition view.</P>
+
+<A NAME="ch07lev5sec3"></A><H5 class="docSection5Title"> Represent the architecture with views</H5>
+<P class="docText">In <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A>, we introduced a number of distinct architectural views. In our experience with ADD, one view from each of the three major groups of views (module decomposition, concurrency, and deployment) have been sufficient to begin with. The method itself does not depend on the particular views chosen, and if there is a need to show other aspects, such as runtime objects, additional views can be introduced. We now briefly discuss how ADD uses these three common views.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Module decomposition view.</span> 
+Our discussion above shows how the module decomposition view provides containers for holding responsibilities as they are discovered. Major data flow relationships among the modules are also identified through this view.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Concurrency view.</span> 
+In the concurrency view dynamic aspects of a system such as parallel activities and synchronization can be modeled. This modeling helps to identify resource contention problems, possible deadlock situations, data consistency issues, and so forth. Modeling the concurrency in a system likely leads to discovery of new responsibilities of the modules, which are recorded in the module view. It can also lead to discovery of new modules, such as a resource manager, in order to solve issues of concurrent access to a scarce resource and the like.</p>
+<P class="docList">The concurrency view is one of the component-and-connector views. The components are instances of the modules in the module decomposition view, and the connectors are the carriers of <span class="docEmphasis">virtual threads</span>. A "virtual thread" describes an execution path through the system or parts of it. This should not be confused with operating system threads (or processes), which implies other properties like memory/processor allocation. Those properties are not of interest on the level at which we are designing. Nevertheless, after the decisions on an operating system and on the deployment of modules to processing units are made, virtual threads have to be mapped onto operating system threads. This is done during detailed design.</P><P class="docList">The connectors in a concurrency view are those that deal with threads such as "synchronizes with," "starts," "cancels," and "communicates with." A concurrency view shows instances of the modules in the module decomposition view as a means of understanding the mapping between those two views. It is important to know that a synchronization point is located in a specific module so that this responsibility can be assigned at the right place.</P>
+<P class="docList">To understand the concurrency in a system, the following use cases are illuminating:</P>
+<DL>
+<DD><span class="docText">- <span class="docEmphasis">Two users doing similar things at the same time.</span> 
+This helps in recognizing resource contention or data integrity problems. In our garage door example, one user may be closing the door remotely while another is opening the door from a switch.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">One user performing multiple activities simultaneously.</span> 
+This helps to uncover data exchange and activity control problems. In our example, a user may be performing diagnostics while simultaneously opening the door.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">Starting up the system.</span> 
+This gives a good overview of permanent running activities in the system and how to initialize them. It also helps in deciding on an initialization strategy, such as everything in parallel or everything in sequence or any other model. In our example, does the startup of the garage door opener system depend on the availability of the home information system? Is the garage door opener system always working, waiting for a signal, or is it started and stopped with every door opening and closing?<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">Shutting down the system.</span> 
+This helps to uncover issues of cleaning up, such as achieving and saving a consistent system state.<BR><BR></span><P class="docList">- In our example, we can see a point of synchronization in the sensor/actuator virtual machine. The performance-critical section must sample the sensor, as must the raising/lowering door section. It is plausible that the performance-critical section will interrupt the sensor/actuator virtual machine when it is performing an action for the raising/lowering door section. We need a synchronization mechanism for the sensor/actuator virtual machine. We see this by examining the virtual thread for the performance-critical section and the virtual thread for the raising/lowering door section, and observing that these two threads both involve the sensor/actuator virtual machine. The crossing of two virtual threads is an indication that some synchronization mechanism should be employed.</P><P class="docList">Concurrency might also be a point of variation, discussed in <A class="docLink" HREF="0321154959_ch14.html#ch14">Chapter 14</A> on software product lines. For some products a sequential initialization will work well, while for others everything should be done in parallel. If the decomposition does not support techniques to vary the method of initialization (e.g., by exchanging a component), then the decomposition should be adjusted.</P>
+</DD></DL></LI>
+<LI><p class="docText"><span class="docEmphasis">Deployment view.</span> 
+If multiple processors or specialized hardware is used in a system, additional responsibilities may arise from deployment to the hardware. Using a deployment view helps to determine and design a deployment that supports achieving the desired qualities. The deployment view results in the virtual threads of the concurrency view being decomposed into virtual threads within a particular processor and messages that travel between processors to initiate the next entry in the sequence of actions. Thus, it is the basis for analyzing the network traffic and for determining potential congestion.</p>
+<P class="docList">The deployment view also helps in deciding if multiple instances of some modules are needed. For example, a reliability requirement may force us to duplicate critical functionality on different processors. A deployment view also supports reasoning about the use of special-purpose hardware.</P><P class="docList">The derivation of the deployment view is not arbitrary. As with the module decomposition and concurrency views, the architecture drivers help determine the allocation of components to hardware. Tactics such as replication offer a means to achieve high performance or reliability by deploying replicas on different processors. Other tactics such as a real-time scheduling mechanism actually prohibit deployment on different processors. Functional considerations usually guide the deployment of the parts that are not predetermined by the selected tactics.</P>
+</LI>
+</UL>
+<P class="docText">The crossing of a virtual thread from one processor to another generates responsibilities for different modules. It indicates a communication requirement between the processors. Some module must be responsible for managing the communication; this responsibility must be recorded in the module decomposition view.</P>
+<P class="docText">In our example, deployment issues are found in the division of responsibilities between the door opener system and the home information system. Which is responsible for authenticating a remote request, and what is the communication protocol between the two?</P>
+
+
+<A NAME="ch07lev4sec5"></A><H5 class="docSection4Title">2.d Define Interfaces of the Child Modules</H5>
+<P class="docText">For purposes of ADD, an interface of a module shows the services and properties provided and required. This is different from a signature. It documents what others can use and on what they can depend.</P>
+<P class="docText">Analyzing and documenting the decomposition in terms of structure (module decomposition view), dynamism (concurrency view), and runtime (deployment view) uncovers the interaction assumptions for the child modules, which should be documented in their interfaces. The module view documents</P>
+<UL>
+<LI><P class="docList">producers/consumers of information.</P></LI>
+<LI><P class="docList">patterns of interaction that require modules to provide services and to use them.</P></LI>
+</UL>
+<P class="docText">The concurrency view documents</P>
+<UL>
+<LI><P class="docList">interactions among threads that lead to the interface of a module providing or using a service.</P></LI>
+<LI><P class="docList">the information that a component is active—for example, has its own thread running.</P></LI>
+<LI><P class="docList">the information that a component synchronizes, sequentializes, and perhaps blocks calls.</P></LI>
+</UL>
+<P class="docText">The deployment view documents</P>
+<UL>
+<LI><P class="docList">the hardware requirements, such as special-purpose hardware.</P></LI>
+<LI><P class="docList">some timing requirements, such as that the computation speed of a processor has to be at least 10 MIPS.</P></LI>
+<LI><P class="docList">communication requirements, such as that information should not be updated more than once every second.</P></LI>
+</UL>
+<P class="docText">All this information should be available in the modules' interface documentation.</P>
+
+<A NAME="ch07lev4sec6"></A><H5 class="docSection4Title">2.e Verify and Refine Use Cases and Quality Scenarios as Constraints for the Child Modules</H5>
+<P class="docText">The steps enumerated thus far amount to a proposal for a module decomposition. This decomposition must be verified and the child modules must be prepared for their own decomposition.</P>
+<A NAME="ch07lev5sec4"></A><H5 class="docSection5Title"> Functional requirements</H5>
+<P class="docText">Each child module has responsibilities that derive partially from considering decomposition of the functional requirements. Those responsibilities can be translated into use cases for the module. Another way of defining use cases is to split and refine the parent use cases. For example, a use case that initializes the whole system is broken into the initializations of subsystems. This approach has traceability because an analyst can follow the refinement.</P>
+<P class="docText">In our example, the initial responsibilities for the garage door opener were to open and close the door on request, either locally or remotely; to stop the door within 0.1 second when an obstacle is detected; and to interact with the home information system and support remote diagnostics. The responsibilities are decomposed into the following functional groups corresponding to the modules:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">User interface.</span> 
+Recognize user requests and translate them into the form expected by the raising/lowering door module.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Raising/lowering door module.</span> 
+Control actuators to raise or lower the door. Stop the door when it reaches either fully open or fully closed.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Obstacle detection.</span> 
+Recognize when an obstacle is detected and either stop the descent of the door or reverse it.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Communication virtual machine.</span> 
+Manage all communication with the home information system.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Sensor/actuator virtual machine.</span> 
+Manage all interactions with the sensors and actuators.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Scheduler.</span> 
+Guarantee that the obstacle detector will meet its deadlines.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Diagnosis.</span> 
+Manage the interactions with the home information system devoted to diagnosis.</p>
+</LI>
+</UL>
+
+<A NAME="ch07lev5sec5"></A><H5 class="docSection5Title"> Constraints</H5>
+<P class="docText">Constraints of the parent module can be satisfied in one of the following ways:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphRoman">The decomposition satisfies the constraint.</span> 
+For example, the constraint of using a certain operating system can be satisfied by defining the operating system as a child module. The constraint has been satisfied and nothing more needs to be done.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphRoman">The constraint is satisfied by a single child module.</span> 
+For example, the constraint of using a special protocol can be satisfied by defining an encapsulation child module for the protocol. The constraint has been designated a child. Whether it is satisfied or not depends on what happens with the decomposition of the child.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphRoman">The constraint is satisfied by multiple child modules.</span> 
+For example, using the Web requires two modules (client and server) to implement the necessary protocols. Whether the constraint is satisfied depends on the decomposition and coordination of the children to which the constraint has been assigned.</p>
+</LI>
+</UL>
+<P class="docText">In our example, one constraint is that the communication with the home information system is maintained. The communication virtual machine will recognize if this communication is unavailable, so the constraint is satisfied by a single child.</P>
+
+<A NAME="ch07lev5sec6"></A><H5 class="docSection5Title"> Quality scenarios</H5>
+<P class="docText">Quality scenarios also have to be refined and assigned to the child modules.</P>
+<UL>
+<LI><P class="docList">A quality scenario may be completely satisfied by the decomposition without any additional impact. It can then be marked as satisfied.</P></LI>
+<LI><P class="docList">A quality scenario may be satisfied by the current decomposition with constraints on child modules. For example, using layers might satisfy a specific modifiability scenario, which in turn will constrain the usage pattern of the children.</P></LI>
+<LI><P class="docList">The decomposition may be neutral with respect to a quality scenario. For example, a usability scenario pertains to portions of the user interface that are not yet a portion of the decomposition. This scenario should be assigned to one of the child modules.</P></LI>
+<LI><P class="docList">A quality scenario may not be satisfiable with the current decomposition. If it is an important one, then the decomposition should be reconsidered. Otherwise, the rationale for the decomposition not supporting this scenario must be recorded. This is usually the result of a tradeoff with other, perhaps higher-priority scenarios.</P></LI>
+</UL>
+<P class="docText">In our example, the quality scenarios we identified as architectural drivers are met or refined in the following fashion:</P>
+<UL>
+<LI><P class="docList">The devices and controls for opening and closing the door are different for different products in the product line. They may include controls from within a home information system. This scenario is delegated to the user interface module.</P></LI>
+<LI><P class="docList">The processor used in different products will differ. The product-specific architecture for each product should be directly derivable from the product line architecture. This scenario is delegated to all of the modules. Each module becomes responsible for not using processor-specific features not supported by standard compilers.</P></LI>
+<LI><P class="docList">If an obstacle (person or object) is detected by the garage door during descent, the door must halt (alternately re-open) within 0.1 second. This scenario is delegated to the scheduler and the obstacle detection module.</P></LI>
+<LI><P class="docList">The garage door opener should be accessible for diagnosis and administration from within the home information system using a product-specific diagnosis protocol. This scenario is split between the diagnosis and communication modules. The communication module is responsible for the protocol used for communicating with the home information system, and the diagnosis module is responsible for managing the other interactions involving diagnosis.</P></LI>
+</UL>
+<P class="docText">At the end of this step we have a decomposition of a module into its children, where each child module has a collection of responsibilities; a set of use cases, an interface, quality scenarios, and a collection of constraints. This is sufficient to start the next iteration of decomposition.</P>
+<P class="docText">Notice from the example how much (or little) progress is made in a single iteration: We have a vocabulary of modules and their responsibilities; we have considered a variety of use cases and quality scenarios and understand some of their ramifications. We have decided the information needs of the modules and their interactions. This information should be captured in the design rationale, as we discuss in <A class="docLink" HREF="0321154959_ch09.html#ch09">Chapter 9</A>, Documenting Software Architectures. We have not decided on most of the details yet. We do not know the language for communication between the user interface module and the raising/lowering modules. We do not know the algorithm for performing obstacle detection. We do not know, in any detail, how the performance-critical section communicates with the non-performance-critical section.</P>
+<P class="docText">What we have done is defined enough so that if we are designing a large system, we can allocate work teams and give them their charges. If we are designing a small system (such as the garage door opener), we can directly proceed to the next iteration and decide on answers for these questions.</P>
+
+
+
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch07lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch07lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

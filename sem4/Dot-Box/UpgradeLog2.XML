@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="LineGame">
+</Property><Property Name="Solution File" Value="E:\softwares\Projects\LineGame_final\LineGame.sln">
+</Property><Property Name="User Options File" Value="E:\softwares\Projects\LineGame_final\LineGame.suo">
+</Property><Property Name="Date" Value="Wednesday, March 07, 2012">
+</Property><Property Name="Time" Value="23:48 PM">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="LineGame.sln" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame.sln">
+</Event><Event ErrorLevel="0" Project="" Source="LineGame.suo" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame.suo">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\LineGame.csproj" Description="Project file successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\LineGame.csproj">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\LineGame.csproj.user" Description="Project user file successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\LineGame.csproj.user">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Client.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Client.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Game.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Game.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Game.designer.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Game.designer.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\LanLobby.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\LanLobby.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\LanLobby.Designer.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\LanLobby.Designer.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Login.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Login.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Login.Designer.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Login.Designer.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Main.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Main.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Main.Designer.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Main.Designer.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Player.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Player.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Program.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Program.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Progress.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Progress.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Progress.Designer.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Progress.Designer.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Properties\AssemblyInfo.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Properties\Resources.Designer.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Properties\Settings.Designer.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Server.cs" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Server.cs">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\app.config" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\app.config">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Properties\Settings.settings" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Game.resx" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Game.resx">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\LanLobby.resx" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\LanLobby.resx">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Login.resx" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Login.resx">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Main.resx" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Main.resx">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Progress.resx" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Progress.resx">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\Properties\Resources.resx" Description="File successfully backed up as E:\softwares\Projects\LineGame_final\Backup\LineGame\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="LineGame" Source="LineGame\LineGame.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="LineGame" Source="LineGame\LineGame.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="LineGame.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="LineGame.sln" Description="Converted">
+</Event></UpgradeLog>

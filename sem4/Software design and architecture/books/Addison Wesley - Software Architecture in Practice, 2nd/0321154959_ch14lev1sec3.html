@@ -1,0 +1,66 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="14.3 Scoping"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch14lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch14lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch14lev1sec3"></A><H3 class="docSection1Title" id="161597-886">14.3 Scoping</H3>
+<P class="docText">The scope of a product line defines what systems are in it, and what systems are out. Put less bluntly, a product line's scope is a statement about what systems an organization is willing to build as part of its line and what systems it is not willing to build. Defining a product line's scope is like drawing a doughnut in the space of all possible systems, as shown in <A class="docLink" HREF="#ch14fig01">Figure 14.1</A>. The doughnut's center represents the systems that the organization could build, would build, because they fall within its product line capability. Systems outside the doughnut are out of scope, ones that the product line is not well equipped to handle. Systems on the doughnut itself could be handled, but with some effort, and require case-by-case disposition as they arise. To illustrate, in a product line of office automation systems a conference room scheduler would be in; a flight simulator would be out. A specialized intranet search engine might be in if it could be produced in a reasonable time and if there were strategic reasons for doing so (such as the likelihood that future customers would want a similar product).</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch14fig01"></A>Figure 14.1. The space of all possible systems is divided into areas within scope (<span class="docEmphasis">white</span>), areas outside of scope (<span class="docEmphasis">speckled</span>), and areas that require case-by-case disposition (<span class="docEmphasis">black</span>).</H5><h5><P class="docText">Adapted from [<A class="docLink" HREF="0321154959_biblio01.html#biblio01entry40">Clements 02b</A>].</P>
+</h5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="139" src="FILES/14fig01.gif" ALT="graphics/14fig01.gif"></p>
+</CENTER>
+<P class="docText">The scope represents the organization's best prediction about what products it will be asked to build in the foreseeable future. Input to the scoping process comes from the organization's strategic planners, marketing staff, domain analysts who can catalog similar systems (both existing and on the drawing board), and technology experts.</P>
+<P class="docText">A product line scope is a critical factor in the success of the product line. Scope too narrowly (the products vary in a small number of features) and an insufficient number of products will be derived to justify the investment in development. Scope too broadly (the products vary in kind as well as in features) and the effort required to develop individual products from the core assets is too great to lead to great savings. Scope can be refined during the initial establishment of the product line or opportunistically depending on the product line adoption strategy (see the section Adoption Strategies).</P>
+<P class="docText">The problem in defining the scope is not in finding commonality—a creative architect can find points of commonality between any two systems—but in finding commonality that can be exploited to substantially reduce the cost of constructing the systems that an organization intends to build.</P>
+<P class="docText">When considering scope, more than just the systems being built should be considered. Market segmentation and types of customer interactions assumed will help determine the scope of any product line. For example, Philips, a Dutch manufacturer of consumer electronics, has distinct product lines for home video electronic systems and digital video communication. Video is the common thread, but one is a mass market, where the customer is assumed to have very little video sophistication, and the other is a much smaller market (in terms of number of customers), where the customer is assumed to be very knowledgeable. The products being developed reflect these assumptions about the sophistication of customers and the amount of care each customer will receive. These differences were sufficient to keep Philips from attempting to develop a single product line for both markets.</P>
+<P class="docText">Narrowly scoped product lines offer opportunities to build specialized tools to support the specification of new products, for example:</P>
+<UL>
+<LI><P class="docList">FAST is a process for product line development based on developing a domain-specific language and associated compiler. The compiler is one of the core assets. When product variations are captured in a domain-specific language, the runtime library for the code generated through the compiler becomes an additional core asset.</P></LI>
+<LI><P class="docList">GM Powertrain makes a product out of product line assets based on contracts stored in a database. Each element has well-defined interfaces and possible variation points. A tool searches the database based on desired features and assembles the product.</P></LI>
+</UL>
+<P class="docText">Broadly scoped product lines tend to be developed as frameworks or as collections of services, for example:</P>
+<UL>
+<LI><P class="docList">An automotive supplier's product line of navigation systems is geared to automotive manufacturers, each of which insists on its own user interface and set of features. The supplier designed the architecture as a collection of frameworks. The development of each product consists of constructing the user interface and instantiating the frameworks for the specified features.</P></LI>
+<LI><P class="docList">The Luther system (see <A class="docLink" HREF="0321154959_ch17.html#ch17">Chapter 17</A>) is a product line constructed on top of J2EE (a framework). The development of each product consists of building the user interface and implementing some application support modules.</P></LI>
+</UL>
+<P><A NAME="ch14sb01"></A><TABLE CELLSPACING="0" WIDTH="90%" BORDER="1"><TR><TD>
+<H2 class="docSidebarTitle">That Silver Lining Might Have A Cloud</H2>
+<P class="docText">The software product line paradigm is a powerful way to leverage an investment in architecture (and other core assets) into a family of related systems and thus see order-of-magnitude improvements in time to market, quality, and productivity.</P>
+<P class="docText">These results are possible and have been demonstrated by companies large and small in many different domains. The effects are real. Further, data from many sources and companies confirms with astonishing consistency that to make the investment pay off, an organization needs to build only about three products. This is the minimum number we would expect to have in a product line anyway.</P>
+<P class="docText">It must be pointed out, however, that other results are possible as well, and a spectacular crash-and-burn is not out of the question when trying to adopt this approach. Product line practice, like any new technology, needs careful thought given to its adoption, and a company's history, situation, and culture must be taken into account.</P>
+<P class="docText">These factors can contribute to product line failure:</P>
+<UL>
+<LI><P class="docList">Lack of a champion in a position of sufficient control and visibility</P></LI>
+<LI><P class="docList">Failure of management to provide sustained and unwavering support</P></LI>
+<LI><P class="docList">Reluctance of middle managers to relinquish autocratic control of projects</P></LI>
+<LI><P class="docList">Failure to clearly identify business goals for adopting the product line approach</P></LI>
+<LI><P class="docList">Abandoning the approach at the first sign of difficulty</P></LI>
+<LI><P class="docList">Failure to adequately train staff in the approach and failure to explain or justify the change adequately</P></LI>
+</UL>
+<P class="docText">Fortunately, there are strategies for overcoming most of these factors. One good strategy is to launch a small but visible pilot project to demonstrate the quantitative benefits of software product lines. The pilot can be staffed by those most willing to try something new while the skeptics go about their business. It can work out process issues, clarify roles and responsibilities, and in general work out the bugs before the approach is transitioned to a wider setting.</P>
+<P class="docText">Joe Gahimer of Cummins, Inc. (the purveyor of a very successful software product line chronicled in [<A class="docLink" HREF="0321154959_biblio01.html#biblio01entry40">Clements 02b</A>], tells the story of two features in his organization's products whose owners pleaded uniqueness. A tailshaft governor, they said, was nothing at all like a cruise control governor. Yes, they both controlled speed, but that was where the similarity ended. The core asset group patiently worked with both sides to capture the details of the two applications, and at the end of the exercise it turned out that the two features were not only similar but in fact functionally identical, modulo a numeric constant.</P>
+<P class="docText">When adopting a product line approach, perseverance pays off. In fact, it is the best remedy for most of the failure causes enumerated here. The single most effective factor is often a champion who (by definition) perseveres in touting the product line approach, overcoming skepticism, and instilling the will to overcome hurdles.</P>
+<P class="docText"><span class="docEmphasis">— PCC</span></P>
+</TD></TR></TABLE></P>
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch14lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch14lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

@@ -1,0 +1,12 @@
+. [
+. var  my_int : number
+. var my_float : rational
+. repeat I : 10 , 1
+           . my_int = acquire ( number )
+           . my_float = acquire ( rational )
+           . if ( my_int < my_float )
+                   . display ( number, my_int )
+           . elif ( my_int > my_float )
+                  . display ( rational, my_float )
+           . fi
+. ]

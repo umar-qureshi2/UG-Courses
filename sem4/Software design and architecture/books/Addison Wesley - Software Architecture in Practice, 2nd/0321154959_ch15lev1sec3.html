@@ -1,0 +1,194 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="15.3 Architectural Solution"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch15lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch15lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch15lev1sec3"></A><H3 class="docSection1Title">15.3 Architectural Solution</H3>
+<P class="docText">We describe the architecture using three views—the process view so that we can explain how distribution was accomplished; the layered view as a basis for discussing how Ship System 2000 achieves a separation of concerns; and a module decomposition view to show assignment of responsibilities to different large-scale elements of the system, called <span class="docEmphasis">system functions</span> and <span class="docEmphasis">system function groups</span>. After presenting the architecture in terms of these three views, we discuss some of the issues that arose at CelsiusTech that are specific to the maintenance and use of a product line.</P>
+<A NAME="ch15lev2sec8"></A><H4 class="docSection2Title"> THE PROCESS VIEW: MEETING REQUIREMENTS FOR DISTRIBUTION AND PRODUCT LINE SUPPORT</H4>
+<P class="docText">Each CPU runs a set of Ada programs; each Ada program runs on at most one processor. A program may consist of several Ada tasks. Systems in the SS2000 product line can consist of up to 300 Ada programs.</P>
+<P class="docText">The requirement to run on a distributed computing platform has broad implications for the software architecture. First, it necessitates building the system as a set of communicating processes, bringing the process view into play. Having a process view at all means that the performance tactic "introduce concurrency" has been applied. Distributed systems also raise issues of deadlock avoidance, communication protocols, fault tolerance in the case of a failed processor or communications link, network management and saturation avoidance, and performance concerns for coordination among tasks. A number of conventions are used to support the distribution. These respond to the distributed requirements of the architecture as well as its product line aspects. The tasks and intercomponent conventions include the following:</P>
+<UL>
+<LI><P class="docList">Communication among components is by the passing of strongly typed messages. The abstract data type and the manipulating programs are provided by the component passing the message. Strong typing allows compile-time elimination of whole classes of errors. The message as the primary interface mechanism between components allows components to be written independently of each other's (changeable) implementation details with respect to data representation.</P></LI>
+<LI><P class="docList">Inter-process communication is the protocol for data transport between Ada applications that supports location independence, allowing communication between applications regardless of their residence on particular processors. This "anonymity of processor assignment" allows processes to be migrated across processors, for pre-runtime performance tuning and runtime reconfiguration as an approach to fault tolerance, with no accompanying change in source code.</P></LI>
+<LI><P class="docList">Ada task facilities are used to implement the threading model.</P></LI>
+</UL>
+<P class="docText">A producer of data does its job without knowing who the consumer of that data is. Data maintenance and update are conceptually separate from data usage. This is an application of the tactic "introduce an intermediary" to achieve modifiability, which the designers accomplished using a blackboard pattern. The main consumer of the data is the HCI component. The component that contains the repository is called the common object manager (COOB).</P>
+<P class="docText"><A class="docLink" HREF="#ch15fig13">Figure 15.13</A> illustrates the role of the COOB at runtime. It shows not only the data flow that uses the COOB but also the data flows that bypass the COOB for reasons of performance. Track information (the positional history of a target), carried in a large data structure, is passed directly between producer and consumer, as is trackball information because of its very high update frequency.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch15fig13"></A>Figure 15.13. Using (and bypassing) the COOB</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="207" src="FILES/15fig13.jpg" ALT="graphics/15fig13.jpg"></p>
+</CENTER>
+<P class="docText">Data-producing conventions include the following:</P>
+<UL>
+<LI><P class="docList">Data is sent only when altered. This prevents unnecessary message traffic from entering the network.</P></LI>
+<LI><P class="docList">Data is presented as object-oriented abstractions in order to insulate programs from changing implementations. Strong typing allows compile-time detection of variable misuse errors.</P></LI>
+<LI><P class="docList">Components own the data they alter and supply access procedures that act as monitors. This eliminates race conditions because each piece of data is accessed directly only by the component that owns it.</P></LI>
+<LI><P class="docList">Data is accessible to all interested parties at all nodes in a system. Assignment to a particular node does not affect the data a component can access.</P></LI>
+<LI><P class="docList">Data is distributed so that response time to a retrieval request is short.</P></LI>
+<LI><P class="docList">Data is kept consistent within the system over the long term. Short-term inconsistencies are tolerable.</P></LI>
+</UL>
+<P class="docText">Network-related conventions include the following:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphRoman">Network load is kept low by design—</span> 
+that is, considerable design effort goes into managing the data flow on the network, ensuring that only essential information is transmitted.</p>
+</LI>
+<LI><P class="docList">Data channels are error resistant. Applications resolve errors internally as much as possible.</P></LI>
+<LI><P class="docList">It is acceptable for an application to "miss" an occasional data update. For instance, because a ship's position changes continuously, a position update may be missed but interpolated from surrounding updates.</P></LI>
+</UL>
+<P class="docText">Miscellaneous conventions include the following:</P>
+<UL>
+<LI><P class="docList">Heavy use is made of Ada generics for re-usability.</P></LI>
+<LI><P class="docList">Ada standard exception protocols are used.</P></LI>
+</UL>
+<P class="docText">Many of these conventions (particularly those regarding abstract data types, IPC, message passing, and data ownership) allow a module to be written independently of many changeable aspects over which it has no control. In other words, the modules are more general and hence more directly usable in different systems.</P>
+
+<A NAME="ch15lev2sec9"></A><H4 class="docSection2Title"> THE LAYERED VIEW</H4>
+<P class="docText">The architecture for SS2000 is layered, as follows:</P>
+<UL>
+<LI><P class="docList">The grouping of modules is roughly based on the type of information they encapsulate. Modules that must be modified if hardware platform, underlying LAN, or internode communication protocols are changed form one layer. Modules that implement functionality common to all members of the family form another. Modules specific to a particular customer product form a layer also.</P></LI>
+<LI><P class="docList">The layers are ordered, with hardware-dependent layers at one end of the relation and application-specific layers at the other.</P></LI>
+<LI><P class="docList">The layering is "strict," meaning that interactions among layers are restricted. A module residing in one layer can only access modules in its own or the next lower layer.</P></LI>
+</UL>
+<P class="docText">In SS2000, the bottom layer is known as Base System 2000; it provides an interface between operating system, hardware, and network on the one hand and application programs on the other. To applications programmers, Base System 2000 provides a programming interface with which they can perform intercomponent communication and interaction without being sensitive to the particular underlying computing platforms, network topologies, allocation of functions to processors, and so on. <A class="docLink" HREF="#ch15fig14">Figure 15.14</A> illustrates the architectural layers of SS2000.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch15fig14"></A>Figure 15.14. SS2000 layered software architecture</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="730" src="FILES/15fig14.gif" ALT="graphics/15fig14.gif"></p>
+</CENTER>
+
+<A NAME="ch15lev2sec10"></A><H4 class="docSection2Title"> THE MODULE DECOMPOSITION VIEW: SYSTEM FUNCTIONS AND SYSTEM FUNCTION GROUPS</H4>
+<P class="docText">As we mentioned in <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A>, an organization often has its own terms for the modules it introduces in a module decomposition view. CelsiusTech's modules were called system functions and system function groups.</P>
+<P class="docText"><span class="docEmphasis">System functions</span> are the primary element of module decomposition in SS2000. A system function is a collection of software that implements a logically connected set of requirements. It is composed of a number of Ada code units. A <span class="docEmphasis">system function group</span> comprises a set of system functions and forms the basic work assignment for a development team. SS2000 consists of about 30 system function groups, each comprising up to 20 or so system functions. They are clustered around major functional areas, including the following:</P>
+<UL>
+<LI><P class="docList">Command, control, and communications</P></LI>
+<LI><P class="docList">Weapons control</P></LI>
+<LI><p class="docText"><span class="docEmphRoman">Fundamentals—</span> 
+facilities for intrasystem communication and interfacing with the computing environment</p>
+</LI>
+<LI><p class="docText"><span class="docEmphRoman">Human–</span> 
+computer interface</p>
+</LI>
+</UL>
+<P class="docText"><A class="docLink" HREF="#ch15fig15">Figure 15.15</A> illustrates the relationship between the various module types.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch15fig15"></A>Figure 15.15. Units of software in the module decomposition view</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="456" src="FILES/15fig15.gif" ALT="graphics/15fig15.gif"></p>
+</CENTER>
+<P class="docText">System function groups may (and do) contain system functions of more than one layer. They correspond to bigger pieces of functionality that are more appropriately developed by a large team. For example, a separate software requirements specification is written for each system function group.</P>
+<P class="docText">System functions and system function groups, not the Ada code units, are the basic units of test and integration for the product line. This is crucial because it allows a new member of the product line to be treated as the composition of a few dozen high-quality, high-confidence modules that interact in controlled, predictable ways, as opposed to thousands of small units that must be regression-tested with each change. Assembly of large pretested elements was a key to making re-use work at CelsiusTech.</P>
+
+<A NAME="ch15lev2sec11"></A><H4 class="docSection2Title"> APPLYING THE SS2000 ARCHITECTURE</H4>
+<P class="docText"><A class="docLink" HREF="#ch15table02">Table 15.2</A> summarizes the architectural goals for SS2000 and the approaches and tactics (from <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A>) used to achieve them. This section concludes the presentation of the architecture by discussing four important issues that arose in building and maintaining the architecture and in building a family of systems from it.</P>
+<A NAME="ch15table02"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 15.2. SS2000 Requirements and How the Architecture Achieved Them</h5></CAPTION><COLGROUP align="left" span="3">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Requirement</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">How Achieved</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Related Tactic(s)</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Performance</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Strict network traffic protocols; software is written as a set of processes to maximize concurrency and written to be location independent, allowing for relocation to tune performance; COOB is by-passed for high-data-volume transactions; otherwise, data sent only when altered and distributed so response times are short</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Introduce concurrency</P>
+<P class="docText">Reduce demand</P>
+<P class="docText">Multiple copies</P>
+<P class="docText">Increase resources</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Reliability, Availability, and Safety</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Redundant LAN; fault-tolerant software; standard Ada exception protocols; software written to be location independent and hence can be migrated in case of failure; strict ownership of data prevents multi-writer race conditions</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Exceptions</P>
+<P class="docText">Active redundancy</P>
+<P class="docText">State resynchronization</P>
+<P class="docText">Transactions</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Modifiability (including ability to produce new members of the SS2000 family)</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Strict use of message-based communication provides interface isolated from implementation details; software written to be location independent; layering provides portability across platforms, network topologies, IPC protocols, etc.; data producers and consumers unaware of each other because of COOB; heavy use of Ada generics; heavy use of element parameterization; system functions and system function groups provide semantic coherence</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Semantic coherence</P>
+<P class="docText">Anticipate expected changes</P>
+<P class="docText">Generalize modules</P>
+<P class="docText">Abstract common services</P>
+<P class="docText">Interface stability</P>
+<P class="docText">Intermediary</P>
+<P class="docText">Configuration files</P>
+<P class="docText">Component replacement</P>
+<P class="docText">Adherence to defined protocols</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Testability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Interfaces using strongly typed messages push a whole class of errors to compile time; strict data ownership, semantic coherence of elements, and strong interface definitions simplify discovery of responsibility</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Separate interface from implementation</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<A NAME="ch15lev3sec12"></A><H5 class="docSection3Title"> Architecture as the Foundation</H5>
+<P class="docText">Although this case study emphasizes that technical solutions in a product line are insufficient without taking into account business and organizational issues as well, it remains a fact that the SS2000 architecture was the means for achieving a product line. Toward this end, abstraction and layering were vital. Abstraction allowed creation of modules that encapsulated changeable decisions within the boundaries of their interfaces. When a module is used in multiple products, the changeable decisions are instantiated whenever possible by parameterization. When the modules change across time as new requirements are accommodated, the changeable decisions held inside the module ensure that wholesale changes to the asset base are not needed.</P>
+<P class="docText">The size and complexity of this architecture and the modules that populate it make clear that a thorough understanding of the application domain is required if a system is to be partitioned into modules that can be developed independently, are appropriate for a product line whose products are as widely varied as those in SS2000, and can accommodate evolution with ease.</P>
+
+<A NAME="ch15lev3sec13"></A><H5 class="docSection3Title"> Maintaining the Asset Base as New Systems Are Produced</H5>
+<P class="docText">As we discussed, the enduring product at CelsiusTech is not an individual ship for a specific customer, or even the set of systems deployed so far. Rather, the central task is viewed as maintaing the <span class="docEmphasis">product line itself</span>. Maintaining the product line means maintaining the re-usable assets in such a way that any previous member of the product line can be regenerated (they change and evolve and grow, after all, as their requirements change) and future members can be built. In a sense, maintaining the product line means maintaining a <span class="docEmphasis">capability</span>, the <span class="docEmphasis">capability</span> to produce products from the assets. Maintaining this capability means keeping re-usable modules up to date and general. No product is allowed to evolve in isolation from the product line. This is one approach to solving the problem, which we identified in <A class="docLink" HREF="0321154959_ch14.html#ch14">Chapter 14</A>, of keeping the evolution of the product line synchronized with the evolution of the variants.</P>
+<P class="docText">Not every module is used in every member of the product line. Cryptologic and human interface requirements differ so widely across nationalities, for instance, that it makes more sense to build modules that are used in a few systems than to attempt a more general solution. In a sense, this yields product lines within the major product line: a Swedish set of products, a Danish set of products, and so on. Some modules are used only once but even these are maintained as product line assets, designed and built to be configurable and flexible, in case a new product is developed that can make use of them.</P>
+<P class="docText">Externally, CelsiusTech builds ship systems. Internally, they evolve and grow a common asset base that provides the capability to turn out ship systems. This mentality—which is what it is—might sound subtle, but it manifests itself in the configuration control policies, the organization of the enterprise, and the way that new products are marketed.</P>
+
+<A NAME="ch15lev3sec14"></A><H5 class="docSection3Title"> Maintaining Large Pre-integrated Chunks</H5>
+<P class="docText">In the classic literature on software re-use repositories, the unit of re-use is typically either a small fine-grained module (such as an Ada package, a subroutine, or an object) or a large-scale independently executing subsystem (such as a tool or a commercial standalone product). In the former case, the small modules must be assembled, integrated, configured, and tested after checking out; in the latter case, the subsystems are typically not very configurable or flexible.</P>
+<P class="docText">CelsiusTech took an intermediate approach. Their unit of re-use is a system function, a thread of related functionality that comprises modules from different layers in the architecture. System functions are pre-integrated—that is, the modules they comprise have been assembled, compiled together, tested individually, and tested as a unit. When the system function is checked out of the asset repository, it is ready for use. In this way, CelsiusTech is not only re-using modules but also re-using the integration and test effort that would otherwise have to be repeated for each application.</P>
+
+<A NAME="ch15lev3sec15"></A><H5 class="docSection3Title"> Parameterized modules</H5>
+<P class="docText">Although modules are re-used with no change in code in most cases, they are not always re-used entirely without change. Many of the elements are written with symbolic values in place of absolute quantities that may change from system to system. For example, a computation within some module may be a function of how many processors there are; however, that number need not be known when the module is written; therefore, the module may be written with the number of processors as a symbolic value—a parameter—the value of which is bound as the system is integrated. The module works correctly at runtime but can be used without code change in another version of the system that features a different number of processors.</P>
+<P class="docText">Parameters are a simple, effective, and time-honored means to achieve module re-use. However, in practice they tend to multiply at an alarming rate. Almost any module can be made more general via parameterization. The modules for SS2000 feature 3,000 to 5,000 parameters that must be individually tuned for each customer system built from the product line. CelsiusTech had no way to tell that a certain combination of parameter values, when instantiated into a running system, would not lead to some sort of illegal operating state.</P>
+<P class="docText">The fact that there were so many parameters undermined some of the benefits gained from treating large system functions and system function groups as the basic units of test and integration. As parameters are tuned for a new version of the system, they in fact produce a version that has never been tested. Moreover, each combination of parameter values may theoretically take the system into operating states that have never been experienced, let alone exhaustively tested.</P>
+<P class="docText">Only a small proportion of the possible parameter combinations will ever occur. However, there is a danger that unwillingness to "try out" a new parameter combination could inhibit exploiting the built-in flexibility (configurability) of the elements.</P>
+<P class="docText">In practice, the multitude of parameters seems to be mostly a bookkeeping worry; there has never been any incorrect operation that could be traced back solely to a set of parameter specifications. Often, a large module is imported with its parameter set unchanged from its previous utilization.</P>
+
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch15lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch15lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

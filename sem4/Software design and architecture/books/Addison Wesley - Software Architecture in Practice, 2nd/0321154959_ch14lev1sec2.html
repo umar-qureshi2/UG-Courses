@@ -1,0 +1,65 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="14.2 What Makes Software Product Lines Work?"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch14lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch14lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch14lev1sec2"></A><H3 class="docSection1Title" id="161597-820">14.2 What Makes Software Product Lines Work?</H3>
+<P class="docText">The essence of a software product line is the disciplined, strategic re-use of assets in producing a family of products. What makes product lines succeed so spectacularly from the vendor or developer's point of view is that the commonalities shared by the products can be exploited through re-use to achieve production economies. The potential for re-use is broad and far-ranging, including:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Requirements.</span> 
+Most of the requirements are common with those of earlier systems and so can be re-used. Requirements analysis is saved.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Architectural design.</span> 
+An architecture for a software system represents a large investment of time from the organization's most talented engineers. As we have seen, the quality goals for a system—performance, reliability, modifiability, and so forth—are largely allowed or precluded once the architecture is in place. If the architecture is wrong, the system cannot be saved. For a new product, however, this most important design step is already done and need not be repeated.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Elements.</span> 
+Software elements are applicable across individual products. Far and above mere code re-use, element re-use includes the (often difficult) initial design work. Design successes are captured and re-used; design dead ends are avoided, not repeated. This includes design of the element's interface, its documentation, its test plans and procedures, and any models (such as performance models) used to predict or measure its behavior. One re-usable set of elements is the system's user interface, which represents an enormous and vital set of design decisions.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Modeling and analysis.</span> 
+Performance models, schedulability analysis, distributed system issues (such as proving absence of deadlock), allocation of processes to processors, fault tolerance schemes, and network load policies all carry over from product to product. CelsiusTech (as discussed in <A class="docLink" HREF="0321154959_ch15.html#ch15">Chapter 15</A>) reports that one of the major headaches associated with the real-time distributed systems it builds has all but vanished. When fielding a new product in the product line, it has extremely high confidence that the timing problems have been worked out and that the bugs associated with distributed computing—synchronization, network loading, deadlock—have been eliminated.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Testing.</span> 
+Test plans, test processes, test cases, test data, test harnesses, and the communication paths required to report and fix problems are already in place.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Project planning.</span> 
+Budgeting and scheduling are more predictable because experience is a high-fidelity indicator of future performance. Work breakdown structures need not be invented each time. Teams, team size, and team composition are all easily determined.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Processes, methods, and tools.</span> 
+Configuration control procedures and facilities, documentation plans and approval processes, tool environments, system generation and distribution procedures, coding standards, and many other day-to-day engineering support activities can all be carried over from product to product. The overall software development process is in place and has been used before.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">People.</span> 
+Because of the commonality of applications, personnel can be fluidly transferred among projects as required. Their expertise is applicable across the entire line.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Exemplar systems.</span> 
+Deployed products serve as high-quality demonstration prototypes as well as high-quality engineering models of performance, security, safety, and reliability.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Defect elimination.</span> 
+Product lines enhance quality because each new system takes advantage of the defect elimination in its forebears. Developer and customer confidence both rise with each new instantiation. The more complicated the system, the higher the payoff for solving vexing performance, distribution, reliability, and other engineering issues once for the entire family.</p>
+</LI>
+</UL>
+<P class="docText">Software product lines rely on re-use, but as revealed by this chapter's opening quotation, re-use has a long but less than stellar history in software engineering, with the promise almost always exceeding the payoff. One reason for this failure is that until now re-use has been predicated on the idea that "If you build it, they will come." A re-use library is stocked with snippets from previous projects, and developers are expected to check it first before coding new elements. Almost everything conspires against this model. If the library is too sparse, the developer will not find anything of use and will stop looking. If the library is too rich, it will be hard to search. If the elements are too small, it is easier to rewrite them than to find them and carry out whatever modifications they might need. If the elements are too large, it is very difficult to determine exactly what they do in detail, which in any case is not likely to be exactly right for the new application. In most re-use libraries, pedigree is hazy at best. The developer cannot be sure exactly what the element does, how reliable it is, or under what conditions it was tested. And there is almost never a match between the quality attributes needed for the new application and those provided by the elements in the library.</P>
+<P class="docText">In any case, it is likely that the elements were written for a different architectural model than the one the developer of the new system is using. Even if you find something that does the right thing with the right quality attributes, it is doubtful that it will be the right kind of architectural element (if you need an object, you might find a process), that it will have the right interaction protocol, that it will comply with the new application's error-handling or failover policies, and so on.</P>
+<P class="docText">Software product lines make re-use work by establishing a very strict context for it. The architecture is defined; the functionality is set; the quality attributes are known. Nothing is placed in the re-use library—or "core asset base" in product line terms—that was not built to be re-used in that product line. Product lines work by relying on strategic or planned, not opportunistic, re-use.</P>
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch14lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch14lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

@@ -1,0 +1,51 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="19.2 Creating an Architecture"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch19lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch19lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch19lev1sec2"></A><H3 class="docSection1Title">19.2 Creating an Architecture</H3>
+<P class="docText">In all of our case studies, we emphasized the quality requirements for the system being built, the tactics used by the architect, and how these tactics were manifested in the architecture. Yet this process of moving from quality requirements to architectural designs remains an area where much fruitful research can be done. The design process remains an art, and introducing more science into the process will yield large results.</P>
+<P class="docText">Answers to the following questions will improve the design process:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Are the lists of quality attribute scenarios and tactics complete?</span> 
+We presented lists for six different quality attributes. Almost certainly they should be augmented with additional tactics and scenarios. Also, additional attributes should have scenarios and tactics created for them. Interoperability and buildability are two quality attributes that may be as important as the six we wrote about.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">How are scenarios and tactics coupled?</span> 
+With what we have presented, the coupling is at the attribute level. That is, a scenario is generated according to the generation table for a particular attribute—performance, say. Then the tactics are examined to determine those most likely to yield the desired result. Surely, we can do better. Consider the performance scenario from our garage door opener example in <A class="docLink" HREF="0321154959_ch07.html#ch07">Chapter 7</A>: <span class="docEmphasis">Halt the door in 0.1 second when an obstacle is detected</span>. A series of questions can be asked that yield more insight into the choice of tactics. Can the obstacle be detected and the door halted in 0.1 second if there is nothing else going on in the system? If the answer is no, the tactic "increase computational efficiency" should be applied to the obstacle-detection algorithm. If the answer is yes, other questions regarding contention can be asked that should lead to the type of scheduler we choose in our design. Finding a systematic method for coupling scenarios and possible tactics would be an important research result.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">How can the results of applying a tactic be predicted?</span> 
+A holy grail of the software engineering community is to be able to predict the qualities of a system prior to its construction. One approach to this problem is to predict the effect of applying a tactic. Tactics are motivated by analytic models (formal and informal) of various attributes. For some, it is possible to predict the results of applying them. For example, a modifiability tactic is to use a configuration file managed by the end user. From a modifiability perspective, the result of applying that tactic is to reduce the time of changing and deploying a configuration item from (essentially) the deployment time if the modification is performed by a developer to near zero (in the worst case, the time to reboot a system). This is a predictable result. Developing the same type of predictions (and understanding the parameters to which a prediction applies) is a large step toward constructing systems with predictable qualities.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">How are tactics combined into patterns?</span> 
+In our garage door example, tactics were chosen and then, almost magically, combined into a pattern. Again, there should be a systematic method for this combination that maintains the predictability of quality responses as well. Since each tactic is associated with a predictable change in a quality attribute, tradeoffs in quality attributes can be considered within patterns. How these predictions are represented and combined becomes an open research question once tactics become combined into patterns.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">What kind of tool support can assist in the design process?</span> 
+We are forecasting a world with larger building blocks having progressively more functionality and associated quality attributes. What are its implications on tool support? Can tactics and their combination into patterns be embedded into an expert design assistant, for example?</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Can tactics be "woven" into systems?</span> 
+Aspect-oriented software development is an effort to develop methods and tools to deal with so-called "cross-cutting" requirements. A cross-cutting requirement applies to a variety of objects. Supporting diagnosis in an automobile, for example, is a requirement that applies to all of the automobile components and thus cross-cuts the requirements for the individual components. Quality attributes provide cross-cutting requirements, and tactics are methods for achieving particular responses. Can tactics, then, be treated as other cross-cutting requirements, and will the methods and tools developed by the aspect-oriented community apply?</p>
+</LI>
+</UL>
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch19lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch19lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

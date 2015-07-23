@@ -1,0 +1,49 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docChapterTitle"--><!--SafTocEntry="Chapter 8. Flight Simulation: A Case Study in an Architecture for Integrability"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch07lev1sec7.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch08lev1sec1.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch08"></A><H2 class="docChapterTitle">Chapter 8. Flight Simulation: A Case Study in an Architecture for Integrability</H2>
+<blockquote>
+
+<p class="docText"><span class="docEmphasis">The striking conclusion that one draws &#8230; is that the information processing capacity of [flight simulation computation] has been increasing approximately exponentially for nearly thirty years. There is at this time no clear indication that the trend is changing.</span></p>
+<p class="docText">—Laurence Fogarty [Fogarty 67]</p></blockquote>
+<P class="docText">Modern flight simulators are among the most sophisticated software systems in existence. They are highly distributed, have rigorous timing requirements, and must be amenable to frequent updates to maintain high fidelity with the ever-changing vehicles and environment they are simulating. The creation and maintenance of these large systems presents a substantial software development challenge in designing for the following:</P>
+<UL>
+<LI><P class="docList">Hard real-time performance</P></LI>
+<LI><P class="docList">Modifiability, to accommodate changes in requirements and to the simulated aircraft and their environments</P></LI>
+<LI><P class="docList">Scalability of function, a form of modifiability, needed to extend these systems so that they can simulate more and more of the real world and further improve the fidelity of the simulation</P></LI>
+</UL>
+<P class="docText">But, as the title of this chapter makes clear, an overriding concern was designing for <span class="docEmphasis">integrability</span>—a system quality attribute not covered in <A class="docLink" HREF="0321154959_ch04.html#ch04">Chapter 4</A> but often arising as a driving concern in large systems, especially those developed by distributed teams or separate organizations. Integrability refers to the ease with which separately developed elements, including those developed by third parties, can be made to work together to fulfill the software's requirements. As with other quality attributes, architectural tactics can be brought to bear to achieve integrability (some of which are also aimed at modifiability). These tactics include keeping interfaces small, simple, and stable; adhering to defined protocols; loose coupling or minimal dependencies between elements; using a component framework; and using "versioned" interfaces that allow extensions while permitting existing elements to work under the original constraints.</P>
+<P class="docText">This chapter will discuss some of the challenges of flight simulation and discuss an architectural pattern created to address them. The pattern is a <span class="docEmphasis">Structural Model</span>, and it emphasizes the following:</P>
+<UL>
+<LI><P class="docList">Simplicity and similarity of the system's substructures</P></LI>
+<LI><P class="docList">Decoupling of data- and control-passing strategies from computation</P></LI>
+<LI><P class="docList">Minimizing module types</P></LI>
+<LI><P class="docList">A small number of system-wide coordination strategies</P></LI>
+<LI><P class="docList">Transparency of design</P></LI>
+</UL>
+<P class="docText">These principles result in an architectural pattern that, as we will see, features a high degree of integrability as well as the other quality attributes necessary for flight simulation. The pattern itself is a composite of more primitive patterns.</P>
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch07lev1sec7.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch08lev1sec1.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

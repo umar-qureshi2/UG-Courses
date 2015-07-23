@@ -1,0 +1,122 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="5.3 Modifiability Tactics"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="0321154959_toc.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch05lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch05lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch05lev1sec3"></A><H3 class="docSection1Title">5.3 Modifiability Tactics</H3>
+<P class="docText">Recall from <A class="docLink" HREF="0321154959_ch04.html#ch04">Chapter 4</A> that tactics to control modifiability have as their goal controlling the time and cost to implement, test, and deploy changes. <A class="docLink" HREF="#ch05fig04">Figure 5.4</A> shows this relationship.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch05fig04"></A>Figure 5.4. Goal of modifiability tactics</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="138" src="FILES/05fig04.gif" ALT="graphics/05fig04.gif"></p>
+</CENTER>
+<P class="docText">We organize the tactics for modifiability in sets according to their goals. One set has as its goal reducing the number of modules that are directly affected by a change. We call this set "localize modifications." A second set has as its goal limiting modifications to the localized modules. We use this set of tactics to "prevent the ripple effect." Implicit in this distinction is that there are modules directly affected (those whose responsibilities are adjusted to accomplish the change) and modules indirectly affected by a change (those whose responsibilities remain unchanged but whose implementation must be changed to accommodate the directly affected modules). A third set of tactics has as its goal controlling deployment time and cost. We call this set "defer binding time."</P>
+<A NAME="ch05lev2sec4"></A><H4 class="docSection2Title"> LOCALIZE MODIFICATIONS</H4>
+<P class="docText">Although there is not necessarily a precise relationship between the number of modules affected by a set of changes and the cost of implementing those changes, restricting modifications to a small set of modules will generally reduce the cost. The goal of tactics in this set is to assign responsibilities to modules during design such that anticipated changes will be limited in scope. We identify five such tactics.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Maintain semantic coherence.</span> 
+Semantic coherence refers to the relationships among responsibilities in a module. The goal is to ensure that all of these responsibilities work together without excessive reliance on other modules. Achievement of this goal comes from choosing responsibilities that have semantic coherence. Coupling and cohesion metrics are an attempt to measure semantic coherence, but they are missing the context of a change. Instead, semantic coherence should be measured against a set of anticipated changes. One subtactic is to <span class="docEmphasis">abstract common services.</span> Providing common services through specialized modules is usually viewed as supporting re-use. This is correct, but abstracting common services also supports modifiability. If common services have been abstracted, modifications to them will need to be made only once rather than in each module where the services are used. Furthermore, modification to the modules using those services will not impact other users. This tactic, then, supports not only localizing modifications but also the prevention of ripple effects. Examples of abstracting common services are the use of application frameworks and the use of other middleware software.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Anticipate expected changes.</span> 
+Considering the set of envisioned changes provides a way to evaluate a particular assignment of responsibilities. The basic question is "For each change, does the proposed decomposition limit the set of modules that need to be modified to accomplish it?" An associated question is "Do fundamentally different changes affect the same modules?" How is this different from semantic coherence? Assigning responsibilities based on semantic coherence assumes that expected changes will be semantically coherent. The tactic of anticipating expected changes does not concern itself with the coherence of a module's responsibilities but rather with minimizing the effects of the changes. In reality this tactic is difficult to use by itself since it is not possible to anticipate all changes. For that reason, it is usually used in conjunction with semantic coherence.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Generalize the module.</span> 
+Making a module more general allows it to compute a broader range of functions based on input. The input can be thought of as defining a language for the module, which can be as simple as making constants input parameters or as complicated as implementing the module as an interpreter and making the input parameters be a program in the interpreter's language. The more general a module, the more likely that requested changes can be made by adjusing the input language rather than by modifying the module.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Limit possible options.</span> 
+Modifications, especially within a product line (see <A class="docLink" HREF="0321154959_ch14.html#ch14">Chapter 14</A>), may be far ranging and hence affect many modules. Restricting the possible options will reduce the effect of these modifications. For example, a variation point in a product line may be allowing for a change of processor. Restricting processor changes to members of the same family limits the possible options.</p>
+</LI>
+</UL>
+
+<A NAME="ch05lev2sec5"></A><H4 class="docSection2Title"> PREVENT RIPPLE EFFECTS</H4>
+<P class="docText">A ripple effect from a modification is the necessity of making changes to modules not directly affected by it. For instance, if module A is changed to accomplish a particular modification, then module B is changed only because of the change to module A. B has to be modified because it depends, in some sense, on A.</P>
+<P class="docText">We begin our discussion of the ripple effect by discussing the various types of dependencies that one module can have on another. We identify eight types:</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><P class="docList">Syntax of</P><DL>
+<DD><span class="docText">- <span class="docEmphasis">data.</span> 
+For B to compile (or execute) correctly, the type (or format) of the data that is produced by A and consumed by B must be consistent with the type (or format) of data assumed by B.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">service.</span> 
+For B to compile and execute correctly, the signature of services provided by A and invoked by B must be consistent with the assumptions of B.<BR><BR></span></DD></DL></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Semantics of</P><DL>
+<DD><span class="docText">- <span class="docEmphasis">data.</span> 
+For B to execute correctly, the semantics of the data produced by A and consumed by B must be consistent with the assumptions of B.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">service.</span> 
+For B to execute correctly, the semantics of the services produced by A and used by B must be consistent with the assumptions of B.<BR><BR></span></DD></DL></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Sequence of</P><DL>
+<DD><span class="docText">- <span class="docEmphasis">data.</span> 
+For B to execute correctly, it must receive the data produced by A in a fixed sequence. For example, a data packet's header must precede its body in order of reception (as opposed to protocols that have the sequence number built into the data).<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">control.</span> 
+For B to execute correctly, A must have executed previously within certain timing constraints. For example, A must have executed no longer than 5ms before B executes.<BR><BR></span></DD></DL></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Identity of an interface of A.</span> 
+A may have multiple interfaces. For B to compile and execute correctly, the identity (name or handle) of the interface must be consistent with the assumptions of B.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Location of A (runtime).</span> 
+For B to execute correctly, the runtime location of A must be consistent with the assumptions of B. For example, B may assume that A is located in a different process on the same processor.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Quality of service/data provided by A.</span> 
+For B to execute correctly, some property involving the quality of the data or service provided by A must be consistent with B's assumptions. For example, data provided by a particular sensor must have a certain accuracy in order for the algorithms of B to work correctly.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Existence of A.</span> 
+For B to execute correctly, A must exist. For example, if B is requesting a service from an object A, and A does not exist and cannot be dynamically created, then B will not execute correctly.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Resource behavior of A.</span> 
+For B to execute correctly, the resource behavior of A must be consistent with B's assumptions. This can be either resource usage of A (A uses the same memory as B) or resource ownership (B reserves a resource that A believes it owns).</p></span></LI>
+</OL></span>
+<P class="docText">With this understanding of dependency types, we can now discuss tactics available to the architect for preventing the ripple effect for certain types.</P>
+<P class="docText">Notice that none of our tactics necessarily prevent the ripple of semantic changes. We begin with discussion of those that are relevant to the interfaces of a particular module—information hiding and maintaining existing interfaces—and follow with one that breaks a dependency chain—use of an intermediary.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Hide information.</span> 
+Information hiding is the decomposition of the responsibilities for an entity (a system or some decomposition of a system) into smaller pieces and choosing which information to make private and which to make public. The public responsibilities are available through specified interfaces. The goal is to isolate changes within one module and prevent changes from propagating to others. This is the oldest technique for preventing changes from propagating. It is strongly related to "anticipate expected changes" because it uses those changes as the basis for decomposition.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Maintain existing interfaces.</span> 
+If B depends on the name and signature of an interface of A, maintaining this interface and its syntax allows B to remain unchanged. Of course, this tactic will not necessarily work if B has a semantic dependency on A, since changes to the meaning of data and services are difficult to mask. Also, it is difficult to mask dependencies on quality of data or quality of service, resource usage, or resource ownership. Interface stability can also be achieved by separating the interface from the implementation. This allows the creation of abstract interfaces that mask variations. Variations can be embodied within the existing responsibilities, or they can be embodied by replacing one implementation of a module with another.</p>
+<BLOCKQUOTE>
+<P><P class="docList">Patterns that implement this tactic include</P><DL>
+<DD><span class="docText">- <span class="docEmphasis">adding interfaces.</span> 
+Most programming languages allow multiple interfaces. Newly visible services or data can be made available through new interfaces, allowing existing interfaces to remain unchanged and provide the same signature.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">adding adapter.</span> 
+Add an adapter to A that wraps A and provides the signature of the original A.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">providing a stub A.</span> 
+If the modification calls for the deletion of A, then providing a stub for A will allow B to remain unchanged if B depends only on A's signature.<BR><BR></span></DD></DL></P>
+</BLOCKQUOTE></LI>
+<LI><p class="docText"><span class="docEmphasis">Restrict communication paths.</span> 
+Restrict the modules with which a given module shares data. That is, reduce the number of modules that consume data produced by the given module and the number of modules that produce data consumed by it. This will reduce the ripple effect since data production/consumption introduces dependencies that cause ripples. <A class="docLink" HREF="0321154959_ch08.html#ch08">Chapter 8</A> (Flight Simulation) discusses a pattern that uses this tactic.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Use an intermediary.</span> 
+If B has any type of dependency on A other than semantic, it is possible to insert an intermediary between B and A that manages activities associated with the dependency. All of these intermediaries go by different names, but we will discuss each in terms of the dependency types we have enumerated. As before, in the worst case, an intermediary cannot compensate for semantic changes. The intermediaries are</p>
+<DL>
+<DD><span class="docText">- <span class="docEmphasis">data (syntax).</span> 
+Repositories (both blackboard and passive) act as intermediaries between the producer and consumer of data. The repositories can convert the syntax produced by A into that assumed by B. Some publish/subscribe patterns (those that have data flowing through a central component) can also convert the syntax into that assumed by B. The MVC and PAC patterns convert data in one formalism (input or output device) into another (that used by the model in MVC or the abstraction in PAC).<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">service (syntax).</span> 
+The facade, bridge, mediator, strategy, proxy, and factory patterns all provide intermediaries that convert the syntax of a service from one form into another. Hence, they can all be used to prevent changes in A from propagating to B.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">identity of an interface of A.</span> 
+A broker pattern can be used to mask changes in the identity of an interface. If B depends on the identity of an interface of A and that identity changes, by adding that identity to the broker and having the broker make the connection to the new identity of A, B can remain unchanged.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">location of A (runtime).</span> 
+A name server enables the location of A to be changed without affecting B. A is responsible for registering its current location with the name server, and B retrieves that location from the name server.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">resource behavior of A or resource controlled by A.</span> 
+A resource manager is an intermediary that is responsible for resource allocation. Certain resource managers (e.g., those based on Rate Monotonic Analysis in real-time systems) can guarantee the satisfaction of all requests within certain constraints. A, of course, must give up control of the resource to the resource manager.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">existence of A.</span> 
+The factory pattern has the ability to create instances as needed, and thus the dependence of B on the existence of A is satisfied by actions of the factory.<BR><BR></span></DD></DL></LI>
+</UL>
+
+<A NAME="ch05lev2sec6"></A><H4 class="docSection2Title"> DEFER BINDING TIME</H4>
+<P class="docText">The two tactic categories we have discussed thus far are designed to minimize the number of modules that require changing to implement modifications. Our modifiability scenarios include two elements that are not satisfied by reducing the number of modules to be changed—time to deploy and allowing nondevelopers to make changes. Deferring binding time supports both of those scenarios at the cost of requiring additional infrastructure to support the late binding.</P>
+<P class="docText">Decisions can be bound into the executing system at various times. We discuss those that affect deployment time. The deployment of a system is dictated by some process. When a modification is made by the developer, there is usually a testing and distribution process that determines the time lag between the making of the change and the availability of that change to the end user. Binding at runtime means that the system has been prepared for that binding and all of the testing and distribution steps have been completed. Deferring binding time also supports allowing the end user or system administrator to make settings or provide input that affects behavior.</P>
+<P class="docText">Many tactics are intended to have impact at loadtime or runtime, such as the following.</P>
+<UL>
+<LI><P class="docList"><span class="docEmphasis">Runtime registration</span> supports plug-and-play operation at the cost of additional overhead to manage the registration. Publish/subscribe registration, for example, can be implemented at either runtime or load time.</P></LI>
+<LI><P class="docList"><span class="docEmphasis">Configuration files</span> are intended to set parameters at startup.</P></LI>
+<LI><P class="docList"><span class="docEmphasis">Polymorphism</span> allows late binding of method calls.</P></LI>
+<LI><P class="docList"><span class="docEmphasis">Component replacement</span> allows load time binding.</P></LI>
+<LI><P class="docList"><span class="docEmphasis">Adherence to defined protocols</span> allows runtime binding of independent processes.</P></LI>
+</UL>
+<P class="docText">The tactics for modifiability are summarized in <A class="docLink" HREF="#ch05fig05">Figure 5.5</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch05fig05"></A>Figure 5.5. Summary of modifiability tactics</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="337" src="FILES/05fig05.gif" ALT="graphics/05fig05.gif"></p>
+</CENTER>
+
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch05lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch05lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

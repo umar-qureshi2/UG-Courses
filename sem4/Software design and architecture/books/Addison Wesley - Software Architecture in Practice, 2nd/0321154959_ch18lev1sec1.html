@@ -1,0 +1,34 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="18.1 Impact of Components on Architecture"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch18.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch18lev1sec2.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch18lev1sec1"></A><H3 class="docSection1Title" id="161942-850">18.1 Impact of Components on Architecture</H3>
+<P class="docText">Consider the following situation. You are producing software to control a chemical plant. Within chemical plants, specialized displays keep the operator informed as to the state of the reactions being controlled. A large portion of the software you are constructing is used to draw those displays. A vendor sells user interface controls that produce them. Because it is easier to buy than build, you decide to purchase the controls—which, by the way, are only available for Visual Basic.</P>
+<P class="docText">What impact does this decision have on your architecture? Either the whole system must be written in Visual Basic with its built-in callback-centered style or the operator portion must be isolated from the rest of the system in some fashion. This is a fundamental structural decision, driven by the choice of a single component for a single portion of the system.</P>
+<P class="docText">The use of off-the-shelf components in software development, while essential in many cases, also introduces new challenges. In particular, component capabilities and liabilities are a principle architectural constraint.</P>
+<P class="docText">All but the simplest components have a presumed architectural pattern that is difficult to violate. For example, an HTTP server assumes a client-server architectural pattern with defined interfaces and mechanisms for integrating back-end functionality. If the architecture you design conflicts with the architecture assumed by an HTTP server component, you may find yourself with an exceptionally difficult integration task.</P>
+<P class="docText">The fact that components assume an architectural pattern makes it difficult to select an architecture prior to understanding the component assembly that has been selected (or is under consideration) for the system under design. The architectural assumptions inherent in these components, and the mechanisms for successfully integrating them, are often dictated or at least strongly influenced by component selections. This means that an understanding of components and their interactions must be established before an architecture can be finalized.</P>
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch18.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch18lev1sec2.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

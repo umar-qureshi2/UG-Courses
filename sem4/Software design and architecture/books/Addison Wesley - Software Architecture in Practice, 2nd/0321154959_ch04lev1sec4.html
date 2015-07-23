@@ -1,0 +1,776 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="4.4 Quality Attribute Scenarios in Practice"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch04lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch04lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch04lev1sec4"></A><H3 class="docSection1Title">4.4 Quality Attribute Scenarios in Practice</H3>
+<P class="docText">General scenarios provide a framework for generating a large number of generic, system-independent, quality-attribute-specific scenarios. Each is potentially but not necessarily relevant to the system you are concerned with. To make the general scenarios useful for a particular system, you must make them system specific.</P>
+<P class="docText">Making a general scenario system specific means translating it into concrete terms for the particular system. Thus, a general scenario is "A request arrives for a change in functionality, and the change must be made at a particular time within the development process within a specified period." A system-specific version might be "A request arrives to add support for a new browser to a Web-based system, and the change must be made within two weeks." Furthermore, a single general scenario may have many system-specific versions. The same system that has to support a new browser may also have to support a new media type.</P>
+<P class="docText">We now discuss the six most common and important system quality attributes, with the twin goals of identifying the concepts used by the attribute community and providing a way to generate general scenarios for that attribute.</P>
+<A NAME="ch04lev2sec3"></A><H4 class="docSection2Title"> AVAILABILITY</H4>
+<P class="docText">Availability is concerned with system failure and its associated consequences. A system failure occurs when the system no longer delivers a service consistent with its specification. Such a failure is observable by the system's users—either humans or other systems. An example of an availability general scenario appeared in <A class="docLink" HREF="0321154959_ch04lev1sec3.html#ch04fig03">Figure 4.3</A>.</P>
+<P class="docText">Among the areas of concern are how system failure is detected, how frequently system failure may occur, what happens when a failure occurs, how long a system is allowed to be out of operation, when failures may occur safely, how failures can be prevented, and what kinds of notifications are required when a failure occurs.</P>
+<P class="docText">We need to differentiate between failures and faults. A fault may become a failure if not corrected or masked. That is, a failure is observable by the system's user and a fault is not. When a fault does become observable, it becomes a failure. For example, a fault can be choosing the wrong algorithm for a computation, resulting in a miscalculation that causes the system to fail.</P>
+<P class="docText">Once a system fails, an important related concept becomes the time it takes to repair it. Since a system failure is observable by users, the time to repair is the time until the failure is no longer observable. This may be a brief delay in the response time or it may be the time it takes someone to fly to a remote location in the mountains of Peru to repair a piece of mining machinery (this example was given by a person who was responsible for repairing the software in a mining machine engine.).</P>
+<P class="docText">The distinction between faults and failures allows discussion of automatic repair strategies. That is, if code containing a fault is executed but the system is able to recover from the fault without it being observable, there is no failure.</P>
+<P class="docText">The availability of a system is the probability that it will be operational when it is needed. This is typically defined as</P>
+<p class="docText"><IMG BORDER="0" WIDTH="247" HEIGHT="27" src="FILES/04equ01.gif" ALT="graphics/04equ01.gif"></p><br>
+<P class="docText">From this come terms like 99.9% availability, or a 0.1% probability that the system will not be operational when needed.</P>
+<P class="docText">Scheduled downtimes (i.e., out of service) are not usually considered when calculating availability, since the system is "not needed" by definition. This leads to situations where the system is down and users are waiting for it, but the downtime is scheduled and so is not counted against any availability requirements.</P>
+<A NAME="ch04lev3sec3"></A><H5 class="docSection3Title"> Availability General Scenarios</H5>
+<P class="docText">From these considerations we can see the portions of an availability scenario, shown in <A class="docLink" HREF="0321154959_ch04lev1sec3.html#ch04fig02">Figure 4.2</A>.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Source of stimulus.</span> 
+We differentiate between internal and external indications of faults or failure since the desired system response may be different. In our example, the unexpected message arrives from outside the system.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Stimulus.</span> 
+A fault of one of the following classes occurs.</p>
+<DL>
+<DD><span class="docText">- <span class="docEmphasis">omission.</span> 
+A component fails to respond to an input.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">crash.</span> 
+The component repeatedly suffers omission faults.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">timing.</span> 
+A component responds but the response is early or late.<BR><BR></span></DD><DD><span class="docText">- <span class="docEmphasis">response.</span> 
+A component responds with an incorrect value.<BR><BR></span><P class="docList">- In <A class="docLink" HREF="0321154959_ch04lev1sec3.html#ch04fig03">Figure 4.3</A>, the stimulus is that an unanticipated message arrives. This is an example of a timing fault. The component that generated the message did so at a different time than expected.</P></DD></DL></LI>
+<LI><p class="docText"><span class="docEmphasis">Artifact.</span> 
+This specifies the resource that is required to be highly available, such as a processor, communication channel, process, or storage.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Environment.</span> 
+The state of the system when the fault or failure occurs may also affect the desired system response. For example, if the system has already seen some faults and is operating in other than normal mode, it may be desirable to shut it down totally. However, if this is the first fault observed, some degradation of response time or function may be preferred. In our example, the system is operating normally.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response.</span> 
+There are a number of possible reactions to a system failure. These include logging the failure, notifying selected users or other systems, switching to a degraded mode with either less capacity or less function, shutting down external systems, or becoming unavailable during repair. In our example, the system should notify the operator of the unexpected message and continue to operate normally.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response measure.</span> 
+The response measure can specify an availability percentage, or it can specify a time to repair, times during which the system must be available, or the duration for which the system must be available. In <A class="docLink" HREF="0321154959_ch04lev1sec3.html#ch04fig03">Figure 4.3</A>, there is no downtime as a result of the unexpected message.</p>
+</LI>
+</UL>
+<P class="docText"><A class="docLink" HREF="#ch04table01">Table 4.1</A> presents the possible values for each portion of an availability scenario. </P>
+<A NAME="ch04table01"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 4.1. Availability General Scenario Generation</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Portion of Scenario</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Possible Values</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Source</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Internal to the system; external to the system</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Stimulus</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<p class="docText"><span class="docEmphRoman">Fault:</span> 
+omission, crash, timing, response</p>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Artifact</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">System's processors, communication channels, persistent storage, processes</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Environment</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Normal operation;</P>
+<P class="docText">degraded mode (i.e., fewer features, a fall back solution)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">System should detect event and do one or more of the following:</P>
+<BLOCKQUOTE>
+<P><P class="docList">record it</P></P>
+<P><P class="docList">notify appropriate parties, including the user and other systems</P></P>
+<P><P class="docList">disable sources of events that cause fault or failure according to defined rules</P></P>
+<P><P class="docList">be unavailable for a prespecified interval, where interval depends on criticality of system</P></P>
+<P><P class="docList">continue to operate in normal or degraded mode</P></P>
+</BLOCKQUOTE>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response Measure</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Time interval when the system must be available</P>
+<P class="docText">Availability time</P>
+<P class="docText">Time interval in which system can be in degraded mode</P>
+<P class="docText">Repair time</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+
+<A NAME="ch04lev2sec4"></A><H4 class="docSection2Title"> MODIFIABILITY</H4>
+<P class="docText">Modifiability is about the cost of change. It brings up two concerns.</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">What can change (the artifact)?</span> A change can occur to any aspect of a system, most commonly the functions that the system computes, the platform the system exists on (the hardware, operating system, middleware, etc.), the environment within which the system operates (the systems with which it must interoperate, the protocols it uses to communicate with the rest of the world, etc.), the qualities the system exhibits (its performance, its reliability, and even its future modifications), and its capacity (number of users supported, number of simultaneous operations, etc.). Some portions of the system, such as the user interface or the platform, are sufficiently distinguished and subject to change that we consider them separately. The category of platform changes is also called portability. Those changes may be to add, delete, or modify any one of these aspects.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">When is the change made and who makes it (the environment)?</span> 
+Most commonly in the past, a change was made to source code. That is, a developer had to make the change, which was tested and then deployed in a new release. Now, however, the question of when a change is made is intertwined with the question of who makes it. An end user changing the screen saver is clearly making a change to one of the aspects of the system. Equally clear, it is not in the same category as changing the system so that it can be used over the Web rather than on a single machine. Changes can be made to the implementation (by modifying the source code), during compile (using compile-time switches), during build (by choice of libraries), during configuration setup (by a range of techniques, including parameter setting) or during execution (by parameter setting). A change can also be made by a developer, an end user, or a system administrator.</p></span></LI>
+</OL></span>
+<P class="docText">Once a change has been specified, the new implementation must be designed, implemented, tested, and deployed. All of these actions take time and money, both of which can be measured.</P>
+<A NAME="ch04lev3sec4"></A><H5 class="docSection3Title"> Modifiability General Scenarios</H5>
+<P class="docText">From these considerations we can see the portions of the modifiability general scenarios. <A class="docLink" HREF="0321154959_ch04lev1sec3.html#ch04fig04">Figure 4.4</A> gives an example: "A developer wishes to change the user interface. This change will be made to the code at design time, it will take less than three hours to make and test the change, and no side-effect changes will occur in the behavior."</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Source of stimulus.</span> 
+This portion specifies who makes the changes—the developer, a system administrator, or an end user. Clearly, there must be machinery in place to allow the system administrator or end user to modify a system, but this is a common occurrence. In <A class="docLink" HREF="0321154959_ch04lev1sec3.html#ch04fig04">Figure 4.4</A>, the modification is to be made by the developer.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Stimulus.</span> 
+This portion specifies the changes to be made. A change can be the addition of a function, the modification of an existing function, or the deletion of a function. It can also be made to the qualities of the system—making it more responsive, increasing its availability, and so forth. The capacity of the system may also change. Increasing the number of simultaneous users is a frequent requirement. In our example, the stimulus is a request to make a modification, which can be to the function, quality, or capacity.</p>
+<P class="docList">Variation is a concept associated with software product lines (see <A class="docLink" HREF="0321154959_ch14.html#ch14">Chapter 14</A>). When considering variation, a factor is the number of times a given variation must be specified. One that must be made frequently will impose a more stringent requirement on the response measures than one that is made only sporadically.</P></LI>
+<LI><p class="docText"><span class="docEmphasis">Artifact.</span> 
+This portion specifies what is to be changed—the functionality of a system, its platform, its user interface, its environment, or another system with which it interoperates. In <A class="docLink" HREF="0321154959_ch04lev1sec3.html#ch04fig04">Figure 4.4</A>, the modification is to the user interface.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Environment.</span> 
+This portion specifies when the change can be made—design time, compile time, build time, initiation time, or runtime. In our example, the modification is to occur at design time.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response.</span> 
+Whoever makes the change must understand how to make it, and then make it, test it and deploy it. In our example, the modification is made with no side effects.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response measure.</span> 
+All of the possible responses take time and cost money, and so time and cost are the most desirable measures. Time is not always possible to predict, however, and so less ideal measures are frequently used, such as the extent of the change (number of modules affected). In our example, the time to perform the modification should be less than three hours.</p>
+</LI>
+</UL>
+<P class="docText"><A class="docLink" HREF="#ch04table02">Table 4.2</A> presents the possible values for each portion of a modifiability scenario.</P>
+<A NAME="ch04table02"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 4.2. Modifiability General Scenario Generation</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Portion of Scenario</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Possible Values</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Source</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">End user, developer, system administrator</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Stimulus</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Wishes to add/delete/modify/vary functionality, quality attribute, capacity</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Artifact</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">System user interface, platform, environment; system that interoperates with target system</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Environment</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">At runtime, compile time, build time, design time</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Locates places in architecture to be modified; makes modification without affecting other functionality; tests modification; deploys modification</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response Measure</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Cost in terms of number of elements affected, effort, money; extent to which this affects other functions or quality attributes</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+
+<A NAME="ch04lev2sec5"></A><H4 class="docSection2Title"> PERFORMANCE</H4>
+<P class="docText">Performance is about timing. Events (interrupts, messages, requests from users, or the passage of time) occur, and the system must respond to them. There are a variety of characterizations of event arrival and the response but basically performance is concerned with how long it takes the system to respond when an event occurs.</P>
+<P class="docText">One of the things that make performance complicated is the number of event sources and arrival patterns. Events can arrive from user requests, from other systems, or from within the system. A Web-based financial services system gets events from its users (possibly numbering in the tens or hundreds of thousands). An engine control system gets its requests from the passage of time and must control both the firing of the ignition when a cylinder is in the correct position and the mixture of the fuel to maximize power and minimize pollution.</P>
+<P class="docText">For the Web-based financial system, the response might be the number of transactions that can be processed in a minute. For the engine control system, the response might be the variation in the firing time. In each case, the pattern of events arriving and the pattern of responses can be characterized, and this characterization forms the language with which to construct general performance scenarios.</P>
+<P class="docText">A performance scenario begins with a request for some service arriving at the system. Satisfying the request requires resources to be consumed. While this is happening the system may be simultaneously servicing other requests.</P>
+<P class="docText">An arrival pattern for events may be characterized as either periodic or stochastic. For example, a periodic event may arrive every 10 milliseconds. Periodic event arrival is most often seen in real-time systems. Stochastic arrival means that events arrive according to some probabilistic distribution. Events can also arrive sporadically, that is, according to a pattern not capturable by either periodic or stochastic characterizations.</P>
+<P class="docText">Multiple users or other loading factors can be modeled by varying the arrival pattern for events. In other words, from the point of view of system performance, it does not matter whether one user submits 20 requests in a period of time or whether two users each submit 10. What matters is the arrival pattern at the server and dependencies within the requests.</P>
+<P class="docText">The response of the system to a stimulus can be characterized by latency (the time between the arrival of the stimulus and the system's response to it), deadlines in processing (in the engine controller, for example, the fuel should ignite when the cylinder is in a particular position, thus introducing a processing deadline), the throughput of the system (e.g., the number of transactions the system can process in a second), the jitter of the response (the variation in latency), the number of events not processed because the system was too busy to respond, and the data that was lost because the system was too busy.</P>
+<P class="docText">Notice that this formulation does not consider whether the system is networked or standalone. Nor does it (yet) consider the configuration of the system or the consumption of resources. These issues are dependent on architectural solutions, which we will discuss in <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A>.</P>
+<A NAME="ch04lev3sec5"></A><H5 class="docSection3Title"> Performance General Scenarios</H5>
+<P class="docText">From these considerations we can see the portions of the performance general scenario, an example of which is shown in <A class="docLink" HREF="#ch04fig05">Figure 4.5</A>: "Users initiate 1,000 transactions per minute stochastically under normal operations, and these transactions are processed with an average latency of two seconds."</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch04fig05"></A>Figure 4.5. Sample performance scenario</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="256" src="FILES/04fig05.gif" ALT="graphics/04fig05.gif"></p>
+</CENTER>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Source of stimulus.</span> 
+The stimuli arrive either from external (possibly multiple) or internal sources. In our example, the source of the stimulus is a collection of users.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Stimulus.</span> 
+The stimuli are the event arrivals. The arrival pattern can be characterized as periodic, stochastic, or sporadic. In our example, the stimulus is the stochastic initiation of 1,000 transactions per minute.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Artifact.</span> 
+The artifact is always the system's services, as it is in our example.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Environment.</span> 
+The system can be in various operational modes, such as normal, emergency, or overload. In our example, the system is in normal mode.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response.</span> 
+The system must process the arriving events. This may cause a change in the system environment (e.g., from normal to overload mode). In our example, the transactions are processed.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response measure.</span> 
+The response measures are the time it takes to process the arriving events (latency or a deadline by which the event must be processed), the variation in this time (jitter), the number of events that can be processed within a particular time interval (throughput), or a characterization of the events that cannot be processed (miss rate, data loss). In our example, the transactions should be processed with an average latency of two seconds.</p>
+</LI>
+</UL>
+<P class="docText"><A class="docLink" HREF="#ch04table03">Table 4.3</A> gives elements of the general scenarios that characterize performance.</P>
+<A NAME="ch04table03"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 4.3. Performance General Scenario Generation</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Portion of Scenario</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Possible Values</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Source</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">One of a number of independent sources, possibly from within system</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Stimulus</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Periodic events arrive; sporadic events arrive; stochastic events arrive</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Artifact</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">System</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Environment</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Normal mode; overload mode </P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Processes stimuli; changes level of service</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response Measure</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Latency, deadline, throughput, jitter, miss rate, data loss</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">For most of the history of software engineering, performance has been the driving factor in system architecture. As such, it has frequently compromised the achievement of all other qualities. As the price/performance ratio of hardware plummets and the cost of developing software rises, other qualities have emerged as important competitors to performance.</P>
+
+
+<A NAME="ch04lev2sec6"></A><H4 class="docSection2Title"> SECURITY</H4>
+<P class="docText">Security is a measure of the system's ability to resist unauthorized usage while still providing its services to legitimate users. An attempt to breach security is called an attack<sup class="docFootnote"><A class="docLink" HREF="#ch04fn01">[1]</A></sup> and can take a number of forms. It may be an unauthorized attempt to access data or services or to modify data, or it may be intended to deny services to legitimate users.</P>
+<blockquote><p class="docFootnote"><sup><A NAME="ch04fn01">[1]</A></sup> Some security experts use "threat" interchangeably with "attack."</p></blockquote>
+<P class="docText">Attacks, often occasions for wide media coverage, may range from theft of money by electronic transfer to modification of sensitive data, from theft of credit card numbers to destruction of files on computer systems, or to denial-of-service attacks carried out by worms or viruses. Still, the elements of a security general scenario are the same as the elements of our other general scenarios—a stimulus and its source, an environment, the target under attack, the desired response of the system, and the measure of this response.</P>
+<P class="docText">Security can be characterized as a system providing nonrepudiation, confidentiality, integrity, assurance, availability, and auditing. For each term, we provide a definition and an example.</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><P class="docList">Nonrepudiation is the property that a transaction (access to or modification of data or services) cannot be denied by any of the parties to it. This means you cannot deny that you ordered that item over the Internet if, in fact, you did.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Confidentiality is the property that data or services are protected from unauthorized access. This means that a hacker cannot access your income tax returns on a government computer.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Integrity is the property that data or services are being delivered as intended. This means that your grade has not been changed since your instructor assigned it.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Assurance is the property that the parties to a transaction are who they purport to be. This means that, when a customer sends a credit card number to an Internet merchant, the merchant is who the customer thinks they are.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Availability is the property that the system will be available for legitimate use. This means that a denial-of-service attack won't prevent your ordering <span class="docEmphasis">this</span> book.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Auditing is the property that the system tracks activities within it at levels sufficient to reconstruct them. This means that, if you transfer money out of one account to another account, in Switzerland, the system will maintain a record of that transfer.</P></span></LI>
+</OL></span>
+<P class="docText">Each of these security categories gives rise to a collection of general scenarios.</P>
+<A NAME="ch04lev3sec6"></A><H5 class="docSection3Title"> Security General Scenarios</H5>
+<P class="docText">The portions of a security general scenario are given below. <A class="docLink" HREF="#ch04fig06">Figure 4.6</A> presents an example. A correctly identified individual tries to modify system data from an external site; system maintains an audit trail and the correct data is restored within one day.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Source of stimulus.</span> 
+The source of the attack may be either a human or another system. It may have been previously identified (either correctly or incorrectly) or may be currently unknown. If the source of the attack is highly motivated (say politically motivated), then defensive measures such as "We know who you are and will prosecute you" are not likely to be effective; in such cases the motivation of the user may be important. If the source has access to vast resources (such as a government), then defensive measures are very difficult. The attack itself is unauthorized access, modification, or denial of service.</p>
+<P class="docList">The difficulty with security is allowing access to legitimate users and determining legitimacy. If the only goal were to prevent access to a system, disallowing all access would be an effective defensive measure.</P><CENTER><H5 class="docFigureTitle"><A NAME="ch04fig06"></A>Figure 4.6. Sample security scenario</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="282" src="FILES/04fig06.gif" ALT="graphics/04fig06.gif"></p>
+</CENTER>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Stimulus.</span> 
+The stimulus is an attack or an attempt to break security. We characterize this as an unauthorized person or system trying to display information, change and/or delete information, access services of the system, or reduce availability of system services. In <A class="docLink" HREF="#ch04fig06">Figure 4.6</A>, the stimulus is an attempt to modify data.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Artifact.</span> 
+The target of the attack can be either the services of the system or the data within it. In our example, the target is data within the system.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Environment.</span> 
+The attack can come when the system is either online or offline, either connected to or disconnected from a network, either behind a firewall or open to the network.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response.</span> 
+Using services without authorization or preventing legitimate users from using services is a different goal from seeing sensitive data or modifying it. Thus, the system must authorize legitimate users and grant them access to data and services, at the same time rejecting unauthorized users, denying them access, and reporting unauthorized access. Not only does the system need to provide access to legitimate users, but it needs to support the granting or withdrawing of access. One technique to prevent attacks is to cause fear of punishment by maintaining an audit trail of modifications or attempted accesses. An audit trail is also useful in correcting from a successful attack. In <A class="docLink" HREF="#ch04fig06">Figure 4.6</A>, an audit trail is maintained.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response measure.</span> 
+Measures of a system's response include the difficulty of mounting various attacks and the difficulty of recovering from and surviving attacks. In our example, the audit trail allows the accounts from which money was embezzled to be restored to their original state. Of course, the embezzler still has the money, and he must be tracked down and the money regained, but this is outside of the realm of the computer system.</p>
+</LI>
+</UL>
+<P class="docText"><A class="docLink" HREF="#ch04table04">Table 4.4</A> shows the security general scenario generation table.</P>
+<A NAME="ch04table04"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 4.4. Security General Scenario Generation</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Portion of Scenario</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Possible Values</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Source</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Individual or system that is</P>
+<BLOCKQUOTE>
+<P><P class="docList">correctly identified, identified incorrectly, of unknown identity</P></P>
+</BLOCKQUOTE>
+<P class="docText">who is</P>
+<BLOCKQUOTE>
+<P><P class="docList">internal/external, authorized/not authorized</P></P>
+</BLOCKQUOTE>
+<P class="docText">with access to</P>
+<BLOCKQUOTE>
+<P><P class="docList">limited resources, vast resources</P></P>
+</BLOCKQUOTE>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Stimulus</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Tries to</P>
+<BLOCKQUOTE>
+<P><P class="docList">display data, change/delete data, access system services, reduce availability to system services</P></P>
+</BLOCKQUOTE>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Artifact</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">System services; data within system</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Environment</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Either</P>
+<BLOCKQUOTE>
+<P><P class="docList">online or offline, connected or disconnected, firewalled or open</P></P>
+</BLOCKQUOTE>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Authenticates user; hides identity of the user; blocks access to data and/or services; allows access to data and/or services; grants or withdraws permission to access data and/or services; records access/modifications or attempts to access/modify data/services by identity; stores data in an unreadable format; recognizes an unexplainable high demand for services, and informs a user or another system, and restricts availability of services</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response Measure</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Time/effort/resources required to circumvent security measures with probability of success; probability of detecting attack; probability of identifying individual responsible for attack or access/modification of data and/or services; percentage of services still available under denial-of-services attack; restore data/services; extent to which data/services damaged and/or legitimate access denied</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+
+
+<A NAME="ch04lev2sec7"></A><H4 class="docSection2Title"> TESTABILITY</H4>
+<P class="docText">Software testability refers to the ease with which software can be made to demonstrate its faults through (typically execution-based) testing. At least 40% of the cost of developing well-engineered systems is taken up by testing. If the software architect can reduce this cost, the payoff is large.</P>
+<P class="docText">In particular, testability refers to the probability, assuming that the software has at least one fault, that it will fail on its <span class="docEmphasis">next</span> test execution. Of course, calculating this probability is not easy and, when we get to response measures, other measures will be used.</P>
+<P class="docText">For a system to be properly testable, it must be possible to <span class="docEmphasis">control</span> each component's internal state and inputs and then to <span class="docEmphasis">observe</span> its outputs. Frequently this is done through use of a <span class="docEmphasis">test harness</span>, specialized software designed to exercise the software under test. This may be as simple as a playback capability for data recorded across various interfaces or as complicated as a testing chamber for an engine.</P>
+<P class="docText">Testing is done by various developers, testers, verifiers, or users and is the last step of various parts of the software life cycle. Portions of the code, the design, or the complete system may be tested. The response measures for testability deal with how effective the tests are in discovering faults and how long it takes to perform the tests to some desired level of coverage.</P>
+<A NAME="ch04lev3sec7"></A><H5 class="docSection3Title"> Testability General Scenarios</H5>
+<P class="docText"><A class="docLink" HREF="#ch04fig07">Figure 4.7</A> is an example of a testability scenario concerning the performance of a unit test: A unit tester performs a unit test on a completed system component that provides an interface for controlling its behavior and observing its output; 85% path coverage is achieved within three hours.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch04fig07"></A>Figure 4.7. Sample testability scenario</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="217" src="FILES/04fig07.gif" ALT="graphics/04fig07.gif"></p>
+</CENTER>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Source of stimulus.</span> 
+The testing is performed by unit testers, integration testers, system testers, or the client. A test of the design may be performed by other developers or by an external group. In our example, the testing is performed by a tester.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Stimulus.</span> 
+The stimulus for the testing is that a milestone in the development process is met. This might be the completion of an analysis or design increment, the completion of a coding increment such as a class, the completed integration of a subsystem, or the completion of the whole system. In our example, the testing is triggered by the completion of a unit of code.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Artifact.</span> 
+A design, a piece of code, or the whole system is the artifact being tested. In our example, a unit of code is to be tested.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Environment.</span> 
+The test can happen at design time, at development time, at compile time, or at deployment time. In <A class="docLink" HREF="#ch04fig07">Figure 4.7</A>, the test occurs during development.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response.</span> 
+Since testability is related to observability and controllability, the desired response is that the system can be controlled to perform the desired tests and that the response to each test can be observed. In our example, the unit can be controlled and its responses captured.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response measure.</span> 
+Response measures are the percentage of statements that have been executed in some test, the length of the longest test chain (a measure of the difficulty of performing the tests), and estimates of the probability of finding additional faults. In <A class="docLink" HREF="#ch04fig07">Figure 4.7</A>, the measurement is percentage coverage of executable statements.</p>
+</LI>
+</UL>
+<P class="docText"><A class="docLink" HREF="#ch04table05">Table 4.5</A> gives the testability general scenario generation table.</P>
+<A NAME="ch04table05"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 4.5. Testability General Scenario Generation</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Portion of Scenario</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Possible Values</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Source</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Unit developer</P>
+<P class="docText">Increment integrator</P>
+<P class="docText">System verifier</P>
+<P class="docText">Client acceptance tester</P>
+<P class="docText">System user</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Stimulus</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Analysis, architecture, design, class, subsystem integration completed; system delivered</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Artifact</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Piece of design, piece of code, complete application</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Environment</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">At design time, at development time, at compile time, at deployment time </P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Provides access to state values; provides computed values; prepares test environment</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response Measure</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Percent executable statements executed</P>
+<P class="docText">Probability of failure if fault exists</P>
+<P class="docText">Time to perform tests</P>
+<P class="docText">Length of longest dependency chain in a test</P>
+<P class="docText">Length of time to prepare test environment</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+
+<A NAME="ch04lev2sec8"></A><H4 class="docSection2Title"> USABILITY</H4>
+<P class="docText">Usability is concerned with how easy it is for the user to accomplish a desired task and the kind of user support the system provides. It can be broken down into the following areas:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Learning system features.</span> 
+If the user is unfamiliar with a particular system or a particular aspect of it, what can the system do to make the task of learning easier?</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Using a system efficiently.</span> 
+What can the system do to make the user more efficient in its operation?</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Minimizing the impact of errors.</span> 
+What can the system do so that a user error has minimal impact?</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Adapting the system to user needs.</span> 
+How can the user (or the system itself) adapt to make the user's task easier?</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Increasing confidence and satisfaction.</span> 
+What does the system do to give the user confidence that the correct action is being taken?</p>
+</LI>
+</UL>
+<P class="docText">In the last five years, our understanding of the relation between usability and software architecture has deepened (see the sidebar Usability Mea Culpa). The normal development process detects usability problems through building prototypes and user testing. The later a problem is discovered and the deeper into the architecture its repair must be made, the more the repair is threatened by time and budget pressures. In our scenarios we focus on aspects of usability that have a major impact on the architecture. Consequently, these scenarios must be correct prior to the architectural design so that they will not be discovered during user testing or prototyping.</P>
+<A NAME="ch04lev3sec8"></A><H5 class="docSection3Title"> Usability General Scenarios</H5>
+<P class="docText"><A class="docLink" HREF="#ch04fig08">Figure 4.8</A> gives an example of a usability scenario: A user, wanting to minimize the impact of an error, wishes to cancel a system operation at runtime; cancellation takes place in less than one second. The portions of the usability general scenarios are:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Source of stimulus.</span> 
+The end user is always the source of the stimulus.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Stimulus.</span> 
+The stimulus is that the end user wishes to use a system efficiently, learn to use the system, minimize the impact of errors, adapt the system, or feel comfortable with the system. In our example, the user wishes to cancel an operation, which is an example of minimizing the impact of errors.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Artifact.</span> 
+The artifact is always the system.</p>
+<P><A NAME="ch04sb01"></A><TABLE CELLSPACING="0" WIDTH="90%" BORDER="1"><TR><TD>
+<H2 class="docSidebarTitle">Usability Mea Culpa (or "<span class="docEmphasis">That's</span> Not Architectural")</H2>
+<P class="docText">About five years ago a number of respected software engineering researchers publicly made the following bold statement:</P>
+<BLOCKQUOTE>
+<P><P class="docList">Making a system's user interface clear and easy to use is primarily a matter of getting the details of a user's interaction correct &#8230; but these details are not architectural.</P></P>
+</BLOCKQUOTE>
+<P class="docText">Sad to say, these researchers were Bass, Clements, and Kazman, and the book was the first edition of <span class="docEmphasis">Software Architecture in Practice</span>. In the intervening five years we have learned quite a lot about many quality attributes, and none more so than usability.</P>
+<P class="docText">While we have always claimed that system quality stems primarily from architectural quality, in the first edition of this book we were, at times, on shaky ground in trying to substantiate this claim. Still, the intervening years have done nothing to lessen the basic truth of the strong relationship between architectural quality and system quality. In fact, all of the evidence points squarely in its favor, and usability has proven to be no exception. Many usability issues <span class="docEmphasis">are</span> architectural. In fact, the usability features that are the most difficult to achieve (and, in particular, the most difficult to add on after the system has been built) turn out to be <span class="docEmphasis">precisely</span> those that are architectural.</P>
+<P class="docText">If you want to support the ability of a user to cancel an operation in progress, returning to the precise system state in place before the operation was started, you need to plan for this capability in the architecture. Likewise, if you want to support the ability of a user to undo a previous action and if you want to give the user feedback as to an operation's progress. There are many other examples.</P>
+<P class="docText">The point here is that it is easy to assume that a quality attribute, or significant portions of a quality attribute, are not architectural. Not everything is architectural it's true, but frequently our assumptions of what is and what is not are based on a superficial analysis of the problem. Probe more deeply, and significant architectural considerations pop up everywhere. And woe to the architect (or architecture writer!) who ignores them.</P>
+<P class="docText"><span class="docEmphasis">— RK</span></P>
+</TD></TR></TABLE></P>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Environment.</span> 
+The user actions with which usability is concerned always occur at runtime or at system configuration time. Any action that occurs before then is performed by developers and, although a user may also be the developer, we distinguish between these roles even if performed by the same person. In <A class="docLink" HREF="#ch04fig08">Figure 4.8</A>, the cancellation occurs at runtime.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response.</span> 
+The system should either provide the user with the features needed or anticipate the user's needs. In our example, the cancellation occurs as the user wishes and the system is restored to its prior state.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response measure.</span> 
+The response is measured by task time, number of errors, number of problems solved, user satisfaction, gain of user knowledge, ratio of successful operations to total operations, or amount of time/data lost when an error occurs. In <A class="docLink" HREF="#ch04fig08">Figure 4.8</A>, the cancellation should occur in less than one second.</p>
+</LI>
+</UL>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch04fig08"></A>Figure 4.8. Sample usability scenario</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="241" src="FILES/04fig08.gif" ALT="graphics/04fig08.gif"></p>
+</CENTER>
+<P class="docText">The usability general scenario generation table is given in <A class="docLink" HREF="#ch04table06">Table 4.6</A>.</P>
+<A NAME="ch04table06"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 4.6. Usability General Scenario Generation</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Portion of Scenario</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Possible Values</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Source</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">End user</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Stimulus</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Wants to</P>
+<BLOCKQUOTE>
+<P><P class="docList">learn system features; use system efficiently; minimize impact of errors; adapt system; feel comfortable</P></P>
+</BLOCKQUOTE>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Artifact</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">System</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Environment</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">At runtime or configure time</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">System provides one or more of the following responses:</P>
+<BLOCKQUOTE>
+<P><P class="docList">to support "learn system features"</P><BLOCKQUOTE>
+<P><P class="docList">help system is sensitive to context; interface is familiar to user; interface is usable in an unfamiliar context</P></P>
+</BLOCKQUOTE></P>
+<P><P class="docList">to support "use system efficiently":</P><BLOCKQUOTE>
+<P><P class="docList">aggregation of data and/or commands; re-use of already entered data and/or commands; support for efficient navigation within a screen; distinct views with consistent operations; comprehensive searching; multiple simultaneous activities</P></P>
+</BLOCKQUOTE></P>
+<P><P class="docList">to "minimize impact of errors":</P><BLOCKQUOTE>
+<P><P class="docList">undo, cancel, recover from system failure, recognize and correct user error, retrieve forgotten password, verify system resources</P></P>
+</BLOCKQUOTE></P>
+<P><P class="docList">to "adapt system":</P><BLOCKQUOTE>
+<P><P class="docList">customizability; internationalization</P></P>
+</BLOCKQUOTE></P>
+<P><P class="docList">to "feel comfortable":</P><BLOCKQUOTE>
+<P><P class="docList">display system state; work at the user's pace</P></P>
+</BLOCKQUOTE></P>
+</BLOCKQUOTE>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Response Measure</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Task time, number of errors, number of problems solved, user satisfaction, gain of user knowledge, ratio of successful operations to total operations, amount of time/data lost</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+
+<A NAME="ch04lev2sec9"></A><H4 class="docSection2Title"> COMMUNICATING CONCEPTS USING GENERAL SCENARIOS</H4>
+<P class="docText">One of the uses of general scenarios is to enable stakeholders to communicate. We have already pointed out that each attribute community has its own vocabulary to describe its basic concepts and that different terms can represent the same occurrence. This may lead to miscommunication. During a discussion of performance, for example, a stakeholder representing users may not realize that the latency of the response to events has anything to do with users. Facilitating this kind of understanding aids discussions of architectural decisions, particularly about tradeoffs.</P>
+<A NAME="ch04table07"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 4.7. Quality Attribute Stimuli</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="middle">
+<P class="docText"><span class="docEmphStrong">Quality Attribute</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="middle">
+<P class="docText"><span class="docEmphStrong">Stimulus</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Availability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Unexpected event, nonoccurrence of expected event</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Modifiability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Request to add/delete/change/vary functionality, platform, quality attribute, or capacity</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Performance</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Periodic, stochastic, or sporadic</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Security</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Tries to</P>
+<BLOCKQUOTE>
+<P><P class="docList">display, modify, change/delete information, access, or reduce availability to system services</P></P>
+</BLOCKQUOTE>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Testability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Completion of phase of system development</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Usability</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Wants to</P>
+<BLOCKQUOTE>
+<P><P class="docList">learn system features, use a system efficiently, minimize the impact of errors, adapt the system, feel comfortable</P></P>
+</BLOCKQUOTE>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText"><A class="docLink" HREF="#ch04table07">Table 4.7</A> gives the stimuli possible for each of the attributes and shows a number of different concepts. Some stimuli occur during runtime and others occur before. The problem for the architect is to understand which of these stimuli represent the same occurrence, which are aggregates of other stimuli, and which are independent. Once the relations are clear, the architect can communicate them to the various stakeholders using language that each comprehends. We cannot give the relations among stimuli in a general way because they depend partially on environment. A performance event may be atomic or may be an aggregate of other lower-level occurrences; a failure may be a single performance event or an aggregate. For example, it may occur with an exchange of severalmessages between a client and a server (culminating in an unexpected message), each of which is an atomic event from a performance perspective.</P>
+
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch04lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch04lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

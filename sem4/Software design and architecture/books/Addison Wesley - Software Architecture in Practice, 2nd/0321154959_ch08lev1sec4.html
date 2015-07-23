@@ -1,0 +1,103 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="8.4 Summary"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch08lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch08lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch08lev1sec4"></A><H3 class="docSection1Title">8.4 Summary</H3>
+<P class="docText">In this chapter, we described an architecture for flight simulators that was designed to achieve the quality attributes of performance, integrability, and modifiability. And projects were able to achieve these results with cost savings.For example, onsite installation teams were 50% of the size previously required because they could locate and correct faults more easily. The design achieves those qualities by restricting the number of module type configurations in the Structural Model architectural pattern, by restricting communication among the module types, and by decomposing the functionality according to anticipated changes in the underlying aircraft.</P>
+
+<P class="docText">The improvements in these simulators have principally accrued from a better understanding of, and adherence to, a well-analyzed and well-documented software architecture. Chastek and Brownsword describe some of the results achieved through the use of this pattern [<A class="docLink" HREF="0321154959_biblio01.html#biblio01entry36">Chastek 96</A>, 28]:</P>
+<blockquote>
+<p class="docText">In a previous data-driven simulator of comparable size (the B-52), 2000–3000 test descriptions (test problems) were identified during factory acceptance testing. With their structural modeling project, 600–700 test descriptions were reported. They found the problems easier to correct; many resulted from misunderstandings with the documentation&#8230; . Staff typically could isolate a reported problem off-line rather than going to a site&#8230; . Since the use of structural modeling, defect rates for one project are half that found on previous data-driven simulators.</p>
+</blockquote>
+<P class="docText">At the start of this chapter we identified three quality goals of the Structural Model pattern: performance, integrability, and modifiability for operational requirements. Here, we recap how the pattern achieves these goals. <A class="docLink" HREF="#ch08table01">Table 8.1</A> summarizes this information.</P>
+<A NAME="ch08table01"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 8.1. How the Structural Modeling Pattern Achieves Its Goals</h5></CAPTION><COLGROUP align="left" span="3">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Goal</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">How Achieved</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Tactics Used</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Performance</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Periodic scheduling strategy using time budgets</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Static scheduling</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Integrability</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Separation of computation from coordination</P>
+<P class="docText">Indirect data and control connections</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Restrict communication</P>
+<P class="docText">Use intermediary</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Modifiability</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Few module types</P>
+<P class="docText">Physically based decomposition</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Restrict communication</P>
+<P class="docText">Semantic coherence</P>
+<P class="docText">Interface stability</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<A NAME="ch08lev2sec11"></A><H4 class="docSection2Title"> PERFORMANCE</H4>
+<P class="docText">A key quality goal of the Structural Model pattern is real-time performance. This is achieved primarily through operation of the executive and use of a periodic scheduling strategy. Each subsystem invoked by the executive has a time budget, and the hardware for the simulator is sized so that it can accommodate the sum of all time budgets. Sometimes this involves a single processor; other times, multiple processors. Given this scheduling strategy, the achievement of real-time performance comes from requiring the sum of the times allocated to the subsystems involved in the control loops to be within one period of the simulator. Thus, real-time performance is guaranteed by a combination of architectural patterns (the executive module configurations) and the functional decomposition (how the instances are invoked).</P>
+
+<A NAME="ch08lev2sec12"></A><H4 class="docSection2Title"> INTEGRABILITY</H4>
+<P class="docText">In the Structural Model pattern, both the data connections and the control connections between two subsystems are deliberately minimized. First, within a subsystem the controller children can pass neither control nor data directly to any sibling. All data and control transfers occur only through mediation by the subsystem controller. Thus, integrating another controller child into a subsystem requires that the data in the subsystem controller be internally consistent and that the data transferred between the subsystem controller and the controller children be correct. This is a much simpler process than if a new child communicated with other children because all of them would be involved in the integration. That is, achieving integration has been reduced to a problem that is linear, rather than exponential, in the number of children.</P>
+<P class="docText">When integrating two subsystems, none of their children interact directly and so the problem is again reduced to ensuring that the two subsystems pass data consistently. It is possible that the addition of a new subsystem will affect several other subsystems, but because the number of subsystems is substantially less than the number of controller children, this problem is limited in complexity.</P>
+<P class="docText">In the Structural Model, therefore, integrability is simplified by deliberately restricting the number of possible connections. The cost of this restriction is that the subsystem controllers often act purely as data conduits for the various controller children, and this adds complexity and performance overhead. In practice, however, the benefits far outweigh the cost. These benefits include the creation of a skeletal system that allows incremental development and easier integration. Every project that has used structural modeling has reported easy, smooth integration.</P>
+
+<A NAME="ch08lev2sec13"></A><H4 class="docSection2Title"> MODIFIABILITY</H4>
+<P class="docText">Modifiability is simplified when there are few base module configurations for the designer and maintainer to understand and when functionality is localized so that there are fewer subsystem controllers or controller children involved in a particular modification. Using <span class="docEmphasis">n</span>-square charts helps to reduce connections.</P>
+<P class="docText">Furthermore, for subsystems that are physically based, the decomposition follows the physical structure, as do modifications. Those subsystems that are not physically based, such as the equations of motion, are less likely to be changed. Users of structural modeling reported that side effects encountered during modifications were rare.</P>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch08lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch08lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

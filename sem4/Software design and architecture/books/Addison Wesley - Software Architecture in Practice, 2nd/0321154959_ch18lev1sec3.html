@@ -1,0 +1,73 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="18.3 Component-Based Design as Search"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch18lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch18lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch18lev1sec3"></A><H3 class="docSection1Title">18.3 Component-Based Design as Search</H3>
+<P class="docText">Since component capabilities and liabilities are a principle source of architectural constraint in system development, and since systems use multiple components, component-based system design becomes a search for compatible <span class="docEmphasis">ensembles</span> of off-the-shelf components that come the closest to meeting system objectives. The architect must determine if it is feasible to integrate the components in each ensemble and, in particular, to evaluate whether an ensemble can live in the architecture and support system requirements.</P>
+<P class="docText">In effect, each possible ensemble amounts to a continued path of exploration. This exploration should initially focus on the feasibility of the path to make sure there are no significant architectural mismatches that cannot be reasonably adapted. It must also take into account the feasibility of the repair and the residual risk remaining once the repair is completed.</P>
+<P class="docText">Of course, the simultaneous exploration of multiple paths is expensive. As we show in our example, it is more likely that the focus will be on a primary path with additional paths treated as secondary. The important point is to view the selection of components in terms of ensembles rather than singly and to keep in mind that a particular path constitutes a hypothesis to be verified rather than a definitive design.</P>
+<P class="docText">"How is it possible for one to achieve system quality attributes when dealing with component-dominated architectures?" The first answer may be that one does not. In many cases, the ability to use an existing off-the-shelf package to deploy greater functionality in a short time may outweigh performance, security, or other system requirements. Using OTS components sometimes blurs the line between requirements and system design. Evaluating components often causes modification of system requirements, adding to expectations about capabilities that may be deployed while forcing other "requirements" to be reconsidered.</P>
+<P class="docText">Some flexibility in system requirements is beneficial in the integration of component-based systems, but it is also important to recognize when a requirement is essential to the success of the system and to not allow these requirements to be compromised. How, then, do we ensure that essential qualities are maintained in our component-dominated architecture?</P>
+<P class="docText">In the previous section, we mentioned that component integration was a principal risk area and that the system architect must determine the feasibility of integrating a component ensemble such that the system is functionally complete and meets its quality attribute requirements. Ensembles then, must be evaluated to ensure not only that the components can be successfully integrated but also that they can support quality attribute objectives. To evaluate the feasibility of a component ensemble, including its ability to support the system's desired quality attributes, we use model problems.</P>
+<P class="docText">Narrowly defined, a <span class="docEmphasis">model problem</span> is a description of the design context, which defines the constraints on the implementation. For example, if the software under development must provide a Web-based interface that is usable by both Netscape's Navigator and Microsoft's Internet Explorer, this part of the design context constrains the solution space. Any required quality attributes are also included in the design context.</P>
+<P class="docText">A prototype situated in a specific design context is called a <span class="docEmphasis">model solution</span>. A model problem may have any number of model solutions, depending on the severity of risk inherent in the design context and on the success of the model solutions in addressing it.</P>
+<P class="docText">Model problems are normally used by design teams. Optimally, the design team consists of an architect who is the technical lead on the project and makes the principal design decisions, as well as a number of designers/engineers who may implement a model solution for the model problem.</P>
+<P class="docText">An illustration of the model problem work flow is shown in <A class="docLink" HREF="#ch18fig01">Figure 18.1</A>. The process consists of the following six steps that can be executed in sequence:</P>
+<A NAME="ch18pr01"></A>
+
+
+
+
+
+<span style="font-weight:bold"><OL class="docList" START="1">
+<LI><span style="font-weight:normal" value="1">
+<P class="docText">The architect and the engineers identify a <span class="docEmphasis">design question</span>. The design question initiates the model problem, referring to an unknown that is expressed as a hypothesis.</P>
+</span></LI><LI><span style="font-weight:normal" value="2">
+<P class="docText">The architect and the engineers define the <span class="docEmphasis">starting evaluation criteria</span>. These criteria describe how the model solution will support or contradict the hypothesis.</P>
+</span></LI><LI><span style="font-weight:normal" value="3">
+<P class="docText">The architect and the engineers define the <span class="docEmphasis">implementation constraints</span>. The implementation constraints specify the fixed (inflexible) part of the design context that governs the implementation of the model solution. These constraints might include such things as platform requirements, component versions, and business rules.</P>
+</span></LI><LI><span style="font-weight:normal" value="4">
+<P class="docText">The engineers produce a <span class="docEmphasis">model solution</span> situated in the design context. The model solution is a minimal application that uses only the features of a component (or components) necessary to support or contradict the hypothesis.</P>
+</span></LI><LI><span style="font-weight:normal" value="5">
+<P class="docText">The engineers identify <span class="docEmphasis">ending evaluation criteria</span>. Ending evaluation criteria include the starting set plus criteria that are discovered as a by-product of implementing the model solution.</P>
+</span></LI><LI><span style="font-weight:normal" value="6">
+<P class="docText">The architect performs an <span class="docEmphasis">evaluation</span> of the model solution against the ending criteria. The evaluation may result in the design solution being rejected or adopted, but often leads to new design questions that must be resolved in similar fashion.</P>
+</span></LI></OL></span>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch18fig01"></A>Figure 18.1. Model problem work flow</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="602" src="FILES/18fig01.gif" ALT="graphics/18fig01.gif"></p>
+</CENTER>
+<P class="docText">In the remainder of this chapter we introduce an example and illustrate the application of these steps in the development of a Web-based application called ASEILM.</P>
+<P><A NAME="ch18sb02"></A><TABLE CELLSPACING="0" WIDTH="90%" BORDER="1"><TR><TD>
+<H2 class="docSidebarTitle">"O ATAM, Where Art Thou?"</H2>
+<P class="docText">This chapter is about finding out if a chosen ensemble of components can meet the quality and behavioral requirements of a system in which they are to be used. This is clearly an architectural question. Why, then, are we not using an architecture evaluation method, such as the ATAM, to answer it? After all, the ATAM's whole purpose is to evaluate architectural decisions (such as the decision to use certain components "wired" together in particular ways) in light of a system's quality and behavioral requirements. Why not simply say, "Perform an ATAM-based evaluation here" and be done with it?</P>
+<P class="docText">The answer is that the process we describe in this chapter is less about evaluating the results of a packaged set of architectural decisions, and more about activities to help you make those decisions in the first place. The activities more resemble prototyping than analytical evaluation.</P>
+<P class="docText">The ASEILM example shows how many very detailed issues of compatibility have to be resolved before developers can even begin to think about how the resulting ensemble provides various quality attributes. Just putting the ensemble together is a challenge. And while we are dealing with one ensemble, another one is waiting in the wings in case the first one does not work out. The process lets us manage the juggling act between candidate ensembles, and it lets us make a choice among them in a reasoned way by laying out small, practical, common-sense steps.</P>
+<P class="docText">Each candidate ensemble implies several hypotheses that assert that you know what you are doing. You proceed in semi-parallel, wiring ensembles to each other and to the rest of your system until you discover that you <span class="docEmphasis">do not</span> know what you are doing. Then you try to wire them together differently, or you jump to plan B (the next ensemble). Typically, the quality attributes come in because you discover that what you do not know is how the ensembles manage quality attributes.</P>
+<P class="docText">In order to do an ATAM evaluation you need to know something about the components you are using. The point of the process we describe here is that it is not yet clear what you know.</P>
+<P class="docText">We have wrapped the process in a method's clothing to make it more repeatable and learnable, but it is pretty much just common sense. You make an informed guess at what components you want to use, build prototypes to test them and their interactions, evolve what works, and keep a backup plan in case your guess is wrong. The key insight is that you want to do this with an ensemble, not one component at a time.</P>
+<P class="docText">Once an ensemble has been validated in this way, can it (and its encompassing system's architecture) still be the subject of an ATAM-based or other architecture evaluation? Absolutely.</P>
+<P class="docText"><span class="docEmphasis">— LJB and PCC</span></P>
+</TD></TR></TABLE></P>
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch18lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch18lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

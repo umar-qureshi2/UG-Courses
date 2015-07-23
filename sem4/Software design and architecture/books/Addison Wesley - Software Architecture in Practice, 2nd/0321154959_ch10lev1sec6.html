@@ -1,0 +1,357 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="10.6 Example"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch10lev1sec5.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch10lev1sec7.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch10lev1sec6"></A><H3 class="docSection1Title">10.6 Example</H3>
+<P class="docText">To illustrate the process of reconstruction, we will walk through a typical set of code segments created in Dali to reconstruct the architecture for UCMEdit, a system for creating and editing Buhr-style use case maps. We will show how the reconstructor moved from the raw data of a set of extracted views to a simple, elegant picture of the software architecture.</P>
+<A NAME="ch10lev2sec9"></A><H4 class="docSection2Title"> INFORMATION EXTRACTION</H4>
+<P class="docText"><A class="docLink" HREF="#ch10table02">Table 10.2</A> shows the elements and relations initially extracted from the UCMEdit source code. Variable accesses are <span class="docEmphasis">not</span> included; that is, there are no <TT>function_reads_variable</TT> or <TT>function_assigns_variable</TT> relations. However, since these relations might be important for determining architectural coupling, a second extraction is engineered to capture them. Additionally, <TT>file depends_on file</TT> relations are extracted by processing the output from running the GNU <TT>make</TT> utility on the application's makefile.</P>
+<A NAME="ch10table02"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 10.2. Elements and Relations Extracted from UCMEdit</h5></CAPTION><COLGROUP align="left" span="6">
+<THEAD>
+<TR>
+<TH class="docTableHeader" valign="top">&nbsp;</TH>
+<TH class="docTableHeader" align="center" valign="top" colspan="2">
+<P class="docText"><span class="docEmphStrong">Source Element</span></P>
+</TH>
+<TH class="docTableHeader" valign="top">&nbsp;</TH>
+<TH class="docTableHeader" align="center" valign="top" colspan="2">
+<P class="docText"><span class="docEmphStrong">Target Element</span></P>
+</TH>
+</TR>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Relation</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Element Type</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Element Name</span></P>
+</TH>
+<TH class="docTableHeader" valign="top">&nbsp;</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Element Type</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Element Name</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>calls</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Function</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tCaller</TT></P>
+</TD>
+<TD class="docTableCell" valign="top" rowspan="10">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Function</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tCallee</TT></P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>contains</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">File</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tContainer</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Function</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tContainee</TT></P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>defines</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">File</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tFile</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Class</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tClass</TT></P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>has_subclass</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Class</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tSuperclass</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Class</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tSubclass</TT></P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>has_friend</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Class</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tClass</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Class</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tFriend</TT></P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>defines_fn</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Class</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tDefined_by</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Function</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tDefines</TT></P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>has_member</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Class</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tClass</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Member variable</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tMember</TT></P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>defines_var</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Function</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tDefiner</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Local variable</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tVariable</TT></P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>has_instance</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Class</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tClass</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Variable</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tVariable</TT></P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>defines_global</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">File</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tDefiner</TT></P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Global variable</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText"><TT>tVariable</TT></P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<P class="docText">Once the views of interest are extracted, functions thought to be "uninteresting" are filtered out, among them built-in functions, such as <TT>return</TT>, and standard C library functions, such as <TT>scanf</TT> and <TT>printf</TT>.</P>
+
+<A NAME="ch10lev2sec10"></A><H4 class="docSection2Title"> DATABASE CONSTRUCTION</H4>
+<P class="docText">Next, an SQL database is populated with the extracted relations. As mentioned in <A class="docLink" HREF="0321154959_ch10lev1sec3.html#ch10lev1sec3">Section 10.3</A>, two additional database tables are constructed to catalog the elements and relationships—one identifies all defined elements; the other lists all identified relation types. The elements table has a field (called <TT>type</TT>) that stores the element's type (file, function, etc.).</P>
+
+
+<A NAME="ch10lev2sec11"></A><H4 class="docSection2Title"> VIEW FUSION AND RECONSTRUCTION</H4>
+<P class="docText"><A class="docLink" HREF="#ch10fig13">Figure 10.13</A> shows the raw extracted model of those elements and relations, containing 830 nodes and 2,507 relations. At this point, the first order of business is to begin applying code segments to search for order within the chaos.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig13"></A>Figure 10.13. A raw set of extracted elements and relations: white noise</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="515" src="FILES/10fig13.gif" ALT="graphics/10fig13.gif"></p>
+</CENTER>
+<P class="docText">A reliable first step is to aggregate a function and all of the local variables that it defines into a new composite element. After the code segment shown in <A class="docLink" HREF="0321154959_ch10lev1sec5.html#ch10list02">Figure 10.9</A> is applied, the models for UCMEdit <span class="docEmphasis">still</span> appear as an inscrutable web of nodes and arcs, but it is simpler than the extracted views of <A class="docLink" HREF="#ch10fig13">Figure 10.13</A> prior to the application of the function aggregation code segments. The UCMEdit model now shows 710 nodes and 2,321 relations.</P>
+<P class="docText">We know that UCMEdit is an object-oriented system, and the next low-level code segment applied takes advantage of that knowledge. Similar in nature to that for collapsing functions, this code segment collapses together classes and their member variables and functions, representing them as a single class node. The resulting model was shown in <A class="docLink" HREF="0321154959_ch10lev1sec4.html#ch10fig05">Figure 10.5</A>; it contains 233 nodes and 518 arcs—a significant visual simplification, although still not tractable.</P>
+<P class="docText">But there are still many elements remaining that are unrelated to any extracted class. Hence, we have exposed either a deficiency in the extractors applied or ways in which these systems deviate from pure object-oriented design. In fact, both of these cases obtain.</P>
+<P class="docText">Closer examination reveals that false positives are generated by the extraction code segments in the form of apparent calls to global functions that are actually calls to member functions. Moreover, several functions are indeed global, belonging to no class defined in the system. Of course, some global functions, in the form of system calls or windowing system primitives, are necessary. How these "leftover" cases are separated from the rest of the architecture is discussed next.</P>
+<P class="docText">The model for UCMEdit is now a collection of files, classes, leftover functions, and global variables. Local variables have been aggregated into the functions in which they are defined, and member functions and member variables have been aggregated into their associated classes. At this point we can compose global variables and functions into the files in which they are defined, in much the same manner as functions and classes were composed. The resulting models, shown in <A class="docLink" HREF="#ch10fig14">Figure 10.14</A>, contain three separate groups of elements: files, classes, and the remaining leftover functions. Again, a significant visual improvement but still not tractable.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig14"></A>Figure 10.14. The UCMEdit model showing (from top to bottom) classes, files, and "leftover" functions (arcs are hidden)</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="429" src="FILES/10fig14.jpg" ALT="graphics/10fig14.jpg"></p>
+</CENTER>
+<P class="docText">Until now, each code segment applied has been application independent but specific to the extraction techniques and to the domain of C++ software. The next code segment sets to be applied use expert knowledge of the UCMEdit architecture. Here the reconstruction process diverges from a rote analysis, where we apply off-the-shelf code segments, into opportunistic pattern recognition and definition, leveraging the kinds of information that a designer or experienced system programmer should know about a specific system's architecture.</P>
+<P class="docText">The first application-specific knowledge that we apply to our sample system is as follows:</P>
+<UL>
+<LI><P class="docList">It is an interactive, graphical application.</P></LI>
+<LI><P class="docList">It attempts to encapsulate access to the underlying windowing and graphics subsystem within a layer.</P></LI>
+<LI><P class="docList">The functions comprising the graphics libraries used (Xlib, XForms, and Mesa) have characteristic naming conventions.</P></LI>
+</UL>
+<P class="docText">These observations lead us to expect architectural patterns—the existence of subsystems, perhaps, or certain patterns of interaction. These expectations are in effect hypotheses, and to test them we check for the existence of the patterns. If the result simplifies the picture and matches our expectations, then our hypothesis is confirmed. We have likely discovered what the architect had in mind. Even if not, we have discovered a reasonable and useful handle with which to understand the system.</P>
+<P class="docText">In the code segments shown in <A class="docLink" HREF="#ch10list05">Figure 10.15</A>, which are intended to identify the graphics subsystem, those external functions provide rendering and interaction functionality to the application. Consider the first code segment: It constructs a new table from the <TT>elements</TT> table by filtering out all functions that are members of classes (those that appear as the <TT>tDefines</TT> field in a tuple of the <TT>defines_fn</TT> relation). Then it selects from this new table all functions called by functions defined by subclasses of the <TT>Presentation</TT> class. Note that this code segment references subclasses of <TT>Presentation</TT>. In doing so, it implicitly identifies the layer that the original designers created to encapsulate accesses to the graphics subsystem. This information will be leveraged further. The second, third, and fourth code segments in this sequence identify functions defined by the Mesa, XForms, and Xlib libraries, respectively, by specifying code segments over the function names.</P>
+
+<H5 class="docExampleTitle"><A NAME="ch10list05"></A>Figure 10.15 Code segments for the UCMEdit graphics subsystem</H5>
+<PRE>
+# 1: Identify calls from graphics access layer.
+     DROP TABLE tmp;
+     SELECT * INTO TABLE tmp
+             FROM elements;
+     DELETE FROM tmp
+             WHERE tmp.tName=defines_fn.tDefines;
+     SELECT t1.tName
+             FROM tmp t1, calls c1, defines_fn d1,
+                    has_subclass s1, has_subclass s2
+             WHERE t1.tName=c1.tCallee AND c1.tCaller=d1.tDefines
+     AND d1.tDefined_by=s1.tSubclass
+     AND s1.tSuperclass='Presentation';
+
+print "Graphics $fields[0]+ null\n";
+
+# 2: Identify calls to Mesa functions.
+SELECT tName
+             FROM elements
+             WHERE tType='Function' AND tName LIKE 'gl%';
+
+print "Graphics $fields[0]+ null\n";
+
+# 3: Identify calls to XForms functions.
+SELECT tName
+             FROM elements
+             WHERE tType='Function' AND tName LIKE 'fl_%';
+
+print "Graphics $fields[0]+ null\n";
+
+# 4: Identify calls to Xlib functions.
+DROP TABLE tmp;
+     SELECT * INTO TABLE tmp
+             FROM elements;
+     DELETE FROM tmp
+             WHERE tmp.tName=defines_fn.tDefines;
+     SELECT c1.tName
+             FROM tmp c1
+             WHERE tType='Function'
+             AND tName LIKE 'X%';
+
+print "Graphics $fields[0]+ null\n";
+</PRE>
+<P class="docText">Code segments 2, 3, and 4 collectively identify an architectural element, <TT>Graphics</TT>, which does not exist in the extracted information but does exist in the as-designed architecture. This is an example of relating the as-implemented and as-designed architectures through a cumulative series of code segment applications. The results, in UCMEdit model, are shown in <A class="docLink" HREF="#ch10fig16">Figure 10.16</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig16"></A>Figure 10.16. UCMEdit model showing the graphics subsystem, classes, files, and remaining functions (arcs are hidden)</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="429" src="FILES/10fig16.gif" ALT="graphics/10fig16.gif"></p>
+</CENTER>
+<P class="docText">Note that the names of the elements to be aggregated into the <TT>Graphics</TT> element include the '<TT>+</TT>' that was appended by the code segments in the figure. This technique thus refers to previously constructed composite elements without the code segments explicitly querying the database for them.</P>
+<P class="docText">Examining <A class="docLink" HREF="#ch10fig16">Figure 10.16</A>, we see that there are only two leftover functions remaining: <TT>fabs</TT> and <TT>[]</TT>; the latter is obviously an extraction error while the former is a math library function that should have been filtered out along with standard C library and built-in functions. Regardless, neither is of interest and so they can be pruned from the model.</P>
+<P class="docText">Of course, the determination of which functions are "interesting" or "uninteresting" depends on the goals of the reconstruction. A reconstructor interested in a different aspect of the system, such as how its subsystems depend on platform-specific or operating-system-specific libraries, would not have pruned these functions from the concrete model, but would more likely have aggregated them into a layer to analyze how they are used by the rest of the application. We are interested in constructing an architectural representation of the application-specific part of the system, so we remove these functions.</P>
+<P class="docText">A second common application-based code segment takes advantage of knowledge about the relationship between classes and files in the example applications. First, a source (<TT>.cc</TT>) file will contain functions for at most one class; second, a header (<TT>.h</TT>) file will contain a definition for at most one class. This makes it possible to define a unique containment relationship: A class can include the header file in which it is defined and the source file that contains its functions. The code segment that generates these aggregations is shown in <A class="docLink" HREF="#ch10list06">Figure 10.17</A>.</P>
+
+<H5 class="docExampleTitle"><A NAME="ch10list06"></A>Figure 10.17 Code segments for class/file containment</H5>
+<PRE>
+SELECT DISTINCT tDefined_by
+      FROM defines_fn;
+
+print "$fields[0]+ $fields[0]+ Class $fields[0]++\n";
+
+SELECT DISTINCT d1.tDefined_by, c1.tContainer
+      FROM defines_fn d1, contains c1
+             WHERE c1.tContainee=d1.tDefines;
+
+print "$fields[0]+ $fields[1]+ Class\n";
+
+SELECT d1.tClass, d1.tFile
+      FROM defines d1;
+
+print "$fields[0]+ $fields[1] Class\n";
+</PRE>
+<P class="docText">We see one additional feature of these specifications in this example: The last field in the perl expression associated with the first code segment (<TT>$fields[0]++</TT>) specifies a renaming of the element being aggregated. In this code segment, we are aggregating classes (named with trailing '<TT>+</TT>'s because of the class-collapsing code segments of <A class="docLink" HREF="0321154959_ch10lev1sec4.html#ch10lev1sec4">Section 10.4</A>) into new composite elements. The names of the new composites are <TT>&lt;class&gt;+</TT>; the original class composites are renamed <TT>&lt;class&gt;++</TT>. The results are shown in <A class="docLink" HREF="#ch10fig18">Figure 10.18</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig18"></A>Figure 10.18. The UCMEdit model after application of common code segments</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="443" src="FILES/10fig18.jpg" ALT="graphics/10fig18.jpg"></p>
+</CENTER>
+<P class="docText">UCMEdit was constructed as a prototype intended to demonstrate the advantages of computer-based editing of use case maps. Since over-arching architectural design of the application was not considered at the start of development, identification of architectural elements from the concrete model must be guided by an understanding of the application's structure as it stands at the completion of development. Our understanding of the application will be imposed on the model via direct manipulation, as follows.</P>
+<P class="docText">First, we know (and can tell by observation of the model) that <TT>callbacks.cc</TT> is central to the structure of the application, containing all of the system's event handlers and the bulk of the user interface implementation. Second, we can observe the obvious relationships between the two remaining files and the classes to which they are connected—<TT>interpolate.cc</TT> is associated exclusively with <TT>BSpline</TT>, and <TT>fisheye.cc</TT> is used only by <TT>Box</TT> and <TT>Component</TT>. Third, we may now reapply our knowledge of the structure of the system's graphics encapsulation, or <span class="docEmphasis">presentation</span>, layer; it is embodied in the <TT>Presentation</TT> class and its subclasses. Fourth, we can make the observation that the <TT>List</TT>, <TT>ListItem</TT>, and <TT>ListIterator</TT> classes are functionally related to one another and are used by almost all of the other classes.</P>
+<P class="docText">We realize the above observations by</P>
+<UL>
+<LI><P class="docList">identifying the <TT>callbacks.cc</TT> file with an architectural element, <TT>Interaction</TT>.</P></LI>
+<LI><P class="docList">aggregating <TT>interpolate.cc</TT> into the <TT>BSpline</TT> element.</P></LI>
+<LI><P class="docList">aggregating the <TT>Presentation</TT> class and its subclasses into a <TT>Presentation</TT> element.</P></LI>
+<LI><P class="docList">aggregating the <TT>List</TT>, <TT>ListItem</TT>, and <TT>ListIterator</TT> classes into a <TT>List</TT> element and hiding it, treating it as a "utility layer."</P></LI>
+</UL>
+<P class="docText">The results of these changes to the model are shown in <A class="docLink" HREF="#ch10fig19">Figure 10.19</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig19"></A>Figure 10.19. UCMEdit model after application-specific direct manipulation</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="491" src="FILES/10fig19.jpg" ALT="graphics/10fig19.jpg"></p>
+</CENTER>
+<P class="docText">At this point, we need to carefully consider how we may further simplify this model. Automatic clustering based on graph-theoretic properties, such as interconnection strength, does not provide any insight. Another option is to attempt to build layers based on the organization generated by the graph layout algorithm, as shown in <A class="docLink" HREF="#ch10fig19">Figure 10.19</A>, but this approach results in little functional consistency within the layers. In other words, these two hypotheses did not seem to be confirmed by the system, and so we did not pursue them. Considering the domain of use case maps, however, will suggest another hypothesis.</P>
+<P class="docText">After looking at concepts from use case maps, we identified two broad categories of elements: those related to components and those related to paths, these being the two primary constructs comprising a use case map. <TT>DynamicArrow</TT>, <TT>Path</TT>, <TT>Point</TT>, <TT>Responsibility</TT>, <TT>Segment</TT>, <TT>Stub</TT>, and <TT>BSpline</TT> are related to paths; <TT>Box</TT>, <TT>Component</TT>, <TT>Dependent</TT>, <TT>Handle</TT>, and <TT>fisheye.cc</TT> are related to components. <A class="docLink" HREF="#ch10fig20">Figure 10.20</A> shows the effect of clustering these elements into two architectural elements: <TT>Path</TT> and <TT>Component</TT>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig20"></A>Figure 10.20. UCMEdit model after clustering based on application domain</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="491" src="FILES/10fig20.gif" ALT="graphics/10fig20.gif"></p>
+</CENTER>
+<P class="docText">In probing the connections among elements, we find that there are still a large number of interrelationships. While this is not necessarily harmful in itself, it suggests that UCMEdit's architecture lacks functional consistency within the elements and their connections.</P>
+<P class="docText">Unfortunately, there are no significant improvements we can make to the UCMEdit model. The system was not well designed in that the mapping from functionality to software structure is complex. This makes the abstraction of functionally coherent high-level elements within UCMEdit's architecture impossible. However, we can take advantage of what we have learned to suggest improvements and to document what we know. The latter is especially important since we have discovered that UCMEdit lacks the conceptual integrity that often brings about intuitive understanding.</P>
+
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch10lev1sec5.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch10lev1sec7.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

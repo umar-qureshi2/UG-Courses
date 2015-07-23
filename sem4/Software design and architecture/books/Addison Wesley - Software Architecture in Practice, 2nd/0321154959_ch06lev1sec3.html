@@ -1,0 +1,321 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="6.3 Architectural Solution"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="0321154959_toc.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch06lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch06lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch06lev1sec3"></A><H3 class="docSection1Title">6.3 Architectural Solution</H3>
+<P class="docText">Just as an architecture affects behavior, performance, fault tolerance, and maintainability, so it is shaped by stringent requirements in any of these areas. In the case of ISSS, by far the most important driving force is the extraordinarily high requirement for system availability: less than 5 minutes per year of downtime. This requirement, more than any other, motivated architectural decisions for ISSS.</P>
+<P class="docText">We begin our depiction of the ISSS architecture by describing the physical environment hosting the software. Then we give a number of software architecture views (as described in <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A>), highlighting the tactics (as described in <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A>) employed by each. During this discussion, we introduce a new view not previously discussed: fault tolerance. After discussing the relationships among views, we conclude the architecture picture for ISSS by introducing a refinement of the "abstract common services" tactic for modifiability and extensibility, namely, code templates.</P>
+<A NAME="ch06lev2sec1"></A><H4 class="docSection2Title"> ISSS PHYSICAL VIEW</H4>
+<P class="docText">ISSS is a distributed system, consisting of a number of elements connected by local area networks. <A class="docLink" HREF="#ch06fig05">Figure 6.5</A> shows a physical view of the ISSS system. It does not show any of the support systems or their interfaces to the ISSS equipment. Neither does it show any structure of the software. The major elements of the physical view and the roles its elements play are as follows:</P>
+<UL>
+<LI><P class="docList">The Host Computer System is the heart of the en route automation system. At each en route center there are two host computers, one primary and the other ready to take over should there be some problem with the primary one. The Host provides processing of both surveillance and flight plan data. Surveillance data is displayed on the en route display consoles used by controllers. Flight data is printed as necessary on flight strip printers, and some flight data elements are displayed on the data tags associated with the radar surveillance information.</P></LI>
+<LI><P class="docList">Common consoles are the air traffic controller's workstations. They provide displays of aircraft position information and associated data tags in a plan view format (the radar display), displays of flight plan data in the form of electronic flight strips,<sup class="docFootnote"><A class="docLink" HREF="#ch06fn01">[1]</A></sup> and a variety of other information displays. They also allow controllers to modify the flight data and to control the information being displayed and its format. Common consoles are grouped in sector suites of one to four consoles, with each sector suite serving the controller team for one airspace control sector.</P><blockquote><p class="docFootnote"><sup><A NAME="ch06fn01">[1]</A></sup> A flight strip is a strip of paper, printed by the system that contains flight plan data about an aircraft currently in or about to arrive in a sector. Before ISSS, these flight strips were annotated by hand in pencil. ISSS was to provide the capability to manipulate strips onscreen.</p></blockquote>
+</LI>
+<LI><P class="docList">The common consoles are connected to the Host computers by means of the Local Communications Network (LCN), the primary network of ISSS. Each Host is interfaced to the LCN via dual LCN interface units (each called LIU-H), which act as a fault-tolerant redundant pair.</P></LI>
+<LI><P class="docList">The LCN is composed of four parallel token ring networks for redundancy and for balancing overall loading. One network supports the broadcast of surveillance data to all processors. One processor is used for point-to-point communications between pairs of processors; one provides a channel for display data to be sent from the common consoles to recording units for layer playback; and one is a spare. Bridges provide connections between the networks of the access rings and those of the backbone. The bridges also provide the ability to substitute the spare ring for a failed ring and to make other alternative routings.</P></LI>
+<LI><P class="docList">The Enhanced Direct Access Radar Channel (EDARC) provides a backup display of aircraft position and limited flight data block information to the en route display consoles. EDARC is used in the event of a loss of the display data provided by the host. It provides essentially raw unprocessed radar data and interfaces to an ESI (External System Interface) processor.</P></LI>
+<LI><P class="docList">The Backup Communications Network (BCN) is an Ethernet network using TCP/IP protocols. It is used for other system functions besides the EDARC interface and is also used as a backup network in some LCN failure conditions.</P></LI>
+<LI><P class="docList">Both the LCN and the BCN have associated <span class="docEmphasis">Monitor-and-Control</span> (M&amp;C) consoles. These give system maintenance personnel an overview of the state of the system and allow them to control its operation. M&amp;C consoles are ordinary consoles that contain special software to support M&amp;C functions and also provide the top-level or global availability management functions.</P></LI>
+<LI><P class="docList">The Test and Training subsystem provides the capability to test new hardware and software and to train users without interfering with the ATC mission.</P></LI>
+<LI><P class="docList">The central processors are mainframe-class processors that provide the data recording and playback functions for the system in an early version of ISSS.</P></LI>
+</UL>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch06fig05"></A>Figure 6.5. ISSS physical view</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="539" src="FILES/06fig05.gif" ALT="graphics/06fig05.gif"></p>
+</CENTER>
+<P class="docText">Each common console is connected to both the LCN and the BCN. Because of the large number of common consoles that may be present at a facility (up to 210), multiple LCN access rings are used to support all of them. This, then, is the physical view for ISSS, highlighting the hardware in which the software resides.</P>
+
+<A NAME="ch06lev2sec2"></A><H4 class="docSection2Title"> MODULE DECOMPOSITION VIEW</H4>
+<P class="docText">The module elements of the ISSS operational software are called Computer Software Configuration Items (CSCIs), defined in the government software development standard whose use was mandated by the customer. CSCIs correspond largely to work assignments; large teams are devoted to designing, building, and testing them. There is usually some coherent theme associated with each CSCI—some rationale for grouping all of the small software elements (such as packages, processes, etc.) that it contains.</P>
+<P class="docText">There are five CSCIs in ISSS, as follows:</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><P class="docList">Display Management, responsible for producing and maintaining displays on the common consoles.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Common System Services, responsible for providing utilities generally useful in air traffic control software—recall that the developer was planning to build other systems under the larger AAS program.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Recording, Analysis, and Playback, responsible for capturing ATC sessions for later analysis.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">National Airspace System Modification, entailing a modification of the software that resides on the Host (outside the scope of this chapter).</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">The IBM AIX operating system, providing the underlying operating system environment for the operational software.</P></span></LI>
+</OL></span>
+<P class="docText">These CSCIs form units of deliverable documentation and software, they appear in schedule milestones, and each is responsible for a logically related segment of ISSS functionality.</P>
+<P class="docText">The module decomposition view reflects several modifiability tactics, as discussed in <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A>. "Semantic coherence" is the overarching tactic for allocating well-defined and nonoverlapping responsibilities to each CSCI. The Common System Services Module reflects the tactic of "abstract common services." The Recording, Analysis, and Playback CSCI reflects the "record/playback" tactic for testability. The resources of each CSCI are made available through carefully designed software interfaces, reflecting "anticipation of expected changes," "generalizing the module," and "maintaining interface stability.<span class="docEmphasis">"</span></P>
+
+<A NAME="ch06lev2sec3"></A><H4 class="docSection2Title"> PROCESS VIEW</H4>
+<P class="docText">The basis of concurrency in ISSS resides in elements called <span class="docEmphasis">applications</span>. An application corresponds roughly to a process, in the sense of Dijkstra's cooperating sequential processes, and is at the core of the approach the ISSS designers adopted for fault tolerance. An application is implemented as an Ada "main" unit (a process schedulable by the operating system) and forms part of a CSCI (which helps us define a mapping between the module decomposition view and this one). Applications communicate by message passing, which is the connector in this component-and-connector view.</P>
+<P class="docText">ISSS is constructed to operate on a plurality of processors. Processors (as described in the physical view) are logically combined to form a <span class="docEmphasis">processor group</span>, the purpose of which is to host separate copies of one or more applications. This concept is critical to fault tolerance and (therefore) availability. One executing copy is primary, and the others are secondary; hence, the different application copies are referred to as <span class="docEmphasis">primary address space</span> (PAS) or <span class="docEmphasis">standby address space</span> (SAS). The collection of one primary address space and its attendant standby address spaces is called an <span class="docEmphasis">operational unit</span>. A given operational unit resides entirely within the processors of a single processor group, which can consist of up to four processors. Those parts of the ISSS that are not constructed in this fault-tolerant manner (i.e., of coexisting primary and standby versions) simply run independently on different processors. These are called <span class="docEmphasis">functional groups</span> and they are present on each processor as needed, with each copy a separate instance of the program, maintaining its own state.</P>
+<P class="docText">In summary, an application may be either an operating unit or a functional group. The two differ in whether the application's functionality is backed up by one or more secondary copies, which keep up with the state and data of the primary copy and wait to take over in case the primary copy fails. Operational units have this fault-tolerant design; functional groups do not. An application is implemented as an operational unit if its availability requirements dictate it; otherwise, it is implemented as a functional group.</P>
+<P class="docText">Applications interact in a client-server fashion. The client of the transaction sends the server a <span class="docEmphasis">service request message</span>, and the server replies with an acknowledgment. (As in all client-server schemes, a particular participant—or application in this case—can be the client in one transaction and the server in another.) Within an operational unit, the PAS sends state change notifications to each of its SASs, which look for time-outs or other signs that they should take over and become primary if the PAS or its processor fails. <A class="docLink" HREF="#ch06fig06">Figure 6.6</A> summarizes how the primary and secondary address spaces of an application coordinate with each other to provide backup capability and give their relationship to processor groups.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch06fig06"></A>Figure 6.6. Functional groups (FG), operational units, processor groups, and primary/standby address spaces</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="395" src="FILES/06fig06.gif" ALT="graphics/06fig06.gif"></p>
+</CENTER>
+<P class="docText">When a functional group receives a message, it need only respond and update its own state as appropriate. Typically, the PAS of an operational unit receives and responds to messages on behalf of the entire operational unit. It then must update both its own state and the state of its SASs, which involves sending the SASs additional messages.</P>
+<P class="docText">In the event of a PAS failure, a switchover occurs as follows:</P>
+<A NAME="ch06pr01"></A>
+
+
+
+<span style="font-weight:bold"><OL class="docList" START="1">
+<LI><span style="font-weight:normal" value="1">
+<P class="docText">A SAS is promoted to the new PAS.</P>
+</span></LI><LI><span style="font-weight:normal" value="2">
+<P class="docText">The new PAS reconstitutes with the clients of that operational unit (a fixed list for each operational unit) by sending them a message that means, essentially: The operational unit that was serving you has had a failure. Were you waiting for anything from us at the time? It then proceeds to service any requests received in response.</P>
+</span></LI><LI><span style="font-weight:normal" value="3">
+<P class="docText">A new SAS is started to replace the previous PAS.</P>
+</span></LI><LI><span style="font-weight:normal" value="4">
+<P class="docText">The newly started SAS announces itself to the new PAS, which starts sending it messages as appropriate to keep it up to date.</P>
+</span></LI></OL></span>
+<P class="docText">If failure is detected within a SAS, a new one is started on some other processor. It coordinates with its PAS and starts receiving state data.</P>
+<P class="docText">To add a new operational unit, the following step-by-step process is employed:</P>
+<A NAME="ch06pr02"></A><UL START=""><LI>
+<P class="docText">Identify the necessary input data and where it resides.</P>
+</LI>
+<LI>
+<P class="docText">Identify which operational units require output data from the new operational unit.</P>
+</LI>
+<LI>
+<P class="docText">Fit this operational unit's communication patterns into a systemwide acyclic graph in such a way that the graph remains acyclic so that deadlocks will not occur.</P>
+</LI>
+<LI>
+<P class="docText">Design the messages to achieve the required data flows.</P>
+</LI>
+<LI>
+<P class="docText">Identify internal state data that must be used for checkpointing and the state data that must be included in the update communication from PAS to SAS.</P>
+</LI>
+<LI>
+<P class="docText">Partition the state data into messages that fit well on the networks.</P>
+</LI>
+<LI>
+<P class="docText">Define the necessary message types.</P>
+</LI>
+<LI>
+<P class="docText">Plan for switchover in case of failure: Plan updates to ensure complete state.</P>
+</LI>
+<LI>
+<P class="docText">Ensure consistent data in case of switchover.</P>
+</LI>
+<LI>
+<P class="docText">Ensure that individual processing steps are completed in less time than a system "heartbeat."</P>
+</LI>
+<LI>
+<P class="docText">Plan data-sharing and data-locking protocols with other operational units.</P>
+</LI>
+</UL>
+<P class="docText">This process is not for novices, but can be navigated straightforwardly by experienced team members. A tactic discussed in a section that follows—code templates—was used to make the process more repeatable and much less error prone.</P>
+<P class="docText">The process view reflects several availability tactics, including "state resynchronization," "shadowing," "active redundancy," and "removal from service."</P>
+
+<A NAME="ch06lev2sec4"></A><H4 class="docSection2Title"> CLIENT-SERVER VIEW</H4>
+<P class="docText">Because the applications in the process view interact with each other in client-server fashion, it is reasonable to show a client-server view of ISSS as well, although the behavior it describes largely mirrors that captured by the process view shown earlier. For completeness, <A class="docLink" HREF="#ch06fig07">Figure 6.7</A> shows a client-server view of the system.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch06fig07"></A>Figure 6.7. Applications as clients and servers</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="320" src="FILES/06fig07.gif" ALT="graphics/06fig07.gif"></p>
+</CENTER>
+<P class="docText">The clients and servers were carefully designed to have consistent (as opposed to ad hoc) interfaces. This was facilitated by using simple message-passing protocols for interaction. The result reflects the modifiability tactics of "maintaining interface stability," "component replacement," and "adherence to defined protocols."</P>
+
+<A NAME="ch06lev2sec5"></A><H4 class="docSection2Title"> CODE VIEW</H4>
+<P class="docText">One view not discussed in <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A> but which sometimes appears in architectures of large systems is the code view. A code view shows how functionality is mapped to code units.</P>
+<P class="docText">In ISSS, an Ada (main) <span class="docEmphasis">program</span> is created from one or more source files; it typically comprises a number of <span class="docEmphasis">subprograms</span>, some of which are gathered into separately compilable <span class="docEmphasis">package</span>s. The ISSS is composed of several such programs, many of which operate in a client-server manner.</P>
+<P class="docText">An Ada program may contain one or more <span class="docEmphasis">tasks</span>, which are Ada entities capable of executing concurrently with each other. These are the code-view corollary of the processes described in the process view. Because Ada tasks are managed by the Ada runtime system, ISSS also employs a mapping of Ada tasks onto UNIX (AIX) processes, which means that all individual threads of control (whether separate Ada programs or tasks within a single Ada program) are independent AIX processes operating concurrently.</P>
+<P class="docText">Applications (i.e., operational units and functional groups) are decomposed into Ada packages, some of which include only type definitions and some of which are re-used across applications. <span class="docEmphasis">Packaging</span> is a design activity intended to embody abstraction and information hiding, and it is carried out by an operational unit's chief designer.</P>
+
+<A NAME="ch06lev2sec6"></A><H4 class="docSection2Title"> LAYERED VIEW</H4>
+<P class="docText">Underlying the operation of the ATC application programs on the ISSS processors system is a commercial UNIX operating system, AIX. However, UNIX does not provide all the services necessary to support a fault-tolerant distributed system such as ISSS. Therefore, additional system services software was added. <A class="docLink" HREF="#ch06fig08">Figure 6.8</A> shows as a set of layers the overall software environment in a typical ISSS processor.<sup class="docFootnote"><A class="docLink" HREF="#ch06fn02">[2]</A></sup></P>
+<blockquote><p class="docFootnote"><sup><A NAME="ch06fn02">[2]</A></sup> Strictly speaking, <A class="docLink" HREF="#ch06fig08">Figure 6.8</A> is an <span class="docEmphasis">overlay</span> between a layered view and a component-and-connector view, because it shows runtime connections between the submodules in the layers. In two cases, AAS Services and Other Device Driver, the connections among these and other submodules within the layered view are not shown, because there are so many that it would clutter the diagram. These services are freely used by most of the layered system. The actual connections would be listed in the supporting documentation for this view.</p></blockquote>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch06fig08"></A>Figure 6.8. ISSS software architecture layers. The associations show data and/or control flow, making this an overlay of layers and a component-and-connector view.</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="736" src="FILES/06fig08.gif" ALT="graphics/06fig08.gif"></p>
+</CENTER>
+<P class="docText">The lowest two rows of elements above AIX represent extensions to AIX that run within the AIX kernel's address space. Because of performance requirements and for compatibility with the AIX operating system, these extensions are generally small programs written in the C language. Since they run within the kernels' address space, faults in these programs can potentially damage AIX itself; hence, they must be relatively small, trusted programs reflecting the "limit exposure" tactic, discussed in <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A>. Although the tactic is security based—namely, to prevent denial of service—in ISSS it is used to enhance availability, which is a complementary goal. Happily, sometimes tactics serve multiple quality attributes well.</P>
+<P class="docText">The Atomic Broadcast Manager (ABM) plays a key role in the communication among the Local Availability Manager modules within a sector suite to manage the availability of suite functions. The Station Manager provides datagram services on the LCN and serves as the local representative of the LCN network management services. The Network Interface Sublayer provides a similar function for the point-to-point messages, sharing its network information with the Station Manager.</P>
+<P class="docText">The next two layers represent operating system extensions that execute outside the AIX kernel's address space and therefore cannot directly damage AIX if they contain faults. These programs are generally written in Ada.</P>
+<P class="docText">Prepare Messages handles LCN messages for application programs. Prepare BCN Messages performs a similar function for messages to be sent on the BCN. One function of these programs is to determine which of the multiple redundant copies of an application program within a sector suite is the primary and thus is to receive messages. The Local Availability Manager provides the control information needed to make this determination.</P>
+<P class="docText">The top layer is where the applications reside. The Local Availability Manager and the Internal Time Synchronization programs are application-level system services. The Local Availability Manager is responsible for managing the initiation, termination, and availability of the application programs. It communicates with each address space on its own processor to control its operation and check its status. It also communicates with the Local Availability Manager on the other processors within its sector suite to manage the availability of suite functions, including switching from a primary to a backup copy of an application program when appropriate. The Local Availability Manager communicates with the Global Availability Management application that resides on the M&amp;C consoles to report status and to accept control commands. The Internal Time Synchronization program synchronizes the processor's clock with that of the other ISSS processors, which is crucial to the operation of the availability management functions. (See the fault tolerance view, in <A class="docLink" HREF="#ch06fig09">Figure 6.9</A>.)</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch06fig09"></A>Figure 6.9. ISSS component-and-connector view for fault tolerance</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="574" src="FILES/06fig09.gif" ALT="graphics/06fig09.gif"></p>
+</CENTER>
+
+<A NAME="ch06lev2sec7"></A><H4 class="docSection2Title"> A NEW VIEW: FAULT TOLERANCE</H4>
+<P class="docText">As we said, the views listed in <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A> are not exhaustive. In fact, there is no exhaustive list of views that constitute the complete software architecture for all systems or for any system. A welcome trend in software architecture is the recognition of the importance of architecture in achieving quality attributes, and therefore the importance of explicitly stating the quality attributes that the architecture is to provide. Toward this end, architects often produce views that show how the architecture achieves a particular quality attribute: a security view, for example. For runtime qualities, these views are in the component-and-connector category, showing runtime element interactions. For non-runtime qualities, these views are in the module category, showing how the implementation units are designed to achieve (for example) modifiability.</P>
+<P class="docText">The high availability requirements for ISSS elevated fault tolerance to an important role in the design of the system. For one thing, a cold system restart in the event of a failure was out of the question. Immediate (or at least rapid) switchover to a component on standby seemed the best approach. As design progressed and this idea became clearer, a new architectural structure emerged: the fault-tolerant hierarchy (<A class="docLink" HREF="#ch06fig09">Figure 6.9</A>). This structure describes how faults are detected and isolated and how the system recovers. Whereas the PAS/SAS scheme traps and recovers from errors that are confined within a single application, the fault-tolerant hierarchy is designed to trap and recover from errors that are the result of cross-application interaction.</P>
+<P class="docText">The ISSS fault-tolerant hierarchy provides various levels of fault detection and recovery. Each level asynchronously</P>
+<UL>
+<LI><P class="docList">Detects errors in self, peers, and lower levels.</P></LI>
+<LI><P class="docList">Handles exceptions from lower levels.</P></LI>
+<LI><P class="docList">Diagnoses, recovers, reports, or raises exceptions.</P></LI>
+</UL>
+<P class="docText">Each level is meant to produce another increment in system availability above that produced by the lower levels. The levels are as follows:</P>
+<UL>
+<LI><P class="docList">Physical (network, processor, and I/O devices)</P></LI>
+<LI><P class="docList">Operating system</P></LI>
+<LI><P class="docList">Runtime environment</P></LI>
+<LI><P class="docList">Application</P></LI>
+<LI><P class="docList">Local availability</P></LI>
+<LI><P class="docList">Group availability</P></LI>
+<LI><P class="docList">Global availability</P></LI>
+<LI><P class="docList">System monitor and control</P></LI>
+</UL>
+<P class="docText">Fault detection and isolation are performed at each level in the hierarchy. Fault detection is by built-in tests, event time-outs, network circuit tests, group membership protocol, and, as a last resort, human reaction to alarms and indicators.</P>
+<P class="docText">Fault recovery is performed at each level in the software hierarchy and can be automatic or manual. For the Local, Group, and Global Availability managers, the recovery methods are table driven. In a PAS, there are four types of recovery from failure. The type of recovery used depends on the current operational status and is determined by the Local Availability Manager using decision tables, as follows:</P>
+<UL>
+<LI><P class="docList">In a switchover, the SAS takes over almost immediately from its PAS.</P></LI>
+<LI><P class="docList">A warm restart uses checkpoint data (written to nonvolatile memory).</P></LI>
+<LI><P class="docList">A cold restart uses default data and loses state history.</P></LI>
+<LI><P class="docList">A cutover is used to transition to new (or old) logic or adaptation data.</P></LI>
+</UL>
+<P class="docText">Redundancy is provided by network hardware (LCN, BCN, and associated bridges), processor hardware (up to four processors per processor group, redundant recording), and software (multiple address spaces per operational unit).</P>
+<P class="docText">In addition to the availability tactics already seen with the process view, the fault tolerance view adds "ping/echo" and "heartbeat" as ways to detect failures, <span class="docEmphasis">exception</span> to percolate errors to the appropriate place for correction, and <span class="docEmphasis">spare</span> to perform recovery.</P>
+
+<A NAME="ch06lev2sec8"></A><H4 class="docSection2Title"> RELATING THE VIEWS TO EACH OTHER</H4>
+<P class="docText">During the preceding discussion, the elements in one view made "guest appearances" in other views. Although views form the backbone of understanding a system, deeper insight is often gained by examining the relations the views have to each other and, in particular, from examining mappings from view to view. This imparts a more holistic view of the architecture.</P>
+<P class="docText">In ISSS, CSCIs are elements in the module decomposition view. They are composed of applications, which in turn are elements in the process view and the client-server view. Applications are implemented as Ada programs and packages, shown in the code view, which in turn map to threads, which are elements in the concurrency view (not shown). The layered view describes the functionality assigned to the modules in the decomposition view in a way that shows what they are allowed to use. Finally, a specialized view focusing on the achievement of a particular runtime quality attribute—the fault tolerance view—uses the elements of the process, layer, and module views.</P>
+<P class="docText"><A class="docLink" HREF="0321154959_ch09.html#ch09">Chapter 9</A>, which covers how to document a software architecture, will prescribe a special place in the documentation package for capturing view relationships. For ISSS, that mapping would include tables that list the elements from the various views and show how they correspond to each other as described above.</P>
+
+<A NAME="ch06lev2sec9"></A><H4 class="docSection2Title"> ADAPTATION DATA</H4>
+<P class="docText">ISSS makes extensive use of the modifiability tactic of "configuration files," which it calls adaptation data. Site-specific adaptation data tailors the ISSS system across the 22 en route centers in which it was planned to be deployed, and so-called preset adaptation data tailors the software to changes that arise during development and deployment but which do not represent site-specific differences. Adaptation data represents an elegant and crucial shortcut to modifying the system in the face of site-specific requirements, user-or center-specific preferences, configuration changes, requirements changes, and other aspects of the software that might be expected to vary over time and across deployment sites. In effect, the software has been designed to read its operating parameters and behavioral specifications from input data; it is therefore completely general with respect to the set of behaviors that can be represented in that data (reflecting the "generalize the module" tactic). For example, a requirements change to split the data in one ATC window view into two separate windows—a nontrivial change in many systems—could be accomplished by changing the adaptation data and a few lines of code.</P>
+<P class="docText">The negative side is that adaptation data presents a complicated mechanism to maintainers. For example, although it is trivial (from an operational point of view) to add new commands or command syntax to the system, the implementation of this flexibility is in fact a complicated interpretive language all its own. Also, complicated interactions may occur between various pieces of adaptation data, which could affect correctness, and there are no automated or semiautomated mechanisms in place to guard against the effects of such inconsistencies. Finally, adaptation data significantly increases the state space within which the operational software must correctly perform, and this has broad implications for system testing.</P>
+
+<A NAME="ch06lev2sec10"></A><H4 class="docSection2Title"> REFINING THE "ABSTRACT COMMON SERVICES" TACTIC: CODE TEMPLATES FOR APPLICATIONS</H4>
+<P class="docText">Recall that the primary–secondary address space scheme described earlier relies on redundancy to achieve fault tolerance: Copies of the software are stored on different processors. While the primary copy is executing, it sends state information from time to time to all of the secondary copies so that they can take up execution when called on. The implementation plan for these copies called for both to come from true copies of the same <span class="docEmphasis">source code</span>. Even though the primary and secondary copies are never doing the same thing at the same time (the primary is performing its duty and sending state updates to its backups, and the secondaries are waiting to leap into action and accepting state updates), both programs come from identical copies of the same source code. To accomplish this, the contractor developed a standard code template for each application; the template is illustrated in <A class="docLink" HREF="#ch06list01">Figure 6.10</A>.</P>
+<P class="docText">The structure is a continuous loop that services incoming events. If the event is one that causes the application to take a normal (non-fault-tolerant-related) action, it carries out the appropriate action, followed by an update of its backup counterparts' data so that the counterpart can take over if necessary. Most applications process between 50 and 100 normal events. Other events involve the transfer (transmission and reception) of state and data updates. The last set of events involves both the announcement that this unit has become the primary address space and requests from clients for services that the former (now failed) primary address space did not complete.</P>
+<P class="docText">This template has architectural implications: It makes it simple to add new applications to the system with a minimum of concern for the actual workings of the fault-tolerant mechanisms designed into the approach. Coders and maintainers of applications do not need to know about message-handling mechanisms except abstractly, and they do not need to ensure that their applications are fault tolerant—that has been handled at a higher (architectural) level of design.</P>
+<P class="docText">Code templates represent a refinement of the "abstract common services" tactic; the part of each application that is common is instantiated in the template. This tactic is related to several other tactics for modifiability. It reflects an "anticipation of expected changes" in the parts it leaves variable and it gives the processes a "semantic coherence," because they all do the same thing when viewed abstractly. The template lets programmers concentrate on the details of their application, leading to "generalizing the module." And by making the interfaces and protocols part of the template, they "maintain interface stability" and achieve "adherence to defined protocols."</P>
+
+<H5 class="docExampleTitle"><A NAME="ch06list01"></A>Figure 6.10 Code structure template for fault-tolerant ISSS applications</H5>
+<PRE>
+terminate:= false
+initialize application/application protocols
+
+ask for current state (image request)
+Loop
+   Get_event
+   Case Event_Type is
+
+   -- "normal" (non-fault-tolerant-related) requests to perform actions;
+   -- only happens if this unit is the current primary address space
+   when X=&gt; Process X
+            Send state data updates to other address spaces
+   when Y=&gt;Process Y
+            Send state data updates to other address spaces
+   ...
+   when Terminate_Directive =&gt; clean up resources; terminate := true
+
+   when State_Data_Update =&gt; apply to state data
+   -- will only happen if this unit is a secondary address space, receiving
+   -- the update from the primary after it has completed a "normal" action
+
+   -- sending, receiving state data
+   when Image_Request =&gt; send current state data to new address space
+   when State_Data_Image =&gt; Initialize state data
+
+   when Switch_Directive =&gt; notify service packages of change in rank
+
+   -- these are requests that come in after a PAS/SAS switchover; they
+   -- report services that they had requested from the old (failed) PAS
+   -- which this unit (now the PAS) must complete. A,B, etc. are the names
+   -- of the clients.
+   when Recon_from_A=&gt;reconstitute A
+   when Recon_from_B=&gt;reconstitute B
+   ...
+   when others=&gt;log error
+   end case
+exit when terminate
+end loop
+</PRE>
+<P class="docText"><A class="docLink" HREF="#ch06table01">Table 6.1</A> summarizes the approaches and tactics by which the ISSS software architecture met its quality goals.</P>
+<A NAME="ch06table01"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 6.1. How the ATC System Achieves Its Quality Goals</h5></CAPTION><COLGROUP align="left" span="3">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Goal</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">How Achieved</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Tactic(s) Used</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">High Availability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Hardware redundancy (both processor and network); software redundancy (layered fault detection and recovery)</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">State resynchronization; shadowing; active redundancy; removal from service; limit exposure; ping/echo; heartbeat; exception; spare</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">High Performance</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Distributed multiprocessors; front-end schedulability analysis, and network modeling</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Introduce concurrency</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Openness</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Interface wrapping and layering</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Abstract common services; maintain interface stability</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Modifiability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Templates and table-driven adaptation data; careful assignment of module responsbilities; strict use of specified interfaces</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Abstract common services; semantic coherence; maintain interface stability; anticipate expected changes; generalize the module; component replacement; adherence to defined procotols; configuration files</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Ability to Field Subsets</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Appropriate separation of concerns</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Abstract common services</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Interoperability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Client-server division of functionality and message-based communications</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Adherence to defined protocols; maintain interface stability</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch06lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch06lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

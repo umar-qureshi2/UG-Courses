@@ -1,0 +1,1799 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="12.4 Case Study: The NASA ECS Project"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch12lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch12lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch12lev1sec4"></A><H3 class="docSection1Title">12.4 Case Study: The NASA ECS Project</H3>
+<P class="docText">We now apply the CBAM to a real-world system as an example of the method in action.</P>
+<P class="docText">The Earth Observing System is a constellation of NASA satellites that gathers data for the U.S. Global Change Research Program and other scientific communities worldwide. The Earth Observing System Data Information System (EOSDIS) Core System (ECS) collects data from various satellite downlink stations for further processing. ECS's mission is to process the data into higher-form information and make it available to scientists in searchable form. The goal is to provide both a common way to store (and hence process) data and a public mechanism to introduce new data formats and processing algorithms, thus making the information widely available.</P>
+<P class="docText">The ECS processes an input stream of hundreds of gigabytes of raw environment-related data per day. The computation of 250 standard "products" results in thousands of gigabytes of information that is archived at eight data centers in the United States. The system has important performance and availability requirements. The long-term nature of the project also makes modifiability important.</P>
+<P class="docText">The ECS project manager had a limited annual budget to maintain and enhance his current system. From a prior analysis, in this case an ATAM exercise, a large set of desirable changes to the system was elicited from the system stakeholders, resulting in a large set of architectural strategies. The problem was to choose a (much) smaller subset for implementation, as only 10% to 20% of what was being proposed could actually be funded. The manager used the CBAM to make a rational decision based on the economic criterion of return on investment.</P>
+<P class="docText">In the execution of the CBAM described next, we concentrated on analyzing the Data Access Working Group (DAWG) portion of the ECS.</P>
+<A NAME="ch12lev2sec4"></A><H4 class="docSection2Title"> STEP 1: COLLATE SCENARIOS</H4>
+<P class="docText">Scenarios from the ATAM were collated with a set of new scenarios elicited from the assembled ECS stakeholders. Because the stakeholders had been through an ATAM exercise, this step was relatively straightforward.</P>
+<P class="docText">A subset of the raw scenarios put forward by the DAWG team were as shown in <A class="docLink" HREF="#ch12table01">Table 12.1</A>. Note that they are not yet well formed and that some of them do not have defined responses. These issues are resolved in step 2, when the number of scenarios is reduced.<sup class="docFootnote"><A class="docLink" HREF="#ch12fn01">[1]</A></sup></P>
+<blockquote><p class="docFootnote"><sup><A NAME="ch12fn01">[1]</A></sup> In the presentation of the DAWG case study, we only show the reduced set of scenarios.</p></blockquote>
+<A NAME="ch12table01"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 12.1. Collected Scenarios in Priority Order</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Scenario</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Scenario Description</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Reduce data distribution failures that result in hung distribution requests requiring manual intervention.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">2</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Reduce data distribution failures that result in lost distribution requests.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Reduce the number of orders that fail on the order submission process.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Reduce order failures that result in hung orders that require manual intervention.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Reduce order failures that result in lost orders.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">There is no good method of tracking ECSGuest failed/canceled orders without much manual intervention (e.g., spreadsheets).</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Users need more information on why their orders for data failed.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Because of limitations, there is a need to artificially limit the size and number of orders.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Small orders result in too many notifications to users.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">The system should process a 50-GB user request in one day, and a 1-TB user request in one week.</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<A NAME="ch12lev2sec5"></A><H4 class="docSection2Title"> STEP 2: REFINE SCENARIOS</H4>
+<P class="docText">The scenarios were refined, paying particular attention to precisely specifying their stimulus-response measures. The worst-case, current-case,desired-case, and the best-case response goals for each scenario were elicited and recorded, as shown in <A class="docLink" HREF="#ch12table02">Table 12.2</A>.</P>
+<A NAME="ch12table02"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 12.2. Response Goals for Refined Scenarios</h5></CAPTION><COLGROUP align="left" span="5">
+<THEAD>
+<TR>
+<TH class="docTableHeader" valign="top">&nbsp;</TH>
+<TH class="docTableHeader" align="center" valign="top" colspan="4">
+<P class="docText"><span class="docEmphStrong">Response Goals</span></P>
+</TH>
+</TR>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Scenario</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Worst</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Current</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Desired</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Best</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">10% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">5% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% hung</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">2</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">&gt; 5% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">&lt; 1% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% lost</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">10% fail</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">5% fail</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1% fail</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% fail</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">10% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">5% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% hung</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">10% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">&lt; 1% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% lost</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">50% need help</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">25% need help</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% need help</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% need help</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">10% get information</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">50% get information</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">100% get information</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">100% get information</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">50% limited</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">30% limited</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% limited</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% limited</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1/granule</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1/granule</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1/100 granules</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1/1,000 granules</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">&lt; 50% meet goal</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">60% meet goal</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">80% meet goal</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">&gt; 90% meet goal</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<A NAME="ch12lev2sec6"></A><H4 class="docSection2Title"> STEP 3: PRIORITIZE SCENARIOS</H4>
+<P class="docText">In voting on the refined representation of the scenarios, the close-knit team deviated slightly from the method. Rather than vote individually, they chose to discuss each scenario and arrived at a determination of its weight via consensus. The votes allocated to the entire set of scenarios were constrained to 100, as shown in <A class="docLink" HREF="#ch12table03">Table 12.3</A>. Although the stakeholders were not required to make the votes multiples of 5, they felt that this was a reasonable resolution and that more precision was neither needed nor justified.</P>
+<A NAME="ch12table03"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 12.3. Refined Scenarios with Votes</h5></CAPTION><COLGROUP align="left" span="6">
+<THEAD>
+<TR>
+<TH class="docTableHeader" valign="top">&nbsp;</TH>
+<TH class="docTableHeader" valign="top">&nbsp;</TH>
+<TH class="docTableHeader" align="center" valign="top" colspan="4">
+<P class="docText"><span class="docEmphStrong">Response Goals</span></P>
+</TH>
+</TR>
+<TR>
+<TH class="docTableHeader" align="right" valign="top">
+<P class="docText"><span class="docEmphStrong">Scenario</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Votes</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Worst</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Current</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Desired</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Best</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">10% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">5% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% hung</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">2</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">15</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">&gt; 5% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">&lt; 1% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% lost</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">15</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">10% fail</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">5% fail</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1% fail</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% fail</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">10% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">5% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% hung</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">15</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">10% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">&lt; 1% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% lost</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% lost</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">50% need help</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">25% need help</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% need help</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% need help</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">10% get information</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">50% get information</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">100% get information</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">100% get information</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">50% limited</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">30% limited</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% limited</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0% limited</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1/granule</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1/granule</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1/100 granules</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1/1000 granules</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">&lt; 50% meet goal</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">60% meet goal</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">80% meet goal</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">&gt; 90% meet goal</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<A NAME="ch12lev2sec7"></A><H4 class="docSection2Title"> STEP 4: ASSIGN UTILITY</H4>
+<P class="docText">In this step the utility for each scenario was determined by the stakeholders, again by consensus. A utility score of 0 represented no utility; a score of 100 represented the most utility possible. The results of this process are given in <A class="docLink" HREF="#ch12table04">Table 12.4</A>.</P>
+<A NAME="ch12table04"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 12.4. Scenarios with Votes and Utility Scores</h5></CAPTION><COLGROUP align="left" span="6">
+<THEAD>
+<TR>
+<TH class="docTableHeader" valign="top">&nbsp;</TH>
+<TH class="docTableHeader" valign="top">&nbsp;</TH>
+<TH class="docTableHeader" align="center" valign="top" colspan="4">
+<P class="docText"><span class="docEmphStrong">Utility Scores</span></P>
+</TH>
+</TR>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Scenario</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Votes</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Worst</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Current</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Desired</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Best</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">80</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">95</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">2</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">15</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">0</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">70</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">15</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">25</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">70</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">80</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">95</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">15</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">0</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">70</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">0</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">80</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">70</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">0</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">20</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">50</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">50</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">80</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">90</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">0</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">70</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">90</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<A NAME="ch12lev2sec8"></A><H4 class="docSection2Title"> STEP 5: DEVELOP ARCHITECTURAL STRATEGIES FOR SCENARIOS AND DETERMINE THEIR EXPECTED QUALITY ATTRIBUTE RESPONSE LEVELS</H4>
+<P class="docText">Based on the requirements implied by the preceding scenarios, a set of 10 architectural strategies was developed by the ECS architects. Recall that an architectural strategy may affect more than one scenario. To account for these complex relationships, the expected quality attribute response level that each strategy is predicted to achieve had to be determined with respect to each relevant scenario.</P>
+<P class="docText">The set of architectural strategies, along with the determination of the scenarios they address, is shown in <A class="docLink" HREF="#ch12table05">Table 12.5</A>. For each architectural strategy/scenario pair, the response levels expected to be achieved with respect to that scenario are shown (along with the current response, for comparison purposes).</P>
+<A NAME="ch12table05"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 12.5. Architectural Strategies and Scenarios Addressed</h5></CAPTION><COLGROUP align="left" span="6">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Strategy</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Name</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Description</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Scenarios  Affected</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Current Response</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Expected Response</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order persistence on submission</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Store an order as soon as it arrives in the system.</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+<P class="docText">5</P>
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">5% fail</P>
+<P class="docText">&lt;1% lost</P>
+<P class="docText">25% need help</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">2% Fail</P>
+<P class="docText">0% lost</P>
+<P class="docText">0% need help</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">2</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order chunking</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Allow operators to partition large orders into multiple small orders.</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">30% limited</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">15% limited</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order bundling</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Combine multiple small orders into one large order.</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">1 per granule</P>
+<P class="docText">60% meet goal</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">1 per 100</P>
+<P class="docText">55% meet goal</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order segmentation</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Allow an operator to skip items that cannot be retrieved due to data quality or availability issues.</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">5% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">2% hung</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order reassignment</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Allow an operator to reassign the media type for items in an order.</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">5% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">2% hung</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order retry</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Allow an operator to retry an order or items in an order that may have failed due to temporary system or data problems.</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">5% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">3% hung</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Forced order completion</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Allow an operator to override an item's unavailability due to data quality constraints.</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">5% hung</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">3% hung</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Failed order notification</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top" rowspan="2">
+<P class="docText">Ensure that users are notified only when part of their order has truly failed and provide detailed status of each item; user notification occurs only if operator okays notification; the operator may edit notification.</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">25% need help</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">20% need help</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">50% get information</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">90% get information</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Granule level-order tracking</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top" rowspan="2">
+<P class="docText">An operator and user can determine the status for each item in their order.</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">25% need help</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">10% need help</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">50% get nformation</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">95% get information</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Links to user information</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">An operator can quickly locate a user's contact information. Server will access SDSRV information to determine any data restrictions that might apply and will route orders/order segments to appropriate distribution capabilities, including DDIST, PDS, external subsetters and data processing tools, etc.</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">50% get information</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">60% get information</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<A NAME="ch12lev2sec9"></A><H4 class="docSection2Title"> STEP 6: DETERMINE THE UTILITY OF THE "EXPECTED" QUALITY ATTRIBUTE RESPONSE LEVELS BY INTERPOLATION</H4>
+<P class="docText">Once the expected response level of every architectural strategy has been characterized with respect to a set of scenarios, their utility can be calculated by consulting the utility scores for each scenario's current and desired responses for all of the affected attributes. Using these scores, we may calculate, via interpolation, the utility of the expected quality attribute response levels for the architectural strategy/scenario pair applied to the DAWG of ECS.</P>
+<A NAME="ch12table06"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 12.6. Architectural Strategies and Their Expected Utility</h5></CAPTION><COLGROUP align="left" span="5">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Strategy</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Strategy</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Scenarios Affected</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Current Utility</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Expected Utility</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order persistence on submission</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+<P class="docText">5</P>
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">70</P>
+<P class="docText">70</P>
+<P class="docText">80</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">90</P>
+<P class="docText">100</P>
+<P class="docText">100</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">2</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order chunking</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">20</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">60</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order bundling</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">50</P>
+<P class="docText">70</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">80</P>
+<P class="docText">65</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order segmentation</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">80</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">90</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order reassignment</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">80</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">92</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Order retry</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">80</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">85</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Forced order completion</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">80</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">87</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Failed order notification</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">80</P>
+<P class="docText">70</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">85</P>
+<P class="docText">90</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Granule level order tracking</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">80</P>
+<P class="docText">70</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">90</P>
+<P class="docText">95</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Links to user information</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">70</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">75</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">The results of this calculation are shown in <A class="docLink" HREF="#ch12table06">Table 12.6</A>, for the architectural strategy/scenario pairs presented in <A class="docLink" HREF="#ch12table05">Table 12.5</A>.</P>
+
+<A NAME="ch12lev2sec10"></A><H4 class="docSection2Title"> STEP 7: CALCULATE THE TOTAL BENEFIT OBTAINED FROM AN ARCHITECTURAL STRATEGY</H4>
+<P class="docText">Based on the information collected, as represented in <A class="docLink" HREF="#ch12table06">Table 12.6</A>, the total benefit of each architectural strategy can now be calculated, following the equation on page 313. This equation calculates total benefit as the sum of the benefit that accrues to each scenario, normalized by the scenario's relative weight. The total benefit scores for each architectural strategy are given in <A class="docLink" HREF="#ch12table07">Table 12.7</A>.</P>
+<A NAME="ch12table07"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 12.7. Total Benefit of Architectural Strategies</h5></CAPTION><COLGROUP align="left" span="6">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Strategy</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Scenario Affected</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Scenario Weight</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Raw Architectural Strategy Benefit</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Normalized Architectural Strategy Benefit</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Total Architectural Strategy Benefit</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">15</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">20</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">300</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">15</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">30</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">450</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">20</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">200</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">950</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">2</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">40</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">200</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">200</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">30</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">300</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">-5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">-25</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">275</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">12</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">120</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">120</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">50</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">50</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">70</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">70</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">50</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">20</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">150</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">25</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">125</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">225</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">25</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">25</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<A NAME="ch12lev2sec11"></A><H4 class="docSection2Title"> STEP 8: CHOOSE ARCHITECTURAL STRATEGIES BASED ON ROI VALUE SUBJECT TO COST CONSTRAINTS</H4>
+<P class="docText">To complete the analysis, the team estimated cost for each architectural strategy. The estimates were based on experience with the system, and a return on investment for each architectural strategy was calculated. Using the ROI, we were able to rank each strategy. This is shown in <A class="docLink" HREF="#ch12table08">Table 12.8</A>. Not surprisingly, the ranks roughly follow the ordering in which the strategies were proposed: strategy 1 has the highest rank; strategy 3 the second highest. Strategy 9 has the lowest rank; strategy 8, the second lowest. This simply validates stakeholders' intuition about which architectural strategies were going to be of the greatest benefit. For the ECS these were the ones proposed first.</P>
+<A NAME="ch12table08"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 12.8. ROI of Architectural Strategies</h5></CAPTION><COLGROUP align="left" span="5">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Strategy</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Cost</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Total Strategy Benefit</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Strategy ROI</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Strategy Rank</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1200</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">950</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0.79</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">2</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">400</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">200</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0.5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">400</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">275</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0.69</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">2</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">200</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0.5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">400</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">120</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0.3</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">200</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">50</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0.25</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">200</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">70</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0.35</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">6</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">300</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">150</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0.5</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">3</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">9</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">1000</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">225</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0.22</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">100</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">25</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">0.25</P>
+</TD>
+<TD class="docTableCell" align="right" valign="top">
+<P class="docText">8</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch12lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch12lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

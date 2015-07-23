@@ -1,0 +1,228 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="8.3 Architectural Solution"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch08lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch08lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch08lev1sec3"></A><H3 class="docSection1Title" id="161597-877">8.3 Architectural Solution</H3>
+<P class="docText"><A class="docLink" HREF="#ch08fig03">Figure 8.3</A> shows a reference model for a flight simulator. The three roles we identified earlier (air vehicle, environment, and instructor) are shown interacting with the crew and the various cueing systems. Typically, the instructor is hosted on a different hardware platform from the air vehicle model. The environment model may be hosted either on a separate hardware platform or with the instructor station.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch08fig03"></A>Figure 8.3. Reference model for flight simulator</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="405" src="FILES/08fig03.gif" ALT="graphics/08fig03.gif"></p>
+</CENTER>
+<P class="docText">The logical division between the instructor station and the other two portions is clear. The instructor station supports the instructor's control and monitoring of the actions of the crew. The other two portions perform the simulation. The division between the air vehicle and the environment is not as clear. For example, if an aircraft launches a weapon, it is logically a portion of the air vehicle until it leaves the vehicle, at which point it becomes a portion of the environment. Upon firing, the aerodynamics of the weapon are influenced initially by the proximity of the aircraft. Thus, any modeling of the aerodynamics must remain, at least initially, tightly coupled to the air vehicle. If the weapon is always considered a portion of the environment, its modeling involves tight coordination between the air vehicle and the environment. If it is modeled as a portion of the air vehicle and then handed off to the environment when fired, control of the weapon needs to be handed from one to the other.</P>
+<A NAME="ch08lev2sec3"></A><H4 class="docSection2Title"> TREATMENT OF TIME IN A FLIGHT SIMULATOR</H4>
+<P class="docText">Recall from <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A> that resource management is a category of tactics to achieve performance goals. In a real-time simulator, the most important resource to manage is time itself. A flight simulator is supposed to reflect the real world, which it does by creating time-based real-world behaviors. Thus, when the pilot in a simulator activates a particular control, the simulator must provide the same response in the same time as the actual aircraft would. "In the same time" means both within an upper bound of duration after the event and within a lower bound of duration. Reacting too quickly is as bad for the quality of the simulation as reacting too slowly.</P>
+<P class="docText">There are two fundamentally different ways of managing time in a flight simulator—periodic and event-based—and both of these are used. Periodic time management is used in portions that must maintain real-time performance (such as the air vehicle), and event-based time management is used in portions where real-time performance is not critical (such as the instructor station).</P>
+<A NAME="ch08lev3sec1"></A><H5 class="docSection3Title"> Periodic Time Management</H5>
+<P class="docText">A periodic time-management scheme has a fixed (simulated) time quantum based on the frame rate. That is the basis of scheduling the system processes. This scheme typically uses a non-pre-emptive cyclic scheduling discipline, which proceeds by iterating through the following loop:</P>
+<A NAME="ch08pr01"></A><UL START=""><LI><P class="docText">Set initial simulated time.</P>
+</LI>
+<LI><P class="docText">Iterate the next two steps until the session is complete.</P>
+<OL>
+<LI><P class="docText">Invoke each of the processes for a fixed (real) quantum. Each process calculates its internal state based on the current simulated time and reports it based on the next period of simulated time. It guarantees to complete its computation within its real-time quantum.</P>
+</LI><LI><P class="docText">Increment simulated time by quantum.</P>
+</LI></OL>
+</LI>
+</UL>
+<P class="docText">A simulation based on the periodic management of time will be able to keep simulated time and real time in synchronization as long as each process is able to advance its state to the next period within the time quantum allocated to it.</P>
+<P class="docText">Typically, this is managed by adjusting the responsibilities of the individual processes so that they are small enough to be computed in the allocated quantum. It is the designer's responsibility to provide the number of processors needed to ensure sufficient computational power to enable all processes to receive their quantum of computation.</P>
+
+<A NAME="ch08lev3sec2"></A><H5 class="docSection3Title"> Event-Based Time Management</H5>
+<P class="docText">An event-based time-management scheme is similar to the interrupt-based scheduling used in many operating systems. The schedule proceeds by iterating through the following loop:</P>
+<UL>
+<LI><P class="docList">Add a simulated event to the event queue.</P></LI>
+<LI><P class="docList">While there are events remaining in the event queue,</P><DL>
+<DD><P class="docList">- choose the event with the smallest (i.e., soonest) simulated time.</P></DD><DD><P class="docList">- set the current simulated time to the time of the chosen event.</P></DD><DD><P class="docList">- invoke a process for the chosen event. This process may add events to the event queue.</P></DD></DL></LI>
+</UL>
+<P class="docText">In this case, simulated time advances by the invoked processes placing events on the event queue and the scheduler choosing the next event to process. In pure event-based simulations, simulated time may progress much faster (as in a war game simulation) or much slower (as in an engineering simulation) than real time.</P>
+
+<A NAME="ch08lev3sec3"></A><H5 class="docSection3Title"> Mixed-Time Systems</H5>
+<P class="docText">Returning now to the scheduling of the three portions of the flight simulator, the instructor station is typically scheduled on an event basis—those events that emanate from the instructor's interactions—and the air vehicle model is scheduled on a periodic basis. The environment model can be scheduled using either regime. Thus, the coupling between the air vehicle and the environment may involve matching different time regimes.</P>
+<P class="docText">Flight simulators must marry periodic time simulation (such as in the air vehicle model) with event-based simulation (such as in the environment model, in some cases) and with other event-based activities that are not predictable (such as an interaction with the instructor station or the pilot setting a switch). Many scheduling policies are possible from the perspective of each process involved in this marriage.</P>
+<P class="docText">A simple policy for managing events within a periodically scheduled processor is that periodic processing must occur immediately after a synchronization step and complete before any aperiodic processing. Aperiodic processing proceeds within a bounded interval, during which as many messages as possible will be retrieved and processed. Those not processed during a given interval must be deferred to subsequent intervals, with the requirement that all messages be processed in the order received from a single source.</P>
+<P class="docText">Communication from the portions of the system managed on an event basis to the portions managed using periodic scheduling appears as aperiodic and is scheduled as just discussed. Communication from the portions of the system managed using periodic schedule appears as events to the portions managed on an event basis.</P>
+<P class="docText">Given this understanding of managing time in a flight simulator, we can now present the architectural pattern that handles this complexity. This pattern is for the air vehicle, and so the time management discussion is from the air vehicle's perspective.</P>
+
+
+<A NAME="ch08lev2sec4"></A><H4 class="docSection2Title"> THE STRUCTURAL MODEL ARCHITECTURAL PATTERN</H4>
+<P class="docText">Structural Model is an architectural pattern, as we defined it in <A class="docLink" HREF="0321154959_ch02lev1sec3.html#ch02lev1sec3">Section 2.3</A>. That is, it consists of a collection of element types and a configuration of their coordination at runtime. In this section, we present the Structural Model pattern and discuss the considerations that led to its design. Recall that the air vehicle model itself may be spread over several processors. Thus, the elements of the air vehicle structural model must coordinate internally across processors as well as with the environment model and the instructor portions of the simulation running on (potentially) different processors.</P>
+<P class="docText">The constituents of the Structural Model architectural pattern are, at the coarsest level, the <span class="docEmphasis">executive</span> and the <span class="docEmphasis">application</span>.</P>
+<UL>
+<LI><P class="docList">The <span class="docEmphasis">executive</span> portion handles coordination issues: real-time scheduling of subsystems, synchronization between processors, event management from the instructor–operator station, data sharing, and data integrity.</P></LI>
+<LI><P class="docList">The <span class="docEmphasis">application</span> portion handles the computation of the flight simulation: modeling the air vehicle. Its functions are implemented by subsystems and their children.</P></LI>
+</UL>
+<P class="docText">First we will discuss the air vehicle's executive modules in detail and then return to a discussion of its application modules.</P>
+
+<A NAME="ch08lev2sec5"></A><H4 class="docSection2Title"> MODULES OF THE AIR VEHICLE MODEL EXECUTIVE</H4>
+<P class="docText"><A class="docLink" HREF="#ch08fig04">Figure 8.4</A> shows the air vehicle structural model with the executive pattern given in detail. The modules in the executive are the <span class="docEmphasis">Timeline Synchronizer</span>, the <span class="docEmphasis">Periodic Sequencer</span>, the <span class="docEmphasis">Event Handler</span>, and the <span class="docEmphasis">Surrogates</span> for other portions of the simulator.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch08fig04"></A>Figure 8.4. The Structural Modeling pattern of an air vehicle system processor with focus on the executive</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="447" src="FILES/08fig04.gif" ALT="graphics/08fig04.gif"></p>
+</CENTER>
+<A NAME="ch08lev3sec4"></A><H5 class="docSection3Title"> Timeline Synchronizer</H5>
+<P class="docText">The timeline synchronizer is the base scheduling mechanism for the air vehicle model. It also maintains the simulation's internal notion of time. The other three elements of the executive—the periodic sequencer, the event handler, and the surrogates—all must be allocated processor resources. The timeline synchronizer also maintains the current state of the simulation.</P>
+<P class="docText">The timeline synchronizer passes both data and control to the other three elements and receives data and control from them. It also coordinates time with other portions of the simulator. This can include other processors responsible for a portion of the air vehicle model which have their own timeline synchronizers. Finally, the timeline synchronizer implements a scheduling policy for coordinating both periodic and aperiodic processing. For the sake of continuity, precedence is given to the periodic processing.</P>
+
+<A NAME="ch08lev3sec5"></A><H5 class="docSection3Title"> Periodic Sequencer</H5>
+<P class="docText">The periodic sequencer is used to conduct all periodic processing performed by the simulation's subsystems. This involves invoking the subsystems to perform periodic operations according to fixed schedules.</P>
+<P class="docText">The periodic sequencer provides two operations to the timeline synchronizer. The <TT>import</TT> operation requests that the periodic sequencer invoke subsystems to perform their <TT>import</TT> operation. The <TT>update</TT> operation requests that the periodic sequencer invoke subsystems' <TT>update</TT> operations.</P>
+<P class="docText">To conduct its processing, the periodic sequencer requires two capabilities. The first is to organize knowledge of a schedule. By <span class="docEmphasis">schedule</span> we mean the patterns of constituent invocations that represent the orders and rates of change propagation through the simulation algorithms realized by the constituents. The enactment of these patterns essentially represents the passage of time within the air vehicle simulation in its various operating states. The second capability is to actually invoke the subsystems through their periodic operations by means of some dispatching mechanism.</P>
+
+<A NAME="ch08lev3sec6"></A><H5 class="docSection3Title"> Event Handler</H5>
+<P class="docText">The event handler module is used to orchestrate all aperiodic processing performed by subsystems. This involves invoking their aperiodic operations.</P>
+<P class="docText">The event handler provides four operations to the timeline synchronizer: <TT>configure</TT> (used to start a new training mission, for example), <TT>constituent_ event</TT> (used when an event is targeted for a particular instance of a module), <TT>get_outbound_msg</TT> (used by the timeline synchronizer to conduct aperiodic processing while in system operating states, such as <TT>operate</TT>, that are predominantly periodic), and <TT>send</TT> (used by subsystem controllers to send events to other subsystem controllers and messages to other systems).</P>
+<P class="docText">To perform its processing, the event handler requires two capabilities. The first capability is to determine which subsystem controller receives an event, using knowledge of a mapping between event identifiers and subsystem instances. The second capability is to invoke the subsystems and to extract required parameters from events before invocation.</P>
+
+<A NAME="ch08lev3sec7"></A><H5 class="docSection3Title"> Surrogate</H5>
+<P class="docText">Surrogates are an application of the "use an intermediary" tactic and are responsible for system-to-system communication between the air vehicle model and the environment model or the instructor station. Surrogates are aware of the physical details of the system with which they communicate and are responsible for representation, communication protocol, and so forth.</P>
+<P class="docText">For example, the instructor station monitors state data from the air vehicle model and displays it to the instructor. The surrogate gathers the correct data when it gets control of the processor and sends it to the instructor station. In the other direction, the instructor may wish to set a particular state for the crew. This is an event received by the surrogate and passed to the event processor for dispatching to the appropriate subsystems.</P>
+<P class="docText">This use of surrogates means that both the periodic scheduler and the event handler can be kept ignorant of the details of the instructor station or the platform on which the environment model is operating. All of the system-specific knowledge is embedded in the surrogate. Any change to these platforms will not propagate further than the surrogate in the air vehicle model system.</P>
+
+
+<A NAME="ch08lev2sec6"></A><H4 class="docSection2Title"> MODULES OF THE AIR VEHICLE MODEL APPLICATION</H4>
+<P class="docText"><A class="docLink" HREF="#ch08fig05">Figure 8.5</A> shows the module types that exist in the application subpart of the air vehicle structural model. There are only two: the <span class="docEmphasis">Subsystem Controller</span> and the <span class="docEmphasis">Controller Child</span>. Subsystem controllers pass data to and from other subsystem controller instances and to their children. Controller children pass data only to and from their parents, not to any other controller children. They also receive control only from their parents and return it only to their parents. These restrictions on data and control passing preclude a controller child from passing data or control even to a sibling. The rationale for this is to assist integration and modifiability by eliminating coupling of a child instance with anything other than its parent. Any effect of modification or integration is mediated by the parent subsystem controller. This is an example of the use of the "restrict communication" tactic.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch08fig05"></A>Figure 8.5. The application module types</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="280" src="FILES/08fig05.gif" ALT="graphics/08fig05.gif"></p>
+</CENTER>
+<A NAME="ch08lev3sec8"></A><H5 class="docSection3Title"> Subsystem Controller</H5>
+<P class="docText">Subsystem controllers are used to interconnect a set of functionally related children to do the following:</P>
+<UL>
+<LI><P class="docList">Achieve the simulation of a subsystem as a whole.</P></LI>
+<LI><P class="docList">Mediate control and aperiodic communication between the system and subsystems.</P></LI>
+</UL>
+<P class="docText">They are also responsible for determining how to use the capabilities of their children to satisfy trainer-specific functionality such as malfunctions and the setting of parameters.</P>
+<P class="docText">Because the Structural Model pattern restricts communication among controller children, a subsystem controller must provide the capability to make logical connections between its children and those of other subsystems. Inbound connections supply inputs produced outside of the subsystem that the subsystem's children need for their simulation algorithms. Outbound connections satisfy similar needs of other subsystems and of surrogates. These connections appear as sets of names by which a subsystem controller internally refers to data considered to be outside of itself. When such a name is read or written, the appropriate connections are assumed to be made. How the connections are actually made is determined later in the detailed design and is a variation point of the pattern (see <A class="docLink" HREF="0321154959_ch14.html#ch14">Chapter 14</A>, Product Lines, for a discussion of variation points). In addition to making connections between its children and those of other subsystems, the subsystem controller also acts as an intermediary among its own children since restricting communication means that they are not allowed to directly communicate among themselves.</P>
+<P class="docText">As we mentioned, a flight simulator can be in one of several states. This is translated through the executive to a particular executive state. The executive then reports its current state to the subsystem controller. The two states that are relevant here are <span class="docEmphasis">operate</span> and <span class="docEmphasis">stabilize</span>. The operate state instructs the subsystem controller to perform its normal computations relevant to advancing the state of the simulation. The stabilize state tells the subsystem controller to terminate its current computation in a controlled fashion (to prevent the motion platform from harming the crew through uncontrolled motion) as follows:</P>
+<UL>
+<LI><P class="docList">Retrieve and locally store the values of inbound connections under the direct control of an executive. Such a capability addresses issues of data consistency and time coherence.</P></LI>
+<LI><P class="docList">Stabilize the simulation algorithms of its children under the control of executive instances and report whether it considers the subsystem as a whole to be currently stable.</P></LI>
+</UL>
+<P class="docText">Subsystem controllers <span class="docEmphasis">must</span> be able to do the following:</P>
+<UL>
+<LI><P class="docList">Initialize themselves and each of their children to a set of initial conditions in response to an event.</P></LI>
+<LI><P class="docList">Route requests for malfunctions and the setting of simulation parameters to their children based on knowledge of child capabilities.</P></LI>
+</UL>
+<P class="docText">Finally, subsystem controllers may support the reconfiguration of mission parameters such as armaments, cargo loads, and the starting location of a training mission. Subsystem controllers realize these capabilities through periodic and aperiodic operations made available to the periodic sequencer and event handler, respectively.</P>
+<P class="docText">Subsystem controllers must support the two periodic operations—<TT>update</TT> and <TT>import</TT>—and may support two others (which are aperiodic)—<TT>process_event</TT> and <TT>configure</TT>.</P>
+<A NAME="ch08lev4sec1"></A><H5 class="docSection4Title"> Update</H5>
+<P class="docText">The <TT>update</TT> operation causes the subsystem controller to perform periodic processing appropriate to the current system operating state, which is provided as an input parameter. In the <span class="docEmphasis">operate</span> state, the <TT>update</TT> operation causes the subsystem controller to retrieve inputs needed by its children by means of inbound connections, to execute operations of its children in some logical order so that changes can be propagated through them, and to retrieve their outputs for use in satisfying another's inputs or the subsystem's outbound connections. More than just a sequencer, this algorithm provides a logical "glue" that cements the children into some coherent, aggregate simulation. This glue may include computations as well as data transformations and conversions.</P>
+<P class="docText">In the <span class="docEmphasis">stabilize</span> state, the <span class="docEmphasis"><TT>update</TT></span> operation is used to request that the subsystem controller perform one iteration of its stabilization algorithm, and to determine whether locally defined stability criteria are satisfied. The update operation provides one output parameter, indicating whether the subsystem controller considers the subsystem to be currently stable. This assumes that such a determination can be made locally, which may not be valid in all circumstances.</P>
+<P class="docText">Subsystem controllers <span class="docEmphasis">may</span> provide the capability to do the following tasks.</P>
+
+<A NAME="ch08lev4sec2"></A><H5 class="docSection4Title"> Import</H5>
+<P class="docText">The import operation is used to request that the subsystem controller complete certain of its inbound connections by reading their values and to locally store their values for use in a subsequent <TT>update</TT> operation.</P>
+<P class="docText">There are two aperiodic operations provided by subsystem controllers: <TT>process_event</TT> and <TT>configure</TT>.</P>
+
+<A NAME="ch08lev4sec3"></A><H5 class="docSection4Title"> Process_event</H5>
+<P class="docText">The <TT>process_event</TT> operation is used in operating states that are predominantly periodic, such as operate, to ask the subsystem controller to respond to an event. The event is provided by an input parameter to the operation. Several events from the instructor–operator station fall into this category, such as <TT>process_malfunction</TT>, <TT>set_parameter</TT>, and <TT>hold_parameter</TT>.</P>
+
+<A NAME="ch08lev4sec4"></A><H5 class="docSection4Title"> Configure</H5>
+<P class="docText">The <TT>configure</TT> operation is used in system operating states, like <span class="docEmphasis">initialize</span>, in which the processing is predominantly aperiodic. This operation is used to establish a named set of conditions such as some training device configuration or training mission. The information the subsystem controller needs to establish the condition may be provided as an input parameter on the operation, as a location in a memory on secondary storage, or in a database where the information has been stored for retrieval. To complete the operation, the subsystem controller invokes operations of its children that cause the children to establish the conditions.</P>
+
+
+<A NAME="ch08lev3sec9"></A><H5 class="docSection3Title"> Controller Children</H5>
+<P class="docText">Air vehicle model controller children may be simulations of real aircraft components, such as a hydraulic pump, an electrical relay, or a fuel tank. They can support simulator-specific models such as forces and moments, weights and balances, and the equations of motion. They can localize the details of cockpit equipment, such as gauges, switches, and displays. No matter what specific functionality they simulate, controller children are all considered to be of the same module type.</P>
+<P class="docText">In general, controller children support the simulation of an individual part, or object, within some functional assembly. Each child provides a simulation algorithm that determines its own state based on the following:</P>
+<UL>
+<LI><P class="docList">Its former state</P></LI>
+<LI><P class="docList">Inputs that represent its connections with logically adjacent children</P></LI>
+<LI><P class="docList">Some elapsed time interval</P></LI>
+</UL>
+<P class="docText">A child makes this determination as often as it is requested to do so by its subsystem controller, which provides the required inputs and receives the child's outputs. This capability is called <span class="docEmphasis">updating</span>.</P>
+<P class="docText">A child can support the capability of producing abnormal outputs, reflecting a malfunction condition. In addition to potentially modeling changes in normal operating conditions, such as wear and tear, which can result in malfunctions over time, children can be told to start and stop malfunctioning by their subsystem controller.</P>
+<P class="docText">A controller child can also support the setting of a simulation parameter to a particular value. Simulation parameters are external names for performance parameters and decision criteria used in the controller child's simulation algorithm. Each child can initialize itself to some known condition. Like other child capabilities, parameter setting and initialization must be requested by the subsystem controller.</P>
+<P class="docText">The updating, malfunctioning, parameter setting, and initializing capabilities differ in the incidence of their use by the subsystem controller. The child is requested to update on a periodic basis, effecting the passage of time within the simulation. Requests for the other capabilities are made only sporadically.</P>
+<P class="docText">Controller children support these capabilities through a set of periodic and aperiodic operations made available to the subsystem controller. <TT>update</TT> is the single periodic operation and is used to control the periodic execution of the simulation algorithm. The child receives external inputs and returns its outputs through parameters on the operation. Two aperiodic operations are provided by the children: <TT>process_event</TT> and <TT>configure</TT>.</P>
+<P class="docText">All logical interactions among children are mediated by the subsystem controller, which is encoded with knowledge of how to use the child operations to achieve the simulation requirements allocated to the subsystem as a whole. This includes the following:</P>
+<UL>
+<LI><P class="docList">Periodically propagating state changes through the children using their <TT>update</TT> operations</P></LI>
+<LI><P class="docList">Making logical connections among children using the input and output parameters on these operations</P></LI>
+<LI><P class="docList">Making logical connections among children and the rest of the simulation using the subsystem's inbound and outbound connections</P></LI>
+</UL>
+<P class="docText">Controller child malfunctions are assumed to be associated with abnormal operating conditions of the real-world components being modeled. Therefore, the presence and identities of these malfunctions are decided by the child's designer and made known to the subsystem controller's designer for use in realizing subsystem malfunction requests. Subsystem malfunctions need not correspond directly to those supported by the children, and certain of them can be realized as some aggregation of more primitive failures supported by children. It is the subsystem controller's responsibility to map between low-level failures and subsystem-level malfunctions.</P>
+<P class="docText">Likewise, the presence and identities of simulation parameters are decided by the controller child's designer based on the characteristics of the child's simulation algorithm. They are made known to the subsystem controller's designer for use in realizing subsystem requests or for other purposes for which they are intended or are suitable to support.</P>
+
+
+<A NAME="ch08lev2sec7"></A><H4 class="docSection2Title"> SKELETAL SYSTEM</H4>
+<P class="docText">What we have thus far described is the basis for a skeletal system, as defined in <A class="docLink" HREF="0321154959_ch07.html#ch07">Chapter 7</A>. We have a structural framework for a flight simulator, but none of the details—the actual simulator functionality—have been filled in. This is a general simulation framework that can be used for helicopter and even nuclear reactor simulation. The process of making a working simulation consists of fleshing out this skeleton with subsystems and controller children appropriate to the task at hand. This fleshing out is dictated by the functional partitioning process, which we will discuss next.</P>
+<P class="docText">It is rather striking that an entire flight simulator, which can easily comprise millions of lines of code, can be completely described by only six module types: controller children, subsystem controllers, timeline synchronizer, periodic sequencer, event handler, and surrogate. This makes the architecture (comparatively) simple to build, understand, integrate, grow, and otherwise modify.</P>
+<P class="docText">Equally important, with a standard set of fundamental patterns one can create specification forms, code templates, and exemplars that describe those patterns. This allows for consistent analysis. When the patterns are mandated, an architect can insist that a designer use <span class="docEmphasis">only</span> the provided building blocks. While this may sound draconian, a small number of fundamental building blocks can, in fact, free a designer to concentrate on the functionality—the reason that the system is being built in the first place.</P>
+
+<A NAME="ch08lev2sec8"></A><H4 class="docSection2Title"> ALLOCATING FUNCTIONALITY TO CONTROLLER CHILDREN</H4>
+<P class="docText">Now that we have described the architectural pattern with which the air vehicle model is built, we still need to discuss how operational functionality is allocated to instances of the modules in that pattern. We do this by defining instances of the subsystem controllers, to detail the specifics of the aircraft to be simulated. The actual partitioning depends on the systems on the aircraft, the complexity of the aircraft, and the types of training for which the simulator is designed.</P>
+<P class="docText">In this section, we sketch a sample partitioning. We begin with a desire to partition the functionality to controller children based on the underlying physical aircraft. To accomplish this we use an object-oriented decomposition approach, which has a number of virtues, as follows:</P>
+<UL>
+<LI><P class="docList">It maintains a close correspondence between the aircraft partitions and the simulator, and this provides us with a set of conceptual models that map closely to the real world. Our understanding of how the parts interact in the aircraft helps us understand how the parts interact in the simulator. It also makes it easier for users and reviewers to understand the simulator because they are familiar with the aircraft (the problem domain) and can easily transfer this familiarity to it (i. e., the solution domain).</P></LI>
+<LI><P class="docList">Experience with past flight simulators has taught us that a change in the aircraft is easily identifiable with aircraft partitions. Thus, the locus of change in the simulator corresponds to analogous aircraft partitions, which tends to keep the simulator changes localized and well defined. It also makes it easier to understand how changes in the aircraft affect the simulator, therefore making it easier to assess the cost and time required for changes to be implemented.</P></LI>
+<LI><P class="docList">The number and size of the simulator interfaces are reduced. This derives from a strong semantic cohesion within partitions, placing the largest interfaces within partitions instead of across them.</P></LI>
+<LI><P class="docList">Localization of malfunctions is also achieved as they are associated with specific pieces of aircraft equipment. It is easier to analyze the effects of malfunctions when dealing with this physical mapping, and the resulting implementations exhibit good locality. Malfunction effects are readily propagated in a natural fashion by the data that the malfunctioning partition produces. Higher-order effects are handled the same as first-order effects. For example, a leak in a hydraulic connection is a first-order effect and is directly modeled by a controller child. The manifestation of this leak as the inability to manipulate a flight control is a higher-order effect but it happens naturally as a result of the propagation of simulation data from child to subsystem controller and from one subsystem to another.</P></LI>
+</UL>
+<P class="docText">In breaking down the air vehicle modeling problem into more manageable units, the airframe becomes the focus of attention. Groups exist for the airframe, the forces on it, the things outside it, and the things inside it but ancillary to its operation. This typically results in the following specific groups:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Kinetics.</span> 
+Elements that deal with forces exerted on the airframe</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Aircraft systems.</span> 
+Parts concerned with common systems that provide the aircraft with various kinds of power or that distribute energy within the airframe</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Avionics.</span> 
+Things that provide some sort of ancillary support to the aircraft but that are not directly involved in the kinetics of the air vehicle model, the vehicle's control, or operation of the basic flight systems (e.g., radios)</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Environment.</span> 
+Things associated with the environment in which the air vehicle model operates</p>
+</LI>
+</UL>
+
+<A NAME="ch08lev2sec9"></A><H4 class="docSection2Title"> GROUP DECOMPOSITION</H4>
+<P class="docText">The coarsest decomposition of the air vehicle model is the group. Groups decompose into systems, which in turn decompose into subsystems. Subsystems provide the instances of the subsystem controllers. Groups and systems are not directly reflected in the architecture— there is no group controller—and exist to organize the functionality assigned to the various instances of subsystem controllers. This decomposition is managed via a process using <span class="docEmphasis">n-square charts</span>.</P>
+<A NAME="ch08lev3sec10"></A><H5 class="docSection3Title"> <span class="docEmphasis">n</span>-Square Charts</H5>
+<P class="docText">One method of presenting information about the interfaces in a system is <span class="docEmphasis">n</span>-square charts. We will make use of this presentation method to illustrate how the partitions we selected relate to each other. Because some of the factors we consider in making partitioning decisions are based on the partition interfaces, <span class="docEmphasis">n</span>-square charts are useful in evaluating those decisions. They are a good method for capturing the input and output of a module and can illustrate the abstractions used in various parts of the design.</P>
+<P class="docText">An example of an <span class="docEmphasis">n</span>-square chart is shown in <A class="docLink" HREF="#ch08fig06">Figure 8.6</A>. The boxes on the main diagonal represent the system partitions. Their inputs are found in the column in which the partition lies; their outputs are shown in the corresponding row. The full set of inputs to a partition is thus the union of all the cell contents of the partition's column. Conversely, the full set of outputs is the union of all the cell contents in the row in which the partition resides. The flow of data from one partition to another is to the right, then down, to the left, and then up.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch08fig06"></A>Figure 8.6. The <span class="docEmphasis">n</span>-square chart</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="187" src="FILES/08fig06.gif" ALT="graphics/08fig06.gif"></p>
+</CENTER>
+<P class="docText"><A class="docLink" HREF="#ch08fig07">Figure 8.7</A> shows an <span class="docEmphasis">n</span>-square chart depicting the interfaces between the groups identified above. Interfaces external to the air vehicle model have been omitted for simplicity. These interfaces terminate in interface subsystems. The data elements shown on this chart are aggregate collections of data to simplify the presentation. The interfaces are not named here; nor are they typed. As we investigate partitions, looking at more limited sets of elements, the information presented becomes more detailed. Systems engineers can use this approach to the point where all of the primitive data objects in the interfaces are shown. During detailed design, the interface types and names will be determined.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch08fig07"></A>Figure 8.7. Air vehicle model domain <span class="docEmphasis">n</span>-square for groups</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="261" src="FILES/08fig07.gif" ALT="graphics/08fig07.gif"></p>
+</CENTER>
+<P class="docText">Not all of the air vehicle models will correspond to aircraft structure. The aerodynamics models are expressions of the underlying physics of the vehicle's interaction with the environment. There are few direct analogs to aircraft parts. Partitioning this area means relying on the mathematical models and physical entities that describe the vehicle's dynamics. Partitioning correctly based on mathematical models that affect the total aircraft is more difficult than partitioning based on the aircraft's physical structure.</P>
+
+
+<A NAME="ch08lev2sec10"></A><H4 class="docSection2Title"> DECOMPOSING GROUPS INTO SYSTEMS</H4>
+<P class="docText">The next step is to refine groups into systems. A system and a group can be units of integration: The functionality of a system is a relatively self-contained solution to a set of simulation problems. These units are a convenient focus for testing and validation. Group partitions exist as collections of code modules implemented by one engineer or a small group of engineers. We can identify systems within the groups we have defined. We will look briefly at the kinetics group systems as an example.</P>
+<A NAME="ch08lev3sec11"></A><H5 class="docSection3Title"> Systems in the Kinetics Group</H5>
+<P class="docText">These systems consist of elements concerned with the kinetics of the vehicle. Included in this group are elements directly involved in controlling the vehicle's motion and modeling the interaction of the vehicle and its control surfaces with the environment. The systems identified in this group are:</P>
+<UL>
+<LI><P class="docList">Airframe</P></LI>
+<LI><P class="docList">Propulsion</P></LI>
+<LI><P class="docList">Landing gear</P></LI>
+<LI><P class="docList">Flight controls</P></LI>
+</UL>
+<P class="docText">All of the subsystems in the propulsion system shown in <A class="docLink" HREF="#ch08fig08">Figure 8.8</A> deal with the model of the aircraft's engines. Multiple engines are handled by creating multiple sets of state variables and duplicate instances of objects, where appropriate. This system's principal purpose is to calculate engine thrust, moments caused by rotation of engine parts, and the forces and moments caused by mass distribution of fuel.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch08fig08"></A>Figure 8.8. A propulsion subsystem</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="243" src="FILES/08fig08.gif" ALT="graphics/08fig08.gif"></p>
+</CENTER>
+<P class="docText">The aircraft's fuel system is grouped here because its primary interface is to the engines. It calculates the forces acting on the airframe from the movement of the fuel within the tanks as well as the gravitational effect of the fuel mass.</P>
+<P class="docText">At this point we have identified the division of functionality, its allocation to subsystems and subsystem controllers, and the connections among subsystems. To complete the architecture, we need to do the following:</P>
+<UL>
+<LI><P class="docList">Identify the controller children instances for the propulsion subsystem.</P></LI>
+<LI><P class="docList">Similarly decompose the other groups, their systems, and their subsystems.</P></LI>
+</UL>
+<P class="docText">To summarize, we decomposed the air vehicle into four groups: kinetics, aircraft systems, avionics, and environment. We then decomposed the kinetics group into four systems: airframe, propulsion, landing gear, and flight controls. Finally, we presented a decomposition of the propulsion system into a collection of subsystems.</P>
+
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch08lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch08lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

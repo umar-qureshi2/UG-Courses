@@ -1,0 +1,60 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="5.6 Testability Tactics"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="0321154959_toc.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch05lev1sec5.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch05lev1sec7.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch05lev1sec6"></A><H3 class="docSection1Title">5.6 Testability Tactics</H3>
+<P class="docText">The goal of tactics for testability is to allow for easier testing when an increment of software development is completed. <A class="docLink" HREF="#ch05fig10">Figure 5.10</A> displays the use of tactics for testability. Architectural techniques for enhancing the software testability have not received as much attention as more mature fields such as modifiability, performance, and availability, but, as we stated in <A class="docLink" HREF="0321154959_ch04.html#ch04">Chapter 4</A>, since testing consumes such a high percentage of system development cost, anything the architect can do to reduce this cost will yield a significant benefit.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch05fig10"></A>Figure 5.10. Goal of testability tactics</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="125" src="FILES/05fig10.gif" ALT="graphics/05fig10.gif"></p>
+</CENTER>
+<P class="docText">Although in <A class="docLink" HREF="0321154959_ch04.html#ch04">Chapter 4</A> we included design reviews as a testing technique, in this chapter we are concerned only with testing a running system. The goal of a testing regimen is to discover faults. This requires that input be provided to the software being tested and that the output be captured.</P>
+<P class="docText">Executing the test procedures requires some software to provide input to the software being tested and to capture the output. This is called a test harness. A question we do not consider here is the design and generation of the test harness. In some systems, this takes substantial time and expense.</P>
+<P class="docText">We discuss two categories of tactics for testing: providing input and capturing output, and internal monitoring.</P>
+<A NAME="ch05lev2sec13"></A><H4 class="docSection2Title"> INPUT/OUTPUT</H4>
+<P class="docText">There are three tactics for managing input and output for testing.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Record/playback.</span> 
+Record/playback refers to both capturing information crossing an interface and using it as input into the test harness. The information crossing an interface during normal operation is saved in some repository and represents output from one component and input to another. Recording this information allows test input for one of the components to be generated and test output for later comparison to be saved.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Separate interface from implementation.</span> 
+Separating the interface from the implementation allows substitution of implementations for various testing purposes. Stubbing implementations allows the remainder of the system to be tested in the absence of the component being stubbed. Substituting a specialized component allows the component being replaced to act as a test harness for the remainder of the system.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Specialize access routes/interfaces.</span> 
+Having specialized testing interfaces allows the capturing or specification of variable values for a component through a test harness as well as independently from its normal execution. For example, metadata might be made available through a specialized interface that a test harness would use to drive its activities. Specialized access routes and interfaces should be kept separate from the access routes and interfaces for required functionality. Having a hierarchy of test interfaces in the architecture means that test cases can be applied at any level in the architecture and that the testing functionality is in place to observe the response.</p>
+</LI>
+</UL>
+
+<A NAME="ch05lev2sec14"></A><H4 class="docSection2Title"> INTERNAL MONITORING</H4>
+<P class="docText">A component can implement tactics based on internal state to support the testing process.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Built-in monitors.</span> 
+The component can maintain state, performance load, capacity, security, or other information accessible through an interface. This interface can be a permanent interface of the component or it can be introduced temporarily via an instrumentation technique such as aspect-oriented programming or preprocessor macros. A common technique is to record events when monitoring states have been activated. Monitoring states can actually increase the testing effort since tests may have to be repeated with the monitoring turned off. Increased visibility into the activities of the component usually more than outweigh the cost of the additional testing.</p>
+</LI>
+</UL>
+<P class="docText"><A class="docLink" HREF="#ch05fig11">Figure 5.11</A> provides a summary of the tactics used for testability.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch05fig11"></A>Figure 5.11. Summary of testability tactics</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="265" src="FILES/05fig11.gif" ALT="graphics/05fig11.gif"></p>
+</CENTER>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch05lev1sec5.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch05lev1sec7.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

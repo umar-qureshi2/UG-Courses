@@ -1,0 +1,833 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="11.4 The Nightingale System: A Case Study in Applying the ATAM"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch11lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch11lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch11lev1sec4"></A><H3 class="docSection1Title">11.4 The Nightingale System: A Case Study in Applying the ATAM</H3>
+<P class="docText">This section will describe the ATAM in practice using a case study based on an actual evaluation. Identifying information has been changed to protect the client's confidentiality.</P>
+<A NAME="ch11lev2sec3"></A><H4 class="docSection2Title"> PHASE 0: PARTNERSHIP AND PREPARATION</H4>
+<P class="docText">The client or organization for the evaluation, which had approached us after reading about the ATAM on our Web site, was a major producer of health care systems software, aimed at the hospital, clinic, and HMO markets. The system under consideration was called Nightingale. We learned that it was a large system expected to comprise several million lines of code and that it was well into implementation. Nightingale already had its first customer, a hospital chain with forty-some hospitals throughout the southwestern United States.</P>
+<P class="docText">Why, we wanted to know, was our client interested in an architecture evaluation when the system was already well on its way to being fielded and sold? There were two reasons. First, if the architecture was fundamentally flawed in any way, it was much better to discover it sooner rather than later; second, the organization had strong ambitions to sell the system to many other customers, but recognized that it would have to tailor it specifically to the needs, applications, and regulatory environments of each one. Hence, while the architecture might be adequate for the first, kickoff customer, the client wanted to make sure that it was sufficiently robust and modifiable to serve as the basis for an entire product family of health care management systems.</P>
+<P class="docText">The system would serve as the information backbone for the health care institutions in which it was installed. It would provide data about patients' treatment history as well as track their insurance and other payments. And it would provide a data-warehousing capability to help spot trends (such as predictors for relapses of certain diseases). The system would produce a large number of on- demand and periodic reports, each tailored to the institution's specific needs. For those patients making payments on their own, it would manage the work flow associated with initiating and servicing what amounts to a loan throughout its entire life. Further, since the system would either run (or at least be accessible) at all of the health care institution's facilities, it had to be able to respond to a specific office's configuration needs. Different offices might run different hardware configurations, for instance, or require different reports. A user might travel from one site to another, and the system would have to recognize that user and his or her specific information needs, no matter the location.</P>
+
+<P class="docText">Negotiations to sign a statement of work took about a month—par for the course when legalities between two large organizations are involved—and when it was complete we formed an evaluation team of six people,<sup class="docFootnote"><A class="docLink" HREF="#ch11fn02">[2]</A></sup> assigning roles as shown in <A class="docLink" HREF="#ch11table04">Table 11.4</A>.</P>
+<blockquote><p class="docFootnote"><sup><A NAME="ch11fn02">[2]</A></sup> Six is a large team. As we mentioned earlier, teams are usually three to five people and four is average. In this case, two of the team members were new to the ATAM process and were added to give them experience.</p></blockquote>
+<A NAME="ch11table04"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 11.4. Evaluation Team Role Assignments</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Member</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Role</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Team leader, evaluation leader, questioner</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">2</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Evaluation leader, questioner</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Timekeeper, questioner</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Scenario scribe, questioner, data gatherer</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Questioner, process enforcer</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Proceedings scribe, process observer</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">For this exercise, we assigned two evaluation leaders who would take turns facilitating the proceedings. We have found this scheme markedly helpful in reducing fatigue and stress, and it makes for better results. We chose our questioners based on their familiarity with performance and modifiability. We also chose people with experience in integrating COTS products, since our client told us early on that Nightingale employed a few dozen commercial software packages. Happily, one of our questioners also had experience working in the health care industry.</P>
+<P class="docText">We held a one-day kickoff meeting attended by the evaluation team, the project manager, the lead architect, and the project manager for Nightingale's first customer. The last three constituted the decision makers for Nightingale. At the meeting, we heard more about Nightingale's capabilities and requirements, received a catalog of available architectural documentation (from which we chose those we wanted to examine), and compiled a list of stakeholders to attend phase 2. We agreed on a schedule for the phase 1 and phase 2 meetings and for the delivery of the final report. Finally, we went over the presentations that the project manager and the architect, respectively, would be requested to make for steps 2 and 3 of phase 1, and made sure they were clear on the information we would want to see.</P>
+<P class="docText">Later, before phase 1, our team met for two hours. The team leader went over the role assignments once again and made sure everyone knew his or her duties. Also, we walked through the architecture documentation we had received, making note of the patterns and tactics it indicated. This pre-meeting helped the team arrive at the evaluation somewhat knowledgeable about the architecture (thus increasing everyone's confidence), and it laid the groundwork for step 4, in which patterns and approaches would be cataloged.</P>
+<P class="docText">In the Nightingale evaluation, the meeting also raised a red flag about the documentation, which was incomplete and unclear. Whole sections had not yet been written, and by and large the architecture was presented as a set of inadequately defined box-and-line diagrams. We felt that, were we to begin phase 1 at this point, we would not be on a firm conceptual footing. So we telephoned the architect and asked him to verbally fill in some of the blanks. Then, though we knew there were still gaps in our knowledge, at least we felt comfortable enough to begin the evaluation. We made a note that inadequate documentation was a risk that we needed to catalog.</P>
+
+<A NAME="ch11lev2sec4"></A><H4 class="docSection2Title"> PHASE 1: EVALUATION</H4>
+<P class="docText">As called for in phase 1, the evaluation team met with the project's decision makers. In addition to those who had attended the kickoff meeting (the project manager, the lead architect, and the project manager for Nightingale's kickoff customer), two lead designers participated.</P>
+<A NAME="ch11lev3sec11"></A><H5 class="docSection3Title"> Step 1: Present ATAM</H5>
+<P class="docText">The evaluation leader used our organization's standard viewgraph package that explains the method. The hour-long presentation lays out the method's steps and phases, describes the conceptual foundations underlying the ATAM (such as scenarios, architectural approaches, sensitivity points, and the like), and lists the outputs that will be produced by the end of the exercise.</P>
+<P class="docText">The decision makers were already largely familiar with ATAM, having heard it described during the phase 0 discussions, so this step proceeded without a hitch.</P>
+
+<A NAME="ch11lev3sec12"></A><H5 class="docSection3Title"> Step 2: Present Business Drivers</H5>
+<P class="docText">At the evaluation, the project manager for the client organization presented the business objectives for the Nightingale system from the development organization, as well as from organizations they hoped would be customers for the system. For the development organization, Nightingale addressed business requirements that included</P>
+<UL>
+<LI><P class="docList">support for their kickoff customer's diverse uses (e.g., treatment tracking, payment histories, trend spotting, etc.).</P></LI>
+<LI><P class="docList">creation of a new version of the system (e.g., to manage doctors' offices) that the development organization could market to customers other than the kickoff customer.</P></LI>
+</UL>
+<P class="docText">The second business driver alerted us to the fact that this architecture was intended for an entire software product line (see <A class="docLink" HREF="0321154959_ch14.html#ch14">Chapter 14</A>), not just one system.</P>
+<P class="docText">For the kickoff customer, Nightingale was to replace the multiple existing legacy systems, which were</P>
+<UL>
+<LI><P class="docList">old (one was more than 25 years old).</P></LI>
+<LI><P class="docList">n based on aging languages and technology (e.g., COBOL and IBM assembler).</P></LI>
+<LI><P class="docList">difficult to maintain.</P></LI>
+<LI><P class="docList">unresponsive to the current and projected business needs of the health care sites.</P></LI>
+</UL>
+<P class="docText">The kickoff customer's business requirements included</P>
+<UL>
+<LI><P class="docList">the ability to deal with diverse cultural and regional differences.</P></LI>
+<LI><P class="docList">the ability to deal with multiple languages (especially English and Spanish) and currencies (especially the U.S. dollar and Mexican peso).</P></LI>
+<LI><P class="docList">a new system at least as fast as any legacy system being replaced.</P></LI>
+<LI><P class="docList">a new single system combining distinct legacy financial management systems.</P></LI>
+</UL>
+<P class="docText">The business constraints for the system included</P>
+<UL>
+<LI><P class="docList">a commitment to employees of no lost jobs via retraining of existing employees.</P></LI>
+<LI><P class="docList">the adoption of a "buy rather than build" approach to software.</P></LI>
+<LI><P class="docList">recognition that the customer's marketplace (i.e., number of competitors) had shrunk.</P></LI>
+</UL>
+<P class="docText">The technical constraints for the system included</P>
+<UL>
+<LI><P class="docList">use of off-the-shelf software components whenever possible.</P></LI>
+<LI><P class="docList">a two-year time frame to implement the system with the replacement of physical hardware occurring every 26 weeks.</P></LI>
+</UL>
+<P class="docText">The following quality attributes were identified as high priority:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Performance.</span> 
+Health care systems require quick response times to be considered useful. The 5-second transaction response time of the legacy system was too slow, as were the legacy response times for online queries and reports. System throughput was also a performance concern.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Usability.</span> 
+There was a high turnover of users of the system, so retraining was an important customer issue. The new system had to be easy to learn and use.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Maintainability.</span> 
+The system had to be maintainable, configurable, and extensible to support new markets (e.g., managing doctors' offices), new customer requirements, changes in state laws and regulations, and the needs of the different regions and cultures.</p>
+</LI>
+</UL>
+<P class="docText">The manager identified the following quality attributes as important, but of somewhat lower priority:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Security.</span> 
+The system had to provide the normal commercial level of security (e.g., confidentiality and data integrity) required by financial systems.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Availability.</span> 
+The system had to be highly available during normal business hours.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Scalability.</span> 
+The system had to scale up to meet the needs of the largest hospital customers and down to meets the needs of the smallest walk-in clinics.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Modularity.</span> 
+The developing organization was entertaining the possibility of selling not just new versions of Nightingale but individual components of it. Providing this capability required qualities closely related to maintainability and scalability.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Testability and supportability.</span> 
+The system had to be understandable by the customer's technical staff since employee training and retention was an issue.</p>
+</LI>
+</UL>
+
+<A NAME="ch11lev3sec13"></A><H5 class="docSection3Title"> Step 3: Present Architecture</H5>
+<P class="docText">During the evaluation team's interactions with the architect, before as well as during the evaluation exercise, several views of the architecture and the architectural approaches emerged. Key insights included the following:</P>
+<UL>
+<LI><P class="docList">Nightingale consisted of two major subsystems: OnLine Transaction Manager (OLTM) and Decision Support and Report Generation Manager (DSRGM). OLTM carries interactive performance requirements, whereas DSRGM is more of a batch processing system whose tasks are initiated periodically.</P></LI>
+<LI><P class="docList">Nightingale was built to be highly configurable.</P></LI>
+<LI><P class="docList">The OnLine Transaction Manager subsystem was strongly layered.</P></LI>
+<LI><P class="docList">Nightingale was a repository-based system; a large commercial database lay at its heart.</P></LI>
+<LI><P class="docList">Nightingale relied heavily on COTS software, including the central database, a rules engine, a work flow engine, CORBA, a Web engine, a software distribution tool, and many others.</P></LI>
+<LI><P class="docList">Nightingale was heavily object oriented, relying on object frameworks to achieve much of its configurability.</P></LI>
+</UL>
+<P class="docText"><A class="docLink" HREF="#ch11fig03">Figure 11.3</A> shows a layered view of OLTM rendered in the informal notation used by the architect. <A class="docLink" HREF="#ch11fig04">Figure 11.4</A> depicts how OLTM works at runtime by showing the major communication and data flow paths among the parts of the system deployed on various hardware processors. We present these figures basically as we were given them to give you a better understanding of the reality of an ATAM evaluation. Note that they do not cleanly map; that is, in <A class="docLink" HREF="#ch11fig03">Figure 11.3</A> there is a transaction manager and CORBA, but these do not occur in <A class="docLink" HREF="#ch11fig04">Figure 11.4</A>. This type of omission is typical of many of our ATAM evaluations, and one of the activities that occurs during step 3 is that the evaluators ask questions about the inconsistencies in the diagrams in an attempt to come to some level of understanding of the architecture. <A class="docLink" HREF="#ch11fig05">Figure 11.5</A> shows a similar runtime view of OLTM in which a transaction can be traced throughout the system, again with similar inconsistencies and, in this case, without a description of the meaning of the arrows. We determined that these arrows also represented data flow.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch11fig03"></A>Figure 11.3. Layered view of the OLTM in the the architect's informal notation</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="372" src="FILES/11fig03.gif" ALT="graphics/11fig03.gif"></p>
+</CENTER>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch11fig04"></A>Figure 11.4. A view showing communication, data flow, and processors of the OLTM</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="452" src="FILES/11fig04.gif" ALT="graphics/11fig04.gif"></p>
+</CENTER>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch11fig05"></A>Figure 11.5. Data flow architectural view of the OLTM</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="539" src="FILES/11fig05.gif" ALT="graphics/11fig05.gif"></p>
+</CENTER>
+<P class="docText">All of these views of the Nightingale are equally legitimate and carry important information. Each shows an aspect relevant to different concerns, and all were used to carry out the analysis steps of the ATAM exercise.</P>
+
+<A NAME="ch11lev3sec14"></A><H5 class="docSection3Title"> Step 4—Catalog Architectural Approaches</H5>
+<P class="docText">After the architecture presentation, the evaluation team listed the architectural approaches they had heard, plus those they had learned about during their pre-evaluation review of the documentation. The main ones included</P>
+<UL>
+<LI><P class="docList">layering, especially in OLTM.</P></LI>
+<LI><P class="docList">object orientation.</P></LI>
+<LI><P class="docList">use of configuration files to achieve modifiability without recoding or recompiling.</P></LI>
+<LI><P class="docList">client-server transaction processing.</P></LI>
+<LI><P class="docList">a data-centric architectural pattern, with a large commercial database at its heart.</P></LI>
+</UL>
+<P class="docText">These and other approaches gave the evaluation team a conceptual footing from which to begin asking probing questions when scenario analysis began.</P>
+
+<A NAME="ch11lev3sec15"></A><H5 class="docSection3Title"> Step 5—Generate Quality Attribute Utility Tree</H5>
+<P class="docText"><A class="docLink" HREF="#ch11table05">Table 11.5</A> shows the utility tree generated during the Nightingale ATAM exercise. Notice that all of the quality attributes identified during step 2 appear and that each is refined into one or more specific meanings.</P>
+<P class="docText">A few of the quality attribute refinements have no scenarios associated with them. That often happens and it is not a problem. People are sometimes able to think of a reasonable-sounding refinement for a quality attribute, but, when pressed to instantiate it in the context of their own system, discover that it does not really apply.</P>
+<P class="docText">To capture the utility tree for all to see, the proceedings scribe used a flipchart page for each quality attribute and taped it to the wall. Then, as that quality attribute was refined and instantiated with scenarios, she captured the information on that flipchart or on continuation flipcharts taped underneath.<sup class="docFootnote"><A class="docLink" HREF="#ch11fn03">[3]</A></sup></P>
+<blockquote><p class="docFootnote"><sup><A NAME="ch11fn03">[3]</A></sup> We have also experimented with capturing the utility tree online in a table like <A class="docLink" HREF="#ch11table05">Table 11.5</A> and projecting it directly from the computer. This makes the tree easier to build and modify but the participants can see only one screen's worth at any time. Seeing the whole utility tree helps stimulate thinking and identify gaps. Collaborative-work software systems would seem to be ideal here, but it is hard to beat flipcharts and masking tape for simplicity, reliability, and economy.</p></blockquote>
+
+<P class="docText">The scenarios in <A class="docLink" HREF="#ch11table05">Table 11.5</A> are annotated with the priority rankings assigned by the decision makers present. The first of each ordered pair indicates the importance of the capability; the second indicates the architect's estimation of the difficulty in achieving it.</P>
+<A NAME="ch11table05"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 11.5. Tabular Form of the Utility Tree for the Nightingale ATAM Exercise</h5></CAPTION><COLGROUP align="left" span="3">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Quality Attribute</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Attribute Refinement</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Scenarios</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Performance</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Transaction response time</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A user updates a patient's account in response to a change-of-address notification while the system is under peak load, and the transaction completes in less than 0.75 second. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A user updates a patient's account in response to a change-of-address notification while the system is under twice the current peak load, and the transaction completes in less than 4 seconds. (L,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Throughput</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">At peak load, the system is able to complete 150 normalized transactions per second. (M,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Generating reports</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">No scenarios suggested.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Usability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Proficiency training</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A new hire with two or more years experience in the business becomes proficient in Nightingale's core functions in less than 1 week. (M,L)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A user in a particular context asks for help, and the system provides help for that context. (H,L)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Normal operations</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A hospital payment officer initiates a payment plan for a patient while interacting with that patient and completes the process without the system introducing delays. (M,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Configurability</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A hospital increases the fee for a particular service. The configuration team makes the change in 1 working day; no source code needs to change. (H,L)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Maintainability</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A maintainer encounters search- and response-time deficiencies, fixes the bug, and distributes the bug fix. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A reporting requirement requires a change to the report-generating metadata. (M,L)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">The database vendor releases a new version that must be installed in a minimum amount of time. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Extensibility </P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Adding new product</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A product that tracks blood bank donors is created. (M,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Security</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Confidentiality</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A physical therapist is allowed to see the part of a patient's record dealing with orthopedic treatment, but not other parts nor any financial information. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Integrity</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">The system resists unauthorized intrusion. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Availability</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">The database vendor releases new software, which is hot-swapped into place. (H,L)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">The system supports 24/7 Web-based account access by patients. (L,L)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Scalability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Growing the system</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">The kickoff customer purchases a health care company three times its size, requiring a partitioning of the database. (L,H)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">The kickoff customer divests a business unit. (L,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">The kickoff customer consolidates two business units. (L,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">The developing organization wants to sell components of Nightingale. (M,L)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Modularity</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Functional subsets</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Build a system that can function autonomously with core functionality. (M,L)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Flexibility to replace COTS products</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Replace the commercial database with one by another vendor. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Replace the operating system. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Replace the database portability layer. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Replace the transaction manager. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Replace the work flow engine. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Replace the commercial accounting package. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Replace Solaris on the Sun platforms that host the database. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Replace the rules engine. (H,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Interoperability</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Build a system that interfaces with the epidemiological database at the National Centers for Disease Control. (M,M)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Testability</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Supportability</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">Notice that some of the scenarios are well formed according to our earlier discussion, others have no stimulus, and still others have no responses. At this stage, the imprecision in scenario specification is permissible as long as the stakeholders understand the meaning. If the scenarios are selected for analysis, then the stimulus and response must be made explicit.</P>
+
+<A NAME="ch11lev3sec16"></A><H5 class="docSection3Title"> Step 6—Analyze Architectural Approaches</H5>
+<P class="docText">The utility tree exercise produced no scenarios ranked (H,H), which indicates high-importance, high-difficulty scenarios that merit high analytical priority. So we looked for (H,M) scenarios, a cluster of which appeared under "Modularity," hypothesizing the replacement of various COTS products in the system. Although extensive use of COTS was a purposeful strategy to reduce development risk, it was also worrisome to the project's management because it was felt that the system (and the customers to whom it was sold) would be at the mercy of a large number of COTS vendors. Therefore, achieving architectural flexibility to swap out COTS products was of keen interest.</P>
+<P class="docText">We walked through each of the scenarios with the architect. Each consumed, on average, about a half hour.<sup class="docFootnote"><A class="docLink" HREF="#ch11fn04">[4]</A></sup> Since these were scenarios about changes, we asked about the range and impact of the changes. We learned the following.</P>
+<blockquote><p class="docFootnote"><sup><A NAME="ch11fn04">[4]</A></sup> .In evaluation after evaluation, the first scenario analyzed invariably takes the most time, perhaps as much as three times the average. </p></blockquote>
+<UL>
+<LI><P class="docList">Replacing the commercial database with a database supplied by another vendor would be difficult. A dialect of SQL (a superset of ANSI-standard SQL) specific to the current database vendor was used throughout Nightingale, as were several vendor-specific tools and components. The architect considered replacing the database as highly unlikely and so was not concerned that shifting to another system would be very expensive. This was news to the project manager, however, who was not so sure that the scenario was out of the question. We recorded our first analysis-based architectural risk: "Because Nightingale uses vendor-specific tools, components, and an SQL dialect not supported by or compatible with databases supplied by other vendors, replacing the database would be extremely difficult and expensive, requiring several staff-years of effort." The architectural decision to wed the architecture to the database was also recorded as a sensitivity point, negatively affecting modifiability.</P></LI>
+<LI><P class="docList">Replacing one operating system with another would be a reasonably straightforward change. On the server side, the operating system was insulated by a layer, which would confine the necessary changes to a small portion. However, OLTM relies on NT authentication facilities directly, and a replacement operating system would have to provide something similar for the change to be straightforward. On the DSRGM side, all operating system dependencies had already been eliminated in the source code; DSRGM was developed on a Windows NT platform but deployed on UNIX, providing compelling evidence that it was already independent of the operating system. Here we recorded our first nonrisk: "Because operating system dependencies have been localized or eliminated from OLTM and DSRGM, replacing the operating system with another one would require only a small modification." Encapsulating operating system dependencies was recorded as a sensitivity point, positively affecting modifiability.</P></LI>
+<LI><P class="docList">Changing the rules engine raised several issues of concern. This scenario was not a farfetched one, because we learned that there were associated performance and maintainability concerns associated with using the rules engine. The likely scenario would be to remove, not replace, the rules engine and then implement the rules directly in C++. Since forward chaining among the rules had been disallowed (specifically—and wisely—to keep this option open), the rules were effectively procedural and could be compiled. Such a change would have several serious effects:</P><DL>
+<DD><P class="docList">- It would likely improve performance (although this question had not yet been answered authoritatively).</P></DD><DD><P class="docList">- It would obviate the need for personnel trained in the rules language and knowledgeable about the rules engine.</P></DD><DD><P class="docList">- It would deprive the development team of a useful rules development and simulation environment.</P></DD><DD><P class="docList">- It would lead to the possibility that the rules could become "buried" in the rest of the C++ code and make it easier for them to become entangled in functional code not strictly related to rules, and hence harder to recognize and maintain.</P></DD><DD><P class="docList">- It would remove the possibility that the rules could reference some object that in fact did not exist, a possibility that exists today and represents an error that could conceivably survive past testing and into a production system. Writing the rules in C++ would eliminate this error at compile time.</P><P class="docList">To facilitate this change, a rule-to-C++ code generator would need to be written, a development effort of significant scope and unknown difficulty. For this scenario, we recorded as a risk the major effort needed to remove the rules engine. We also recorded using a rules engine (as opposed to C++ code) as a tradeoff point in the architecture. This made development easier and changes to the rule base easier; however, these benefits came at the cost of decreased performance, specially trained developers, and more difficult testing.</P>
+</DD></DL></LI>
+</UL>
+<P class="docText">And so forth. We continued this scenario, investigating replacement of the commercial Web-hosting engine, the commercial accounting package, the work flow engine, and the Solaris operating system on the Sun platforms.</P>
+<P class="docText">At this point, the phase 1 meeting ended. We had recorded six sensitivity points, one tradeoff point, four risks, and five nonrisks.</P>
+
+
+<A NAME="ch11lev2sec5"></A><H4 class="docSection2Title"> PHASE 2: EVALUATION (CONTINUED)</H4>
+<P class="docText">The phase 2 meeting commenced after a hiatus of two weeks. During the break, the evaluation team wrote up those parts of the final report that could be completed: the business drivers, the presented architecture, the list of approaches, the utility tree, and the phase 1 analysis. We also interacted via telephone with the architect to check our understanding of some technical points, and with the project manager to make sure that a good stakeholder representation would be present for phase 2.</P>
+<P class="docText">For phase 2, we had nine stakeholders present in addition to the project decision makers present during phase 1. They included developers, maintainers, representatives from the kickoff customer, and two end users.</P>
+<P class="docText">The first activities of phase 2 were to repeat step 1 (describing the ATAM) for the new participants, and then recap the results of phase 1 to bring everyone up to speed. After that, steps 7, 8, and 9 were carried out.</P>
+<A NAME="ch11lev3sec17"></A><H5 class="docSection3Title"> Step 7—Brainstorm and Prioritize Scenarios</H5>
+<P class="docText">The stakeholders were a productive group, contributing a total of 72 scenarios during this step. More than a dozen of those scenarios were found at the leaves of step 5's utility tree but were not analyzed during phase 1. This was not only proper but encouraged. In this way, the stakeholders were expressing the view that some scenarios deserved more attention than they had received during phase 1.</P>
+<P class="docText"><A class="docLink" HREF="#ch11table06">Table 11.6</A> contains a selection of some of the more interesting scenarios that emerged during step 7. Notice that many of them are not particularly well structured, and some are downright cryptic. This reflects the spontaneous nature of a brainstorming exercise in which everyone is actively engaged. Rather than spend several minutes structuring and wordsmithing each scenario as it arises, we like to concentrate on capturing thoughts while they are fresh in people's minds. If a scenario's meaning needs to be polished before voting occurs or before it is analyzed, then we are happy to spend the necessary time doing so (with the help of the person who proposed it).</P>
+<A NAME="ch11table06"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 11.6. Brainstormed Scenarios</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Number</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Scenario</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">1</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Previously public data is made private, and access is adjusted accordingly.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">2</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Data in the information hub is replicated to a branch clinic, and performance is degraded.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">3</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A rule in the rule engine fires, and data access is too slow.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">4</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A user posts a patient's payment at a busy time, and response is slow (in a testing environment).</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">5</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A user in one business unit needs to perform actions on behalf of other business units.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">6</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Decide to support German.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">7</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Add an epidemiologist role and supporting functionality.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">8</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Sell Nightingale to a five-person doctor's office and have it support their business.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">9</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A user requests a new field for asynchronous queries.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">10</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">In response to a complaint, a hospital discovers it has been incorrectly charging for bedpans for six months.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">11</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A hospital needs to centralize the record maintenance process across multiple affiliates; associated business process is re-engineered.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">12</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A manager wants a report on historical payment delinquency rates for people who were treated for cuts and lacerations.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">13</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">"What-if" scenario: A proposed law change is applied to an account.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">14</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A defect corrupts data and is not detected until the next reporting cycle.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">15</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Nightingale is installed in a hospital, and the hospital's existing database must be converted.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">16</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">An error in the replication process causes a transaction database to be out of sync with the backup database.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">17</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">An error in the system causes all payments to accounts in Arizona to be unpostable.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">18</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A transaction log audit trail fails for three days (how to recover?).</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">19</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">An affiliate redefines a business day and month.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">20</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Receive payment post information from an insurance company's database system, given its metadata definition.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">21</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Introduce a new work flow process for patient check-in and check-out.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">22</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Batch processes are initiated based on time and events.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">23</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Main communication to branch clinics from the information hub goes down.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">24</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A branch clinic database server fails to boot.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">25</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A report needs to be generated using information from two hospitals that use different configurations.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">26</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A remittance center submits the same batch of payments twice, and activity occurs after the second submission.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">27</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A rehabilitation therapist is assigned to another hospital, but needs read-only access to the treatment histories of his or her former patients.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">28</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Distribute a set of changes to a set of health care sites consistently (forms and configurations).</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">29</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A fire in the data center forces the information hub to be moved to a new location.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">30</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">One hospital sells a large number of accounts payable to another business unit.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">31</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Change the rules for generating a warning about conflicting medications.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">32</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A user in a hospital's finance office wants to change output from paper to online viewing.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">33</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">The phone company changes an area code.</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="center" valign="top">
+<P class="docText">34</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">A malicious account administrator has slowly transferred small amounts into various accounts of his friends. How to discover and determine extent?</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">After merging a few almost-alike scenarios, the stakeholders voted. We assigned 22 votes to each stakeholder (72 scenarios times 30%, rounded up to the nearest even integer), which they cast in two passes. We tallied the votes and spent a half-hour with the group placing the dozen or so highest-priority scenarios in the utility tree created during step 5. For this exercise, all of the high-priority step 7 scenarios were straightforwardly placed as new leaves of existing branches in the utility tree. This suggested that the architect was thinking along the same lines as the stakeholders in terms of important quality attributes.</P>
+<P class="docText">After reconciling the new scenarios with the utility tree, we began analyzing the scenarios that received the most votes.</P>
+
+<A NAME="ch11lev3sec18"></A><H5 class="docSection3Title"> Step 8—Analyze Architectural Approaches</H5>
+<P class="docText">During step 8, we analyzed seven additional scenarios, a number slightly above average for an ATAM exercise. In deference to space limitations, the Scenario 15 sidebar summarizes the analysis for just one of them.</P>
+
+<A NAME="ch11lev3sec19"></A><H5 class="docSection3Title"> Step 9—Present Results</H5>
+<P class="docText">Step 9 is a one- to two-hour presentation summarizing the results and findings of the exercise. It begins with a boilerplate set of slides that contains a method recap and blank template slides that can be filled in with the business drivers summary, the architecture summary, the list of approaches, the utility tree, the scenario analysis, and the list of analysis outputs.</P>
+<P class="docText">The evaluation team meets during the evenings of phase 2 to compile all the results gathered so far. The phase 2 agenda also contains a block of time before step 9 when the team can caucus and complete the package.</P>
+<P class="docText">In addition to the risks, nonrisks, sensitivity points, and tradeoff points, the team presents risk themes that seem to systematically underlie the problematic areas of the architecture, if any. This is the only part of the results that the participants will not have already seen (and, for that matter, helped to identify). For each one, we also state why it matters in terms that will be meaningful to the client: We identify the stated business drivers that each risk theme jeopardizes.</P>
+<P><A NAME="ch11sb04"></A><TABLE CELLSPACING="0" WIDTH="90%" BORDER="1"><TR><TD>
+<H2 class="docSidebarTitle">Scenario 15: Nightingale is installed in a hospital and the hospital's existing database must be converted.</H2>
+<P class="docText">Not surprisingly, the architect had given this scenario a lot of thought, since carrying it out successfully was essential to the success of Nightingale. There was a documented procedure in place, which the architect drew for us on the whiteboard.</P>
+<P class="docText">It often happens that a scenario leads to a deeper understanding of the architecture than was present before. Here, the architect had the information, but (reasonably) did not include it in the step 3 presentation, considering it ancillary.</P>
+<P class="docText">Walking through the migration process convinced the evaluation team that a well-thought-out procedure was in place, with known strengths and reasonable limitations. It did not surprise us that the architect did not mention the process during his presentation of step 3. What did surprise us was that we saw nothing about it in the documentation package we received and reviewed prior to phase 1. When pressed about this, the architect admitted that the procedure was not yet documented, which we recorded as a risk. Offsetting this risk, however, was a nonrisk that we recorded: "The architecture supports a straightforward and effective data conversion and migration facility to support Nightingale installation."</P>
+</TD></TR></TABLE></P>
+<P class="docText">For Nightingale, we identified three risk themes:</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Over-reliance on specific COTS products.</span> 
+Here we cited the difficulties in swapping out the database, in removing the rules engine, and in relying on an old and possibly no-longer-supported version of the database portability layer. This risk theme threatened the business driver of a system that is maintainable.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Error recovery processes were not fully defined. The customer's knowledge of available tools was incomplete.</span> Several scenarios dealt with discovering errors in the database and backing them out. While the architecture supported those procedures well enough, it was clear that the architects and designers were thinking about some of them for the first time. The representatives of the kickoff customer reported that they had no procedures in place (either of their own or inherited from the developing organization) for making such error corrections. This risk theme threatened the business driver of usability and support for the customer's enterprise.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Documentation issues.</span> 
+The state of documentation on the Nightingale project was inadequate. The team began to realize this as far back as the pre-phase 1 meeting, and several scenarios analyzed during phase 2 reinforced this opinion. While a large volume of detailed documentation (such as that produced via UML and the Rose model) existed, there was almost no introductory or overview documentation of the architecture, which is critical for training, adding people to the project, maintenance, and guiding development and testing. The extensive rule base that governed the behavior of Nightingale was undocumented, as was the data conversion and migration procedure. Lacking such documentation, the system would be unmaintainable by the kickoff customer, who was on the verge of inheriting it, thus jeopardizing one of the key business drivers for Nightingale—support for the customer's enterprise.</p></span></LI>
+</OL></span>
+
+
+<A NAME="ch11lev2sec6"></A><H4 class="docSection2Title"> PHASE 3: FOLLOW-UP</H4>
+<P class="docText">The tangible output of the ATAM is a final report that contains a list of risks, nonrisks, sensitivity points, and tradeoff points. It also contains a catalog of architectural approaches used, the utility tree and brainstormed scenarios, and the record of analysis of each selected scenario. Finally, the final report contains the set of risk themes identified by the evaluation team and an indication of which business drivers are jeopardized by each one.</P>
+<P class="docText">Like the presentation of results, we use a boilerplate template that has many of the standard sections (such as a description of the ATAM) completed and templates for other sections ready to be filled in. We also write some of the final report—for instance, the utility tree and step 6 analysis—during the hiatus between phases 1 and 2. Preparation pays off; whereas it used to take about two weeks to produce a final report for an ATAM client, we can now produce a high-quality comprehensive report in about two days.</P>
+
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch11lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch11lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

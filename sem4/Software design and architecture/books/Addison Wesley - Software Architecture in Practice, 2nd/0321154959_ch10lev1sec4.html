@@ -1,0 +1,51 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="10.4 View Fusion"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch10lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch10lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch10lev1sec4"></A><H3 class="docSection1Title">10.4 View Fusion</H3>
+<P class="docText">View fusion involves defining and manipulating extracted information (now stored in a database) to reconcile, augment, and establish connections between the elements. Different forms of extraction should provide complementary information. Fusion is illustrated using the examples given in the following sections.</P>
+<A NAME="ch10lev2sec5"></A><H4 class="docSection2Title"> IMPROVING A VIEW</H4>
+<P class="docText">Consider the two excerpts shown in <A class="docLink" HREF="#ch10fig04">Figure 10.4</A>, which are from the sets of methods (each shown preceded by its respective class) extracted from a system implemented in C++. These tables include static and dynamic information about an object-oriented segment of code. We can see from the dynamic information that, for example, <TT>List::getnth</TT> is called. However, this method is not included in the static analysis because the static extractor tool missed it. Also, the calls to the constructor and destructor methods of <TT>InputValue</TT> and <TT>List</TT> are not included in the static information and need to be added to the class/method table that reconciles both sources of information.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig04"></A>Figure 10.4. Static and dynamic data information about the <TT>class_contains_method</TT> relation</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="262" src="FILES/10fig04.gif" ALT="graphics/10fig04.gif"></p>
+</CENTER>
+<P class="docText">In addition, the static extraction in this example shows that the <TT>PrimitiveOp</TT> class has a method called <TT>Compute</TT>. The dynamic extraction results show no such class, but they do show classes, such as <TT>ArithmeticOp</TT>, <TT>AttachOp</TT>, and <TT>StringOp</TT>, each of which has a <TT>Compute</TT> method and is in fact a subclass of <TT>PrimitiveOp</TT>. <TT>PrimitiveOp</TT> is purely a superclass and so never actually called in an executing program. But it is the call to <TT>PrimitiveOp</TT> that a static extractor sees when scanning the source code, since the polymorphic call to one of <TT>PrimitiveOp</TT>'s subclasses occurs at runtime.</P>
+<P class="docText">To get an accurate view of the architecture, we need to reconcile the <TT>PrimitiveOp</TT> static and dynamic information. To do this, we perform a fusion using SQL queries over the extracted <TT>calls</TT><span class="docEmphasis">, <TT>actually_calls</TT></span>, and <TT>has_subclass</TT> relations. In this way, we can see that the calls to <TT>PrimitiveOp::Compute</TT> (obtained from the static information) and to its various subclasses (obtained from the dynamic information) are really the same thing.</P>
+<P class="docText">The lists in <A class="docLink" HREF="#ch10fig05">Figure 10.5</A> show the items added to the fused view (in addition to the methods that the static and dynamic information agreed upon) and those removed from it (even though included in either the static or the dynamic information).</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch10fig05"></A>Figure 10.5. Items added to and omitted from the overall view</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="147" src="FILES/10fig05.gif" ALT="graphics/10fig05.gif"></p>
+</CENTER>
+
+<A NAME="ch10lev2sec6"></A><H4 class="docSection2Title"> DISAMBIGUATING FUNCTION CALLS</H4>
+<P class="docText">In a multi-process application, name clashes are likely to occur. For example, several processes might have a procedure called <TT>main</TT>. It is important that clashes be identified and disambiguated within the extracted views. Once again, by fusing information that can be easily extracted, we can remove this potential ambiguity. In this case, we need to fuse the static <TT>calls</TT> table with a "file/function containment" table (to determine which functions are defined in which source files) and a "build dependency" table (to determine which files are compiled to produce which executables). The fusion of these information sources allows potentially ambiguous procedure or method names to be made unique and hence unambiguously referred to in the architecture reconstruction process. Without view fusion, this ambiguity would persist into the architecture reconstruction.</P>
+
+<A NAME="ch10lev2sec7"></A><H4 class="docSection2Title"> GUIDELINES</H4>
+<P class="docText">The following are some practical considerations in applying this step of the method.</P>
+<UL>
+<LI><P class="docList">Fuse tables when no single extracted table provides the needed information.</P></LI>
+<LI><P class="docList">Fuse tables when there is ambiguity within one of them, and it is not possible to disambiguate using a single table.</P></LI>
+<LI><P class="docList">Consider different extraction techniques to extract different information; for example, you can use dynamic and static extraction. Or you might want to use different instances of the same technique, such as different parsers for the same language, if you feel that a single instance might provide erroneous or incomplete information.</P></LI>
+</UL>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch10lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch10lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

@@ -1,0 +1,163 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="13.3 Architectural Solution"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch13lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch13lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch13lev1sec3"></A><H3 class="docSection1Title">13.3 Architectural Solution</H3>
+<P class="docText">The basic architectural approach used for the Web, first at CERN and later at the World Wide Web Consortium (W3C), relied on clients and servers and a library (libWWW) that masks all hardware, operating system, and protocol dependencies. <A class="docLink" HREF="#ch13fig03">Figure 13.3</A> shows how the content producers and consumers interact through their respective servers and clients. The producer places content that is described in HTML on a server machine. The server communicates with a client using the HyperText Transfer Protocol (HTTP). The software on both the server and the client is based on libWWW, so the details of the protocol and the dependencies on the platforms are masked from it. One of the elements on the client side is a browser that knows how to display HTML so that the content consumer is presented with an understandable image.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch13fig03"></A>Figure 13.3. Content producers and consumers interact through clients and servers</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="236" src="FILES/13fig03.gif" ALT="graphics/13fig03.gif"></p>
+</CENTER>
+<P class="docText">We now go into more detail about both the libWWW and the client-server architecture used as the basis for the original Web and that still largely pervades Web-based software. <A class="docLink" HREF="0321154959_ch13lev1sec4.html#ch13lev1sec4">Section 13.4</A> will discuss how the architecture of the Web and Web-based software have changed in response to the e-commerce revolution.</P>
+<A NAME="ch13lev2sec3"></A><H4 class="docSection2Title"> MEETING THE ORIGINAL REQUIREMENTS: libWWW</H4>
+<P class="docText">As stated earlier, libWWW is a library of software for creating applications that run on either the client or the server. It provides the generic functionality that is shared by most applications: the ability to connect with remote hosts, the ability to understand streams of HTML data, and so forth.</P>
+<P class="docText">libWWW is a compact, portable library that can be built on to create Web-based applications such as clients, servers, databases, and Web spiders. It is organized into five layers, as shown in <A class="docLink" HREF="#ch13fig04">Figure 13.4</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch13fig04"></A>Figure 13.4. A layered view of libWWW</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="389" src="FILES/13fig04.gif" ALT="graphics/13fig04.gif"></p>
+</CENTER>
+<P class="docText">The generic utilities provide a portability layer on which the rest of the system rests. This layer includes basic building blocks for the system such as network management, data types such as container classes, and string manipulation utilities. Through the services provided by this layer, all higher levels can be made platform independent, and the task of porting to a new hardware or software platform can be almost entirely contained within the porting of the utilities layer, which needs to be done only once per platform.</P>
+<P class="docText">The core layer contains the skeletal functionality of a Web application—network access, data management and parsing, logging, and the like. By itself, this layer does nothing. Rather, it provides a standard interface for a Web application to be built upon, with the actual functionality provided by plug-in modules and call-out functions that are registered by an application. <span class="docEmphasis">Plug-ins</span> are registered at runtime and do the actual work of the core layer—sending and manipulating data. They typically support protocols, handle low-level transport, and understand data formats. Plug-ins can be changed dynamically, making it easy to add new functionality or even to change the very nature of the Web application.</P>
+<P class="docText"><span class="docEmphasis">Call-out</span> functions provide another way for applications to extend the functionality provided in the core layer. They are arbitrary application-specific functions that can be called before or after requests to protocol modules.</P>
+<P class="docText">What is the relationship between the generic utilities and the core? The generic utilities provide platform-independent functions, but they can be used to build any networked application. The core layer, on the other hand, provides the abstractions specific to building a Web application.</P>
+<P class="docText">The stream layer provides the abstraction of a stream of data used by all data transported between the application and the network.</P>
+<P class="docText">The access layer provides a set of network-protocol-aware modules. The standard set of protocols that libWWW originally supported are HTTP—the underlying protocol of the World Wide Web; Network News Transport Protocol (NNTP)—the protocol for Usenet messages; Wide Area Information Server (WAIS)—a networked information retrieval system; File Transfer Protocol (FTP), TELNET, rlogin, Gopher, local file system, and TN3270. Many of these are becoming rare, but others, such as HTTPS (HTTP Secure) have been added. It is relatively simple to add new protocol modules because they are built upon the abstractions of the lower layers.</P>
+<P class="docText">The uppermost layer, consisting of the Web application modules, is not an actual application but rather a set of functionality useful for writing applications. It includes modules for common functionality, such as caching, logging, and registering proxy servers (for protocol translation) and gateways (for dealing with security firewalls, for example); history maintenance, and so on.</P>
+
+<A NAME="ch13lev2sec4"></A><H4 class="docSection2Title"> LESSONS FROM libWWW</H4>
+<P class="docText">As a result of building libWWW and the many applications that rest on it, several lessons have been learned. These lessons have derived in part from the developers' experience in trying to meet the requirements that we listed in <A class="docLink" HREF="0321154959_ch13lev1sec2.html#ch13lev1sec2">Section 13.2</A>—that Web-based tools be heterogeneous, support remote access across networks, be noncentralized, and so forth. However, the requirement that turned out to be the most challenging was supplying unforeseen bells and whistles. That is, allowing the features of Web-based applications to grow has driven many decisions in libWWW and has led to the following lessons:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Formalized application programming interfaces (APIs) are required.</span> 
+These are the interfaces that present the functionality of libWWW to the programs built on top of it. For this reason, APIs should be specified in a language-independent fashion because libWWW is meant to support application development on a wide variety of platforms and in many languages.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Functionality and the APIs that present it must be layered.</span> 
+Different applications will need access to different levels of service abstraction, which are most naturally provided by layers.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">The library must support a dynamic, open-ended set of features.</span> 
+All of these features must be replaceable, and it must be possible to make replacements at runtime.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Processes built on the software must be thread safe.</span> 
+Web-based applications must support the ability to perform several functions simultaneously, particularly because operations such as downloading large files over a slow communication link may take a considerable amount of real time. This requires the use of several simultaneous threads of control. Thus, the functionality exposed by the APIs must be safe to use in a threaded environment.</p>
+</LI>
+</UL>
+<P class="docText">It turns out that libWWW does not support all of these goals as well as it might. For example, the libWWW core makes some assumptions about essential services, so not all features can be dynamically replaced. Furthermore, libWWW is meant to run on many different platforms, and so it can not depend on a single-thread model. Thus, it has implemented pseudothreads, which provide some, but not all, of the required functionality. Finally, most current Web applications do not support dynamic feature configuration; they require a restart before new services can be registered.</P>
+
+<A NAME="ch13lev2sec5"></A><H4 class="docSection2Title"> AN EARLY CLIENT-SERVER ARCHITECTURE USING libWWW</H4>
+<P class="docText">In <A class="docLink" HREF="#ch13fig05">Figure 13.5</A> we show a deployment view of a typical Web client-server that was built using libWWW services. A module decomposition view is also shown for the HTTP client and server components of the deployment view. The figure makes a few points about libWWW. First, not all parts of a client-server are built from it. For example, the user interface is independent. Second, the names of the managers do not directly correspond to the names of the layers: Although the access manager, protocol manager, and stream manager are clearly related to the access and stream layers, the cache manager uses the services of the application layer. The stream managers in the client-server pair manage the low-level communications, thus ensuring transparent communication across a network for the other parts of the system.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch13fig05"></A>Figure 13.5. Deployment view of a Web client-server with a module decomposition view of the HTTP client and server components</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="399" src="FILES/13fig05.gif" ALT="graphics/13fig05.gif"></p>
+</CENTER>
+<P class="docText">The user interface (UI) manager handles the look-and-feel of the client's user interface. However, given the open-ended set of resources that a WWW system can handle, another element, the presentation manager, can delegate information display to external programs (viewers) to view resources known by the system but that the UI manager does not directly support. For example, most Web viewers use an external program to view PostScript or .pdf files. This delegation is a compromise between the competing desires of user interface integration (which provides for a consistent look-and-feel and hence better usability) and extensibility.</P>
+<P class="docText">The UI manager captures a user's request for information retrieval in the form of a URL and passes the information to the access manager. The access manager determines if the requested URL exists in cache and also interprets history-based navigation (e.g., "back"). If the file is cached, it is retrieved from the cache manager and passed to the presentation manager for display to either the UI or an external viewer. If it is not cached, the protocol manager determines the type of request and invokes the appropriate protocol suite to service it. The client stream manager uses this protocol for communicating the request to the server. Once it receives a response from the server in the form of a document, this information is passed to the presentation manager for appropriate display. The presentation manager consults a static view control configuration file (mimerc, mailcap, etc.) to help it map document types to external viewers.</P>
+<P class="docText">The HTTP server ensures transparent access to the file system—the source of the documents that the Web exists to transfer. It does this either by handling the access directly (for known resource types) or through a proxy known as common gateway interface (CGI). CGI handles resource types that a native server cannot handle and handles extension of server functionality, as will be discussed next. Before these extensions, the available WWW servers implemented a subset of defined HTTP requests, which allowed for the retrieval of documents, the retrieval of document meta-information, and server-side program execution via CGI.</P>
+<P class="docText">When a request is received by the server stream manager, its type is determined and the path of the URL is resolved via the path resolver. The HTTP server consults an access list to determine if the requesting client is authorized for access. It might initiate a password authentication session with the client to permit access to secured data. Assuming authentication, it accesses the file system (which is outside the server boundary) and writes the requested information to the output stream. If a program is to be executed, a process is made available (either new or polled) through CGI and the program is executed, with the output written by the server stream manager back to the client.</P>
+<P class="docText">In either case, CGI is one of the primary means by which servers provide extensibility, which is one of the most important requirements driving the evolution of Web software. CGI became such an important aspect of Web-based applications that we now discuss this topic at greater length.</P>
+
+<A NAME="ch13lev2sec6"></A><H4 class="docSection2Title"> COMMON GATEWAY INTERFACE</H4>
+<P class="docText">Most information returned by a server is static, changing only when modified on its home file system. CGI scripts, on the other hand, allow dynamic, request-specific information to be returned. CGI has historically been used to augment server functionality: for input of information, for searches, for clickable images. The most common use of CGI, however, is to create <span class="docEmphasis">virtual documents</span>—documents that are dynamically synthesized in response to a user request. For example, when a user looks for something on the Internet, the search engine creates a reply to the user's search request; a CGI script creates a new HTML document from the reply and returns it to the user.</P>
+<P class="docText">CGI scripts show the flexibility of early architectures which were based on libWWW. In <A class="docLink" HREF="#ch13fig05">Figure 13.5</A>, CGI is shown as external to the HTTP server. CGI scripts are written in a variety of languages, some of which are compiled (C, C++, Fortran) and some of which are interpreted (perl, VisualBasic, AppleScript, etc.). These scripts allow a developer to extend a server's functionality arbitrarily and, in particular, to produce information that the server will return to the user.</P>
+<P class="docText">However, because scripts may contain any functionality written in C, perl, and so on, they represent an enormous security hole for the system on which they are installed. For example, a script (which runs as a process separate from the server) might be "tricked" into executing an arbitrary command on the host system on behalf of a remote user. For this reason, server-side scripts such as CGI have led to a new requirement for increased security. The use of HTTPS to address this requirement will be described in the next section.</P>
+<P class="docText">Probably the most important additional feature that CGI brought to the Web architecture is that it allows users to "put" information into the Web, in contrast to the "get" operation that servers normally provide. Although the requirement to put in information was listed in the original World Wide Web project requirements, it has not been fully achieved. CGI allows users to put information only in application-specific ways, such as adding it to a database by filling out a form.</P>
+
+<P class="docText">CGI solved many problems inherent in the original design of libWWW—principally because it provided much needed server extensibility to handle arbitrary resources, allowed users to put data in limited ways—it also had several substantial shortcomings. The security issue was one; another was portability. CGI scripts written in VisualBasic, AppleScript, and C Shell work on Windows, Macintosh, and UNIX, respectively. These scripts cannot be (easily) moved from one platform to another.</P>
+
+<A NAME="ch13lev2sec7"></A><H4 class="docSection2Title"> ACHIEVING INITIAL QUALITY GOALS</H4>
+<P class="docText"><A class="docLink" HREF="#ch13table02">Table 13.2</A> describes how the Web achieved its initial quality goals of remote access, interoperability, extensibility, and scalability.</P>
+<A NAME="ch13table02"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 13.2. How the WWW Achieved Its Initial Quality Goals</h5></CAPTION><COLGROUP align="left" span="3">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Goal</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">How Achieved</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Tactics Used</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Remote Access</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Build Web on top of Internet</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Adherence to defined protocols</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Interoperability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Use libWWW to mask platform details</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Abstract common services</P>
+<P class="docText">Hide information</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Extensibility of Software</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Isolate protocol and data type extensions in libWWW; allow for plug-in components (applets and servlets)</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Abstract common services</P>
+<P class="docText">Hide information</P>
+<P class="docText">Replace components</P>
+<P class="docText">Configuration files</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Extensibility of Data</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Make each data item independent except for references it controls</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Limit possible options</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Scalability</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Use client-server architecture and keep references to other data local to referring data location</P>
+</TD>
+<TD class="docTableCell" valign="top">
+<P class="docText">Introduce concurrency</P>
+<P class="docText">Reduce computational overhead</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch13lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch13lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

@@ -1,0 +1,443 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="3.3 Architecture for the A-7E Avionics System"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch03lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch03lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch03lev1sec3"></A><H3 class="docSection1Title" id="161597-829">3.3 Architecture for the A-7E Avionics System</H3>
+<P class="docText">The architecture for the A-7E avionics system is centered around three architectural structures discussed in <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A>:</P>
+<UL>
+<LI><P class="docList">Decomposition, a structure of modules</P></LI>
+<LI><P class="docList">Uses, a structure of modules</P></LI>
+<LI><P class="docList">Process, a structure of components and connectors</P></LI>
+</UL>
+<P class="docText">We will discuss each in turn.</P>
+<A NAME="ch03lev2sec1"></A><H4 class="docSection2Title"> DECOMPOSITION STRUCTURE</H4>
+<P class="docText">Unless a program is small enough to be produced by a single programmer, we must think how the work will be divided into units that can be implemented separately and how those modules will interact. The unit of the decomposition structure is, of course, the module. A module may be thought of as defining a group of procedures, some public and some private, plus a set of private data structures. The relation among modules in the decomposition structure is "is-a-submodule-of" or "shares-a-secret-with."</P>
+<P class="docText">Prior to 1977, performance was the overriding goal of embedded (as well as most other) systems. The goal of the A-7E designers was to balance performance with modifiability and demonstrate that it was possible to achieve modifiability without compromising performance.</P>
+<A NAME="ch03lev3sec1"></A><H5 class="docSection3Title"> Information Hiding</H5>
+<P class="docText">The A-7E module decomposition is based on information hiding. An architectural tactic we will revisit in <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A>, information hiding works by encapsulating system details that are likely to change independently in different modules. The interface of a module reveals only those aspects considered unlikely to change; the details hidden by the module interface are the module's secrets.</P>
+<P class="docText">For instance, if a device such as an aircraft altitude sensor is likely to be replaced over the life of an avionics program, the information-hiding principle makes the details of interacting with that device the secret of one module. The interface to the module provides an abstraction of the sensor, consisting perhaps of a single program that returns the most recent value measured by the sensor, because all replacement sensors probably share this capability. If the sensor is ever replaced, only the internal parts of that module need to change; the rest of the software is unaffected.</P>
+<P class="docText">Information hiding is enforced by requiring that modules interact only via a defined set of public facilities—their <span class="docEmphasis">interfaces</span>. Each module provides a set of <span class="docEmphasis">access procedures</span>, which may be called by any other module in the system. The access procedures provide the only inter-module means for interacting with information encapsulated in a module.</P>
+<P class="docText">Of course, this is the philosophy underlying object-based design, with a key difference: Whereas objects are created from the physical objects inherent in the application, or conjured up from intuitive insights about the system, information-hiding modules are derived by cataloging the changes to the software that are perceived to be likely over the system's lifetime.</P>
+<P class="docText">A module may consist of submodules, or it may be considered a single implementation unit. If it contains submodules, a guide to its substructure is provided. The decomposition into submodules and their design is continued until each module is small enough to be discarded and begun again if the programmer assigned to it leaves the project.</P>
+<P class="docText">Specific goals of module decomposition are as follows:</P>
+<UL>
+<LI><P class="docList">Each module's structure should be simple enough to be understood fully.</P></LI>
+<LI><P class="docList">It should be possible to change the implementation of one module without knowledge of the implementation of other modules and without affecting the behavior of other modules.</P></LI>
+<LI><P class="docList">The ease of making a change in the design should bear a reasonable relationship to the likelihood of the change being needed; it should be possible to make likely changes without changing any module interfaces; less likely changes may involve interface changes but only for modules that are small and not widely used. Only very unlikely changes should require changes in the interfaces of widely used modules.</P></LI>
+<LI><P class="docList">It should be possible to make a major software change as a set of independent changes to individual modules (i.e., except for interface changes, programmers changing the individual modules should not need to communicate). If the module interfaces are not revised, it should be possible to run and test any combination of old and new module versions.</P></LI>
+</UL>
+<P class="docText">The documentation of the decomposition structure is sometimes called a <span class="docEmphasis">module guide</span>. It defines the responsibilities of each of the modules by stating the design decisions that will be encapsulated by it. Its purpose is to avoid duplication and gaps, to achieve separation of concerns, and, most of all, to help a maintainer find out which modules are affected by a problem report or change request.</P>
+<P class="docText">The guide states the criteria used to assign a particular responsibility to a module and arranges the modules in such a way that we can find the necessary information without searching through unrelated documentation. It reflects the tree structure of the decomposition structure, dividing the system into a small number of modules and treating each one in the same way until all of them are quite small. Each nonleaf node in the tree represents a module composed of the modules represented by its descendants. The guide does not describe any runtime relationship among the modules: It doesn't talk about how modules interact with each other while the system is executing; rather, it simply describes a design-time relationship among the implementation units that constitute the design phase of a project.</P>
+<P class="docText">Applying this principle is not always easy. It is an attempt to lower the expected cost of software by anticipating likely changes. Such estimates are necessarily based on experience, knowledge of the application area, and an understanding of hardware and software technology. Because a designer might not have had all of the relevant experience, formal evaluation procedures were used that were designed to take advantage of the experience of others. <A class="docLink" HREF="#ch03table02">Table 3.2</A> summarizes the role of the module structure in the A-7E architecture.</P>
+<A NAME="ch03table02"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 3.2. How the A-7E Module Decomposition Structure Achieves Quality Goals</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Goal</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">How Achieved</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Ease of change to: weapons, platform, symbology, input</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Information hiding</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Understand anticipated changes</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Formal evaluation procedure to take advantage of experience of domain experts</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Assign work teams so that their interactions were minimized</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Modules structured as a hierarchy; each work team assigned to a second-level module and all of its descendants</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<A NAME="ch03lev3sec2"></A><H5 class="docSection3Title"> A-7E Module Decomposition Structure</H5>
+<P class="docText">To describe the A-7E module decomposition structure, and to give an example of how a module structure is documented, we provide the following excerpts from the A-7E software module guide. The decomposition tree is described beginning with the three highest-level modules. These are motivated by the observation that, in systems like the A-7E, changes tend to come from three areas: the hardware with which the software must interact, the required externally visible behavior of the system, and a decision solely under the jurisdiction of a project's software designer.</P>
+<BLOCKQUOTE>
+<P><p class="docText"><span class="docEmphStrong">Hardware-Hiding Module.</span> 
+The Hardware-Hiding Module includes the procedures that need to be changed if any part of the hardware is replaced by a new unit with a different hardware/software interface but with the same general capabilities. This module implements <span class="docEmphasis">virtual hardware</span>, or a set of abstract devices that are used by the rest of the software. The primary secrets of this module are the hardware/software interfaces. The secondary secrets of this module are the data structures and algorithms used to implement the virtual hardware. One of the submodules of the Hardware-Hiding Module is the Extended Computer Module that hides the details of the processor.</p>
+</P>
+<P><p class="docText"><span class="docEmphStrong">Behavior-Hiding Module.</span> 
+The Behavior-Hiding Module includes procedures that need to be changed if there are changes in requirements affecting the required behavior. Those requirements are the primary secret of this module. These procedures determine the values to be sent to the virtual output devices provided by the Hardware-Hiding Module.</p>
+</P>
+<P><p class="docText"><span class="docEmphStrong">Software Decision Module.</span> 
+The Software Decision Module hides software design decisions that are based on mathematical theorems, physical facts, and programming considerations such as algorithmic efficiency and accuracy. The secrets of this module are not described in the requirements document. This module differs from the other modules in that both the secrets and the interfaces are determined by software designers. Changes in these modules are more likely to be motivated by a desire to improve performance or accuracy than by externally imposed changes.</p>
+</P>
+</BLOCKQUOTE>
+<P class="docText">The module guide goes on to explain how conflicts among these categories (e.g., is a required algorithm part of the behavior or a software decision?) are arbitrated by a complete and unambiguous requirements specification and then provides the second-level decomposition. The following sections describe how the Software Decision Module is decomposed.</P>
+<BLOCKQUOTE>
+<P><p class="docText"><span class="docEmphasis">Application Data Type Module—</span> 
+The Application Data Type Module supplements the data types provided by the Extended Computer Module with data types that are useful for avionics applications and do not require a computer-dependent implementation. Examples of types include distance (useful for altitude), time intervals, and angles (useful for latitude and longitude). These data types are implemented using the basic numeric data types provided by the Extended Computer; variables of those types are used just as if the types were built into the Extended Computer.</p>
+<P class="docList">The secrets of the Application Data Type Module are the data representation used in the variables and the procedures used to implement operations on those variables. Units of measurement (such as feet, seconds, or radians) are part of the representation and are hidden. Where necessary, the modules provide conversion operators that deliver or accept real values in specified units.</P></P>
+<P><p class="docText"><span class="docEmphasis">Data Banker Module—</span> 
+Most data are produced by one module and consumed by another. In most cases, the consumers should receive a value that is as up to date as practical. The time at which a datum should be recalculated is determined both by properties of its consumer (e.g., accuracy requirements) and by properties of its producer (e.g., cost of calculation, rate of change of value). The Data Banker Module acts as a "middleman" and determines when new values for these data are computed.</p>
+<P class="docList">The Data Banker Module obtains values from producer procedures; consumer procedures obtain data from Data Banker access procedures. The producer and consumers of a particular datum can be written without knowing when a stored value is updated. In most cases, neither the producer nor the consumer need be modified if the updating policy changes.</P><P class="docList">The Data Banker provides values for all data that report on the internal state of a module or on the state of the aircraft. The Data Banker also signals events involving changes in the values that it supplies. The Data Banker is used as long as consumer and producer are separate modules, even when they are both submodules of a larger module. The Data Banker is not used if consumers require specific members of the sequence of values computed by the producer or if a produced value is solely a function of the values of input parameters given to the producing procedure, such as sin(<span class="docEmphasis">x</span>).<sup class="docFootnote"><A class="docLink" HREF="#ch03fn01">[1]</A></sup></P>
+<blockquote><p class="docFootnote"><sup><A NAME="ch03fn01">[1]</A></sup> The Data Banker Module is an example of the use of the blackboard architectural pattern (see <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A>, Achieving Qualities).</p></blockquote>
+<P class="docList">The choice among updating policies should be based on the consumers' accuracy requirements, how often consumers require the value, the maximum wait that consumers can accept, how rapidly the value changes, and the cost of producing a new value. This information is part of the specification given to the implementor of the Data Banker Module.</P>
+</P>
+<P><p class="docText"><span class="docEmphasis">Filter Behavior Module—</span> 
+The Filter Behavior Module contains digital models of physical filters. They can be used by other procedures to filter potentially noisy data. The primary secrets of this module are the models used for the estimation of values based on sample values and error estimates. The secondary secrets are the computer algorithms and data structures used to implement those models.</p>
+</P>
+<P><p class="docText"><span class="docEmphasis">Physical Models Module</span>— 
+The software requires estimates of quantities that cannot be measured directly but can be computed from observables using mathematical models. An example is the time that a ballistic weapon will take to strike the ground. The primary secrets of the Physical Models Module are the models; the secondary secrets are the computer implementations of those models.</p>
+</P>
+<P><p class="docText"><span class="docEmphasis">Software Utility Module—</span> 
+The Software Utility Module contains those utility routines that would otherwise have to be written by more than one other programmer. The routines include mathematical functions, resource monitors, and procedures that signal when all modules have completed their power-up initialization. The secrets of the module are the data structures and algorithms used to implement the procedures.</p>
+</P>
+<P><p class="docText"><span class="docEmphasis">System Generation Module—</span> 
+The primary secrets of the System Generation Module are decisions that are postponed until system generation time. These include the values of system-generation parameters and the choice among alternative implementations of a module. The secondary secrets of the System Generation Module are the method used to generate a machine-executable form of the code and the representation of the postponed decisions. The procedures in this module do not run on the onboard computer; they run on the computer used to generate the code for the onboard system.</p>
+</P>
+</BLOCKQUOTE>
+<P class="docText">The module guide describes a third- (and in some cases a fourth-) level decomposition, but that has been omitted here. <A class="docLink" HREF="#ch03fig04">Figure 3.4</A> shows the decomposition structure of the A-7E architecture down to the third level. Notice that many of the Device Interface modules have the same names as Function Driver modules. The difference is that the Device Interface modules are programmed with knowledge of how the software interfaces with the devices; the Function Driver modules are programmed with the knowledge of values required to be computed and sent to those devices. This suggests another architectural relationship that we will explore shortly: how the software in these modules cooperates to accomplish work.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch03fig04"></A>Figure 3.4. The module decomposition view of the A-7E software architecture</H5><p class="docText"><IMG BORDER="0" WIDTH="430" HEIGHT="578" src="FILES/03fig04.jpg" ALT="graphics/03fig04.jpg"></p>
+</CENTER>
+<P class="docText">But the module decomposition view is not yet complete. Recall from <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A> our definition of architecture as including the behavioral specification for each of the elements. Carefully designed language-independent interfaces are crucial for maintaining portability and achieving interoperability. Here, each module must have an interface specified for it. <A class="docLink" HREF="0321154959_ch09.html#ch09">Chapter 9</A> discusses documentation for software interfaces.</P>
+<P class="docText">In the previous chapter, we remarked that architectures serve as the blueprint for the developing project as well as for the software. In the case of the A-7E architecture, this second-level module decomposition structure became enshrined in many ways: Design documentation, online configuration-controlled files, test plans, programming teams, review procedures, and project schedule and milestones all used it as their unit of reference.</P>
+
+
+<A NAME="ch03lev2sec2"></A><H4 class="docSection2Title"> USES STRUCTURE</H4>
+<P class="docText">The second major structure of interest in the A-7E architecture is the uses structure. The decomposition structure carries no information about runtime execution of the software; you might make an educated guess as to how two procedures in different modules interact at runtime, but this information is not in fact in the module decomposition. Rather, the uses structure supplies the authoritative picture of how the software interacts.</P>
+<A NAME="ch03lev3sec3"></A><H5 class="docSection3Title"> The Uses Relation</H5>
+<P class="docText">The concept behind the uses structure is the uses relation. Procedure A is said to <span class="docEmphasis">use</span> procedure B if a correctly functioning procedure B must be present in order for procedure A to meet its requirements. In practice this relation is similar to but not quite the same as the calls relation. Procedure A usually calls procedure B because it uses it. However, here are two cases where uses and calls are different:</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><P class="docList">Procedure A is simply required to call procedure B in its specification, but the future computation performed by A will not depend on what B does. Procedure B must be present in order for procedure A to work, but it need not be correct. A calls, but does not use, B. B might be an error handler, for example.</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">Procedure B performs its function without being called by procedure A, but A uses the results. The results might be an updated data store that B leaves behind. Or B might be an interrupt handler that A assumes exists and functions correctly. A uses, but does not call, B.</P></span></LI>
+</OL></span>
+<P class="docText">The uses relation allows rapid identification of functional subsets. If you know that procedure A needs to be in the subset, you also know that every procedure that A uses must also be there. The transitive closure of this relation defines the subset. It therefore pays to engineer this structure, to impose a discipline on it, so that every subset needn't consist of the entire system. This means specifying an allowed-to-use structure for programmers. After implementation is complete, the actual uses can be cataloged.</P>
+<P class="docText">The unit of the uses (or allowed-to-use) structure is the access procedure. By dictating what procedures are allowed to use which other procedures (and, by implication, what procedures are <span class="docEmphasis">not</span> allowed to be used by which other procedures), the uses structure is defined.</P>
+<P class="docText">Although the unit of the uses structure is a procedure, in practice all of the procedures of a module may share usage restrictions. Hence, the name of a module might appear in the uses structure; if so, it is shorthand for all of the access procedures in that module.</P>
+<P class="docText">The uses (allowed-to-use) structure is conceptually documented with a binary matrix; each row and column lists every procedure in the system. Thus, if element (<span class="docEmphasis">m,n</span>) is true, then procedure <span class="docEmphasis">m</span> uses (is allowed to use) procedure <span class="docEmphasis">n</span>. In practice, this is too cumbersome, and a shorthand was introduced in which rules for whole modules (as opposed to individual procedures within each module) were adopted.</P>
+<P class="docText"><A class="docLink" HREF="#ch03table03">Table 3.3</A> summarizes the role of the uses structure in the A-7E software architecture.</P>
+<A NAME="ch03table03"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 3.3. How the A-7E Uses Structure Achieves Quality Goals</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Goal</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">How Achieved</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Incrementally build and test system functions</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Create "is-allowed-to-use" structure for programmers that limits procedures each can use</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Design for platform change</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Restrict number of procedures that use platform directly</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Produce usage guidance of manageable size</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Where appropriate, define uses to be a relationship among modules</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+
+<A NAME="ch03lev3sec4"></A><H5 class="docSection3Title"> The A-7E Uses Structure</H5>
+<P class="docText">Recall that the uses structure is first documented in a specification showing the allowed-to-use relation; actual uses are extracted after implementation. The allowed-to-use specification for the A-7E architecture is a seven-page table of which <A class="docLink" HREF="#ch03table04">Table 3.4</A> is a short excerpt. The two-character preface refers to the second-level modules. The names to the right of the period refer to submodule names that we have mostly omitted from this chapter.</P>
+<A NAME="ch03table04"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 3.4. Excerpt from the A-7E Allowed-to-Use Specification</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Using procedures: A procedure in &#8230;</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">&#8230; is allowed to use any procedure in &#8230;</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" valign="top">
+<p class="docText"><span class="docEmphRoman">EC:</span> 
+Extended Computer Module</p>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">None</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<p class="docText"><span class="docEmphRoman">DI:</span> 
+Device Interface Module</p>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">EC.DATA, EC.PGM, EC.IO, EC.PAR, AT.NUM, AT.STE, SU</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<BLOCKQUOTE>
+<P><p class="docText"><span class="docEmphRoman">ADC:</span> 
+Air Data Computer</p>
+</P>
+</BLOCKQUOTE>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">PM.ECM</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<BLOCKQUOTE>
+<P><p class="docText"><span class="docEmphRoman">IMS:</span> 
+Inertial Measurement Set</p>
+</P>
+</BLOCKQUOTE>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">PM.ACM</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<p class="docText"><span class="docEmphRoman">FD:</span> 
+Function Driver Module</p>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">EC.DATA, EC.PAR, EC.PGM, AT.NUM, AT.STE, SU, DB.SS.MODE, DB.SS.PNL.INPUT, DB.SS.SYSVAL, DB.DI </P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<BLOCKQUOTE>
+<P><p class="docText"><span class="docEmphRoman">ADC:</span> 
+Air Data Computer Functions</p>
+</P>
+</BLOCKQUOTE>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">DB.DI.ADC, DI.ADC, FB</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<BLOCKQUOTE>
+<P><p class="docText"><span class="docEmphRoman">IMS:</span> 
+IMS Functions</p>
+</P>
+</BLOCKQUOTE>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">DB.DI.IMS, DI.IMS</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<BLOCKQUOTE>
+<P><p class="docText"><span class="docEmphRoman">PNL:</span> 
+Panel Functions</p>
+</P>
+</BLOCKQUOTE>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">EC.IO, DB.SS.PNL.CONFIG, SS.PNL. FORMAT, DI.ADC, DI.IMS, DI.PMDS, DI.PNL</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<p class="docText"><span class="docEmphRoman">SS:</span> 
+Shared Services Module</p>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">EC.DATA, EC.PGM, EC.PAR, AT.NUM, AT.STE, SU</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<BLOCKQUOTE>
+<P><p class="docText"><span class="docEmphRoman">PNL:</span> 
+Panel I/O Support</p>
+</P>
+</BLOCKQUOTE>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">DB.SS.MODE, DB.DI.PNL, DB.DI.SWB, SS.PNL.CONFIG, DI.PNL</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<p class="docText"><span class="docEmphRoman">AT:</span> 
+Application Data Type Module</p>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">EC.DATA, EC.PGM</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<BLOCKQUOTE>
+<P><p class="docText"><span class="docEmphRoman">NUM:</span> 
+Numeric Data Types</p>
+</P>
+</BLOCKQUOTE>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">None additional</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" valign="top">
+<BLOCKQUOTE>
+<P><p class="docText"><span class="docEmphRoman">STE:</span> 
+State Transition Events</p>
+</P>
+</BLOCKQUOTE>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">EC.PAR</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">Notice the pattern that emerges:</P>
+<UL>
+<LI><P class="docList">No procedure in the Extended Computer Module is allowed to use a procedure in any other module, but all other modules are allowed to use (portions of) it.</P></LI>
+<LI><P class="docList">Procedures in the Application Data Type Module are allowed to use only procedures in the Extended Computer Module and nothing else.</P></LI>
+<LI><P class="docList">Procedures in the Device Interface Module (at least the part shown) are allowed to use only Extended Computer, Application Data Type, and Physical Models procedures.</P></LI>
+<LI><P class="docList">Function Driver and Shared Services procedures can use Data Banker, Extended Computer, Application Data Type, and Device Interface procedures.</P></LI>
+<LI><P class="docList">No procedure can use any procedure in the Function Driver Module.</P></LI>
+<LI><P class="docList">Only a Function Driver procedure can use a Shared Services procedure.</P></LI>
+</UL>
+<P class="docText">What we have is a picture of a system partitioned into <span class="docEmphasis">layers</span>. The Extended Computer Module is the bottommost layer, and the Application Data Type Module is built right on top of it. The two form a virtual machine in which a procedure at a particular level is allowed to use a procedure at the same or any lower level.</P>
+<P class="docText">At the high end of the layering come the Function Driver and Shared Services modules, which have the freedom to use a wide variety of system facilities to do their jobs. In the middle layers lie the Physical Models, Filter Behavior, and Data Banker modules. The Software Utilities reside in parallel with this structure and are allowed to use anything (except the Function Drivers) necessary to accomplish their individual tasks.</P>
+<P class="docText">Layered architectures are a well-known architectural pattern and occur in many of the case studies in this book. Layering emerges from the uses structure, but is not a substitute for it as layering does not show what subsets are possible. This is the point of the uses structure—a <span class="docEmphasis">particular</span> Function Driver Module will use a <span class="docEmphasis">particular</span> set of Shared Services, Data Banker, Physical Models, Device Interface, Application Data Type, and Extended Computer operations. The used Shared Services in turn use their own set of lower-level procedures, and so forth. The complete set of procedures derived in this manner constitutes a subset.</P>
+<P class="docText">The allowed-to-use structure also provides an image of how the procedures of modules interact at runtime to accomplish tasks. Each Function Driver procedure controls the output value associated with one output device, such as the position of a displayed symbol. In general, a Function Driver procedure retrieves data (via Data Banker procedures) from data producers, applies rules for computing the correct value of its assigned output, and sends that value to the device by calling the appropriate Device Interface procedure. Data may come from one of the following:</P>
+<UL>
+<LI><P class="docList">Device Interface procedures about the state of the world with which the software interfaces</P></LI>
+<LI><P class="docList">Physical Models procedures that compute predictive measures about the outside world (such as where a bomb will strike the earth if released now, given the aircraft's current position and velocity)</P></LI>
+<LI><P class="docList">Shared Services procedures about the current mode, the trustworthiness of current sensor readings, or what panel operations the pilot has requested</P></LI>
+</UL>
+<P class="docText">Once the allowed-to-use structure is designed, implementors know what interfaces they need to be familiar with in order to do their work. After implementation is complete, the actual uses structure can be documented so that subsets can be fielded. The ability to deploy a subset of a system is an important part of the Evolutionary Delivery Life Cycle (see <A class="docLink" HREF="0321154959_ch07.html#ch07">Chapter 7</A>, Designing the Architecture). When budgets are cut (or overrun) and schedules slip, delivering a subset is often the best way to put a positive face on a bad situation. It is probably the case that more subsets would be delivered (instead of nothing at all) if the architectural structure necessary to achieve them—the uses structure—had been carefully designed.</P>
+
+
+<A NAME="ch03lev2sec3"></A><H4 class="docSection2Title"> PROCESS STRUCTURE</H4>
+<P class="docText">The third structure of architectural importance to the A-7E is the process structure. Even though the underlying aircraft computer is a uniprocessor, the Extended Computer Module presents a virtual programming interface that features multiprocessing capabilities. This was to plan for if and when the A-7E computer was replaced with an actual multi-processor. Hence, the software was implemented as a set of cooperating sequential processes that synchronize with each other to cooperatively use shared resources. The set was arranged using offline (pre-runtime) scheduling to produce a single executable thread that is then loaded onto the host computer.</P>
+<P class="docText">A process is a set of programming steps that are repeated in response to a triggering event or to a timing constraint. It has its own thread of control, and it can suspend itself by waiting for an event (usually by invoking one of the event-signaling programs on a module's interface).</P>
+<P class="docText">Processes are written for two purposes in the A-7E. The first is for the function drivers to compute the output values of the avionics software. They are required to run periodically (e.g., to continuously update a symbol position on the heads-up display) or in response to some triggering event (e.g., when the pilot presses the weapon release button). It is natural to implement these as processes. Conceptually, function driver processes are structured as follows:</P>
+<UL>
+<LI><P class="docList">Periodic process: do every 40 milliseconds</P><DL>
+<DD><P class="docList">- Call other modules' access procedures to gather the values of all relevant inputs</P></DD><DD><P class="docList">- Calculate the resulting output value</P></DD><DD><P class="docList">- Call the appropriate Device Interface procedure to send the output value to the outside world</P></DD></DL></LI>
+<LI><P class="docList">End periodic process</P></LI>
+<LI><P class="docList">Demand process</P><DL>
+<DD><P class="docList">- Await triggering event</P></DD><DD><P class="docList">- Calculate the resulting output outcome</P></DD><DD><P class="docList">- Call the appropriate Device Interface procedure to trigger the action in the outside world</P></DD></DL></LI>
+<LI><P class="docList">End demand process</P></LI>
+</UL>
+<P class="docText">Processes also occur, although less frequently, as a way to implement certain access procedures. If the value returned by an access procedure is expensive to compute, a programmer might meet the timing requirements by continuously computing the value in the background and simply returning the most recent value immediately when the access procedure is called. For example,</P>
+<UL>
+<LI><P class="docList">Process: do every 100 milliseconds</P><DL>
+<DD><P class="docList">- Gather inputs to compute value</P></DD><DD><P class="docList">- Compute value</P></DD><DD><P class="docList">- Store in variable most_recent</P></DD></DL></LI>
+<LI><P class="docList">End process</P></LI>
+<LI><P class="docList">Procedure get_value(p1)</P><DL>
+<DD><P class="docList">- p1 := most_recent.</P></DD><DD><P class="docList">- return</P></DD></DL></LI>
+<LI><P class="docList">End procedure</P></LI>
+</UL>
+<P class="docText">The process structure, then, consists of the set of processes in the software. The relation it contains is "synchronizes-with," which is based on events that one process signals and one or more processes await. This relation is used as the primary input to the scheduling activity, which includes deadlock avoidance.</P>
+<P class="docText">The offline scheduling techniques used in the A-7E software are beyond the scope of this treatment, but they avoid the overhead of a runtime scheduler, and they would not have been possible without the information contained in the process structure. The process structure also allows an optimization trick: merging two otherwise unrelated processes, which makes scheduling easier in many circumstances and avoids the overhead of context switching when one process suspends and another resumes. This technique is invisible to programmers, occurring automatically during system construction. <A class="docLink" HREF="#ch03table05">Table 3.5</A> summarizes the role of the process structure in the A-7E architecture.</P>
+<A NAME="ch03table05"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 3.5. How the A-7E Process Structure Achieves Quality Goals</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Goal</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">How Achieved</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Map input to output </P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Each process implemented as cycle that samples, inputs, computes, and presents output</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Maintain real-time constraints</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Identify process through process structure and then perform offline scheduling </P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Provide results of time-consuming calculations immediately</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Perform calculations in background and return most recent value when queried</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">The process structure emerged after the other structures had been designed. Function Driver procedures were implemented as processes. Other processes computed time-consuming calculations in the background so that a value would always be available.</P>
+<P class="docText">Two kinds of information were captured in the process structure. The first documented what procedures were included in the body of each process. This gave a picture of the threads that ran through the system and also told the implementors which procedures must be coded to be re-entrant (i.e., able to carry two or more threads of control simultaneously) by using protected data stores or mutual exclusion. It also gave designers early insight into which procedures were going to be invoked most often, suggesting areas where optimization would pay off.</P>
+<P class="docText">The second kind of information in the process structure documented which processes (or sequential segments of process threads) could not execute simultaneously. The actual regions of mutual exclusion were not finalized until the processes were completely coded, but the early "excludes" relation among processes let the scheduling team understand some of the quantitative requirements of the offline scheduler and start planning on areas where automation would be most helpful.</P>
+<P><A NAME="ch03sb02"></A><TABLE CELLSPACING="0" WIDTH="90%" BORDER="1"><TR><TD>
+<H2 class="docSidebarTitle">Success or Failure?</H2>
+<P class="docText">Bob Glass, in his editorial in the November 1998 issue of <span class="docEmphasis">The Journal of Systems and Software</span> [<A class="docLink" HREF="0321154959_biblio01.html#biblio01entry51">Glass 98</A>], argues that the A-7E was a failure because the software described in this chapter never flew. I have a great deal of respect for Bob, both personally and professionally, but in this case he is mistaken. He is evaluating a research system by commercial standards.</P>
+<P class="docText">What do I mean by that? The research world and the commercial world have different cultures and different standards for success. One manifestation of this difference is how the two worlds "sell" to their customers. The commercial world prides itself on delivering, on time and on budget, what is specified. You would justifiably be upset if you went to your local automotive dealer to purchase a car and it wasn't delivered on time, at the cost you contracted for, and performing in the fashion you expected.</P>
+<P class="docText">The research world "sells" on vision. That is, a research proposal specifies how the world will be different if the funder supports the proposed research. The funder should be upset if, at the end of the research, what is delivered is something that could be purchased at a local commercial establishment. Usually the funder is quite satisfied if the research produces new ideas that have the potential to change the world.</P>
+<P class="docText">While these characterizations are admittedly idealized, they are by and large accurate. Commercial customers frequently want innovation. Research customers almost always want deliverables. Also, both camps must often promise deliverables that cannot be delivered as a means of securing sales. Still, the heart of this characterization is true.</P>
+<P class="docText">The goal of the A-7E project described in this chapter was to demonstrate to a skeptical world that "object-oriented techniques" (although the terminology was different then) could be used to construct real-time high-performance software. This is a research objective. The goal was to change the world as it was seen then. From a research perspective, the success of the Software Cost Reduction program (of which the A-7E development was a portion) can be seen in the number of citations it has been given in the research literature (in the hundreds). It can also be seen in the general acceptance of much of what was revolutionary at the time in terms of encapsulation and information hiding.</P>
+<P class="docText">So the A-7E was a commercial "failure," but it was a research success. To go back to Bob's argument, the question is Did the Navy get what they were paying for? This depends on whether the Navy thought it was paying for a production system or a research effort. Since the effort was housed in the Naval Research Laboratory, it seems clear that the A-7E was a research effort and should be judged by research standards.</P>
+<P class="docText"><span class="docEmphasis">— LJB</span></P>
+</TD></TR></TABLE></P>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch03lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch03lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

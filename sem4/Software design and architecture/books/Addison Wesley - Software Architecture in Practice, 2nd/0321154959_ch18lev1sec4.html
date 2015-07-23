@@ -1,0 +1,228 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="18.4 ASEILM Example"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch18lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch18lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch18lev1sec4"></A><H3 class="docSection1Title">18.4 ASEILM Example</H3>
+<P class="docText">Our example centers around a Web-based information system developed at the Software Engineering Institute (SEI) for automating administrative interactions between SEI and its transition partners. The Automated SEI Licensee Management (ASEILM) system was created with the following objectives:</P>
+<UL>
+<LI><P class="docList">To support the distribution of SEI-licensed materials, such as courses and assessment kits, to authorized individuals</P></LI>
+<LI><P class="docList">To collect administrative information for assessments</P></LI>
+<LI><P class="docList">To graphically present revenue, attendance, and other information about SEI licensed materials</P></LI>
+<LI><P class="docList">To track course attendance and royalties due to SEI</P></LI>
+</UL>
+<P class="docText">ASEILM must support the following multiple user types, each with varying authorization to perform system functions:</P>
+<UL>
+<LI><P class="docList">Course instructors can input course attendee lists, maintain contact information, and download course materials.</P></LI>
+<LI><P class="docList">Lead assessors can set up assessments, input assessment information, and download assessment kits.</P></LI>
+<LI><P class="docList">SEI administrators can maintain lists of authorized instructors and lead assessors, as well as view or edit any information maintained by the system.</P></LI>
+</UL>
+<A NAME="ch18table01"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 18.1. Quality Attribute Requirements</h5></CAPTION><COLGROUP align="left" span="2">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="middle">
+<P class="docText"><span class="docEmphStrong">Quality Attribute</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="middle">
+<P class="docText"><span class="docEmphStrong">Requirement</span> </P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Functionality</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Provide Web-based access to a geographically dispersed customer base</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Performance</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Provide adequate performance to users running overseas on low-bandwidth connections (i.e., download times in tens of minutes, not hours)</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Compatibility</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Support older versions of Web browsers including Netscape 3.0 and Internet Explorer 3.0</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Security</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Support multiple classes of users and provide an identification and authorization scheme to allow users to identify themselves</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Security</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Provide commercial-grade secure transfer of data over the Internet</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">Based on an initial analysis, the developers were able to generate a list of system requirements, many of which mapped directly to the qualities of the system being developed (see <A class="docLink" HREF="#ch18table01">Table 18.1</A>).</P>
+<P class="docText">The normal give and take of requirements negotiation is different with off-the-shelf components. You may expect both more and less from them—more in the sense that more functionality is provided by these components "for free," less in the sense that this functionality may not precisely meet your organization's needs, and changing it may be difficult or impossible.</P>
+<A NAME="ch18lev2sec4"></A><H4 class="docSection2Title"> MIVA EMPRESSA ENSEMBLE</H4>
+<P class="docText">Building systems from off-the-shelf components is viewed by management as a simplification of the development process, requiring less experienced programmers than standard custom development. In fact, the opposite is almost always true: Development is typically <span class="docEmphasis">more</span> difficult, at least new development, with a new set of components. Extensive experience is often necessary to identify components that can be used to achieve a design; to understand compatibilities between these components and others; and to determine the tradeoffs between requirements, the use of specific components, and the overall costs. In the absence of this experience, a time-consuming search and qualification process must be undertaken.</P>
+<P class="docText">In our example, the development team already had some familiarity with the Miva Empressa application server and preferred to use it as part of their initial hypothesis. <span class="docEmphasis">Miva Empressa</span> is an extension of Microsoft's Internet Information Server (IIS) that runs XML-based Miva Script. Miva Script applications running under Miva Empressa execute within IIS and can carry out complex computations, including database access. They are embodied in the "custom component" shown in <A class="docLink" HREF="#ch18fig02">Figure 18.2</A>. Note that this was the <span class="docEmphasis">only</span> component developed from scratch by the ASEILM team.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch18fig02"></A>Figure 18.2. Miva Empressa ensemble</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="398" src="FILES/18fig02.gif" ALT="graphics/18fig02.gif"></p>
+</CENTER>
+<P class="docText">The ASEILM ensemble used several off-the-shelf components in addition to the Miva Empressa application server:</P>
+<UL>
+<LI><P class="docList">Microsoft Access as a database management system</P></LI>
+<LI><P class="docList">Visual Mining's ChartWorks product to graph revenue, attendance, and other related information</P></LI>
+<LI><P class="docList">Microsoft IIS as an HTTP server</P></LI>
+<LI><P class="docList">Windows NT 4.0 as the operating system on the server platform</P></LI>
+</UL>
+<P class="docText">A client could be represented by any number of potential platforms and browsers. The initial ensemble included the Netscape 3.0 browser and the Windows 98 operating system. Netscape 3.0 represented an older browser version, with limited capabilities, but it was used by many lead assessors (one kind of ASEILM user). Windows 98 was used extensively in the ASEILM user base.</P>
+<P class="docText">The definition of an ensemble is a pre-condition to the model-process work flow. This ensemble then, served as the basis for the initial model solution illustrated in <A class="docLink" HREF="#ch18fig02">Figure 18.2</A>. In the following sections, we illustrate the model problem process using as the primary hypothesis that the Miva Empressa ensemble would be a satisfactory solution.</P>
+<A NAME="ch18lev3sec4"></A><H5 class="docSection3Title"> Step 1: Identify a Design Question</H5>
+<P class="docText">The first step in the model problem process is to formulate one or more hypotheses, as use cases or scenarios, that test the design to see if the ensemble is a feasible solution. The following hypotheses were derived from the system quality attributes given in <A class="docLink" HREF="#ch18table01">Table 18.1</A>:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Hypothesis 1.</span> 
+The ensemble can provide Web-based access to data maintained within the Access database, and display this data graphically using bar charts and other business graphics.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Hypothesis 2.</span> 
+Communication between the Web browser and the HTTP server can be encrypted using HTTPS.</p>
+</LI>
+</UL>
+<P class="docText">Hypothesis 1 was established primarily to test the functionality of the system and the ability to integrate the required components. Hypothesis 2 was established to prove the feasibility of meeting one of the stated security quality objectives for ASEILM: providing secure transfer of data over the Internet.</P>
+<P class="docText">Proving both hypotheses does not, in this case, prove the feasibility of the overall ensemble, but it does allow progress toward a demonstration of feasibility by evaluating its additional required qualities. At the same time, evaluation of these hypotheses allows increased understanding of the components and their interactions within the ensemble.</P>
+
+<A NAME="ch18lev3sec5"></A><H5 class="docSection3Title"> Step 2: Define the Starting Evaluation Criteria</H5>
+<P class="docText">Evaluation criteria are necessary to determine if the model solution supports or disproves the initial hypotheses.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Criterion 1.</span> 
+The model solution can display a chart in the browser using data stored in the Access database.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Criterion 2.</span> 
+Secure data can be transferred between the HTTP server and the Web browser over an HTTPS connection.</p>
+</LI>
+</UL>
+<P class="docText">It is important that the success of the evaluation criteria be verifiable. For example, in the case of criterion 2, the security of data transfer can usually be established by observing the presence of the lock icon in the Web browser. Proper testing procedures must be used, however, to ensure that data being displayed in the Web browser actually originated in the database and was not "cached" somewhere along the route.</P>
+
+<A NAME="ch18lev3sec6"></A><H5 class="docSection3Title"> Step 3: Identify Implementation Constraints</H5>
+<P class="docText">The constraints define inflexible elements in the design context. They make sure that the design solution is valid for the system under development. In this example, there were no implementation constraints other than those already identified.</P>
+
+<A NAME="ch18lev3sec7"></A><H5 class="docSection3Title"> Step 4: Produce a Model Solution</H5>
+<P class="docText">After the model problem had been fully defined, the development team began implementing the model solution—that is, the minimal application necessary to support or contradict the hypothesis. During implementation, it is permissible and beneficial to identify additional criteria that must be satisfied to demonstrate the feasibility of the ensemble.</P>
+<P class="docText">In the model solution for this example, ChartWorks is used to graph revenue, attendance, and other related information. The developers first attempted a straightforward solution that had the browser sending IIS an HTML statement to be forwarded to ChartWorks. The statement contained a query that identified the data to be graphed. They discovered two problems, however: coupling the labels of the graph to the data in it and maintaining a secure connection.</P>
+<A NAME="ch18lev4sec1"></A><H5 class="docSection4Title"> Coupling labels and data</H5>
+<P class="docText">ChartWorks uses the chart description language (CDL) to describe the chart, including how information would be extracted from the database (in this case, Access) and integrated into it. In this ensemble, chart labels and chart data needed to be extracted from the Access database, which required two different CDL statements. Unfortunately, CDL does not provide any mechanisms that could be used to pair the information generated as a result of different statements. This prevented its use to query the database directly. Instead, Miva was used to query the Access database and to create a text file that combined the label and the data information. A CDL statement was created to retrieve data from this file instead of communicating directly with the database.</P>
+<P class="docText">Although this approach worked, it introduced significant complexity. For example, it was necessary to keep track of multiple intermediate files for different user sessions and to make sure these were not confused.</P>
+
+<A NAME="ch18lev4sec2"></A><H5 class="docSection4Title"> Secure communication</H5>
+<P class="docText">The HTML statement processed by IIS specifies the retrieval of an image generated by ChartWorks. Thus, IIS is constrained to use the ChartWorks APIs. ChartWorks provides an API for HTTP but not for HTTPS. This prevents a secure connection from being established between ChartWorks and the browser. To work around this problem, the team experimented with removing the HTTPS connection between IIS and ChartWorks. Since they are located on the same processor, security is enforced through access to the processor, not through the communication protocol. Unfortunately, this did not work either because there were both secure and insecure elements in a single Web page and the browser either did not allow the display of the page or informed the user of an insecure portion of a transmission. Neither option was acceptable.</P>
+<P class="docText">To repair these problems, the team created a perl proxy server that sits between IIS and ChartWorks. They were then able to establish a secure connection between IIS and the proxy server so that the proxy server could communicate with ChartWorks using an HTTP connection. This solution is illustrated in <A class="docLink" HREF="#ch18fig03">Figure 18.3</A>. The HTML statement was modified to invoke the perl proxy server.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch18fig03"></A>Figure 18.3. Introduction of Proxy server</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="399" src="FILES/18fig03.gif" ALT="graphics/18fig03.gif"></p>
+</CENTER>
+
+
+<A NAME="ch18lev3sec8"></A><H5 class="docSection3Title"> Step 5: Identify Ending Evaluation Criteria</H5>
+<P class="docText">Additional evaluation criteria were identified during implementation of the Miva model solution; in particular, new quality attribute requirements were identified. During implementation, it was observed that the graphical presentation elements of the solution were highly intertwined with back-end logic. This made it difficult for graphic designers to help develop the system's user interface because they were unfamiliar with general-purpose programming. The following evaluation criterion thus joined the model problem:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Criterion 3.</span> 
+Presentation logic must be maintained separately from back-end business and database logic, and communicated through well-defined interfaces.</p>
+</LI>
+</UL>
+<P class="docText">It was also discovered that the Access database did not support remote connections. Although communication with the database from the Miva application server through the ODBC interface was possible, the database had to be co-located on the same platform as the IIS server. Since IIS had to be located outside the SEI firewall to be available to the user community, the database had to be outside as well. This constraint was unacceptable, leading to the addition of a fourth criterion:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Criterion 4.</span> 
+The database must be located in a secure location, behind the firewall.</p>
+</LI>
+</UL>
+
+<A NAME="ch18lev3sec9"></A><H5 class="docSection3Title"> Step 6: Evaluate the Model Solution</H5>
+<P class="docText">Once the model solution had been implemented, and the additional evaluation criteria identified, the architect could evaluate the solution against the criteria.</P>
+<P class="docText">Through the use of repair mechanisms, both of the initial criteria could have been satisfied. Not surprisingly, however, neither of the new criteria could have been satisfied. Because there were no obvious remedies for either problem, this ensemble was judged to be infeasible.</P>
+
+
+<A NAME="ch18lev2sec5"></A><H4 class="docSection2Title"> JAVA SERVLET ENSEMBLE</H4>
+<P class="docText">In addition to the primary ensemble based on Miva Empressa, an alternative, based on Java servlets, was identified. Miva Empressa was selected as the primary ensemble to investigate because of the existence of component expertise within the ASEILM development team; therefore, it received the most project resources. However, a limited effort was also devoted to evaluating the Java servlet ensemble. This exploration was the second time through the model problem work flow, so three steps could be saved:</P>
+<A NAME="ch18pr02"></A><UL START=""><LI>
+<p class="docText"><span class="docEmphRoman">Step 1—</span> The design question was unchanged.</p>
+</LI>
+<LI>
+<p class="docText"><span class="docEmphRoman">Step 2—</span> The beginning evaluation criteria included all four criteria.</p>
+</LI>
+<LI>
+<p class="docText"><span class="docEmphRoman">Step 3—</span> The constraints were unchanged.</p>
+</LI>
+</UL>
+<P class="docText">The new evaluation was able to start with step 4, which involves building a model solution, as pictured in <A class="docLink" HREF="#ch18fig04">Figure 18.4</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch18fig04"></A>Figure 18.4. JavaServer Pages ensemble</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="744" src="FILES/18fig04.gif" ALT="graphics/18fig04.gif"></p>
+</CENTER>
+<P class="docText">This solution was able to satisfy the first two criteria using the same processes implemented in the Miva Empressa ensemble. As ChartWorks was a part of the Java ensemble, the developers continued using adapters to repair the HTTP/S mismatch.</P>
+<P class="docText">The use of Java servlets allows separation of the presentation aspects of the system from the business and database logic. The presentation logic was restricted to HTML pages while the business and database logic was moved to servlets and Java beans executing in the Tomcat application server, satisfying criterion 3. Also, by replacing the Access database with SQL Server, the developers were able to use a remote connection to host the database behind the firewall, satisfying criterion 4.</P>
+<P class="docText">In the process of developing a model solution for the new ensemble, the following four things happened:</P>
+<UL>
+<LI><P class="docList">The initial criteria were shown to be insufficient, as already discussed.</P></LI>
+<LI><P class="docList">Portions of the design did not meet the initial criteria. In particular,</P><DL>
+<DD><span class="docText">- <span class="docEmphasis">Criterion 2.</span> 
+Secure data can be transferred between the HTTP server and Web browser over an HTTPS connection.<BR><BR></span></DD></DL><P class="docList">was insufficient to ensure the security of the system for reasons to be discussed shortly.</P>
+</LI>
+<LI><P class="docList">Additional requirements surfaced from the stakeholders.</P></LI>
+<LI><P class="docList">The new Java ensemble introduced additional concerns.</P></LI>
+</UL>
+<P class="docText">We now discuss the last three items.</P>
+<A NAME="ch18lev4sec3"></A><H5 class="docSection3Title"> Security</H5>
+<P class="docText">In addition to securing the transfer of data over the wire, the authentication model needed revisiting. Users were authenticated by placing a unique identifier, in the form of a cookie, on the client machine and mapping it to a session. The developers learned that, if the client machine was compromised, the user could be spoofed and the system compromised. To protect against this, the IP address of the machine that logged on was mapped to a unique identifier and checked with each subsequent request.</P>
+<P class="docText">An additional technique, called "cross-side scripting," is sometimes used by hackers. In this case, the Web form is saved on the hacker's machine and is altered in some malicious way. The form is then submitted, potentially causing the server to crash and displaying code or some other unintended information to the client machine. ASEILM's solution was to define exceptions to guard against this kind of attack.</P>
+
+<A NAME="ch18lev4sec4"></A><H5 class="docSection3Title"> Additional requirements</H5>
+<P class="docText">During development, another group became aware of ASEILM and wished to integrate their data with its data. It was not immediately clear what data needed to be integrated or for what purpose. Nor was the structure of the data to be integrated clear. During investigation, it became apparent that many people kept their own copy of data that pertained in some way to the data that ASEILM was meant to track. To minimize the effect on ASEILM of supporting additional data types, the team needed to separate the data abstraction layer in the custom components from the business logic. This would allow the system to function without knowledge of the source or structure of the data store(s). The layers of the custom component are shown in <A class="docLink" HREF="#ch18fig05">Figure 18.5</A>.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch18fig05"></A>Figure 18.5. Layers of custom component</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="280" src="FILES/18fig05.gif" ALT="graphics/18fig05.gif"></p>
+</CENTER>
+
+<A NAME="ch18lev4sec5"></A><H5 class="docSection3Title"> Concurrency</H5>
+<P class="docText">While the Java ensemble satisfied criteria that the Miva ensemble was unable to, it also introduced new concerns about concurrency management. Through the development of the model solution the team realized that (unlike the Miva ensemble) the Java ensemble did not manage concurrency.</P>
+<P class="docText">Tomcat documentation did not discuss concurrency. To determine whether this was in fact a concern, the team had to discover the thread model for this ensemble. In particular, they had to learn how IIS and Tomcat related to each other and what effect this would have on the system. They analyzed the thread model and hypothesized that every user login created a distinct thread. This suggested three cases:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Two users access the system simultaneously and use different data.</span> 
+When the custom component was divided into business logic and data abstraction layers, the decision was made to cache the appropriate data within the data abstraction layer. That is, on initialization the data is retrieved by the business logic from the database through the data abstraction layer and maintained within the business logic. The developers took no special actions to make the business logic thread safe. Thus, in the case of two users simultaneously accessing the business logic, they chose to treat the business logic as a critical section and to make access to all of it sequential by user. Since all relevant data is memory resident, satisfying each request is a fast operation and the wait for each user becomes intolerable only if there are many simultaneous users. In the environment of use, only a few simultaneous users are expected.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Two users access the system simultaneously and use the same data.</span> 
+One aspect of this case—ensuring consistent data within the database—is a by-product of the solution for case 1. Since access to the business logic is kept sequential, each update is based on consistent data. A second aspect of this case—that a user may be viewing and operating on stale data—is a manifestation of the problem of "pushing" data to the user using HTTP. The team decided to build periodic reloading of the current Web page into the generated HTML, and thus the data being viewed and operated on is guaranteed to be current within a set tolerance. This is not an optimal solution, but it was easy to implement and, based on expectations of user load, probably adequate.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">A single user with two simultaneous sessions.</span> 
+The team simply disallowed this option.</p>
+</LI>
+</UL>
+<P class="docText">The team evaluated this solution against the ending evaluation criteria, which were unchanged from the initial experiment with Miva. The Java servlet ensemble met the criteria, and implementation was continued.</P>
+<P class="docText">The Java servlet ensemble solution turned out to be suitable for the project's needs, and the ASEILM system was fielded early in 2002. It is still too early to know if the assumptions about usage patterns with respect to concurrency are correct, but early indications are positive. Note, however, that this solution is not expected to scale well.</P>
+
+
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch18lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch18lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

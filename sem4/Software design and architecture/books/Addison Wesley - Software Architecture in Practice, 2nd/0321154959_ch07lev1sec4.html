@@ -1,0 +1,37 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="7.4 Creating a Skeletal System"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch07lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch07lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch07lev1sec4"></A><H3 class="docSection1Title">7.4 Creating a Skeletal System</H3>
+<P class="docText">Once an architecture is sufficiently designed and teams are in place to begin building to it, a skeletal system can be constructed. The idea at this stage is to provide an underlying capability to implement a system's functionality in an order advantageous to the project.</P>
+<P class="docText">Classical software engineering practice recommends "stubbing out" sections of code so that portions of the system can be added separately and tested independently. However, which portions should be stubbed? By using the architecture as a guide, a sequence of implementation becomes clear.</P>
+<P class="docText">First, implement the software that deals with the execution and interaction of architectural components. This may require producing a scheduler in a real-time system, implementing the rule engine (with a prototype set of rules) to control rule firing in a rule-based system, implementing process synchronization mechanisms in a multi-process system, or implementing client-server coordination in a client-server system. Often, the basic interaction mechanism is provided by third-party middleware, in which case the job becomes ones of installation instead of implementation. On top of this communication or interaction infrastructure, you may wish to install the simplest of functions, one that does little more than instigate some rote behavior. At this point, you will have a running system that essentially sits there and hums to itself—but a running system nevertheless. This is the foundation onto which useful functionality can be added.</P>
+<P class="docText">You can now choose which of the elements providing functionality should be added to the system. The choice may be based on lowering risk by addressing the most problematic areas first, or it may be based on the levels and type of staffing available, or it may be based on getting something useful to market as quickly as possible.</P>
+<P class="docText">Once the elements providing the next increment of functionality have been chosen, you can employ the uses structure (from <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A>) to tell you what additional software should be running correctly in the system (as opposed to just being there in the form of a stub) to support that functionality.</P>
+<P class="docText">This process continues, growing larger and larger increments of the system, until it is all in place. At no point is the integration and testing task overwhelming; at every increment it is easy to find the source of newly introduced faults. Budgets and schedules are more predictable with smaller increments, which also provide management and marketing with more delivery options.</P>
+<P class="docText">Even the stubbed-out parts help pave the way for completion. These stubs adhere to the same interfaces that the final version of the system requires, so they can help with understanding and testing the interactions among components even in the absence of high-fidelity functionality. These stub components can exercise this interaction in two ways, either producing hardcoded canned output or reading the output from a file. They can also generate a synthetic load on the system to approximate the amount of time the actual processing will take in the completed working version. This aids in early understanding of system performance requirements, including performance interactions and bottlenecks.</P>
+<P class="docText">According to Cusumano and Selby, the Evolutionary Delivery Life Cycle is the basis for the strategy that Microsoft uses. In Microsoft's version of this approach, a "complete" skeletal system is created early in a product's life cycle and a "working," but low-fidelity, version is rebuilt at frequent periods—often nightly. This results in a working system for which the features can, at any time, be judged sufficient and the product rolled out. One problem to guard against, however, is that the first development team to complete a portion of the system gets to define the interface to which all subsequent subsystems must conform. This effectively penalizes the complex portions of the system, because they will require more analysis and hence will be less likely to have their interfaces defined first. The effect is to make the complex subsystems even more complex. Our recommendation is first to negotiate the interfaces in the skeletal subsystem and then to use a process that rewards development efficiency.</P>
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch07lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch07lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

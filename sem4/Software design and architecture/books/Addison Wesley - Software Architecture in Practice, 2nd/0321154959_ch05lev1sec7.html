@@ -1,0 +1,62 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="5.7 Usability Tactics"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="0321154959_toc.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch05lev1sec6.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch05lev1sec8.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch05lev1sec7"></A><H3 class="docSection1Title">5.7 Usability Tactics</H3>
+<P class="docText">Recall from <A class="docLink" HREF="0321154959_ch04.html#ch04">Chapter 4</A> that usability is concerned with how easy it is for the user to accomplish a desired task and the kind of support the system provides to the user. Two types of tactics support usability, each intended for two categories of "users." The first category, runtime, includes those that support the user during system execution. The second category is based on the iterative nature of user interface design and supports the interface developer at design time. It is strongly related to the modifiability tactics already presented.</P>
+<P class="docText"><A class="docLink" HREF="#ch05fig12">Figure 5.12</A> shows the goal of the runtime tactics.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch05fig12"></A>Figure 5.12. Goal of runtime usability tactics</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="129" src="FILES/05fig12.gif" ALT="graphics/05fig12.gif"></p>
+</CENTER>
+<A NAME="ch05lev2sec15"></A><H4 class="docSection2Title"> RUNTIME TACTICS</H4>
+<P class="docText">Once a system is executing, usability is enhanced by giving the user feedback as to what the system is doing and by providing the user with the ability to issue usability-based commands such as those we saw in <A class="docLink" HREF="0321154959_ch04.html#ch04">Chapter 4</A>. For example, <span class="docEmphasis">cancel, undo, aggregate</span>, and <span class="docEmphasis">show multiple views</span> support the user in either error correction or more efficient operations.</P>
+<P class="docText">Researchers in human–computer interaction have used the terms "user intiative," "system initiative," and "mixed initiative" to describe which of the human–computer pair takes the initiative in performing certain actions and how the interaction proceeds. The usability scenarios we enumerated in <A class="docLink" HREF="0321154959_ch04.html#ch04">Chapter 4</A>, Understanding Quality Attributes, combine initiatives from both perspectives. For example, when canceling a command the user issues a cancel—"user initiative"—and the system responds. During the cancel, however, the system may put up a progress indicator—"system initiative." Thus, cancel demonstrates "mixed initiative." We use this distinction between user and system initiative to discuss the tactics that the architect uses to achieve the various scenarios.</P>
+<P class="docText">When the user takes the initiative, the architect designs a response as if for any other piece of functionality. The architect must enumerate the responsibilities of the system to respond to the user command. To use the cancel example again: When the user issues a cancel command, the system must be listening for it (thus, there is the responsibility to have a constant listener that is not blocked by the actions of whatever is being canceled); the command to cancel must be killed; any resources being used by the canceled command must be freed; and components that are collaborating with the canceled command must be informed so that they can also take appropriate action.</P>
+<P class="docText">When the system takes the initiative, it must rely on some information—a model—about the user, the task being undertaken by the user, or the system state itself. Each model requires various types of input to accomplish its initiative. The system initiative tactics are those that identify the models the system uses to predict either its own behavior or the user's intention. Encapsulating this information will enable an architect to more easily tailor and modify those models. Tailoring and modification can be either dynamically based on past user behavior or offline during development.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Maintain a model of the task.</span> 
+In this case, the model maintained is that of the task. The task model is used to determine context so the system can have some idea of what the user is attempting and provide various kinds of assistance. For example, knowing that sentences usually start with capital letters would allow an application to correct a lower-case letter in that position.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Maintain a model of the user.</span> 
+In this case, the model maintained is of the user. It determines the user's knowledge of the system, the user's behavior in terms of expected response time, and other aspects specific to a user or a class of users. For example, maintaining a user model allows the system to pace scrolling so that pages do not fly past faster than they can be read.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Maintain a model of the system.</span> 
+In this case, the model maintained is that of the system. It determines the expected system behavior so that appropriate feedback can be given to the user. The system model predicts items such as the time needed to complete current activity.</p>
+</LI>
+</UL>
+
+<A NAME="ch05lev2sec16"></A><H4 class="docSection2Title"> DESIGN-TIME TACTICS</H4>
+<P class="docText">User interfaces are typically revised frequently during the testing process. That is, the usability engineer will give the developers revisions to the current user interface design and the developers will implement them. This leads to a tactic that is a refinement of the modifiability tactic of semantic coherence:</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Separate the user interface from the rest of the application.</span> 
+Localizing expected changes is the rationale for semantic coherence. Since the user interface is expected to change frequently both during the development and after deployment, maintaining the user interface code separately will localize changes to it. The software architecture patterns developed to implement this tactic and to support the modification of the user interface are:</p>
+<DL>
+<DD><P class="docList">- Model-View-Controller</P></DD><DD><P class="docList">- Presentation-Abstraction-Control</P></DD><DD><P class="docList">- Seeheim</P></DD><DD><P class="docList">- Arch/Slinky</P></DD></DL></LI>
+</UL>
+<P class="docText"><A class="docLink" HREF="#ch05fig13">Figure 5.13</A> shows a summary of the runtime tactics to achieve usability.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch05fig13"></A>Figure 5.13. Summary of runtime usability tactics</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="249" src="FILES/05fig13.gif" ALT="graphics/05fig13.gif"></p>
+</CENTER>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch05lev1sec6.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch05lev1sec8.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

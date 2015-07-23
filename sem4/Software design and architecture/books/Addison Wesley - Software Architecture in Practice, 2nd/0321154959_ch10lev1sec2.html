@@ -1,0 +1,198 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="10.2 Information Extraction"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch10lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch10lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch10lev1sec2"></A><H3 class="docSection1Title" id="161597-954">10.2 Information Extraction</H3>
+<P class="docText">Information extraction involves analyzing a system's existing design and implementation artifacts to construct a model of it. The result is a set of information placed in a database, which is used in the view fusion activity to construct a view of the system.</P>
+<P class="docText">Information extraction is a blend of the ideal—what information do you want to discover about the architecture that will most help you meet the goals of your reconstruction effort—and the practical—what information can your available tools actually extract and present. From the source artifacts (e.g., code, header files, build files) and other artifacts (e.g., execution traces), you can identify and capture the elements of interest within the system (e.g., files, functions, variables) and their relationships to obtain several base system views. <A class="docLink" HREF="#ch10table01">Table 10.1</A> shows a typical list of the elements and several relationships among them that might be extracted.</P>
+<A NAME="ch10table01"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 10.1. Typical Extracted Elements and Relations</h5></CAPTION><COLGROUP align="left" span="4">
+<THEAD>
+<TR>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Source Element</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Relation</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="top">
+<P class="docText"><span class="docEmphStrong">Target Element</span> </P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Description</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">File</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">"<TT>includes</TT>"</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">File</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">C preprocessor <TT>#include</TT> of one file by another</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">File</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">"<TT>contains</TT>"</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Function</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Definition of a function in a file</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">File</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">"<TT>defines_var</TT>"</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Variable</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Definition of a variable in a file</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Directory</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">"<TT>contains</TT>"</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Directory</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Directory contains a subdirectory</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Directory</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">"<TT>contains</TT>"</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">File</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Directory contains a file</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Function</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">"<TT>calls</TT>"</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Function</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Static function call</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Function</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">"<TT>access_read</TT>"</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Variable</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Read access on a variable</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Function</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">"<TT>access_write</TT>"</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Variable</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Write access on a variable</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">Each of the relationships between the elements gives different information about the system. The <TT>calls</TT> relationship between functions helps us build a call graph. The <TT>includes</TT> relationship between the files gives us a set of dependencies between system files. The <TT>access_read</TT> and <TT>access_write</TT> relationships between functions and variables show us how data is used. Certain functions may write a set of data and others may read it. This information is used to determine how data is passed between various parts of the system. We can determine whether or not a global data store is used or whether most information is passed through function calls.</P>
+<P class="docText">If the system being analyzed is large, capturing how source files are stored within the directory structure may be important to the reconstruction process. Certain elements or subsystems may be stored in particular directories, and capturing relations such as <TT>dir_contains_file</TT> and <TT>dir_contains_dir</TT> is useful when trying to identify elements later.</P>
+<P class="docText">The set of elements and relations extracted will depend on the type of system being analyzed and the extraction support tools available. If the system to be reconstructed is object oriented, classes and methods are added to the list of elements to be extracted, and relationships such as <TT>class is_subclass_of_ class</TT> and <TT>class_contains_method</TT> are extracted and used.</P>
+<P class="docText">Information obtained can be categorized as either static or dynamic. Static information is obtained by observing only the system artifacts, while dynamic information is obtained by observing how the system runs. The goal is to fuse both to create more accurate system views. (View fusion is discussed in <A class="docLink" HREF="0321154959_ch10lev1sec4.html#ch10lev1sec4">Section 10.4</A>.) If the architecture of the system changes at runtime (e.g., a configuration file is read in by the system at startup and certain elements are loaded as a result), that runtime configuration should be captured and used when carrying out the reconstruction.</P>
+<P class="docText">To extract information, a variety of tools are used, including these:</P>
+<UL>
+<LI><P class="docList">Parsers (e.g., Imagix, SNiFF+, CIA, rigiparse)</P></LI>
+<LI><P class="docList">Abstract syntax tree (AST) analyzers (e.g., Gen++, Refine)</P></LI>
+<LI><P class="docList">Lexical analyzers (e.g., LSME)</P></LI>
+<LI><P class="docList">Profilers (e.g., gprof)</P></LI>
+<LI><P class="docList">Code instrumentation tools</P></LI>
+<LI><P class="docList">Ad hoc (e.g., grep, perl)</P></LI>
+</UL>
+<P class="docText">Parsers analyze the code and generate internal representations from it (for the purpose of generating machine code). Typically, however, it is possible to save this internal representation to obtain a view. AST analyzers do a similar job, but they build an explicit tree representation of the parsed information. We can build analysis tools that traverse the AST and output selected pieces of architecturally relevant information in an appropriate format.</P>
+<P class="docText">Lexical analyzers examine source artifacts purely as strings of lexical elements or tokens. The user of a lexical analyzer can specify a set of code patterns to be matched and output. Similarly, a collection of ad hoc tools such as grep and perl can carry out pattern matching and searching within the code to output some required information. All of these tools—code-generating parsers, AST-based analyzers, lexical analyzers, and ad hoc pattern matchers—are used to output static information.</P>
+<P class="docText">Profiling and code coverage analysis tools can be used to output information about the code as it is being executed, and usually do not involve adding new code to the system. On the other hand, code instrumentation, which has wide applicability in the field of testing, involves adding code to the system to output specific information while the system is executing. These tools generate dynamic system views.</P>
+<P class="docText">Tools to analyze design models, build files, makefiles, and executables can also be used to extract further information as required. For instance, build files and makefiles include information on module or file dependencies that exist within the system and may not be reflected in the source code.</P>
+<P class="docText">Much architecture-related information may be extracted statically from source code, compile-time artifacts, and design artifacts. Some architecturally relevant information, however, may not exist in the source artifacts because of late binding. Examples of late binding include the following:</P>
+<UL>
+<LI><P class="docList">Polymorphism</P></LI>
+<LI><P class="docList">Function pointers</P></LI>
+<LI><P class="docList">Runtime parameterization</P></LI>
+</UL>
+<P class="docText">The precise topology of a system may not be determined until runtime. For example, multi-process and multi-processor systems, using middleware such as J2EE, Jini, or .NET, frequently establish their topology dynamically, depending on the availability of system resources. The topology of such systems does not live in its source artifacts and hence cannot be reverse engineered using static extraction tools.</P>
+<P class="docText">For this reason, it may be necessary to use tools that can generate dynamic information about the system (e.g., profiling tools). Of course, this requires that such tools be available on the platform on which the system executes. Also, it may be difficult to collect the results from code instrumentation. Embedded systems often have no way to output such information.</P>
+<A NAME="ch10lev2sec3"></A><H4 class="docSection2Title"> GUIDELINES</H4>
+<P class="docText">The following are some practical considerations in applying this step of the method.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Use the "least effort" extraction.</span> Consider what information you need to extract from a source corpus. Is this information lexical in nature? Does it require the comprehension of complex syntactic structures? Does it require some semantic analysis? In each case, a different tool could be applied successfully. In general, lexical approaches are the cheapest to use, and they should be considered if your reconstruction goals are simple.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Validate the information you have extracted.</span> Before starting to fuse or manipulate the various views obtained, make sure that the correct view information has been captured. It is important that the tools being used to analyze the source artifacts do their job correctly. First perform detailed manual examination and verification of a subset of the elements and relations against the underlying source code, to establish that the correct information is being captured. The precise amount of information that needs to be verified manually is up to you. Assuming that this is a statistical sampling, you can decide on a desired confidence level and choose the sampling strategy to achieve it.</p>
+</LI>
+<LI><P class="docList"><span class="docEmphasis">Extract dynamic information where required</span>, such as where there is a lot of runtime or late binding and the architecture is dynamically configurable.</P></LI>
+</UL>
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch10lev1sec1.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch10lev1sec3.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

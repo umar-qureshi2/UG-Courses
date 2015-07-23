@@ -1,0 +1,73 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="14.4 Architectures for Product Lines"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch14lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch14lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch14lev1sec4"></A><H3 class="docSection1Title" id="161597-855">14.4 Architectures for Product Lines</H3>
+<P class="docText">Of all of the assets in a core asset repository, the software architecture plays the most central role. The essence of building a successful software product line is discriminating between what is expected to remain constant across all family members and what is expected to vary. Software architecture is ready-made for handling this duality, since all architectures are abstractions that admit a plurality of instances; a great source of their conceptual value is, after all, that they allow us to concentrate on design essentials within a number of different implementations. By its very nature an architecture is a statement about what we expect to remain constant and what we admit may vary. In a software product line, the architecture is an expression of the nonvarying aspects.</P>
+<P class="docText">But a product line architecture goes beyond this simple dichotomy, concerning itself with a set of explicitly allowed variations, whereas with a conventional architecture almost any instance will do as long as the (single) system's behavioral and quality goals are met. Thus, identifying the allowable variations is part of the architecture's responsibility, as is providing built-in mechanisms for achieving them. Those variations may be substantial. Products in a software product line exist simultaneously and may vary in terms of their behavior, quality attributes, platform, network, physical configuration, middleware, scale factors, and so forth.</P>
+<P class="docText">A product line architect needs to consider three things:</P>
+<UL>
+<LI><P class="docList">Identifying variation points</P></LI>
+<LI><P class="docList">Supporting variation points</P></LI>
+<LI><P class="docList">Evaluating the architecture for product line suitability</P></LI>
+</UL>
+<A NAME="ch14lev2sec1"></A><H4 class="docSection2Title"> IDENTIFYING VARIATION POINTS</H4>
+<P class="docText">Identifying variation is an ongoing activity. Because of the many ways a product can vary, variants can be identified at virtually any time during the development process. Some variations are identified during product line requirements elicitation; others, during architecture design; and still others, during implementation. Variations may also be identified during implementation of the second (and subsequent) products as well.</P>
+<P class="docText">The variations discovered during the requirements process can include features, platforms, user interfaces, qualities, and target markets. Some are interdependent. For example, the user interface may be tied to the platform to be used, which may in turn be tied to a particular target market.</P>
+<P class="docText">The variation points discovered during the architecture design process will be either options for implementing the variations identified during the requirements process or normal variations during design because particular decisions are deferred until more information is available. In any case, it is now appropriate to speak of "variation points" since there are places in the architecture that we can point to that capture the variation.</P>
+
+<A NAME="ch14lev2sec2"></A><H4 class="docSection2Title"> SUPPORTING VARIATION POINTS</H4>
+<P class="docText">In a conventional architecture, the mechanism for achieving different instances almost always comes down to modifying the code. But in a software product line, architectural support for variation can take many forms:</P>
+<UL>
+<LI><P class="docList">Inclusion or omission of elements. This decision can be reflected in the build procedures for different products, or the implementation of an element can be conditionally compiled based on some parameter indicating its presence or absence.</P></LI>
+<LI><P class="docList">Inclusion of a different number of replicated elements. For instance, high-capacity variants might be produced by adding more servers—the actual number should be unspecified, as a point of variation. Again, a build file would select the number appropriate for a particular product.</P></LI>
+<LI><P class="docList">Selection of versions of elements that have the same interface but different behavioral or quality attribute characteristics. Selection can occur at compile or build time or, in some cases, even runtime. Two selection mechanisms are static libraries, which contain external functions linked to after compilation time, and dynamic link libraries, which have the flexibility of static libraries but defer the decision until runtime based on context and execution conditions. By changing the libraries, we can change the implementation of functions whose names and signatures are known.</P></LI>
+</UL>
+<P class="docText">These mechanisms produce wholesale changes at the architectural level. Other mechanisms can be introduced that change aspects of a particular element. Changing the source code falls into this category. More sophisticated techniques include the following:</P>
+<UL>
+<LI><P class="docList">In object-oriented systems, specializing or generalizing particular classes can achieve variation. Classes can be written to admit a variety of specializations that can be written for various products as necessary.</P></LI>
+<LI><P class="docList">Building extension points into the element's implementation. This is a place where additional behavior or functionality can be safely added.</P></LI>
+<LI><P class="docList">Variation can be accomplished by introducing build-time parameters to an element, a subsystem, or a collection of subsystems, whereby a product is configured by setting a collection of values.</P></LI>
+<LI><P class="docList">Reflection is the ability of a program to manipulate data on itself or its execution environment or state. Reflective programs can adjust their behavior based on their context.</P></LI>
+<LI><P class="docList">Overloading is a means of re-using a named functionality to operate on different types. Overloading promotes code re-use, but at the cost of understandability and code complexity.</P></LI>
+</UL>
+<P class="docText">Of course, there must be documentation (see <A class="docLink" HREF="0321154959_ch09.html#ch09">Chapter 9</A>) for the product line architecture as it resides in the core asset base and for each product's architecture (to the extent that it varies from the product line architecture). The documentation for the product line architecture should clearly show its variation points and a rationale for each (probably using the scope definition as justification). It should also describe the architecture's instantiation process—that is, how its variation points are exercised. Theoretically, each variation point could be described separately, but in practice not all variations are allowed. Some combinations may be unused or (worse) result in an error, and so the documentation needs to explain valid and invalid variation bindings.</P>
+<P class="docText">The documentation for an individual product's architecture can be written in terms of deltas from or binding of variation points. For example, the architecture for product #16 might require <span class="docEmphasis">three</span> servers, <span class="docEmphasis">sixty-four</span> client workstations, <span class="docEmphasis">two</span> databases, the <span class="docEmphasis">high-speed low-resolution version</span> of the graphics element, and <span class="docEmphasis">null</span> encryption in the message generator.</P>
+
+<A NAME="ch14lev2sec3"></A><H4 class="docSection2Title"> EVALUATING A PRODUCT LINE ARCHITECTURE</H4>
+<P class="docText">Like any other, the architecture for a software product line should be evaluated for fitness of purpose. In fact, given the number of systems that will rely on it, evaluation takes on an even more important role for a product line architecture.</P>
+<P class="docText">The good news is that the evaluation techniques described earlier in this book work well for product line architectures. The architecture should be evaluated for its robustness and generality, to make sure it can serve as the basis for products in the product line's envisioned scope. It should also be evaluated to make sure it meets the specific behavioral and quality requirements of the product at hand. We begin by focusing on the what and how of the evaluation and then turn to when it should take place.</P>
+<A NAME="ch14lev3sec1"></A><H5 class="docSection3Title"> What and How to Evaluate</H5>
+<P class="docText">The evaluation will have to focus on the variation points to make sure they are appropriate, that they offer sufficient flexibility to cover the product line's intended scope, that they allow products to be built quickly, and that they do not impose unacceptable runtime performance costs. If your evaluation is scenario based, expect to elicit scenarios that involve instantiating the architecture to support different products in the family. Also, different products in the product line may have different quality attribute requirements, and the architecture will have to be evaluated for its ability to provide all required combinations. Here again, try to elicit scenarios that capture the quality attributes required of family members.</P>
+<P class="docText">Often, some of the hardware and other performance-affecting factors for a product line architecture are unknown to begin with. In this case, evaluation can establish bounds on the performance that the architecture is able to achieve, assuming bounds on hardware and other variables. The evaluation can identify potential contention so that you can put in place the policies and strategies to resolve it.</P>
+
+<A NAME="ch14lev3sec2"></A><H5 class="docSection3Title"> When to Evaluate</H5>
+<P class="docText">An evaluation should be performed on an instance or variation of the architecture that will be used to build one or more products in the product line. The extent to which this is a separate, dedicated evaluation depends on the extent to which the product architecture differs in quality-attribute-affecting ways from the product line architecture. If it does not differ, the product line architecture evaluation can be abbreviated, since many of the issues normally be raised in a single product evaluation will have been dealt with in the product line evaluation. In fact, just as the product architecture is a variation of the product line architecture, the product architecture evaluation is a variation of the product line architecture evaluation. Therefore, depending on the evaluation method used, the evaluation artifacts (scenarios, checklists, etc.) will have re-use potential, and you should create them with that in mind. The results of evaluation of product architectures often provide useful feedback to the product line architects and fuel architectural improvements.</P>
+<P class="docText">When a new product is proposed that falls outside the scope of the original product line (for which the architecture was presumably evaluated), the product line architecture can be re-evaluated to see if it will suffice for it. If it does, the product line's scope can be expanded to include the new product or to spawn a new product line. If it does not, the evaluation can determine how the architecture will have to be modified to accommodate the new product.</P>
+<P class="docText">The product line and product architectures can be evaluated not only to determine architectural risks but also, using the CBAM (see <A class="docLink" HREF="0321154959_ch12.html#ch12">Chapter 12</A>), to determine which products will yield the most return.</P>
+
+
+
+<ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch14lev1sec3.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch14lev1sec5.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

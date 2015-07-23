@@ -1,0 +1,348 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="9.3 Choosing the Relevant Views"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch09lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch09lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch09lev1sec3"></A><H3 class="docSection1Title">9.3 Choosing the Relevant Views</H3>
+<P class="docText">Recall that we introduced a set of structures and views in <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A>. What are the relevant views? This is where knowing your stakeholders and the uses they plan to make of the documentation will help you construct the documentation package they need. The many purposes that architecture can serve—as a mission statement for implementors, as the starting point for system understanding and asset recovery, as the blueprint for project planning, and so forth—are each represented by a stakeholder wanting and expecting to use the documentation to serve that purpose. Similarly, the quality attributes of most concern to you and the other stakeholders in the system's development will affect the choice of what views to document. For instance, a <span class="docEmphasis">layered view</span> will tell you about your system's portability. A <span class="docEmphasis">deployment view</span> will let you reason about your system's performance and reliability. And so it goes. These quality attributes are "spoken for" in the documentation by analysts (perhaps even the architect) who need to examine the architecture to make sure the quality attributes are provided.</P>
+<P class="docText">In short, different views support different goals and uses. This is fundamentally why we do not advocate a particular view or a collection of views. The views you should document depend on the uses you expect to make of the documentation. Different views will highlight different system elements and/or relationships.</P>
+<P class="docText"><A class="docLink" HREF="#ch09table02">Table 9.2</A> shows a representative population of stakeholders and the kind of views they tend to find useful. You should use it to help you think about who your stakeholders are and what views might serve them well. Which views are available from which to choose? <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A> listed a set of views, some of which are reflected in <A class="docLink" HREF="#ch09table02">Table 9.2</A>. <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A> divided views into these three groups: module, component-and-connector (C&amp;C), and allocation. This three-way categorization reflects the fact that architects need to think about their software in at least three ways at once:</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><P class="docList">How it is structured as a set of implementation units</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">How it is structured as a set of elements that have runtime behavior and interactions</P></span></LI>
+<LI><span style="font-weight:normal"><P class="docList">How it relates to non-software structures in its environment</P></span></LI>
+</OL></span>
+<A NAME="ch09table02"></A><P><TABLE CELLSPACING="0" FRAME="hsides" RULES="groups" CELLPADDING="5" WIDTH="100%">
+<CAPTION><h5 class="docTableTitle">Table 9.2. Stakeholders and the Architecture Documentation They Might Find Most Useful</h5></CAPTION><COLGROUP align="left" span="8">
+<THEAD>
+<TR>
+<TH class="docTableHeader" valign="top">&nbsp;</TH>
+<TH class="docTableHeader" align="center" valign="middle" colspan="4">
+<P class="docText"><span class="docEmphStrong">Module Views</span></P>
+</TH>
+<TH class="docTableHeader" align="center" valign="middle">
+<P class="docText"><span class="docEmphStrong">C&amp;C Views</span></P>
+</TH>
+<TH class="docTableHeader" align="center" valign="middle" colspan="1">
+<P class="docText"><span class="docEmphStrong">Allocation Views</span></P>
+</TH>
+</TR>
+<TR>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Stakeholder</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Decomposition</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Uses</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Class</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Layer</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Various</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Deployment</span></P>
+</TH>
+<TH class="docTableHeader" align="left" valign="bottom">
+<P class="docText"><span class="docEmphStrong">Implementation</span></P>
+</TH>
+</TR>
+</THEAD>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Project Manager</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Member of Development Team</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Testers and Integrators</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Maintainers</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Product Line Application Builder</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">o</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Customer</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">o</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">End User</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Analyst</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Infrastructure Support</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" valign="top">&nbsp;</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">New Stakeholder</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">x</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">x</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">x</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">x</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">x</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">x</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">x</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">Current and Future Architect</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">d</P>
+</TD>
+<TD class="docTableCell" align="left" valign="top">
+<P class="docText">s</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableFooter" valign="top" colspan="8">
+<P class="docText"><span class="docEmphasis">Key:</span> d = detailed information, s = some details, o = overview information, x = anything</P>
+</TD>
+</TR>
+<TR>
+<TD class="docTableFooter" valign="top" colspan="8">
+<P class="docText"><span class="docEmphasis">Source:</span> Adapted from [<A class="docLink" HREF="0321154959_biblio01.html#biblio01entry41">Clements 03</A>].</P>
+</TD>
+</TR>
+</COLGROUP>
+</TABLE></P>
+<P class="docText">Other views are available. A view simply represents a set of system elements and relationships among them, so whatever elements and relationships you deem useful to a segment of the stakeholder community constitute a valid view. Here is a simple three-step procedure for choosing the views for your project.</P>
+<span style="font-weight:bold"><OL class="docList" TYPE="1">
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Produce a candidate view list.</span> 
+Begin by building a stakeholder/view table, like <A class="docLink" HREF="#ch09table02">Table 9.2</A>, for your project. Your stakeholder list is likely to be different from the one in the table, but be as comprehensive as you can. For the columns, enumerate the views that apply to your system. Some views (such as decomposition or uses) apply to every system, while others (the layered view, most component-and-connector views such as client-server or shared data) only apply to systems designed that way. Once you have the rows and columns defined, fill in each cell to describe how much information the stakeholder requires from the view: none, overview only, moderate detail, or high detail.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Combine views.</span> 
+The candidate view list from step 1 is likely to yield an impractically large number of views. To reduce the list to a manageable size, first look for views in the table that require only overview depth or that serve very few stakeholders. See if the stakeholders could be equally well served by another view having a stronger constituency. Next, look for views that are good candidates to be combined—that is, a view that gives information from two or more views at once. For small and medium projects, the implementation view is often easily overlaid with the module decomposition view. The module decomposition view also pairs well with uses or layered views. Finally, the deployment view usually combines well with whatever component-and-connector view shows the components that are allocated to hardware elements—the process view, for example.</p></span></LI>
+<LI><span style="font-weight:normal"><p class="docText"><span class="docEmphasis">Prioritize.</span> 
+After step 2 you should have an appropriate set of views to serve your stakeholder community. At this point you need to decide what to do first. How you decide depends on the details specific to your project, but remember that you don't have to complete one view before starting another. People can make progress with overview-level information, so a breadth-first approach is often the best. Also, some stakeholders' interests supersede others. A project manager or the management of a company with which yours is partnering demands attention and information early and often.</p></span></LI>
+</OL></span>
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch09lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch09lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

@@ -1,0 +1,54 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="1.3 What Makes a 'Good' Architecture?"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch01lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch01lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch01lev1sec3"></A><H3 class="docSection1Title">1.3 What Makes a "Good" Architecture?</H3>
+<P class="docText">If it is true that, given the same technical requirements for a system, two different architects in different organizations will produce different architectures, how can we determine if either one of them is the <span class="docEmphasis">right</span> one?</P>
+<P class="docText">There is no such thing as an inherently good or bad architecture. Architectures are either more or less fit for some stated purpose. A distributed three-tier client-server architecture may be just the ticket for a large enterprise's financial management system but completely wrong for an avionics application. An architecture carefully crafted to achieve high modifiability does not make sense for a throw-away prototype. One of the messages of this book is that architectures can in fact be evaluated—one of the great benefits of paying attention to them—but only in the context of specific goals.</P>
+<P class="docText">Nevertheless, there are rules of thumb that should be followed when designing an architecture. Failure to apply any of these does not automatically mean that the architecture will be fatally flawed, but it should at least serve as a warning sign that should be investigated.</P>
+<P class="docText">We divide our observations into two clusters: process recommendations and product (or structural) recommendations. Our process recommendations are as follows:</P>
+<UL>
+<LI><P class="docList">The architecture should be the product of a single architect or a small group of architects with an identified leader.</P></LI>
+<LI><P class="docList">The architect (or architecture team) should have the functional requirements for the system and an articulated, prioritized list of quality attributes (such as security or modifiability) that the architecture is expected to satisfy.</P></LI>
+<LI><P class="docList">The architecture should be well documented, with at least one static view and one dynamic view (explained in <A class="docLink" HREF="0321154959_ch02.html#ch02">Chapter 2</A>), using an agreed-on notation that all stakeholders can understand with a minimum of effort.</P></LI>
+<LI><P class="docList">The architecture should be circulated to the system's stakeholders, who should be actively involved in its review.</P></LI>
+<LI><P class="docList">The architecture should be analyzed for applicable quantitative measures (such as maximum throughput) and formally evaluated for quality attributes before it is too late to make changes to it.</P></LI>
+<LI><P class="docList">The architecture should lend itself to incremental implementation via the creation of a "skeletal" system in which the communication paths are exercised but which at first has minimal functionality. This skeletal system can then be used to "grow" the system incrementally, easing the integration and testing efforts (see <A class="docLink" HREF="0321154959_ch07.html#ch07">Chapter 7</A>, <A class="docLink" HREF="0321154959_ch07lev1sec4.html#ch07lev1sec4">Section 7.4</A>).</P></LI>
+<LI><P class="docList">The architecture should result in a specific (and small) set of resource contention areas, the resolution of which is clearly specified, circulated, and maintained. For example, if network utilization is an area of concern, the architect should produce (and enforce) for each development team guidelines that will result in a minimum of network traffic. If performance is a concern, the architects should produce (and enforce) time budgets for the major threads.</P></LI>
+</UL>
+<P class="docText">Our structural rules of thumb are as follows:</P>
+<UL>
+<LI><P class="docList">The architecture should feature well-defined modules whose functional responsibilities are allocated on the principles of information hiding and separation of concerns. The information-hiding modules should include those that encapsulate idiosyncrasies of the computing infrastructure, thus insulating the bulk of the software from change should the infrastructure change.</P></LI>
+<LI><P class="docList">Each module should have a well-defined interface that encapsulates or "hides" changeable aspects (such as implementation strategies and data structure choices) from other software that uses its facilities. These interfaces should allow their respective development teams to work largely independently of each other.</P></LI>
+<LI><P class="docList">Quality attributes should be achieved using well-known architectural tactics specific to each attribute, as described in <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A> (Achieving Qualities).</P></LI>
+<LI><P class="docList">The architecture should never depend on a particular version of a commercial product or tool. If it depends upon a particular commercial product, it should be structured such that changing to a different product is straightforward and inexpensive.</P></LI>
+<LI><P class="docList">Modules that produce data should be separate from modules that consume data. This tends to increase modifiability because changes are often confined to either the production or the consumption side of data. If new data is added, both sides will have to change, but the separation allows for a staged (incremental) upgrade.</P></LI>
+<LI><P class="docList">For parallel-processing systems, the architecture should feature well-defined processes or tasks that do not necessarily mirror the module decomposition structure. That is, processes may thread through more than one module; a module may include procedures that are invoked as part of more than one process (the A-7E case study of <A class="docLink" HREF="0321154959_ch03.html#ch03">Chapter 3</A> is an example of employing this principle).</P></LI>
+<LI><P class="docList">Every task or process should be written so that its assignment to a specific processor can be easily changed, perhaps even at runtime.</P></LI>
+<LI><P class="docList">The architecture should feature a small number of simple interaction patterns (see <A class="docLink" HREF="0321154959_ch05.html#ch05">Chapter 5</A>). That is, the system should do the same things in the same way throughout. This will aid in understandability, reduce development time, increase reliability, and enhance modifiability. It will also show conceptual integrity in the architecture, which, while not measurable, leads to smooth development.</P></LI>
+</UL>
+<P class="docText">As you examine the case studies in this book, each of which successfully solves a challenging architectural problem, it is useful to see how many of them followed each of these rules of thumb. This set of rules is neither complete nor absolute but can serve as a guidepost for an architect beginning to make progress on an architectural design problem.</P>
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch01lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch01lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>

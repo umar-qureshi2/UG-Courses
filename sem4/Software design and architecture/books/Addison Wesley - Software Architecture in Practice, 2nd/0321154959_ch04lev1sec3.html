@@ -1,0 +1,84 @@
+<html><head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--SafClassName="docSection1Title"--><!--SafTocEntry="4.3 System Quality Attributes"-->
+<link rel="STYLESHEET" type="text/css" href="FILES/style.css">
+<link rel="STYLESHEET" type="text/css" href="FILES/docsafari.css">
+<style type="text/css">	.tt1    {font-size: 10pt;}</style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+	<a href="0321154959_ch04lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+	<a href="0321154959_ch04lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><A NAME="ch04lev1sec3"></A><H3 class="docSection1Title">4.3 System Quality Attributes</H3>
+<P class="docText">System quality attributes have been of interest to the software community at least since the 1970s. There are a variety of published taxonomies and definitions, and many of them have their own research and practitioner communities. From an architect's perspective, there are three problems with previous discussions of system quality attributes:</P>
+<UL>
+<LI><P class="docList">The definitions provided for an attribute are not operational. It is meaningless to say that a system will be modifiable. Every system is modifiable with respect to one set of changes and not modifiable with respect to another. The other attributes are similar.</P></LI>
+<LI><P class="docList">A focus of discussion is often on which quality a particular aspect belongs to. Is a system failure an aspect of availability, an aspect of security, or an aspect of usability? All three attribute communities would claim ownership of a system failure.</P></LI>
+<LI><P class="docList">Each attribute community has developed its own vocabulary. The performance community has "events" arriving at a system, the security community has "attacks" arriving at a system, the availability community has "failures" of a system, and the usability community has "user input." All of these may actually refer to the same occurrence, but are described using different terms.</P></LI>
+</UL>
+<P class="docText">A solution to the first two of these problems (nonoperational definitions and overlapping attribute concerns) is to use <span class="docEmphasis">quality attribute scenarios</span> as a means of characterizing quality attributes. A solution to the third problem is to provide a brief discussion of each attribute—concentrating on its underlying concerns—to illustrate the concepts that are fundamental to that attribute community.</P>
+<A NAME="ch04lev2sec1"></A><H4 class="docSection2Title"> QUALITY ATTRIBUTE SCENARIOS</H4>
+<P class="docText">A quality attribute scenario is a quality-attribute-specific requirement. It consists of six parts.</P>
+<UL>
+<LI><p class="docText"><span class="docEmphasis">Source of stimulus.</span> 
+This is some entity (a human, a computer system, or any other actuator) that generated the stimulus.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Stimulus.</span> 
+The stimulus is a condition that needs to be considered when it arrives at a system.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Environment.</span> 
+The stimulus occurs within certain conditions. The system may be in an overload condition or may be running when the stimulus occurs, or some other condition may be true.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Artifact.</span> 
+Some artifact is stimulated. This may be the whole system or some pieces of it.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response.</span> 
+The response is the activity undertaken after the arrival of the stimulus.</p>
+</LI>
+<LI><p class="docText"><span class="docEmphasis">Response measure.</span> 
+When the response occurs, it should be measurable in some fashion so that the requirement can be tested.</p>
+</LI>
+</UL>
+<P class="docText">We distinguish general quality attribute scenarios (general scenarios)—those that are system independent and can, potentially, pertain to any system—from concrete quality attribute scenarios (concrete scenarios)—those that are specific to the particular system under consideration. We present attribute characterizations as a collection of general scenarios; however, to translate the attribute characterization into requirements for a particular system, the relevant general scenarios need to be made system specific.</P>
+<P class="docText"><A class="docLink" HREF="#ch04fig01">Figure 4.1</A> shows the parts of a quality attribute scenario.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch04fig01"></A>Figure 4.1. Quality attribute parts</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="204" src="FILES/04fig01.gif" ALT="graphics/04fig01.gif"></p>
+</CENTER>
+<A NAME="ch04lev3sec1"></A><H5 class="docSection3Title"> Availability Scenario</H5>
+<P class="docText">A general scenario for the quality attribute of availability, for example, is shown in <A class="docLink" HREF="#ch04fig02">Figure 4.2</A>. Its six parts are shown, indicating the range of values they can take. From this we can derive concrete, system-specific, scenarios. Not every system-specific scenario has all of the six parts. The parts that are necessary are the result of the application of the scenario and the types of testing that will be performed to determine whether the scenario has been achieved.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch04fig02"></A>Figure 4.2. Availability general scenarios</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="248" src="FILES/04fig02.gif" ALT="graphics/04fig02.gif"></p>
+</CENTER>
+<P class="docText">An example availability scenario, derived from the general scenario of <A class="docLink" HREF="#ch04fig02">Figure 4.2</A> by instantiating each of the parts, is "An unanticipated external message is received by a process during normal operation. The process informs the operator of the receipt of the message and continues to operate with no downtime." <A class="docLink" HREF="#ch04fig03">Figure 4.3</A> shows the pieces of this derived scenario.</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch04fig03"></A>Figure 4.3. Sample availability scenario</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="221" src="FILES/04fig03.gif" ALT="graphics/04fig03.gif"></p>
+</CENTER>
+<P class="docText">The source of the stimulus is important since differing responses may be required depending on what it is. For example, a request from a trusted source may be treated differently from a request from an untrusted source in a security scenario. The environment may also affect the response, in that an event arriving at a system may be treated differently if the system is already overloaded. The artifact that is stimulated is less important as a requirement. It is almost always the system, and we explicitly call it out for two reasons.</P>
+<P class="docText">First, many requirements make assumptions about the internals of the system (e.g., "a Web server within the system fails"). Second, when we utilize scenarios within an evaluation or design method, we refine the scenario artifact to be quite explicit about the portion of the system being stimulated. Finally, being explicit about the value of the response is important so that quality attribute requirements are made explicit. Thus, we include the response measure as a portion of the scenario.</P>
+
+<A NAME="ch04lev3sec2"></A><H5 class="docSection3Title"> Modifiability Scenario</H5>
+<P class="docText">A sample modifiability scenario is "A developer wishes to change the user interface to make a screen's background color blue. This change will be made to the code at design time. It will take less than three hours to make and test the change and no side effect changes will occur in the behavior." <A class="docLink" HREF="#ch04fig04">Figure 4.4</A> illustrates this sample scenario (omitting a few minor details for brevity).</P>
+<CENTER><H5 class="docFigureTitle"><A NAME="ch04fig04"></A>Figure 4.4. Sample modifiability scenario</H5><p class="docText"><IMG BORDER="0" WIDTH="500" HEIGHT="234" src="FILES/04fig04.gif" ALT="graphics/04fig04.gif"></p>
+</CENTER>
+<P class="docText">A collection of concrete scenarios can be used as the quality attribute requirements for a system. Each scenario is concrete enough to be meaningful to the architect, and the details of the response are meaningful enough so that it is possible to test whether the system has achieved the response. When eliciting requirements, we typically organize our discussion of general scenarios by quality attributes; if the same scenario is generated by two different attributes, one can be eliminated.</P>
+<P class="docText">For each attribute we present a table that gives possible system-independent values for each of the six parts of a quality scenario. A general quality scenario is generated by choosing one value for each element; a concrete scenario is generated as part of the requirements elicitation by choosing one or more entries from each column of the table and then making the result readable. For example, the scenario shown in <A class="docLink" HREF="#ch04fig04">Figure 4.4</A> is generated from the modifiability scenario given in <A class="docLink" HREF="0321154959_ch04lev1sec4.html#ch04table02">Table 4.2</A> (on page 83), but the individual parts were edited slightly to make them read more smoothly as a scenario.</P>
+<P class="docText">Concrete scenarios play the same role in the specification of quality attribute requirements that use cases play in the specification of functional requirements.</P>
+
+
+<A NAME="ch04lev2sec2"></A><H4 class="docSection2Title"> QUALITY ATTRIBUTE SCENARIO GENERATION</H4>
+<P class="docText">Our concern in this chapter is helping the architect generate meaningful quality attribute requirements for a system. In theory this is done in a project's requirements elicitation, but in practice this is seldom rigorously enforced. As we said in <A class="docLink" HREF="0321154959_ch01.html#ch01">Chapter 1</A>, a system's quality attribute requirements are seldom elicited and recorded in a disciplined way. We remedy this situation by generating concrete quality attribute scenarios. To do this, we use the quality-attribute-specific tables to create general scenarios and from these derive system-specific scenarios. Typically, not all of the possible general scenarios are created. The tables serve as a checklist to ensure that all possibilities have been considered rather than as an explicit generation mechanism. We are unconcerned about generating scenarios that do not fit a narrow definition of an attribute—if two attributes allow the generation of the same quality attribute requirement, the redundancy is easily corrected. However, if an important quality attribute requirement is omitted, the consequences may be more serious.</P>
+
+
+<a href="0321154959_20011533.html"><img src="FILES/pixel.gif" width="1" height="1" border="0"></a><ul></ul>
+</td>
+</tr>
+</table>
+<td></td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<td class="tt1"><a href="NFO/lib.html">[ Team LiB ]</a></td><td valign="top" class="tt1" align="right">
+          <a href="0321154959_ch04lev1sec2.html"><img src="FILES/previous.gif" width="62" height="15" border="0" align="absmiddle" alt="Previous Section"></a>
+          <a href="0321154959_ch04lev1sec4.html"><img src="FILES/next.gif" width="41" height="15" border="0" align="absmiddle" alt="Next Section"></a>
+</td></table>
+</body></html>
