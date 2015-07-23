@@ -1,0 +1,189 @@
+.body1
+{
+  FONT-FAMILY: Verdana,Arial,Helvetica; FONT-SIZE: xx-small; FONT-WEIGHT: normal; background-color: #ffffff; margin: 0 0 0 0;
+}
+
+.menu1:link {
+   COLOR: #000000; TEXT-DECORATION: none; font-weight: bold;
+}
+.menu1:visited {
+   COLOR: #000000; TEXT-DECORATION: none; font-weight: bold;
+}
+.menu1:hover {
+   COLOR: #004afa; TEXT-DECORATION: none;font-weight: bold;
+}
+
+.menu2:link {
+   COLOR: #000000; TEXT-DECORATION: none;
+}
+.menu2:visited {
+   COLOR: #000000; TEXT-DECORATION: none;
+}
+.menu2:hover {
+   COLOR: #004afa; TEXT-DECORATION: none;
+}
+
+
+.menu:link {
+   COLOR: #FFFFFF; TEXT-DECORATION: none;
+}
+.menu:visited {
+   COLOR: #FFFFFF; TEXT-DECORATION: none;
+}
+.menu:hover {
+   COLOR: #FFCC00; TEXT-DECORATION: none;
+}
+
+
+.TDB {
+  FONT-FAMILY: Verdana,Arial,Helvetica; FONT-SIZE: xx-small;font-weight: bold;
+}
+
+
+.TDN {
+  FONT-FAMILY: Verdana,Arial,Helvetica; FONT-SIZE: xx-small;
+}
+
+
+tr.ActMenu
+{
+   border-right: black double;
+   border-top: black double;
+   border-left: black double;
+   border-bottom: black double;
+   background-color: #6699cc;
+}
+
+tr.InactMenu {  color: #000000; }
+
+
+.Button1
+{
+  font-family: verdana, arial, helvetica, sans-serif;
+  background: #ffffff; color: black;font-weight: bold;font-size: 8pt;font-style: normal
+}
+
+
+.textbox1
+{
+   border-width: 1; border-style: solid;
+   font-size: 8pt;
+   font-style: normal;
+   font-family: verdana, arial, helvetica, sans-serif;
+   visibility:visible
+}
+
+.textboxHide
+{
+   border-width: 1; border-style: solid;
+   font-size: 8pt;
+   font-style: normal;
+   font-family: verdana, arial, helvetica, sans-serif;
+   visibility:hidden
+}
+
+.DataRowSummary
+{
+   font-family: verdana, arial, helvetica, sans-serif;
+   background: #cccccc;	color: black;	font-weight: normal;font-size: 8pt;font-style: normal
+}
+
+TD.ptab {
+FONT-FAMILY: Verdana,Arial,Helvetica; font-weight:bold; font-size:XX-Small; border-color:Black; 
+height:25px;Z-INDEX: 101; border-top-width: 0px;border-right-width: 0px;
+border-left-width: 0px;border-bottom-width: 2px; border-style: solid; 
+nowrap: yes; width: 30px;
+}
+
+TD.atab {
+FONT-FAMILY: Verdana,Arial,Helvetica; font-weight:bold; font-size:X-Small; border-color:Black; 
+height:25px;Z-INDEX: 101; border-top-width: 2px;border-right-width: 2px;
+border-left-width: 2px;border-bottom-width: 0px; border-style: solid; text-align: center;
+}
+
+TD.itab {
+FONT-FAMILY: Verdana,Arial,Helvetica; font-weight:bold; font-size:X-Small; border-color:Black; 
+border-width:1px; height:25px;Z-INDEX: 101; background-color:#E0E0E0;
+text-align: center;border-top-width: 1px;border-right-width: 1px;border-left-width: 1px;
+border-bottom-width: 2px; border-style: solid;
+}
+
+.butt1
+{ 
+   border-right: thin solid;
+   border-top: thin solid;
+   margin-top: 5px;
+   font-weight: bold;
+   text-justify: auto;
+   font-size: xx-small;
+   margin-left: 5px;
+   vertical-align: sub;
+   border-left: thin solid;
+   color: black;
+   border-bottom: thin;
+   font-family: Verdana, Arial;
+   height: 20px;
+   background-color: transparent;
+   text-align: center;
+   text-decoration: none;
+}
+
+.tab11:link
+{ 
+   border-right: thin solid;
+   border-top: thin solid;
+   font-weight: bold;
+   text-justify: auto;
+   font-size: xx-small;
+   vertical-align: sub;
+   border-left: thin solid;
+   color: black;
+   border-bottom: thin;
+   font-family: Verdana, Arial;
+   height: 20px;
+   background-color: transparent;
+   text-align: center;
+   text-decoration: none;
+}
+
+.tab11:visited
+{ 
+   border-right: thin solid;
+   border-top: thin solid;
+   font-weight: bold;
+   text-justify: auto;
+   font-size: xx-small;
+   vertical-align: sub;
+   border-left: thin solid;
+   color: black;
+   border-bottom: thin;
+   font-family: Verdana, Arial;
+   height: 20px;
+   background-color: transparent;
+   text-align: center;
+   text-decoration: none;
+}
+
+.tab11:hover
+{
+   border-right: thin solid;
+   border-top: thin solid;
+   font-weight: bold;
+   text-justify: auto;
+   font-size: xx-small;
+   vertical-align: sub;
+   border-left: thin solid;
+   color: #000000;
+   border-bottom: thin;
+   font-family: Verdana, Arial;
+   height: 20px;
+   background-color: #cccccc;
+   text-align: center;
+   text-decoration: none;
+}
+
+td.ActiveMenuItem     {	background-color: #6699cc; }
+td.ActiveMenuItem a   {	background-color: #6699CC; }
+td.InactiveMenuItem   {	color: #000000; }
+td.InactiveMenuItem a {	color: #000000; } 
+
